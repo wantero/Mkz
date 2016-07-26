@@ -4,18 +4,170 @@
     {
       "type": "kendo-ui-mobile:view",
       "name": "home",
-      "components": [],
-      "title": "Home View",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:authentication",
+          "name": "homeModel",
+          "dataProvider": "mackenzie",
+          "emailLabel": "Email",
+          "passwordLabel": "Senha",
+          "signinLabel": "Entrar",
+          "signinRedirect": "cursosView",
+          "enableRegistration": true,
+          "gotoRegisterLabel": "Registrar-se",
+          "registerEmailLabel": "Email",
+          "registerPasswordLabel": "Senha",
+          "registerNameLabel": "Nome",
+          "registerLabel": "Registrar",
+          "registerRedirect": "home",
+          "gotoSigninLabel": "Entrar",
+          "enableLogout": true,
+          "logoutLabel": "Sign Out",
+          "enableRememberme": true,
+          "remembermeLabel": "Lembrar acesso"
+        }
+      ],
+      "title": "Acesso",
       "addToNavigation": true,
       "icon": "home"
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "perfilView",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:form",
+          "components": [
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "tia",
+              "title": "TIA",
+              "inputType": "number",
+              "titlePosition": "left"
+            },
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "nome",
+              "title": "Nome",
+              "inputType": "text",
+              "titlePosition": "left",
+              "placeholder": "Informe seu nome ..."
+            },
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "email",
+              "title": "Email",
+              "inputType": "email",
+              "titlePosition": "left",
+              "placeholder": "email@dominio.com"
+            },
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "senha",
+              "title": "Senha",
+              "inputType": "password",
+              "titlePosition": "left",
+              "placeholder": "Sua senha ..."
+            }
+          ],
+          "name": "perfilViewModel",
+          "submitButton": "Confirmar",
+          "cancelButton": "Cancelar"
+        }
+      ],
+      "title": "Perfil",
+      "addToNavigation": true,
+      "icon": "contacts"
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "cursosView",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:editableList",
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "components": [
+            {
+              "type": "kendo-ui-mobile:editableListForm",
+              "components": [
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "duracao",
+                  "dataBindingRelationChildren": "[]",
+                  "title": "Duração",
+                  "inputType": "textArea",
+                  "wideFieldTitlePosition": "top",
+                  "dataBinding": "Duracao"
+                }
+              ],
+              "name": "editableListForm16",
+              "formType": "list"
+            }
+          ],
+          "name": "cursosViewModel",
+          "dataProvider": "mackenzie",
+          "collection": "Cursos",
+          "headerField": "Curso",
+          "isMapView": false,
+          "pullToRefresh": true,
+          "endlessScroll": true,
+          "deleteItemButton": false,
+          "detailHeaderFieldSource": "dataBound",
+          "detailHeaderField": "Disciplinas",
+          "detailSubHeaderField": "Disciplinas",
+          "addItemForm": false,
+          "editItemForm": false,
+          "itemActionView": "disciplinasView",
+          "itemActionPrimaryKey": "Id",
+          "itemActionSecondaryKey": "Cursos"
+        }
+      ],
+      "title": "Cursos",
+      "addToNavigation": true,
+      "icon": "bookmarks"
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "disciplinasView",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:editableList",
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "components": [],
+          "name": "disciplinasViewModel",
+          "dataProvider": "mackenzie",
+          "collection": "Disciplinas",
+          "headerField": "Nome",
+          "isMapView": false,
+          "pullToRefresh": false,
+          "endlessScroll": false,
+          "deleteItemButton": false,
+          "detailHeaderFieldSource": "static",
+          "detailHeaderFieldValue": "Detail",
+          "addItemForm": false,
+          "editItemForm": false
+        }
+      ],
+      "title": "Disciplinas",
+      "addToNavigation": true,
+      "icon": "bookmarks"
     }
   ],
-  "dataProviders": [],
+  "dataProviders": [
+    {
+      "type": "kendo-ui-mobile:dataProvider",
+      "name": "mackenzie",
+      "title": "Mackenzie / Mackenzie",
+      "source": "everlive",
+      "everliveKey": "kb8omb79mcfcupp9",
+      "offlineStorage": true
+    }
+  ],
   "name": "kendoUiMobileApp",
-  "navigation": "tabstrip",
+  "navigation": "drawer",
   "view": "home",
-  "transition": "slide",
-  "showMoreTab": true,
   "skin": "nova",
   "skinMainColor": "#32364c",
   "skinTextColor": "#ffffff",

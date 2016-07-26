@@ -1,0 +1,23 @@
+<div data-role="view" data-title="Details" data-model="app.cursosView.cursosViewModel" data-bind="events: { show: detailsShow }" id="cursosViewModelDetailsView">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <a data-role="backbutton" data-align="left">Back</a>
+            <span data-bind="text: currentItem['Disciplinas']"></span>
+        </div>
+    </header>
+
+    <div class="details-content">
+        <div class="km-listview-wrapper">
+            <ul class="km-listview km-list km-listinset details-fields">
+                <li>
+                    <h3 data-bind="text: currentItem.Disciplinas"></h3></li>
+
+
+            </ul>
+        </div>
+    </div>
+    <!-- START_CUSTOM_CODE_cursosViewModel -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+    <!-- END_CUSTOM_CODE_cursosViewModel -->
+</div>

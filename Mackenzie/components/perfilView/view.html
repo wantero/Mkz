@@ -1,0 +1,66 @@
+<div data-role="view" data-title="Perfil" data-layout="main" data-model="app.perfilView" data-show="app.perfilView.onShow" data-after-show="app.perfilView.afterShow">
+    <div id="perfilViewModel" class="form-view">
+        <form>
+            <ul class="form-content" data-role="listview" data-style="inset">
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>TIA</span>
+
+                        <input data-bind="value: perfilViewModel.fields.tia" type="number">
+                    </label>
+
+                </li>
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>Nome</span>
+
+                        <input data-bind="value: perfilViewModel.fields.nome" placeholder="Informe seu nome ..." type="text">
+                    </label>
+
+                </li>
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>Email</span>
+
+                        <input data-bind="value: perfilViewModel.fields.email" placeholder="email@dominio.com" type="email">
+                    </label>
+
+                </li>
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>Senha</span>
+
+                        <input data-bind="value: perfilViewModel.fields.senha" placeholder="Sua senha ..." type="password">
+                    </label>
+
+                </li>
+            </ul>
+
+            <div class="button-group">
+                <a data-role="button" data-bind="events: { click: perfilViewModel.cancel }">Cancelar</a>
+                <a class="primary" data-role="button" data-bind="events: { click: perfilViewModel.submit }">Confirmar</a>
+            </div>
+        </form>
+        <!-- START_CUSTOM_CODE_perfilViewModel -->
+        <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+        <!-- END_CUSTOM_CODE_perfilViewModel -->
+    </div>
+
+    <!-- START_CUSTOM_CODE_perfilView -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+    <!-- END_CUSTOM_CODE_perfilView -->
+</div>
