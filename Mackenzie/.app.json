@@ -153,6 +153,14 @@
       "title": "Disciplinas",
       "addToNavigation": true,
       "icon": "bookmarks"
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "pesquisaView",
+      "components": [],
+      "title": "Pesquisa",
+      "addToNavigation": true,
+      "icon": "info"
     }
   ],
   "dataProviders": [
