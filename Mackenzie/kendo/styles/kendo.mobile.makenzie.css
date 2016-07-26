@@ -1,0 +1,39 @@
+.km-flat .km-view .km-content {
+    background-color: rgb(255, 255, 255);
+}
+.km-flat .km-view .km-content .km-button {
+    background-color: rgb(255, 255, 255);
+}
+.km-flat .km-view .km-content .km-button.km-state-active {
+    background-color: rgb(255, 0, 0);
+}
+.km-flat .km-view .km-navbar {
+    background-color: rgb(255, 0, 0);
+}
+.km-flat .km-view .km-navbar .km-view-title > * {
+    color: rgb(255, 255, 255);
+}
+.km-flat .km-view .km-tabstrip .km-button {
+    background-color: rgb(255, 0, 0);
+}
+.km-flat .km-view .km-tabstrip .km-button.km-state-active {
+    background-color: rgb(255, 255, 255);
+}
+.km-flat .km-view .km-navbar .km-button {
+    background-color: rgb(255, 255, 255);
+}
+.km-flat .km-view .km-navbar .km-button.km-state-active .km-text {
+    color: rgb(255, 0, 0);
+}
+.km-flat .km-view .km-tabstrip .km-state-active span.km-icon {
+    color: rgb(0, 0, 0);
+}
+.km-flat .km-view .km-tabstrip .km-button.km-state-active .km-text {
+    color: rgb(0, 0, 0);
+}
+.km-flat .km-view .km-content .km-list .km-state-active .km-listview-link {
+    background-color: rgb(255, 0, 0);
+}
+.km-flat .km-view .km-content .km-list > li .km-switch .km-switch-container {
+    background-color: rgb(255, 0, 0);
+}
