@@ -104,7 +104,7 @@ app.home = kendo.observable({
                     return false;
                 }
                 provider.Users.login(email, password, successHandler, init);
-                navbar.show();
+                //navbar.show();
             },
             register: function() {
                 var model = homeModel,
@@ -131,8 +131,8 @@ app.home = kendo.observable({
     parent.set('homeModel', homeModel);
     parent.set('afterShow', function(e) {
         //Esconde o HEADER
-        navbar = e.view.element && e.view.element.find('header [data-role="navbar"]');
-        navbar.hide();
+        //navbar = e.view.element && e.view.element.find('header [data-role="navbar"]');
+        //navbar.hide();
         if (e && e.view && e.view.params && e.view.params.logout) {
             if (localStorage) {
                 localStorage.setItem(rememberKey, null);
