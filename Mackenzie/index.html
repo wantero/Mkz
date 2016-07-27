@@ -24,6 +24,8 @@
     <script src="components/cursosView/index.js"></script>
     <script src="components/perfilView/index.js"></script>
     <script src="components/home/index.js"></script>
+
+    <!-- Layout principal com HEADER -->
     <div data-role="layout" data-id="main">
         <header data-role="header">
             <div data-role="navbar">
@@ -33,6 +35,21 @@
         </header>
     </div>
 
+    <!-- Layout com HEADER e TABSTRIP para pesquisa de curso/disciplina/tag -->
+    <div data-role="layout" data-id="main-tab">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+                <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            </div>
+            <div data-role="tabstrip" id="tabStrip">
+                <a href="components/cursosView/view.html">Cursos</a>
+                <a href="components/disciplinasView/view.html">Disciplinas</a>
+                <!-- <a href="#tabstrip-teste">Tags</a> -->
+            </div>                    
+        </header>
+    </div>    
+
     <div data-role="layout" data-id="main-nonav">
         <header data-role="header">
             <div data-role="navbar">
@@ -41,7 +58,7 @@
         </header>
     </div>
 
-    <div id="appDrawer" data-role="drawer" data-title="Navigation" data-bind="visible: false">
+    <div id="appDrawer" data-role="drawer" data-title="Navigation">
         <header data-role="header">
             <div data-role="navbar">
                 <span data-role="view-title"></span>
@@ -52,12 +69,12 @@
 
             <li><a href="components/perfilView/view.html" data-icon="contacts">Perfil</a></li>
 
-            <!--li><a href="components/cursosView/view.html" data-icon="bookmarks">Cursos</a></li-->
+            <li><a href="components/cursosView/view.html" data-icon="bookmarks">Cursos</a></li>
 
             <!--li><a href="components/disciplinasView/view.html" data-icon="bookmarks">Disciplinas</a></li-->
 
 
-            <li><a href="components/pesquisaView/view.html" data-icon="info">Pesquisa</a></li>
+            <!-- <li><a href="components/pesquisaView/view.html" data-icon="info">Pesquisa</a></li> -->
             <li id="homeModellogout"><a href="components/home/view.html?logout=true" data-position="end" data-icon="action">Sign Out</a></li>
         </ul>
     </div>
