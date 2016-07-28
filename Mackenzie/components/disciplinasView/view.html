@@ -2,7 +2,13 @@
 
     <!-- START_CUSTOM_CODE_disciplinasView -->
     <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
-
+    <form>
+        <ul class="form-content" data-role="listview" data-style="inset">
+            <li class="form-content-item">
+                <input id="Pesquisa" placeholder="Pesquisar Disciplina" type="text" onKeyUp="app.disciplinasView.disciplinasViewModel.filtraPesquisa(this.value)">
+            </li>                    
+        </ul>
+    </form>
     <!-- END_CUSTOM_CODE_disciplinasView -->
 
     <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="inset" data-template="disciplinasViewModelTemplate" data-bind="{ source: disciplinasViewModel.dataSource, events: {click: disciplinasViewModel.itemClick} }" data-pull-to-refresh="false"
@@ -14,6 +20,7 @@
     <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
 
     <!-- END_CUSTOM_CODE_disciplinasViewModel -->
+    
     <script type="text/x-kendo-template" id="disciplinasViewModelTemplate">
         <div class="image-with-text">
             # data = app.disciplinasView.disciplinasViewModel.fixHierarchicalData(data); #

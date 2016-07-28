@@ -188,6 +188,10 @@ app.disciplinasView = kendo.observable({
                 }
                 return processImage(imageField);
             },
+            filtraPesquisa: function(valueField) {
+                var param = { field: "Nome", operator: "contains", value: valueField };
+                fetchFilteredData(param);
+            },
             currentItem: {}
         });
 
@@ -203,6 +207,8 @@ app.disciplinasView = kendo.observable({
         var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
             isListmenu = false,
             backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');
+
+        console.log(JSON.parse(e.view));
 
         if (param || isListmenu) {
             backbutton.show();

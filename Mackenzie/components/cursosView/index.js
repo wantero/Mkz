@@ -10,6 +10,7 @@ app.cursosView = kendo.observable({
 
 // END_CUSTOM_CODE_cursosView
 (function(parent) {
+
     var dataProvider = app.data.mackenzie,
         fetchFilteredData = function(paramFilter, searchFilter) {
             var model = parent.get('cursosViewModel'),
@@ -194,6 +195,10 @@ app.cursosView = kendo.observable({
                     return processImage(this.get("currentItem." + imageField.split("|")[0]));
                 }
                 return processImage(imageField);
+            },
+            filtraPesquisa: function(valueField) {
+                var param = { field: "Curso", operator: "contains", value: valueField };
+                fetchFilteredData(param);
             },
             currentItem: {}
         });
