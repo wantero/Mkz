@@ -9,8 +9,8 @@ app.cursosView = kendo.observable({
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
 
 // END_CUSTOM_CODE_cursosView
-(function(parent) {
-
+(function(parent) {    
+    var viewParam = "";
     var dataProvider = app.data.mackenzie,
         fetchFilteredData = function(paramFilter, searchFilter) {
             var model = parent.get('cursosViewModel'),
@@ -197,7 +197,12 @@ app.cursosView = kendo.observable({
                 return processImage(imageField);
             },
             filtraPesquisa: function(valueField) {
-                var param = { field: "Curso", operator: "contains", value: valueField };
+                if (viewParam === null) {
+                    var param = [{ field: "Curso", operator: "contains", value: valueField }];
+                } else {
+                    var param = [viewParam, { field: "Curso", operator: "contains", value: valueField }];
+                }                
+
                 fetchFilteredData(param);
             },
             currentItem: {}
@@ -226,6 +231,9 @@ app.cursosView = kendo.observable({
                 backbutton.css('visibility', 'hidden');
             }
         }
+
+        // Armazena o parametro recebido pela VIEW
+        viewParam = param;        
 
         fetchFilteredData(param);
     });

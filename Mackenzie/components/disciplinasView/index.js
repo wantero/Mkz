@@ -10,6 +10,7 @@ app.disciplinasView = kendo.observable({
 
 // END_CUSTOM_CODE_disciplinasView
 (function(parent) {
+    var viewParam = "";
     var dataProvider = app.data.mackenzie,
         fetchFilteredData = function(paramFilter, searchFilter) {
             var model = parent.get('disciplinasViewModel'),
@@ -188,8 +189,13 @@ app.disciplinasView = kendo.observable({
                 }
                 return processImage(imageField);
             },
-            filtraPesquisa: function(valueField) {
-                var param = { field: "Nome", operator: "contains", value: valueField };
+            filtraPesquisa: function(valueField) {                
+                if (viewParam === null) {
+                    var param = [{ field: "Nome", operator: "contains", value: valueField }];
+                } else {
+                    var param = [viewParam, { field: "Nome", operator: "contains", value: valueField }];
+                }
+
                 fetchFilteredData(param);
             },
             currentItem: {}
@@ -208,8 +214,6 @@ app.disciplinasView = kendo.observable({
             isListmenu = false,
             backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');
 
-        console.log(JSON.parse(e.view));
-
         if (param || isListmenu) {
             backbutton.show();
             backbutton.css('visibility', 'visible');
@@ -220,6 +224,11 @@ app.disciplinasView = kendo.observable({
                 backbutton.css('visibility', 'hidden');
             }
         }
+
+        // Armazena o parametro recebido pela VIEW
+        viewParam = param;
+
+        // console.log($("#Pesquisa").value);
 
         fetchFilteredData(param);
     });
