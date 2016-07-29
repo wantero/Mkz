@@ -228,7 +228,7 @@ app.disciplinasView = kendo.observable({
         // Armazena o parametro recebido pela VIEW
         viewParam = param;
 
-        // console.log($("#Pesquisa").value);
+        //console.log($("#Pesquisa").value);
 
         fetchFilteredData(param);
     });

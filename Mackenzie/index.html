@@ -42,6 +42,15 @@
                 <span data-role="view-title"></span>
                 <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
             </div>
+
+            <form>
+                <ul class="form-content" data-role="listview" data-style="inset">
+                    <li class="form-content-item">
+                        <input id="Pesquisa" placeholder="Pesquisar Disciplina" type="text" onKeyUp="app.disciplinasView.disciplinasViewModel.filtraPesquisa(this.value)">
+                    </li>                    
+                </ul>
+            </form>
+
             <div data-role="tabstrip" id="tabStrip">
                 <a href="components/cursosView/view.html">Cursos</a>
                 <a href="components/disciplinasView/view.html">Disciplinas</a>
