@@ -38,9 +38,9 @@ app.home = kendo.observable({
             }
 
             var rememberedData = localStorage ? JSON.parse(localStorage.getItem(rememberKey)) : app[rememberKey];
-            if (rememberedData && rememberedData.email && rememberedData.password) {
+            if (rememberedData && rememberedData.tia && rememberedData.password) {
 
-                parent.homeModel.set('email', rememberedData.email);
+                parent.homeModel.set('tia', rememberedData.tia);
                 parent.homeModel.set('password', rememberedData.password);
                 parent.homeModel.signin();
             }
@@ -59,10 +59,10 @@ app.home = kendo.observable({
                     return;
                 }
                 var rememberedData = {
-                    email: model.email,
+                    tia: model.tia,
                     password: model.password
                 };
-                if (model.rememberme && rememberedData.email && rememberedData.password) {
+                if (model.rememberme && rememberedData.tia && rememberedData.password) {
                     if (localStorage) {
                         localStorage.setItem(rememberKey, JSON.stringify(rememberedData));
                     } else {
@@ -80,11 +80,11 @@ app.home = kendo.observable({
         },
         homeModel = kendo.observable({
             displayName: '',
-            email: '',
+            tia: '',
             password: '',
             validateData: function(data) {
-                if (!data.email) {
-                    alert('Missing email');
+                if (!data.tia) {
+                    alert('Missing tia');
                     return false;
                 }
 
@@ -97,22 +97,22 @@ app.home = kendo.observable({
             },
             signin: function() {
                 var model = homeModel,
-                    email = model.email.toLowerCase(),
+                    tia = model.tia.toLowerCase(),
                     password = model.password;
 
                 if (!model.validateData(model)) {
                     return false;
                 }
-                provider.Users.login(email, password, successHandler, init);
+                provider.Users.login(tia, password, successHandler, init);
                 //navbar.show();
             },
             register: function() {
                 var model = homeModel,
-                    email = model.email.toLowerCase(),
+                    tia = model.tia.toLowerCase(),
                     password = model.password,
                     displayName = model.displayName,
                     attrs = {
-                        Email: email,
+                        tia: tia,
                         DisplayName: displayName
                     };
 
@@ -120,7 +120,7 @@ app.home = kendo.observable({
                     return false;
                 }
 
-                provider.Users.register(email, password, attrs, successHandler, init);
+                provider.Users.register(tia, password, attrs, successHandler, init);
             },
             toggleView: function() {
                 mode = mode === 'signin' ? 'register' : 'signin';
