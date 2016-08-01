@@ -3,27 +3,22 @@
         <form>
             <ul data-role="listview" data-style="inset">
                 <li>
-                    <label>TIA
-                        <input type="text" data-bind="value: homeModel.tia" required autofocus>
-                    </label>
+                    <input type="text" data-bind="value: homeModel.tia" placeholder="TIA" required autofocus>
                 </li>
                 <li>
-                    <label>Senha
-                        <input type="password" data-bind="value: homeModel.password" required>
-                    </label>
+                    <input type="password" data-bind="value: homeModel.password" placeholder="Senha" required>
                 </li>
-                <li>
+                <!--li>
                     <label>Lembrar acesso
                         <input type="checkbox" data-bind="checked: homeModel.rememberme">
                     </label>
-                </li>
+                </li-->
             </ul>
 
             <div class="button-group button-group-vertical">
                 <a data-role="button" class="primary" data-bind="events: { click: homeModel.signin }">Entrar</a>
 
                 <a data-role="button" data-bind="events: { click: homeModel.toggleView }">Registrar-se</a>
-
             </div>
         </form>
     </div>
@@ -31,23 +26,20 @@
         <form>
             <ul data-role="listview" data-style="inset">
                 <li>
-                    <label>Email
-                        <input type="email" data-bind="value: homeModel.email" required>
-                    </label>
+                    <input type="text" data-bind="value: homeModel.tia" placeholder="TIA" required>
                 </li>
                 <li>
-                    <label>Senha
-                        <input type="password" data-bind="value: homeModel.password">
-                    </label>
+                    <input type="password" data-bind="value: homeModel.password" placeholder="Senha">
                 </li>
                 <li>
-                    <label>Nome
-                        <input type="text" data-bind="value: homeModel.displayName">
-                    </label>
+                    <input type="text" data-bind="value: homeModel.displayName" placeholder="Nome">
+                </li>
+                <li>
+                    <input type="email" data-bind="value: homeModel.displayName" placeholder="Email">
                 </li>
             </ul>
             <div class="button-group button-group-vertical">
-                <a class="primary" data-role="button" data-bind="events: { click: homeModel.register }">Registrar</a>
+                <a class="primary" data-role="button" data-bind="events: { click: homeModel.register }">Enviar</a>
                 <a data-role="button" data-bind="events: { click: homeModel.toggleView }">Entrar</a>
             </div>
         </form>

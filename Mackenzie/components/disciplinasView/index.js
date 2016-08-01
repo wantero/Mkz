@@ -228,9 +228,16 @@ app.disciplinasView = kendo.observable({
         // Armazena o parametro recebido pela VIEW
         viewParam = param;
 
-        //console.log($("#Pesquisa").value);
+        var $pesquisaEl = $('#disciplinas [id="pesquisa"]');
+        var pesquisaValue = $pesquisaEl.val();
 
-        fetchFilteredData(param);
+        if (pesquisaValue != '') {
+            app.pesquisaView.lastCursoFilter(pesquisaValue);
+            pesquisaValue = '';
+            $pesquisaEl.val('');
+        }
+
+        disciplinasViewModel.filtraPesquisa(pesquisaValue);
     });
 
 })(app.disciplinasView);

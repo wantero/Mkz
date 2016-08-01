@@ -233,9 +233,16 @@ app.cursosView = kendo.observable({
         }
 
         // Armazena o parametro recebido pela VIEW
-        viewParam = param;        
+        viewParam = param;     
 
-        fetchFilteredData(param);
+        var $pesquisaEl = $('#cursos [id="pesquisa"]');
+        var lastCursoFilter = app.pesquisaView.lastCursoFilter();
+
+        if (lastCursoFilter != '') {
+            $pesquisaEl.val(lastCursoFilter);
+        }
+
+        cursosViewModel.filtraPesquisa($pesquisaEl.val());
     });
 
 })(app.cursosView);

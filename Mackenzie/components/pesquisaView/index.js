@@ -1,8 +1,24 @@
 'use strict';
 
+var lastCursoFilterValue = '';
+
 app.pesquisaView = kendo.observable({
     onShow: function() {},
-    afterShow: function() {}
+    afterShow: function() {},
+    filtraPesquisa: function(valueField) {
+    	if ($("#cursos").is(":visible")) {
+				app.cursosView.cursosViewModel.filtraPesquisa(valueField);
+    	} else {
+    		app.disciplinasView.disciplinasViewModel.filtraPesquisa(valueField);
+    	}
+    },
+    lastCursoFilter: function(filter) {
+			if (filter) {
+				lastCursoFilterValue = filter;
+			}
+
+			return lastCursoFilterValue;
+    }
 });
 
 // START_CUSTOM_CODE_pesquisaView
