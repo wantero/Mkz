@@ -1,0 +1,113 @@
+.km-flat .km-view .km-navbar,
+.km-flat .km-view .km-content,
+.km-flat .km-view .km-content .km-button,
+.km-flat .km-view .km-content .km-list > li .km-switch .km-switch-container,
+.km-flat .km-view .km-content .km-list .km-state-active .km-listview-link,
+.km-flat .km-view .km-content .km-button.km-state-active,
+.km-flat .km-view .km-navbar .km-button.km-state-active .km-text,
+.km-flat .km-view .km-button,
+.km-flat .km-view .km-tabstrip .km-button.km-state-active,
+.logo-img {
+	background-color: #EA2D2E;
+}
+
+/*** LOGO MACKENZIE ***/
+.logo-img {
+	height: 130px;
+    width: 100%;
+    display: block;
+	background-image: url(images/Logo-Mackenzie-app-01.png);
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+}
+
+/*** FORMULÁRIO ***/
+.km-content.km-insetcontent {
+	padding: 2em;
+}
+
+.km-content .km-scroll-container .km-listview-wrapper .km-widget li {
+	border-radius: 3px;
+	padding: 0.77em;
+}
+	#kendoUiMobileApp .km-listview-wrapper .km-widget > li:not(:last-child),
+	#kendoUiMobileApp .km-listview-wrapper + .button-group-vertical .km-button:not(:last-child) {
+		margin-bottom: 0.5em;
+	}
+
+.km-content .km-scroll-container .km-listview-wrapper {
+	padding: 0 0 0.5em;
+}
+
+.km-content .km-scroll-container .km-listview-wrapper .km-widget {
+	margin: 0;
+}
+
+.km-content .km-scroll-container .km-listview-wrapper .km-widget li > input {
+	position: static;
+	width: 100%;
+	padding: 0;
+}
+
+#kendoUiMobileApp .km-listview-wrapper + .button-group-vertical {
+	display: block;
+	padding: 0;
+}
+
+#kendoUiMobileApp .km-listview-wrapper + .button-group-vertical .km-button {
+	height: 42px;
+	padding: 0.8em;
+	margin: 0;
+	border-color: #FFF;
+	color: #FFF;
+	background-color: transparent;
+	transition: background-color 0.2s;
+}
+	#kendoUiMobileApp .km-listview-wrapper + .button-group-vertical .km-button.km-state-active {
+		background-color: #EA6A6A;
+		transition: 0.2s;
+	}
+
+#kendoUiMobileApp .km-listview-wrapper + .button-group-vertical .km-button,
+.lost-password {
+	height: auto;
+	font-size: 1.1rem;
+}
+
+/*** ESQUECI A SENHA ***/
+.lost-password {
+	display: block;
+	margin: 1.6em 0 0;
+	text-align: center;
+	color: #FFF;
+}
+
+.km-content p.or-text {
+	position: relative;
+	margin: 1em 0;
+}
+
+.or-text::before,
+.or-text::after {
+	content: "";
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    width: 37%;
+    background-color: #fff;
+}
+
+.or-text::before {
+    left: 0;
+}
+
+.or-text::after {
+	right: 0;
+}
+
+.lost-text {
+	padding: 1em;
+	text-decoration: none;
+	letter-spacing: 3px;
+}

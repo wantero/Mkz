@@ -1,4 +1,4 @@
-<div data-role="view" data-title="Acesso" data-layout="main-nonav" data-model="app.home" data-show="app.home.onShow" data-after-show="app.home.afterShow">
+<div data-role="view" data-title="" data-layout="main-nonav" data-model="app.home" data-show="app.home.onShow" data-after-show="app.home.afterShow">
     <div class="signin-view">
         <form>
             <ul data-role="listview" data-style="inset">
@@ -19,6 +19,11 @@
                 <a data-role="button" class="primary" data-bind="events: { click: homeModel.signin }">Entrar</a>
 
                 <a data-role="button" data-bind="events: { click: homeModel.toggleView }">Registrar-se</a>
+            </div>
+
+            <div class="lost-password">
+                <p class="or-text">ou</p>
+                <a href="" class="lost-text">Esqueci minha senha</a>
             </div>
         </form>
     </div>
