@@ -1,3 +1,7 @@
+.km-widget.km-view {
+	height: 100%;
+}
+
 .km-flat .km-view .km-navbar,
 .km-flat .km-view .km-content,
 .km-flat .km-view .km-content .km-button,
@@ -23,7 +27,7 @@
 
 /*** FORMULÁRIO ***/
 .km-content.km-insetcontent {
-	padding: 2em;
+	padding: 1em 2em 2em;
 }
 
 .km-content .km-scroll-container .km-listview-wrapper .km-widget li {
@@ -59,8 +63,8 @@
 	padding: 0.8em;
 	margin: 0;
 	border-color: #FFF;
-	color: #FFF;
 	background-color: transparent;
+	color: #FFF;
 	transition: background-color 0.2s;
 }
 	#kendoUiMobileApp .km-listview-wrapper + .button-group-vertical .km-button.km-state-active {
