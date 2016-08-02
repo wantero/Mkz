@@ -158,11 +158,12 @@ app.cursosView = kendo.observable({
             itemClick: function(e) {
                 var dataItem = e.dataItem || cursosViewModel.originalItem;
 
-                app.mobileApp.navigate('components/disciplinasView/view.html?filter=' + encodeURIComponent(JSON.stringify({
+                app.mobileApp.navigate('#components/cursosView/details.html?uid=' + dataItem.uid);
+                /*app.mobileApp.navigate('components/disciplinasView/view.html?filter=' + encodeURIComponent(JSON.stringify({
                     field: 'Cursos',
                     value: dataItem.Id,
                     operator: 'eq'
-                })));
+                })));*/
 
             },
             detailsShow: function(e) {
@@ -235,14 +236,19 @@ app.cursosView = kendo.observable({
         // Armazena o parametro recebido pela VIEW
         viewParam = param;     
 
-        var $pesquisaEl = $('#cursos [id="pesquisa"]');
+        /*var $pesquisaEl = $('#cursos [id="pesquisa"]');
         var lastCursoFilter = app.pesquisaView.lastCursoFilter();
+        
+        $pesquisaEl.each(function(item,a) {
+            a.placeholder = 'Pesquisar Curso';
+        });
 
         if (lastCursoFilter != '') {
             $pesquisaEl.val(lastCursoFilter);
         }
 
-        cursosViewModel.filtraPesquisa($pesquisaEl.val());
+        cursosViewModel.filtraPesquisa($pesquisaEl.val());*/
+        fetchFilteredData(viewParam);
     });
 
 })(app.cursosView);

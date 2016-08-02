@@ -85,7 +85,6 @@ app.disciplinasView = kendo.observable({
                 }
             },
             error: function(e) {
-
                 if (e.xhr) {
                     alert(JSON.stringify(e.xhr));
                 }
@@ -228,16 +227,32 @@ app.disciplinasView = kendo.observable({
         // Armazena o parametro recebido pela VIEW
         viewParam = param;
 
-        var $pesquisaEl = $('#disciplinas [id="pesquisa"]');
+        /*var $pesquisaEl = $('#disciplinas [id="pesquisa"]');
         var pesquisaValue = $pesquisaEl.val();
+
+        $pesquisaEl.each(function(item,a) {
+            a.placeholder = 'Pesquisar Disciplinas';
+        });
 
         if (pesquisaValue != '') {
             app.pesquisaView.lastCursoFilter(pesquisaValue);
             pesquisaValue = '';
             $pesquisaEl.val('');
         }
+        disciplinasViewModel.filtraPesquisa(pesquisaValue);*/
 
-        disciplinasViewModel.filtraPesquisa(pesquisaValue);
+        
+        /*var popup = $("#disciplinas").kendoWindow({
+            width: 200,
+            height: 200,
+            title: "Centered Window",
+            visible: false            
+        }).data("kendoWindow");
+
+        popup.open();
+        popup.center();*/
+
+        fetchFilteredData(viewParam);
     });
 
 })(app.disciplinasView);

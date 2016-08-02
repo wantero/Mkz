@@ -1,23 +1,104 @@
-<div data-role="view" data-title="Details" data-model="app.cursosView.cursosViewModel" data-bind="events: { show: detailsShow }" id="cursosViewModelDetailsView">
-    <header data-role="header">
-        <div data-role="navbar" class="header-text">
-            <a data-role="backbutton" data-align="left">Back</a>
-            <span data-bind="text: currentItem['Disciplinas']"></span>
-        </div>
-    </header>
-
-    <div class="details-content">
-        <div class="km-listview-wrapper">
-            <ul class="km-listview km-list km-listinset details-fields">
-                <li>
-                    <h3 data-bind="text: currentItem.Disciplinas"></h3></li>
-
-
-            </ul>
-        </div>
+<!--div data-role="view" data-layout="main-detail" data-title="Curso Detail" data-show="app.disciplinasView.onShow" data-after-show="app.disciplinasView.afterShow">
+    <div>
+        <h3 data-bind="text: currentItem.Disciplinas">Curso</h3>
     </div>
+        <div>
+            <h3 data-bind="text: currentItem.Disciplinas">Disciplinas</h3>
+
+            <ul class="masterDetailView"
+                data-role="listview"
+                data-model="app.disciplinasView"
+                data-auto-bind="false"
+                data-style="inset"
+                data-template="disciplinasViewModelTemplate"
+                data-bind="{ source: disciplinasViewModel.dataSource, events: {click: disciplinasViewModel.itemClick} }"
+                data-pull-to-refresh="false"
+                data-endless-scroll="false">
+            </ul>
+ 
+        </div>
+            
+        <script type="text/x-kendo-template" id="disciplinasViewModelTemplate">
+            <div class="image-with-text">
+                # data = app.disciplinasView.disciplinasViewModel.fixHierarchicalData(data); #
+
+                <h3>#: data['Nome'] #</h3>
+
+            </div>
+        </script>   
+</<div-->
+
+<div id="cursos" data-role="view" data-title="Cursos" data-layout="main-detail" data-model="app.cursosView" data-show="app.cursosView.onShow" data-after-show="app.cursosView.afterShow">
+
+    <!-- START_CUSTOM_CODE_cursosView -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+    <!--<form>
+        <ul class="form-content" data-role="listview" data-style="inset">
+            <li class="form-content-item">
+                <input id="Pesquisa" placeholder="Pesquisar Curso" type="text" onKeyUp="app.cursosView.cursosViewModel.filtraPesquisa(this.value)">
+            </li>                    
+        </ul>
+    </form>    -->
+    <!-- END_CUSTOM_CODE_cursosView -->
+
+
+    <!--  Certain features like grouping and inset styling are not supported when endless scroll is enabled. -->
+
+    <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="" data-template="cursosViewModelTemplate" data-bind="{ source: cursosViewModel.dataSource, events: {click: cursosViewModel.itemClick} }" data-pull-to-refresh="true" data-endless-scroll="true">
+    </ul>
+
+
     <!-- START_CUSTOM_CODE_cursosViewModel -->
     <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
 
     <!-- END_CUSTOM_CODE_cursosViewModel -->
+    <script type="text/x-kendo-template" id="cursosViewModelTemplate">
+            
+        <div class="image-with-text">
+            # data = app.cursosView.cursosViewModel.fixHierarchicalData(data); #
+
+            <h3>#: data['Curso'] #</h3>
+
+        </div>
+        
+        <label class="km-label-above">
+
+            <span>Duração: #: data['Duracao'] # semestres</span>
+
+        </label>
+    </script>
+</div>
+
+
+<div id="disciplinas" data-role="view" data-title="Disciplinas" data-layout="main-detail" data-model="app.disciplinasView" data-show="app.disciplinasView.onShow" data-after-show="app.disciplinasView.afterShow">
+
+    <!-- START_CUSTOM_CODE_disciplinasView -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+    <!--<form>
+        <ul class="form-content" data-role="listview" data-style="inset">
+            <li class="form-content-item">
+                <input id="Pesquisa" placeholder="Pesquisar Disciplina" type="text" onKeyUp="app.disciplinasView.disciplinasViewModel.filtraPesquisa(this.value)">
+            </li>                    
+        </ul>
+    </form>-->
+    <!-- END_CUSTOM_CODE_disciplinasView -->
+
+    <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="inset" data-template="disciplinasViewModelTemplate" data-bind="{ source: disciplinasViewModel.dataSource, events: {click: disciplinasViewModel.itemClick} }" data-pull-to-refresh="false"
+    data-endless-scroll="false">
+    </ul>
+
+
+    <!-- START_CUSTOM_CODE_disciplinasViewModel -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+    <!-- END_CUSTOM_CODE_disciplinasViewModel -->
+    
+    <script type="text/x-kendo-template" id="disciplinasViewModelTemplate">
+        <div class="image-with-text">
+            # data = app.disciplinasView.disciplinasViewModel.fixHierarchicalData(data); #
+
+            <h3>#: data['Nome'] #</h3>
+
+        </div>
+    </script>
 </div>

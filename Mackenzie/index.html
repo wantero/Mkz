@@ -44,24 +44,48 @@
                 <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
             </div>
 
-            <form>
-                <ul class="form-content" data-role="listview" data-style="inset">
-                    <li class="form-content-item">
-                        <input id="pesquisa" placeholder="Pesquisar Curso" type="text" onKeyUp="app.pesquisaView.filtraPesquisa(this.value)" x-onKeyUp="app.cursosView.cursosViewModel.filtraPesquisa(this.value)">
-                    </li>                    
-                </ul>
-            </form>
-
             <div data-role="tabstrip" id="tabStrip">
                 <a href="components/cursosView/view.html">Cursos</a>
                 <a href="components/disciplinasView/view.html">Disciplinas</a>
                 <!-- <a href="#tabstrip-teste">Tags</a> -->
             </div>
         </header>
+
+        <div data-role="footer">
+            <div data-role="tabstrip" data-selected-index="1" data-select="onSelect">
+                <a data-icon="home"></a>
+                <a data-icon="search"></a>
+                <a data-icon="">---</a>
+                <a data-icon="">---</a>
+                <a data-icon="">---</a>
+            </div>
+        </div>
+    </div>    
+
+        <!-- Layout com HEADER e TABSTRIP para pesquisa de curso/disciplina/tag -->
+    <div data-role="layout" data-id="main-detail">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+                <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            </div>
+        </header>
+
+        <div data-role="footer">
+            <div data-role="tabstrip" data-selected-index="1" data-select="onSelect">
+                <a data-icon="home"></a>
+                <a data-icon="search"></a>
+                <a data-icon="">---</a>
+                <a data-icon="">---</a>
+                <a data-icon="">---</a>
+            </div>
+        </div>   
+
     </div>    
 
     <div data-role="layout" data-id="main-nonav">
         <header data-role="header">
+        xxxx
             <div data-role="navbar">
                 <span data-role="view-title"></span>
             </div>
