@@ -3,32 +3,60 @@
 }
 
 .km-flat .km-view .km-navbar,
-.km-flat .km-view .km-content,
-.km-flat .km-view .km-content .km-button,
+.km-flat div[data-layout="main-nonav"] .km-content,
 .km-flat .km-view .km-content .km-list > li .km-switch .km-switch-container,
 .km-flat .km-view .km-content .km-list .km-state-active .km-listview-link,
-.km-flat .km-view .km-content .km-button.km-state-active,
-.km-flat .km-view .km-navbar .km-button.km-state-active .km-text,
-.km-flat .km-view .km-button,
-.km-flat .km-view .km-tabstrip .km-button.km-state-active,
-.logo-img {
+.logo-img,
+.km-loader,
+.logo-mackenzie {
 	background-color: #EA2D2E;
 }
 
 /*** LOGO MACKENZIE ***/
+div[data-role="header"] .km-widget {
+	border: none;
+}
+
+
+div[data-layout="main-nonav"] .logo-mackenzie {
+	height: 100%;
+}
+
+div[data-layout="main-nonav"] .logo-mackenzie img {
+	display: block;
+	margin: auto;
+}
+
+div[data-layout="main-nonav"] .logo-mackenzie.login img {
+	-webkit-transform: scale(0.7);
+		-ms-transform: scale(0.7);
+			transform: scale(0.7);
+}
+
 .logo-img {
-	height: 130px;
+	height: 100%;
     width: 100%;
     display: block;
-	background-image: url(images/Logo-Mackenzie-app-01.png);
+	background-image: url(images/Logo-Mackenzie-app.png);
     background-repeat: no-repeat;
-    background-position: 50% 100%;
+    background-position: 50% 80%;
+    background-size: 32%;
 }
 
 /*** FORMULÁRIO ***/
 .km-content.km-insetcontent {
 	padding: 1em 2em 2em;
 }
+
+.km-content .km-scroll-container {
+	height: 100%;
+}
+	@media screen and (min-device-width: 730px) {
+		.km-content .km-scroll-container {
+			width: 60%;
+			margin: 0 auto;
+		}
+	}
 
 .km-content .km-scroll-container .km-listview-wrapper .km-widget li {
 	border-radius: 3px;
@@ -40,7 +68,7 @@
 	}
 
 .km-content .km-scroll-container .km-listview-wrapper {
-	padding: 0 0 0.5em;
+	padding: 0 0 1em;
 }
 
 .km-content .km-scroll-container .km-listview-wrapper .km-widget {
@@ -78,6 +106,32 @@
 	font-size: 1.1rem;
 }
 
+
+/*** NOVO CADASTRO ***/
+.novo-cadastro-header {
+	height: 100px;
+	margin-bottom: 1em;
+}
+
+div[data-layout="main-nonav"] .logo-mackenzie.new img {
+	height: 100%;
+	-webkit-transform: scale(0.5);
+		-ms-transform: scale(0.5);
+			transform: scale(0.5);
+}
+
+.novo-cadastro {
+	font-size: 1.2em;
+	text-align: center;
+	color: #FFF;
+}
+
+.novo-cadastro h3 {
+	margin: -1em 0 0;
+	font-weight: normal;
+}
+
+
 /*** ESQUECI A SENHA ***/
 .lost-password {
 	display: block;
@@ -114,4 +168,77 @@
 	padding: 1em;
 	text-decoration: none;
 	letter-spacing: 3px;
+}
+
+
+/**************************/
+/***** LOADING PAGE ******/
+/*************************/
+/*.loading-screen {
+	height: 100%;
+    background-color: #EA2D2E;
+}*/
+
+div[data-layout="main-loading"] .logo-mackenzie,
+.loading-wrap {
+    position: relative;
+    height: 50%;
+}
+
+.loading-animate {
+	display: inline-block;
+    height: 100px;
+    width: 100px;
+    margin-top: -2px;
+}
+	.loading-animate > span {
+	    position: absolute;
+	    height: 100px;
+	    width: 100px;
+	    margin: auto;
+    	background-color: white;
+	    border-radius: 50%;
+	    opacity: 0;
+	    -webkit-animation: loading 1s infinite;
+	    		animation: loading 1s infinite;
+	}
+	.loading-animate.a > span {
+		left: calc(50% - 200px);
+	}
+	.loading-animate.b > span {
+		left: calc(50% - 50px);
+		-webkit-animation-delay: 0.2s;
+				animation-delay: 0.2s;
+	}
+	.loading-animate.c > span {
+		right: calc(50% - 200px);
+		-webkit-animation-delay: 0.4s;
+				animation-delay: 0.4s;
+	}
+
+@keyframes loading {
+	from {top: 100px; transform: scale(0.7); opacity: 0;}
+	50% {top: 0px; transform: scale(1); opacity: 1;}
+	to {top: 40px; transform: scale(0.3); opacity: 0;}
+}
+@-webkit-keyframes loading {
+	from {top: 100px; transform: scale(0.7); opacity: 0;}
+	50% {top: 0px; transform: scale(1); opacity: 1;}
+	to {top: 40px; transform: scale(0.3); opacity: 0;}
+}
+
+
+/**************************/
+/****** ACEITE PAGE ******/
+/*************************/
+
+
+
+
+/**************************/
+/**** USER APP LOGGED ****/
+/*************************/
+
+.km-flat .km-view .km-content .km-button {
+	background-color: transparent;
 }

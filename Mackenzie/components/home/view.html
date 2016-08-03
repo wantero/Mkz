@@ -1,5 +1,15 @@
 <div data-role="view" data-title="" data-layout="main-nonav" data-model="app.home" data-show="app.home.onShow" data-after-show="app.home.afterShow">
     <div class="signin-view">
+        <div data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+            </div>
+            
+            <div class="logo-mackenzie login">
+                <img src="styles/images/Logo-Mackenzie-app.png" alt="M">
+            </div>
+        </div>
+
         <form>
             <ul data-role="listview" data-style="inset">
                 <li>
@@ -8,7 +18,6 @@
                 <li>
                     <input type="password" data-bind="value: homeModel.password" placeholder="Senha" required>
                 </li>
-                
                 <!--li>
                     <label>Lembrar acesso
                         <input type="checkbox" data-bind="checked: homeModel.rememberme">
@@ -24,11 +33,26 @@
 
             <div class="lost-password">
                 <p class="or-text">ou</p>
-                <a href="" class="lost-text">Esqueci minha senha</a>
+
+                <a href="#" class="lost-text">Esqueci minha senha</a>
             </div>
         </form>
     </div>
+
     <div class="signup-view" style="display:none;">
+        <div data-role="header" class="novo-cadastro-header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+            </div>
+            
+            <div class="logo-mackenzie new">
+                <img src="styles/images/Logo-Mackenzie-app.png" alt="M">
+                <div class="novo-cadastro">
+                    <h3>Cadastro do aluno</h3>
+                </div>
+            </div>
+        </div>
+
         <form>
             <ul data-role="listview" data-style="inset">
                 <li>
