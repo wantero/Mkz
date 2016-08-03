@@ -76,6 +76,8 @@ app.cursosView = kendo.observable({
                 typeName: 'Cursos',
                 dataProvider: dataProvider
             },
+            filterable: true,
+            filters: [{ field: "Id", operator: "eq", value: "1" }],
             change: function(e) {
                 var data = this.data();
                 for (var i = 0; i < data.length; i++) {
@@ -182,7 +184,27 @@ app.cursosView = kendo.observable({
                 cursosViewModel.set('currentItem',
                     cursosViewModel.fixHierarchicalData(itemModel));
 
+                var query = new Everlive.Query();
+                query.where().eq('Cursos', itemModel.Id);
+
+                var data = app.data.mackenzie.data('Disciplinas');
+                data.get(query)
+                    .then(function(data){
+                        console.log(itemModel);
+                        console.log(data);
+                        cursosViewModel.set('currentItemDisciplinas', data.result);
+                    },
+                    function(error){
+                        console.log(JSON.stringify(error));
+                    });        
+
                 return itemModel;
+            },
+            disciplinaClick: function(e) {
+                //app.disciplinasView.disciplinasViewModel.itemClick(e);
+                //var dataItem = e.dataItem || cursosViewModel.originalItem;
+                cursosViewModel.set('currentDisciplina', e.dataItem);
+                app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
             },
             linkBind: function(linkString) {
                 var linkChunks = linkString.split('|');
@@ -202,7 +224,7 @@ app.cursosView = kendo.observable({
                     var param = [{ field: "Curso", operator: "contains", value: valueField }];
                 } else {
                     var param = [viewParam, { field: "Curso", operator: "contains", value: valueField }];
-                }                
+                }        
 
                 fetchFilteredData(param);
             },
@@ -233,22 +255,20 @@ app.cursosView = kendo.observable({
             }
         }
 
-        // Armazena o parametro recebido pela VIEW
-        viewParam = param;     
+        dataProvider.Users.currentUser().then(
+            function(user) {
+                // Fixa o filtro do usuário logado
+                param = [{ field: "Users", operator: "eq", value: user.result.Id }];
 
-        /*var $pesquisaEl = $('#cursos [id="pesquisa"]');
-        var lastCursoFilter = app.pesquisaView.lastCursoFilter();
-        
-        $pesquisaEl.each(function(item,a) {
-            a.placeholder = 'Pesquisar Curso';
-        });
+                // Armazena o parametro recebido pela VIEW
+                viewParam = param;     
 
-        if (lastCursoFilter != '') {
-            $pesquisaEl.val(lastCursoFilter);
-        }
-
-        cursosViewModel.filtraPesquisa($pesquisaEl.val());*/
-        fetchFilteredData(viewParam);
+                fetchFilteredData(viewParam);
+            },
+            function() {
+                console.log('erro ao carregar usuario corrente')
+            }
+        );
     });
 
 })(app.cursosView);

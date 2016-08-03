@@ -155,7 +155,6 @@ app.disciplinasView = kendo.observable({
                 var dataItem = e.dataItem || disciplinasViewModel.originalItem;
 
                 app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + dataItem.uid);
-
             },
             detailsShow: function(e) {
                 disciplinasViewModel.setCurrentItemByUid(e.view.params.uid);

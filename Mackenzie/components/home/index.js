@@ -14,7 +14,7 @@ app.home = kendo.observable({
     var provider = app.data.mackenzie,
         mode = 'signin',
         registerRedirect = 'home',
-        signinRedirect = 'perfilView',
+        signinRedirect = 'cursosView',
         rememberKey = 'mackenzie_authData_homeModel',
         navbar = '',
         init = function(error) {
@@ -32,6 +32,9 @@ app.home = kendo.observable({
                 $('.offline').show().siblings().hide();
             } else {
                 $(activeView).show().siblings().hide();
+                if (mode === 'register') {
+                    $('input').val('');
+                }
             }
 
             if (model && model.set) {
@@ -40,7 +43,6 @@ app.home = kendo.observable({
 
             var rememberedData = localStorage ? JSON.parse(localStorage.getItem(rememberKey)) : app[rememberKey];
             if (rememberedData && rememberedData.tia && rememberedData.password) {
-
                 parent.homeModel.set('tia', rememberedData.tia);
                 parent.homeModel.set('password', rememberedData.password);
                 parent.homeModel.signin();
@@ -54,15 +56,18 @@ app.home = kendo.observable({
             if (logout) {
                 model.set('logout', null);
             }
+
             if (data && data.result) {
                 if (logout) {
                     provider.Users.logout(init, init);
                     return;
                 }
+
                 var rememberedData = {
                     tia: model.tia,
                     password: model.password
                 };
+
                 if (model.rememberme && rememberedData.tia && rememberedData.password) {
                     if (localStorage) {
                         localStorage.setItem(rememberKey, JSON.stringify(rememberedData));
@@ -70,10 +75,47 @@ app.home = kendo.observable({
                         app[rememberKey] = rememberedData;
                     }
                 }
+
                 app.user = data.result;
 
                 setTimeout(function() {
-                    app.mobileApp.navigate('components/' + redirect + '/view.html');
+                    if (mode === 'register') {
+                        mode = 'signin';
+                        init();
+                    } else {
+                        if (!data.result.Id) {
+                            provider.Users.currentUser().then(
+                                function(user) {
+                                    if (!user.result.IsVerified) {
+                                        alert('Please verify you email and confirm you account!');
+                                        return;
+                                    }
+
+                                    if (!user.result.TermoAceite || user.result.TermoAceite != 'Yes') {
+                                        /*
+                                        REGISTRA TERMO ACEITE DO USUARIO
+                                        provider.Users.update({ 'TermoAceite': true }, //data
+                                            { 'Id': user.result.Id }, // filter
+                                            function(data){
+                                                alert(JSON.stringify(data));
+                                            },
+                                            function(error){
+                                                alert(JSON.stringify(error));
+                                            }
+                                        );*/
+                                        alert('Tela de termo de aceite!');
+                                        //app.mobileApp.navigate('components/termoAceiteView/view.html');
+                                        app.mobileApp.navigate('components/' + redirect + '/view.html');
+                                    } else {
+                                        app.mobileApp.navigate('components/' + redirect + '/view.html');
+                                    }
+                                },
+                                function(error) {
+                                    console.log('error:', error);
+                                }
+                            );
+                        }
+                    }
                 }, 0);
             } else {
                 init();
@@ -85,13 +127,37 @@ app.home = kendo.observable({
             password: '',
             validateData: function(data) {
                 if (!data.tia) {
-                    alert('Missing tia');
+                    alert('Missing TIA');
                     return false;
+                }
+
+                if (mode === 'register') {
+                    if (!data.displayName) {
+                        alert('Missing Name');
+                        return false;
+                    }
+
+                    if (!data.email) {
+                        alert('Missing email');
+                        return false;
+                    }
                 }
 
                 if (!data.password) {
                     alert('Missing password');
                     return false;
+                }
+
+                if (mode === 'register') {
+                    if (!data.confirmPassword) {
+                        alert('Missing confirmation password');
+                        return false;
+                    }
+
+                    if (data.password != data.confirmPassword) {
+                        alert('Senha de confirmação deve ser a mesma!');
+                        return false;
+                    }
                 }
 
                 return true;
@@ -104,6 +170,7 @@ app.home = kendo.observable({
                 if (!model.validateData(model)) {
                     return false;
                 }
+
                 provider.Users.login(tia, password, successHandler, init);
                 //navbar.show();
             },
@@ -114,7 +181,8 @@ app.home = kendo.observable({
                     displayName = model.displayName,
                     attrs = {
                         tia: tia,
-                        DisplayName: displayName
+                        DisplayName: displayName,
+                        Email: model.email
                     };
 
                 if (!model.validateData(model)) {
@@ -124,6 +192,8 @@ app.home = kendo.observable({
                 provider.Users.register(tia, password, attrs, successHandler, init);
             },
             toggleView: function() {
+                $('input').val('');
+
                 mode = mode === 'signin' ? 'register' : 'signin';
                 init();
             }
@@ -140,8 +210,12 @@ app.home = kendo.observable({
             } else {
                 app[rememberKey] = null;
             }
+
+            homeModel.password = '';
+            $('#senha').val(homeModel.password);
             homeModel.set('logout', true);
         }
+
         provider.Users.currentUser().then(successHandler, init);
     });
 })(app.home);
