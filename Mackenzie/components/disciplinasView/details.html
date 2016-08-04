@@ -1,36 +1,4 @@
-<div data-role="view" data-title="Details" data-layout="main-detail" data-model="app.disciplinasView.currentItem" data-bind="events: { show: detailsShow }" id="disciplinasViewModelDetailsView">
-    <!--header data-role="header">
-        <div data-role="navbar" class="header-text">
-            <a data-role="backbutton" data-align="left">Back</a>
-            <span>Detail</span>
-        </div>
-    </header-->
-
-    <div class="details-content">
-        <label>Curso:</label>
-
-        <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="inset" data-template="disciplinasViewModelTemplate" data-bind="{ source: disciplinasViewModel.dataSource, events: {click: disciplinasViewModel.itemClick} }" data-pull-to-refresh="false" data-endless-scroll="false">
-        </ul>
-
-        <div class="km-listview-wrapper">
-            <ul class="km-listview km-list km-listinset details-fields" data-role="listview" data-auto-bind="false" data-style="inset" data-template="disciplinasViewModelTemplate" data-bind="{ source: disciplinasViewModel.dataSource, events: {click: disciplinasViewModel.itemClick} }" data-pull-to-refresh="false" data-endless-scroll="false">
-            </ul>
-
-            <ul class="km-listview km-list km-listinset details-fields">
-            </ul>
-        </div>
-    </div>
-
-    <script type="text/x-kendo-template" id="disciplinasViewModelTemplate">
-        <div class="image-with-text">
-            # data = app.disciplinasView.disciplinasViewModel.fixHierarchicalData(data); #
-
-            <h3>#: data['Nome'] #</h3>
-
-        </div>
-    </script>
-    <!-- START_CUSTOM_CODE_disciplinasViewModel -->
-    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
-
-    <!-- END_CUSTOM_CODE_disciplinasViewModel -->
+<div data-role="view" data-title="Disciplina Detail" data-layout="main-detail" data-model="app.cursosView.cursosViewModel" data-bind="events: { source: currentDisciplina }" id="disciplinasViewModelDetailsView">
+    <a data-role="backbutton" data-align="left">Back</a>
+    <h3 data-bind="text: currentDisciplina['Nome']"></h3>
 </div>

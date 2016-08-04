@@ -1,14 +1,10 @@
 <div data-role="view" data-title="" data-layout="main-nonav" data-model="app.home" data-show="app.home.onShow" data-after-show="app.home.afterShow">
     <div class="signin-view">
-        <div data-role="header">
-            <div data-role="navbar">
-                <span data-role="view-title"></span>
-            </div>
-            
+        <header data-role="header">
             <div class="logo-mackenzie login">
                 <img src="styles/images/Logo-Mackenzie-app.png" alt="M">
             </div>
-        </div>
+        </header>
 
         <form>
             <ul data-role="listview" data-style="inset">
@@ -16,7 +12,7 @@
                     <input type="text" data-bind="value: homeModel.tia" placeholder="TIA" required autofocus>
                 </li>
                 <li>
-                    <input type="password" data-bind="value: homeModel.password" placeholder="Senha" required>
+                    <input type="password" data-bind="value: homeModel.password" placeholder="Senha" required id="senha">
                 </li>
                 <!--li>
                     <label>Lembrar acesso
@@ -40,37 +36,35 @@
     </div>
 
     <div class="signup-view" style="display:none;">
-        <div data-role="header" class="novo-cadastro-header">
-            <div data-role="navbar">
-                <span data-role="view-title"></span>
-            </div>
-            
+        <header data-role="header" class="novo-cadastro-header">
             <div class="logo-mackenzie new">
                 <img src="styles/images/Logo-Mackenzie-app.png" alt="M">
                 <div class="novo-cadastro">
                     <h3>Cadastro do aluno</h3>
                 </div>
             </div>
-        </div>
-
+        </header>
         <form>
             <ul data-role="listview" data-style="inset">
                 <li>
                     <input type="text" data-bind="value: homeModel.tia" placeholder="TIA" required>
                 </li>
                 <li>
-                    <input type="password" data-bind="value: homeModel.password" placeholder="Senha">
-                </li>
-                <li>
                     <input type="text" data-bind="value: homeModel.displayName" placeholder="Nome">
                 </li>
                 <li>
-                    <input type="email" data-bind="value: homeModel.displayName" placeholder="Email">
+                    <input type="email" data-bind="value: homeModel.email" placeholder="Email">
+                </li>
+                <li>
+                    <input type="password" data-bind="value: homeModel.password" placeholder="Senha">
+                </li>
+                <li>
+                    <input type="password" data-bind="value: homeModel.confirmPassword" placeholder="Confirmar senha">
                 </li>
             </ul>
             <div class="button-group button-group-vertical">
                 <a class="primary" data-role="button" data-bind="events: { click: homeModel.register }">Enviar</a>
-                <a data-role="button" data-bind="events: { click: homeModel.toggleView }">Entrar</a>
+                <a data-role="button" data-bind="events: { click: homeModel.toggleView }">Cancelar</a>
             </div>
         </form>
     </div>
