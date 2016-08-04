@@ -84,13 +84,22 @@
     </div>    
 
     <div data-role="layout" data-id="main-nonav">
-    
+
     </div>
 
-    <div id="appDrawer" data-role="drawer" data-title="Navigation">
+    <div id="appDrawer" data-role="drawer" data-title="Nome User"> <!-- É possível inserir o user name no data-title? -->
         <header data-role="header">
             <div data-role="navbar">
+                <div class="user-thumb">
+                    <img class="km-thumbnail" src="styles/images/user-male.png" alt="Your photo">
+                </div>
+
                 <span data-role="view-title"></span>
+
+                <div class="tia-number"> <!-- TIA number aqui -->
+                    <p>TIA</p>
+                    <p>1234567</p>
+                </div>
             </div>
         </header>
         <ul id="navigation-container" data-role="listview">
@@ -100,7 +109,7 @@
 
             <li><a href="components/cursosView/view.html" data-icon="bookmarks">Disciplinas</a></li>
 
-            <li style="display:none"<a href="components/home/view.html" data-icon="bookmarks">Resultado de Provas</a></li>
+            <li style="display:none"><a href="components/home/view.html" data-icon="bookmarks">Resultado de Provas</a></li>
 
             <li style="display:none"><a href="components/home/view.html" data-icon="bookmarks">Rankings</a></li>
 

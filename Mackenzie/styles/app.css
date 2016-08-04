@@ -62,7 +62,7 @@ div[data-layout="main-nonav"] .logo-mackenzie.login img {
 	border-radius: 3px;
 	padding: 0.77em;
 }
-	#kendoUiMobileApp .km-listview-wrapper .km-widget > li:not(:last-child),
+	#kendoUiMobileApp .km-listview-wrapper .km-widget.km-listinset > li:not(:last-child),
 	#kendoUiMobileApp .km-listview-wrapper + .button-group-vertical .km-button:not(:last-child) {
 		margin-bottom: 0.5em;
 	}
@@ -238,7 +238,89 @@ div[data-layout="main-loading"] .logo-mackenzie,
 /**************************/
 /**** USER APP LOGGED ****/
 /*************************/
-
 .km-flat .km-view .km-content .km-button {
 	background-color: transparent;
 }
+
+/*** GERAL ***/
+.km-header  {
+	height: 11%;
+}
+	.km-header .km-navbar {
+		height: 100%;
+	}
+
+.km-leftitem + .km-view-title span {
+    line-height: 3em;
+    display: inline-block;
+    text-indent: -2em;
+}
+
+/*** MENU HAMBURGUER ***/
+.km-navbar .km-leftitem a[data-icon="drawer-button"] {
+	background-color: transparent;
+	border: none;
+}
+
+/*** MAIN MENU ***/
+#navigation-container li {
+	margin-bottom: 0;
+}
+
+#navigation-container li.km-state-active {
+	background-color: #EA2D2E;
+}
+
+li.km-state-active .km-listview-link .km-icon::before {
+	content: none;
+}
+
+.km-widget .km-listview-link {
+	font-size: 1.2em;
+	line-height: normal;
+}
+	.km-listview-link .km-icon {
+		height: auto;
+		width: auto;
+		margin-right: 1em;
+	}
+	.km-listview-link .km-icon::after {
+		font-size: 2em;
+	}
+
+
+/*** USER MENU ***/
+#appDrawer .km-header .km-view-title {
+    min-height: 47px;
+    line-height: normal;
+	text-align: left;
+}
+	#appDrawer .km-view-title span {
+		display: block;
+		margin-top: 0.5em;
+	}
+
+#appDrawer .user-thumb {
+    display: inline-block;
+    float: left;
+    height: 52px;
+    width: 52px;
+    margin: 0.2em 0.5em 0.15em 0.3em;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #fff;
+}
+	#appDrawer .user-thumb .km-thumbnail {
+		height: 100%;
+	}
+
+.tia-number {
+	font-size: 0.7em;
+}
+	.tia-number p {
+		display: inline-block;
+		margin: 0;
+	}
+	.tia-number p:nth-child(2) {
+		text-indent: 3px;
+	}
