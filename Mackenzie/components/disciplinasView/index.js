@@ -149,10 +149,27 @@ app.disciplinasView = kendo.observable({
                     }
                 })(result, layout);
 
+                (function completeData(obj) {
+                    obj.NomeProfessor = '--';
+
+                    if (obj.Professor && obj.Professor != '') {
+                        dataProvider.data('Professores').getById(obj.Professor)
+                            .then(function(data){
+                                obj.NomeProfessor = data.result.Nome;
+                                console.log(obj.NomeProfessor);
+                            },
+                            function(error){
+                                alert('error loading professores');
+                            }
+                        );
+                    }
+                })(result);
+
                 return result;
             },
             itemClick: function(e) {
                 var dataItem = e.dataItem || disciplinasViewModel.originalItem;
+                disciplinasViewModel.set('currentDisciplina', e.dataItem);
 
                 app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + dataItem.uid);
             },
@@ -196,6 +213,12 @@ app.disciplinasView = kendo.observable({
 
                 fetchFilteredData(param);
             },
+            selectAvaliacoes: function(e) {
+                $('#tabAvaliacoes').show().siblings().hide();
+            },
+            selectPublicacoes: function(e) {
+                $('#tabPublicacoes').show().siblings().hide();
+            },
             currentItem: {}
         });
 
@@ -225,21 +248,6 @@ app.disciplinasView = kendo.observable({
 
         // Armazena o parametro recebido pela VIEW
         viewParam = param;
-
-        /*var $pesquisaEl = $('#disciplinas [id="pesquisa"]');
-        var pesquisaValue = $pesquisaEl.val();
-
-        $pesquisaEl.each(function(item,a) {
-            a.placeholder = 'Pesquisar Disciplinas';
-        });
-
-        if (pesquisaValue != '') {
-            app.pesquisaView.lastCursoFilter(pesquisaValue);
-            pesquisaValue = '';
-            $pesquisaEl.val('');
-        }
-        disciplinasViewModel.filtraPesquisa(pesquisaValue);*/
-
         
         /*var popup = $("#disciplinas").kendoWindow({
             width: 200,
@@ -253,6 +261,10 @@ app.disciplinasView = kendo.observable({
 
         fetchFilteredData(viewParam);
     });
+
+    parent.set('onDetailShow', function(e) {
+        disciplinasViewModel.selectAvaliacoes();
+    })
 
 })(app.disciplinasView);
 

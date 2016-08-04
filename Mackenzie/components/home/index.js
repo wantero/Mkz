@@ -32,9 +32,9 @@ app.home = kendo.observable({
                 $('.offline').show().siblings().hide();
             } else {
                 $(activeView).show().siblings().hide();
-                if (mode === 'register') {
+                /*if (mode === 'register') {
                     $('input').val('');
-                }
+                }*/
             }
 
             if (model && model.set) {
@@ -79,35 +79,26 @@ app.home = kendo.observable({
                 app.user = data.result;
 
                 setTimeout(function() {
+                    //mode = 'register';
                     if (mode === 'register') {
                         mode = 'signin';
-                        init();
+                        app.showMessage('<b>Cadastro realizado com sucesso.</b>'+
+                                        '<br><br>O acesso ao sistema necessita da aprovação de seu professor.'+
+                                        '<br><br>Em breve você receberá um e-mail coma confirmação de seu acesso.', cadastroOk);
                     } else {
                         if (!data.result.Id) {
                             provider.Users.currentUser().then(
                                 function(user) {
+                                    //user.result.IsVerified = false;
                                     if (!user.result.IsVerified) {
-                                        alert('Please verify you email and confirm you account!');
-                                        return;
-                                    }
-
-                                    if (!user.result.TermoAceite || user.result.TermoAceite != 'Yes') {
-                                        /*
-                                        REGISTRA TERMO ACEITE DO USUARIO
-                                        provider.Users.update({ 'TermoAceite': true }, //data
-                                            { 'Id': user.result.Id }, // filter
-                                            function(data){
-                                                alert(JSON.stringify(data));
-                                            },
-                                            function(error){
-                                                alert(JSON.stringify(error));
-                                            }
-                                        );*/
-                                        alert('Tela de termo de aceite!');
-                                        //app.mobileApp.navigate('components/termoAceiteView/view.html');
-                                        app.mobileApp.navigate('components/' + redirect + '/view.html');
+                                        app.showMessage('Please verify you email and confirm you account!');
                                     } else {
-                                        app.mobileApp.navigate('components/' + redirect + '/view.html');
+                                        //user.result.TermoAceite = false;
+                                        if (!user.result.TermoAceite) {
+                                            app.mobileApp.navigate('components/home/termoAceite.html');
+                                        } else {
+                                            app.mobileApp.navigate('components/' + redirect + '/view.html');
+                                        }
                                     }
                                 },
                                 function(error) {
@@ -121,6 +112,35 @@ app.home = kendo.observable({
                 init();
             }
         },
+        cadastroOk = function() {
+            init();
+            $('#senha').val('');
+        },
+        aceiteOk = function() {                
+            var redirect = mode === 'signin' ? signinRedirect : registerRedirect;
+
+            provider.Users.currentUser().then(
+                function(user) {
+                    provider.Users.update({ 'TermoAceite': true }, //data
+                        { 'Id': user.result.Id }, // filter
+                        function(data){
+                            app.mobileApp.navigate('components/' + redirect + '/view.html');
+                        },
+                        function(error){
+                            console.log('error on update user');
+                        }
+                    );
+                },
+                function() {
+                    alert('error');
+                }
+            );
+        },
+        aceiteCancel = function() {                
+            mode = 'signin';
+            app.mobileApp.navigate('components/home/view.html');
+        },
+
         homeModel = kendo.observable({
             displayName: '',
             tia: '',
@@ -190,6 +210,17 @@ app.home = kendo.observable({
                 }
 
                 provider.Users.register(tia, password, attrs, successHandler, init);
+            },
+            aceite: function() {
+                // REGISTRA TERMO ACEITE DO USUARIO
+                app.showMessage({
+                    message: 'Eu li e concordo com os termos e condições de utilização deste aplicativo.',
+                    type: 'option',
+                    click: {
+                        op1: aceiteCancel,
+                        op2: aceiteOk
+                    }
+                });
             },
             toggleView: function() {
                 $('input').val('');

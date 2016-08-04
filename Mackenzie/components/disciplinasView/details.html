@@ -1,4 +1,56 @@
-<div data-role="view" data-title="Disciplina Detail" data-layout="main-detail" data-model="app.cursosView.cursosViewModel" data-bind="events: { source: currentDisciplina }" id="disciplinasViewModelDetailsView">
+<div data-role="view" data-title="Disciplina Detail" data-layout="main-detail" data-model="app.disciplinasView.disciplinasViewModel" 
+		 data-bind="events: { source: currentDisciplina }" data-show="app.disciplinasView.onDetailShow" id="disciplinasViewModelDetailsView">
     <a data-role="backbutton" data-align="left">Back</a>
-    <h3 data-bind="text: currentDisciplina['Nome']"></h3>
+    <h3>Disciplina:</h3><h3 data-bind="text: currentDisciplina['Nome']"></h3>
+
+    <div>
+	    <div id="tabAvaliacoes">
+		    <a data-role="backbutton" data-align="left">Deseja fazer Checkin nesta aula?</a>
+
+		    <div>
+		    	Próxima aula: <b>01/08/2016 - Hoje</b>
+		    	<a data-role="button" data-align="left" data-bind="events: { click: selectPublicacoes }">&gt;</a>
+
+		    	<a data-role="button" data-align="left">20 Documentos</a>
+		    	<a data-role="button" data-align="left">15 Mensagens</a>
+		    	<a data-role="button" data-align="left">3 Imagens</a>
+		    	<a data-role="button" data-align="left">6 Videos</a>
+		    </div>
+
+		    <div>
+		    	<h3>Avaliações Práticas</h3>
+		    	Avaliação 1 {Expira em 2 dias} <a data-role="button" data-align="left">Até 5 Pontos</a>
+		    	Avaliação 2 {Expira em 2 dias} <a data-role="button" data-align="left">Até 5 Pontos</a>
+		    	Avaliação 3  <a data-role="button" data-align="left">Já realizado</a>
+		    </div>
+	    </div>
+
+	    <div id="tabPublicacoes" style="display:none">
+	      <ul id="first-period" data-role="buttongroup" class="km-widget km-buttongroup">
+	          <li class="km-button km-state-active"><span class="km-text">2010</span></li>
+	          <li class="km-button"><span class="km-text">2011</span></li>
+	          <li class="km-button"><span class="km-text">2012</span></li>
+	          <li class="km-button"><span class="km-text">2013</span></li>
+	          <li class="km-button"><span class="km-text">2014</span></li>
+	          <li class="km-button"><span class="km-text">2015</span></li>
+	          <li class="km-button"><span class="km-text">2016</span></li>
+	      </ul>
+
+	      <ul id="first-period" data-role="buttongroup" class="km-widget km-buttongroup">
+	          <li class="km-button km-state-active"><span class="km-text">Docs</span></li>
+	          <li class="km-button"><span class="km-text">Imagens</span></li>
+	          <li class="km-button"><span class="km-text">Mensagem</span></li>
+	          <li class="km-button"><span class="km-text">Videos</span></li>
+	      </ul>
+
+	      <div data-role="scroller">
+	      	Aula_20160303_revisao.docx<br>
+	      	<b>Enviado por: Brad Pit</b>
+	      	Aula_20160303_revisao.docx<br>
+	      	<b>Enviado por: Brad Pit</b>
+	      	Aula_20160303_revisao.docx<br>
+	      	<b>Enviado por: Brad Pit</b>
+	      </div>
+	    </div>
+    </div>
 </div>

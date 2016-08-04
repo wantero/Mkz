@@ -84,10 +84,6 @@
     </div>    
 
     <div data-role="layout" data-id="main-nonav">
-<<<<<<< HEAD
-=======
-    
->>>>>>> origin/master
     </div>
 
     <div id="appDrawer" data-role="drawer" data-title="Navigation">
@@ -145,6 +141,21 @@
                 <img src="styles/images/Logo-Mackenzie-app.png" alt="M">
             </div>
         </header>
+    </div>
+
+    <!-- MESSAGE DIALOG -->
+    <div data-role="modalview" id="modalview-message" style="width: 90%; display:none" data-init="app.onMessageModalViewInit">
+        <div><p id="message"></p></div>
+
+        <div data-role="footer">
+            <div data-role="navbar" id="modalview-message-ok">
+                <a id="modalview-ok-button" data-role="button">Ok</a>
+            </div>
+            <div data-role="navbar" id="modalview-message-option" style="display:none">
+                <a id="modalview-op1-button" data-role="button" data-align="left">Cancelar</a>
+                <a id="modalview-op2-button" data-role="button" data-align="right">Aceitar</a>
+            </div>
+        </div>
     </div>
     <!-- START_CUSTOM_CODE_kendoUiMobileApp -->
     <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
