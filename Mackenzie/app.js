@@ -146,6 +146,12 @@
             }
         });
     };
+
+
+
+function onDrawerShow() {
+    alert('s');
+}
 }());
 
 // START_CUSTOM_CODE_kendoUiMobileApp

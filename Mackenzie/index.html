@@ -5,6 +5,8 @@
     <title></title>
     <meta charset="utf-8">
     <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet">
+    <link href="kendo/styles/kendo.common.min.css" rel="stylesheet">
+    <link href="kendo/styles/kendo.uniform.min.css" rel="stylesheet">
     <link href="kendo/styles/kendo.mobile.makenzie.css" rel="stylesheet">
 
     <link href="styles/overrides.css" rel="stylesheet">
@@ -13,7 +15,8 @@
 
     <script src="cordova.js"></script>
     <script src="kendo/js/jquery.min.js"></script>
-    <script src="kendo/js/kendo.mobile.min.js"></script>
+    <!--script src="kendo/js/kendo.mobile.min.js"></script-->
+    <script src="kendo/js/kendo.all.min.js"></script>
     <script src="app.js"></script>
     <script src="bower_components/everlive/min/everlive.all.min.js"></script>
     <script src="dataProviders/mackenzie.js"></script>
@@ -86,18 +89,18 @@
     <div data-role="layout" data-id="main-nonav">
     </div>
 
-    <div id="appDrawer" data-role="drawer" data-title="Nome User"> <!-- É possível inserir o user name no data-title? -->
+    <div id="appDrawer" data-role="drawer" data-title="" data-show="onDrawerShow"> <!-- É possível inserir o user name no data-title? -->
         <header data-role="header">
             <div data-role="navbar">
                 <div class="user-thumb">
-                    <img class="km-thumbnail" src="styles/images/user-male.png" alt="Your photo">
+                    <img id="drawerPicture" class="km-thumbnail" src="styles/images/user-male.png" alt="Your photo">
                 </div>
 
-                <span data-role="view-title"></span>
+                <span xdata-role="view-title" id="drawerUser"></span>
 
-                <div class="tia-number"> <!-- TIA number aqui -->
+                <div class="tia-number" > <!-- TIA number aqui -->
                     <p>TIA</p>
-                    <p>1234567</p>
+                    <p id="drawerTIA"></p>
                 </div>
             </div>
         </header>

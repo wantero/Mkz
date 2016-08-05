@@ -1,5 +1,5 @@
 <div data-role="view" data-title="Detail Curso" data-layout="main-detail" data-model="app.cursosView.cursosViewModel" 
-     data-bind="events: { show: detailsShow }" data-show="app.cursosView.onDetailShow" id="tabDisciplinas">
+     data-bind="events: { show: detailsShow }" data-show="app.cursosView.onDetailShow"  data-init="initScheduler" id="tabDisciplinas">
 
     <a data-role="backbutton" data-align="left">Back</a>
     <h3>Curso:</h3><h3 data-bind="text: currentItem['Curso']"></h3>
@@ -45,13 +45,15 @@
         </div>
     </div>
 
+
     <script type="text/x-kendo-template" id="disciplinasViewModelTemplate">
         <div class="image-with-text">
             # data = app.disciplinasView.disciplinasViewModel.fixHierarchicalData(data); #
             <h3>#: data['Nome'] #</h3>
         </div>
         <label class="km-label-above">
-            <span>#: data['NomeProfessor'] #</span>
+            # nomeProfessor = data.Professor && data.Professor.Nome ? data.Professor.Nome : ''; #
+            <span>#: nomeProfessor #</span>
         </label>
     </script>
 </div>

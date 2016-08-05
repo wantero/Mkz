@@ -89,6 +89,8 @@ app.home = kendo.observable({
                         if (!data.result.Id) {
                             provider.Users.currentUser().then(
                                 function(user) {
+                                    app.user.data = user.result;
+
                                     //user.result.IsVerified = false;
                                     if (!user.result.IsVerified) {
                                         app.showMessage('Please verify you email and confirm you account!');
@@ -250,6 +252,32 @@ app.home = kendo.observable({
         provider.Users.currentUser().then(successHandler, init);
     });
 })(app.home);
+
+
+
+function onDrawerShow() {
+    var data;
+
+    if (app && app.user) {
+        if (app.user.data) {
+            data = app.user.data;
+        } else {
+            data = app.user;
+        }
+    }
+
+    var name = data && data.Username ? data.Username : '';
+    var tia = data && data.tia ? data.tia : '';
+    var fotoUrl = data && data.fotoUrl ? data.fotoUrl : undefined;
+
+    $('#drawerUser').text(name);
+    $('#drawerTIA').text(tia);
+
+    if (fotoUrl) {    
+        $('#drawerPicture').attr('src', fotoUrl);
+    }
+}
+
 
 // START_CUSTOM_CODE_homeModel
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes

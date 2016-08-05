@@ -74,7 +74,12 @@ app.cursosView = kendo.observable({
             type: 'everlive',
             transport: {
                 typeName: 'Cursos',
-                dataProvider: dataProvider
+                dataProvider: dataProvider,
+                read: {
+                    headers: {
+                        "X-Everlive-Expand": {"Disciplinas": true}
+                    }
+                }
             },
             filterable: true,
             filters: [{ field: "Id", operator: "eq", value: "1" }],
@@ -176,7 +181,10 @@ app.cursosView = kendo.observable({
                     dataSource = cursosViewModel.get('dataSource'),
                     itemModel = dataSource.getByUid(item);
 
-                console.log('itemModel', itemModel);
+                if (!itemModel) {
+                    alert('error loading disciplinas');
+                    return;
+                }
 
                 if (!itemModel.Disciplinas) {
                     itemModel.Disciplinas = String.fromCharCode(160);
@@ -188,8 +196,9 @@ app.cursosView = kendo.observable({
 
                 var query = new Everlive.Query();
                 query.where().eq('Cursos', itemModel.Id);
+                query.expand({"Professor": true});
 
-                var data = app.data.mackenzie.data('Disciplinas');
+                var data = dataProvider.data('Disciplinas');
                 data.get(query)
                     .then(function(data){
                         cursosViewModel.set('currentItemDisciplinas', data.result);
@@ -235,88 +244,6 @@ app.cursosView = kendo.observable({
 
                 fetchFilteredData(param);
             },
-            initScheduler: function() {
-                /*$("#scheduler").kendoScheduler({
-                    date: new Date("2013/6/26"),
-                    startTime: new Date("2013/6/26 07:00 AM"),
-                    height: 'auto',
-                    views: [
-                        { type: "day", selected: true },
-                        { type: "week", selectedDateFormat: "{0:ddd,MMM dd,yyyy} - {1:ddd,MMM dd,yyyy}" },
-                        "month",
-                        { type: "agenda", selectedDateFormat: "{0:ddd, M/dd/yyyy} - {1:ddd, M/dd/yyyy}" },
-                        "timeline"
-                    ],
-                    mobile: "phone",
-                    timezone: "Etc/UTC",
-                    dataSource: {
-                        batch: true,
-                        transport: {
-                            read: {
-                                url: "//demos.telerik.com/kendo-ui/service/meetings",
-                                dataType: "jsonp"
-                            },
-                            update: {
-                                url: "//demos.telerik.com/kendo-ui/service/meetings/update",
-                                dataType: "jsonp"
-                            },
-                            create: {
-                                url: "//demos.telerik.com/kendo-ui/service/meetings/create",
-                                dataType: "jsonp"
-                            },
-                            destroy: {
-                                url: "//demos.telerik.com/kendo-ui/service/meetings/destroy",
-                                dataType: "jsonp"
-                            },
-                            parameterMap: function(options, operation) {
-                                if (operation !== "read" && options.models) {
-                                    return {models: kendo.stringify(options.models)};
-                                }
-                            }
-                        },
-                        schema: {
-                            model: {
-                                id: "meetingID",
-                                fields: {
-                                    meetingID: { from: "MeetingID", type: "number" },
-                                    title: { from: "Title", defaultValue: "No title", validation: { required: true } },
-                                    start: { type: "date", from: "Start" },
-                                    end: { type: "date", from: "End" },
-                                    startTimezone: { from: "StartTimezone" },
-                                    endTimezone: { from: "EndTimezone" },
-                                    description: { from: "Description" },
-                                    recurrenceId: { from: "RecurrenceID" },
-                                    recurrenceRule: { from: "RecurrenceRule" },
-                                    recurrenceException: { from: "RecurrenceException" },
-                                    roomId: { from: "RoomID", nullable: true },
-                                    attendees: { from: "Attendees",  defaultValue: [] },
-                                    isAllDay: { type: "boolean", from: "IsAllDay" }
-                                }
-                            }
-                        }
-                    },
-                    resources: [
-                    {
-                        field: "roomId",
-                        dataSource: [
-                            { text: "Meeting Room 101", value: 1, color: "#6eb3fa" },
-                            { text: "Meeting Room 201", value: 2, color: "#f58a8a" }
-                        ],
-                        title: "Room"
-                    },
-                    {
-                        field: "attendees",
-                        dataSource: [
-                            { text: "Alex", value: 1, color: "#f8a398" },
-                            { text: "Bob", value: 2, color: "#51a0ed" },
-                            { text: "Charlie", value: 3, color: "#56ca85" }
-                        ],
-                        multiple: true,
-                        title: "Attendees"
-                    }
-                    ]
-                });*/
-            },
             currentItem: {}
         });
 
@@ -358,16 +285,93 @@ app.cursosView = kendo.observable({
                 console.log('erro ao carregar usuario corrente')
             }
         );
-
-        cursosViewModel.initScheduler();
     });
 
     parent.set('onDetailShow', function(e) {
         $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active'); //trigger('click');
         $('#disciplinas').show().siblings().hide();
+        //cursosViewModel.initScheduler();
     })
 
 })(app.cursosView);
+
+function initScheduler() {
+    $("#scheduler").kendoScheduler({
+        date: new Date("2013/6/13"),
+        startTime: new Date("2013/6/13 07:00 AM"),
+        height: 600,
+        views: [
+            "day",
+            "week",
+            "month"
+        ],
+        timezone: "Etc/UTC",
+        dataSource: {
+            batch: true,
+            transport: {
+                read: {
+                    url: "//demos.telerik.com/kendo-ui/service/tasks",
+                    dataType: "jsonp"
+                },
+                update: {
+                    url: "//demos.telerik.com/kendo-ui/service/tasks/update",
+                    dataType: "jsonp"
+                },
+                create: {
+                    url: "//demos.telerik.com/kendo-ui/service/tasks/create",
+                    dataType: "jsonp"
+                },
+                destroy: {
+                    url: "//demos.telerik.com/kendo-ui/service/tasks/destroy",
+                    dataType: "jsonp"
+                },
+                parameterMap: function(options, operation) {
+                    if (operation !== "read" && options.models) {
+                        return {models: kendo.stringify(options.models)};
+                    }
+                }
+            },
+            schema: {
+                model: {
+                    id: "taskId",
+                    fields: {
+                        taskId: { from: "TaskID", type: "number" },
+                        title: { from: "Title", defaultValue: "No title", validation: { required: true } },
+                        start: { type: "date", from: "Start" },
+                        end: { type: "date", from: "End" },
+                        startTimezone: { from: "StartTimezone" },
+                        endTimezone: { from: "EndTimezone" },
+                        description: { from: "Description" },
+                        recurrenceId: { from: "RecurrenceID" },
+                        recurrenceRule: { from: "RecurrenceRule" },
+                        recurrenceException: { from: "RecurrenceException" },
+                        ownerId: { from: "OwnerID", defaultValue: 1 },
+                        isAllDay: { type: "boolean", from: "IsAllDay" }
+                    }
+                }
+            },
+            filter: {
+                logic: "or",
+                filters: [
+                    { field: "ownerId", operator: "eq", value: 1 },
+                    { field: "ownerId", operator: "eq", value: 2 }
+                ]
+            }
+        },
+        resources: [
+            {
+                field: "ownerId",
+                title: "Owner",
+                dataSource: [
+                    { text: "Alex", value: 1, color: "#f8a398" },
+                    { text: "Bob", value: 2, color: "#51a0ed" },
+                    { text: "Charlie", value: 3, color: "#56ca85" }
+                ]
+            }
+        ]
+    });
+};
+
 
 // START_CUSTOM_CODE_cursosViewModel
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes

@@ -74,7 +74,12 @@ app.disciplinasView = kendo.observable({
             type: 'everlive',
             transport: {
                 typeName: 'Disciplinas',
-                dataProvider: dataProvider
+                dataProvider: dataProvider,
+                read: {
+                    headers: {
+                        "X-Everlive-Expand": {"Professores": true}
+                    }
+                }
             },
             change: function(e) {
                 var data = this.data();
@@ -149,22 +154,6 @@ app.disciplinasView = kendo.observable({
                     }
                 })(result, layout);
 
-                (function completeData(obj) {
-                    obj.NomeProfessor = '--';
-
-                    if (obj.Professor && obj.Professor != '') {
-                        dataProvider.data('Professores').getById(obj.Professor)
-                            .then(function(data){
-                                obj.NomeProfessor = data.result.Nome;
-                                console.log(obj.NomeProfessor);
-                            },
-                            function(error){
-                                alert('error loading professores');
-                            }
-                        );
-                    }
-                })(result);
-
                 return result;
             },
             itemClick: function(e) {
@@ -181,6 +170,11 @@ app.disciplinasView = kendo.observable({
                     dataSource = disciplinasViewModel.get('dataSource'),
                     itemModel = dataSource.getByUid(item);
 
+                if (!itemModel) {
+                    alert('error loading disciplinas');
+                    return;
+                }
+                
                 if (!itemModel.Nome) {
                     itemModel.Nome = String.fromCharCode(160);
                 }
