@@ -1,27 +1,57 @@
 <div data-role="view" data-title="" data-layout="main-detail" data-model="app.disciplinasView.disciplinasViewModel" 
 		 data-bind="events: { source: currentDisciplina }" data-show="app.disciplinasView.onDetailShow" id="disciplinasViewModelDetailsView">
-    <a data-role="backbutton" data-align="left">Back</a>
-    <h3>Disciplina:</h3><h3 data-bind="text: currentDisciplina['Nome']"></h3>
+	 <div class="descricao-wrap">
+	    <a data-role="backbutton" data-align="left"></a>
+	    <p>Disciplina:</p>
+	    <h3 data-bind="text: currentDisciplina['Nome']"></h3>
+	 </div>
 
-    <div>
+    <div class="avaliacoes-wrap">
 	    <div id="tabAvaliacoes">
-		    <a data-role="backbutton" data-align="left">Deseja fazer Checkin nesta aula?</a>
+		    <a data-role="backbutton" data-align="left">
+		    	<span class="km-icon"></span>
+		    	Deseja fazer Checkin nesta aula?
+		    </a>
 
-		    <div>
-		    	Próxima aula: <b>01/08/2016 - Hoje</b>
-		    	<a data-role="button" data-align="left" data-bind="events: { click: selectPublicacoes }">&gt;</a>
+		    <div class="aval-wrap prox-aula">
+		    	<p>Próxima aula: <b>01/08/2016 - Hoje</b></p>
+		    	<a data-role="button" data-align="left" data-bind="events: { click: selectPublicacoes }"></a>
 
-		    	<a data-role="button" data-align="left">20 Documentos</a>
-		    	<a data-role="button" data-align="left">15 Mensagens</a>
-		    	<a data-role="button" data-align="left">3 Imagens</a>
-		    	<a data-role="button" data-align="left">6 Videos</a>
+		    	<div class="grupo-wrap um">
+			    	<a data-role="button" data-align="left" data-icon="i-film">20 Documentos</a>
+			    	<a data-role="button" data-align="left" data-icon="i-image">3 Imagens</a>
+		    	</div>
+		    	<div class="grupo-wrap dois">
+			    	<a data-role="button" data-align="left" data-icon="i-envelop-open">15 Mensagens</a>
+			    	<a data-role="button" data-align="left" data-icon="play">6 Videos</a>
+		    	</div>
 		    </div>
 
-		    <div>
+		    <div class="aval-wrap aval-praticas">
 		    	<h3>Avaliações Práticas</h3>
-		    	Avaliação 1 {Expira em 2 dias} <a data-role="button" data-align="left">Até 5 Pontos</a>
-		    	Avaliação 2 {Expira em 2 dias} <a data-role="button" data-align="left">Até 5 Pontos</a>
-		    	Avaliação 3  <a data-role="button" data-align="left">Já realizado</a>
+		    	<ul data-role="listview">
+		    		<li>
+		    			<div class="tipo-avaliacao-wrap valido"> <!-- VÁLIDO -->
+			    			<p><span class="km-icon" data-icon="i-film"></span>Avaliação 1</p>
+			    			<p><b>(Expira em 2 dias)</b></p>
+		    			</div>
+		    			<a class="valido-button" data-role="button" data-align="left">Até 5 Pontos</a>
+		    		</li>
+
+		    		<li>
+		    			<div class="tipo-avaliacao-wrap realizado"> <!-- REALIZADO -->
+			    			<p><span class="km-icon" data-icon="i-film"></span>Avaliação 2</p>
+		    			</div>
+		    			<a class="realizado-button" data-role="button" data-align="left" disabled>Já realizado</a>
+		    		</li>
+
+		    		<li>
+		    			<div class="tipo-avaliacao-wrap expirado"> <!-- EXPIRADO -->
+			    			<p><span class="km-icon" data-icon="i-film"></span>Avaliação 3</p>
+		    			</div>
+		    			<a class="expirado-button" data-role="button" data-align="left">Expirado</a>
+		    		</li>
+		    	</ul>
 		    </div>
 	    </div>
 

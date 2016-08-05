@@ -11,8 +11,18 @@
 .logo-mackenzie,
 #perfilViewModel .button-group .km-button,
 .km-flat .km-view .km-footer .km-button,
-.km-flat .km-view .km-footer .km-button.km-state-active {
+.km-flat .km-view .km-footer .km-button.km-state-active,
+.avaliacoes-wrap #tabAvaliacoes .km-button.km-back,
+.avaliacoes-wrap #tabPublicacoes .km-buttongroup .km-state-active {
 	background-color: #EA2D2E;
+}
+
+#kendoUiMobileApp .km-listview-wrapper + .button-group-vertical .km-button,
+.km-flat .km-view .km-content .km-button,
+.km-flat .km-view .km-content .descricao-wrap > .km-button.km-back.km-state-active,
+.km-flat .km-view .km-content .avaliacoes-wrap .prox-aula .km-button.km-state-active,
+#kendoUiMobileApp .aval-praticas .tipo-avaliacao-wrap + .km-button.km-state-active {
+	background-color: transparent;
 }
 
 /*** LOGO MACKENZIE ***/
@@ -94,7 +104,6 @@ div[data-layout="main-nonav"] .logo-mackenzie.login img {
 	padding: 0.8em;
 	margin: 0;
 	border-color: #FFF;
-	background-color: transparent;
 	color: #FFF;
 	transition: background-color 0.2s;
 }
@@ -241,9 +250,6 @@ div[data-layout="main-loading"] .logo-mackenzie,
 /**************************/
 /**** USER APP LOGGED ****/
 /*************************/
-.km-flat .km-view .km-content .km-button {
-	background-color: transparent;
-}
 
 /*** GERAL ***/
 .km-header  {
@@ -498,7 +504,6 @@ li.km-state-active .km-listview-link .km-icon::before {
 /****************************/
 .km-flat .km-view .km-header > .km-tabstrip {
 	width: 100%;
-	/*border-top: 1px solid rgba(0, 0, 0, 0.1);*/
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 	.km-flat .km-view .km-header > .km-tabstrip .km-button {
@@ -581,33 +586,52 @@ li.km-state-active .km-listview-link .km-icon::before {
 	    padding: 1em 0;
 	}
 
-/*** BOTÕES SEMESTRES ***/
+/*** BOTÕES SEMESTRES e ANO (DESC. DISCIPLINAS) ***/
 .km-flat .km-view .disciplinas-wrap .km-buttongroup {
 	display: block;
 	padding: 0 1em;
 	margin: 0 auto 0.5em;
 }
+
+.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type {
+		padding: 0 1em;
+	}
+	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li,
 	.km-flat .km-view .disciplinas-wrap .km-buttongroup li {
 		float: left;
+	}
+	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li {
+		padding: 0.8em 1.2em;
+	}
+
+	.km-flat .km-view .disciplinas-wrap .km-buttongroup li {
 		padding: 0.9em 0.8em;
 	}
+	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li:first-child,
 	.km-flat .km-view .disciplinas-wrap .km-buttongroup li:first-child {
 		border-radius: 4px 0 0;
 	}
+	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li:nth-child(4),
 	.km-flat .km-view .disciplinas-wrap .km-buttongroup li:nth-child(4) {
 		border-radius: 0 4px 0 0;
 		border-right: 1px solid rgba(0, 0, 0, 0.1);
 	}
+	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li:nth-child(5),
 	.km-flat .km-view .disciplinas-wrap .km-buttongroup li:nth-child(5) {
 		border-radius: 0 0 0 4px;
 	}
+	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li:nth-child(8),
 	.km-flat .km-view .disciplinas-wrap .km-buttongroup li:last-child {
 		border-radius: 0 0 4px 0;
 	}
 
+	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li:nth-child(5),
 	.km-flat .km-view .disciplinas-wrap .km-buttongroup li:nth-child(5),
+	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li:nth-child(6),
 	.km-flat .km-view .disciplinas-wrap .km-buttongroup li:nth-child(6),
+	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li:nth-child(7),
 	.km-flat .km-view .disciplinas-wrap .km-buttongroup li:nth-child(7),
+	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li:last-child,
 	.km-flat .km-view .disciplinas-wrap .km-buttongroup li:last-child {
 		border-top: 0;
 	}
@@ -623,6 +647,109 @@ li.km-state-active .km-listview-link .km-icon::before {
 		background-color: #EA2D2E;
 	}
 
+/*** TELA AVALIAÇÕES ***/
+.avaliacoes-wrap #tabAvaliacoes .km-back {
+    width: 100%;
+	margin: 0;
+    border: 0;
+    border-radius: 0;
+    color: #fff;
+}
+	.avaliacoes-wrap #tabAvaliacoes .km-back .km-icon::after {
+		content: "\e0b4";
+		font-size: 1.2em;
+	}
+
+.avaliacoes-wrap .prox-aula {
+	position: relative;
+	padding: 0 1.2em 1em;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+	.avaliacoes-wrap .prox-aula p {
+		display: inline-block;
+		margin-left: 0;
+	}
+	.avaliacoes-wrap .prox-aula p + .km-button {
+		position: absolute;
+		top: 1em;
+		right: 1em;
+	    padding: 0.5em;
+	    border-radius: 0;
+	    border-width: 3px 3px 0 0;
+	    border-color: #ccc;
+	    -webkit-transform: rotate(45deg);
+	    		transform: rotate(45deg);
+	}
+
+	.avaliacoes-wrap .prox-aula .grupo-wrap {
+		display: inline-block;
+		width: 49%;
+	}
+	.avaliacoes-wrap .prox-aula .grupo-wrap .km-button {
+		padding: 0.8em 0.8em 0 0;
+		margin: 0;
+		border: none;
+	}
+	.avaliacoes-wrap .prox-aula .km-button .km-icon::after {
+		font-size: 1.1em;
+	}
+	.avaliacoes-wrap .prox-aula .km-button .km-i-film::after {
+		content: "\e09c";
+	}
+	.avaliacoes-wrap .prox-aula .km-button .km-i-envelop-open::after {
+		content: "\e09a";
+	}
+	.avaliacoes-wrap .prox-aula .km-button .km-i-image::after {
+		content: "\e07c";
+	}
+
+.avaliacoes-wrap .aval-praticas h3 {
+	text-align: center;
+}
+
+#kendoUiMobileApp .avaliacoes-wrap .aval-praticas .km-listview-wrapper li {
+	padding: 0.8em 1em;
+	border: none;
+}
+	.aval-praticas .km-listview-wrapper li .km-icon::after {
+		content: "\e09c";
+	}
+
+.aval-praticas .tipo-avaliacao-wrap {
+	float: left;
+	max-width: 58%;
+}
+	.aval-praticas .tipo-avaliacao-wrap p {
+		margin: 0;
+	}
+	.aval-praticas .tipo-avaliacao-wrap p:nth-child(2) {
+		text-indent: 17px;
+	}
+	.aval-praticas .tipo-avaliacao-wrap p b {
+		color: #EA2D2E;
+		font-size: 0.8em;
+	}
+
+.aval-praticas .tipo-avaliacao-wrap + .km-button {
+	float: right;
+	min-width: 110px;
+}
+	#kendoUiMobileApp .aval-praticas .tipo-avaliacao-wrap + .km-button.km-state-active {
+		color: #000;
+	}
+
+/*** STATUS BOTÕES AVALIAÇÃO ***/
+#kendoUiMobileApp .aval-praticas .tipo-avaliacao-wrap + .valido-button {
+	border-color: green;
+}
+#kendoUiMobileApp .aval-praticas .tipo-avaliacao-wrap + .realizado-button {
+	background-color: #ccc;
+	opacity: 0.7;
+}
+#kendoUiMobileApp .aval-praticas .tipo-avaliacao-wrap + .expirado-button {
+	background-color: #EA2D2E;
+	color: #fff;
+}
 
 /*** DISCIPLINAS VIEW ***/
 #disciplinas .details-content .km-buttongroup .km-button.km-state-active {
@@ -631,3 +758,21 @@ li.km-state-active .km-listview-link .km-icon::before {
 #disciplinas .km-scroll-wrapper {
 	padding: 2em 0 0;
 }
+
+/*** DISCIPLINAS DETAILS ***/
+.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) {
+	width: 100%;
+	margin: 0.5em 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) li {
+		border-radius: 0;
+		border-left: none;
+		border-right: none;
+	}
+	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) li.km-state-active {
+		background-color: transparent;
+		color: #4c5356;
+		border-bottom: 3px solid #ccc;
+	}
+	
