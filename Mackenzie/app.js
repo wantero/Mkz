@@ -147,6 +147,32 @@
         });
     };
 
+    app.getUserData = function() {
+        var data;
+
+        if (app && app.user) {
+            if (app.user.data) {
+                data = app.user.data;
+            } else {
+                data = app.user;
+            }
+        }
+
+        return data;
+    }
+
+    app.displayUser = function() {
+        var user = app.getUserData();
+
+        $('[id=displayUser]').each(function(index, item) {
+            $(item).text(user.DisplayName);
+        });
+
+        $('[id=displayTIA]').each(function(index, item) {
+            $(item).text(user.tia);
+        });
+    }
+
 
 
 function onDrawerShow() {

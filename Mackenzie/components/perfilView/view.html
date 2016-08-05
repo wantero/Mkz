@@ -1,46 +1,36 @@
-<div data-role="view" data-title="" data-layout="main" data-model="app.perfilView" data-show="app.perfilView.onShow" data-after-show="app.perfilView.afterShow">
+<div data-role="view" data-title="" data-layout="main" data-model="app.perfilView"
+     data-show="app.perfilView.perfilViewModel.onShow"
+     xdata-after-show="app.perfilView.afterShow">
     <div id="perfilViewModel" class="form-view">
 
         <form>
             <div class="user-thumb">
-                <img class="km-thumbnail" src="styles/images/user-male.png" alt="Your photo">
+                <img id="foto" class="km-thumbnail" src="styles/images/user-male.png" alt="Your photo">
             </div>
+            <a  data-bind="events: { click: perfilViewModel.editarFoto }">Alterar foto</a>
         
             <ul class="form-content" data-role="listview" data-style="inset">
 
                 <li class="form-content-item">
-                    <label>
-                        <span>TIA</span>
-                        <input data-bind="value: perfilViewModel.fields.tia" type="number">
-                    </label>
+                    <input id="nome" data-bind="value: perfilViewModel.fields.nome" placeholder="Informe seu nome" type="text">
                 </li>
 
                 <li class="form-content-item">
-                    <label>
-                        <span>Nome</span>
-                        <input data-bind="value: perfilViewModel.fields.nome" placeholder="Informe seu nome" type="text">
-                    </label>
+                    <input id="email" data-bind="value: perfilViewModel.fields.email" placeholder="email@dominio.com" type="email">
                 </li>
 
                 <li class="form-content-item">
-                    <label>
-                        <span>Email</span>
-                        <input data-bind="value: perfilViewModel.fields.email" placeholder="email@dominio.com" type="email">
-                    </label>
+                    <input id="senha" data-bind="value: perfilViewModel.fields.senha" placeholder="Sua senha" type="password">
                 </li>
 
                 <li class="form-content-item">
-                    <label>
-                        <span>Senha</span>
-                        <input data-bind="value: perfilViewModel.fields.senha" placeholder="Sua senha" type="password">
-                    </label>
+                    <input id="senha" data-bind="value: perfilViewModel.fields.confirmarSenha" placeholder="Redigite sua senha" type="password">
                 </li>
 
             </ul>
 
             <div class="button-group">
-                <a data-role="button" data-bind="events: { click: perfilViewModel.cancel }">Cancelar</a>
-                <a class="primary" data-role="button" data-bind="events: { click: perfilViewModel.submit }">Confirmar</a>
+                <a class="primary" data-role="button" data-bind="events: { click: perfilViewModel.enviar }">Enviar</a>
             </div>
         </form>
         <!-- START_CUSTOM_CODE_perfilViewModel -->

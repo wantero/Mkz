@@ -174,6 +174,8 @@ app.cursosView = kendo.observable({
 
             },
             detailsShow: function(e) {
+                app.displayUser();
+        
                 cursosViewModel.setCurrentItemByUid(e.view.params.uid);
             },
             setCurrentItemByUid: function(uid) {
@@ -220,7 +222,22 @@ app.cursosView = kendo.observable({
                     $('#disciplinas').show().siblings().hide();
                 } else {
                     $('#agenda').show().siblings().hide();
+                    cursosViewModel.selectDiaView();
                 }
+            },
+            initScheduler: function() {
+                initScheduler();
+                cursosViewModel.scheduler = $("#scheduler").data("kendoScheduler");
+            },
+            selectDiaView: function() {
+                cursosViewModel.scheduler.view("agenda");
+                //cursosViewModel.scheduler.view("day");
+            },
+            selectSemanaView: function() {
+                cursosViewModel.scheduler.view("week");
+            },
+            selectMesView: function() {
+                cursosViewModel.scheduler.view("month");
             },
             linkBind: function(linkString) {
                 var linkChunks = linkString.split('|');
@@ -244,7 +261,8 @@ app.cursosView = kendo.observable({
 
                 fetchFilteredData(param);
             },
-            currentItem: {}
+            currentItem: {},
+            scheduler: undefined
         });
 
     if (typeof dataProvider.sbProviderReady === 'function') {
@@ -271,6 +289,8 @@ app.cursosView = kendo.observable({
             }
         }
 
+        app.displayUser();
+
         dataProvider.Users.currentUser().then(
             function(user) {
                 // Fixa o filtro do usuário logado
@@ -288,6 +308,10 @@ app.cursosView = kendo.observable({
     });
 
     parent.set('onDetailShow', function(e) {
+        app.displayUser();
+
+        cursosViewModel.setCurrentItemByUid(e.view.params.uid);
+
         $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active'); //trigger('click');
         $('#disciplinas').show().siblings().hide();
         //cursosViewModel.initScheduler();
@@ -296,17 +320,61 @@ app.cursosView = kendo.observable({
 })(app.cursosView);
 
 function initScheduler() {
+    var today = new Date();
+
+    var startTime = today;
+        startTime.setHours(today.getHours());
+        startTime.setMinutes(today.getMinutes());
+        startTime.setSeconds(0);
+
+
     $("#scheduler").kendoScheduler({
-        date: new Date("2013/6/13"),
-        startTime: new Date("2013/6/13 07:00 AM"),
-        height: 600,
+        date: today,
+        startTime: startTime,
+        height: 400,
         views: [
-            "day",
-            "week",
-            "month"
+            {type: "day", allDaySlot: false, editable: false, selected: true, title: "Dia"},
+            {type: "week", allDaySlot: false, editable: false, title: "Semana"},
+            {type: "month", allDaySlot: false, editable: false, title: "Mes"},
+            {type: "agenda", title: "Agenda"}
         ],
-        timezone: "Etc/UTC",
-        dataSource: {
+        //timezone: "Etc/UTC",
+        dataSource: [
+            {   id: 1,
+                start: new Date(2016, 7, 5, 16, 0, 0, 0),
+                end: new Date(2016, 7, 5, 17, 0, 0, 0),
+                title: "Introdução Sistema de Computação",
+                disciplina: 1 },
+            {   id: 2,
+                start: new Date(2016, 7, 5, 17, 0, 0, 0),
+                end: new Date(2016, 7, 5, 18, 0, 0, 0),
+                title: "Análise de Sistemas",
+                disciplina: 2 },
+            {   id: 3,
+                start: new Date(2016, 7, 5, 18, 0, 0, 0),
+                end: new Date(2016, 7, 5, 19, 0, 0, 0),
+                title: "Filosofia Aplicada",
+                disciplina: 3 },
+            {   id: 4,
+                start: new Date(2016, 7, 5, 19, 0, 0, 0),
+                end: new Date(2016, 7, 5, 20, 0, 0, 0),
+                title: "É noix mano",
+                disciplina: 1 },
+        ],
+        resources: [
+            {
+                field: "disciplina",
+                dataSource: [
+                    { text: "Computação", value: 1, color: "#6eb3fa" },
+                    { text: "Filosofia", value: 2, color: "#f58a8a" },
+                    { text: "Filosofia", value: 3, color: "#00e600" }
+                ],
+                title: "Room"
+            }
+        ]
+    });
+
+        /*{
             batch: true,
             transport: {
                 read: {
@@ -369,7 +437,7 @@ function initScheduler() {
                 ]
             }
         ]
-    });
+    });*/
 };
 
 

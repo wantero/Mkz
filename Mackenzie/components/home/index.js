@@ -123,8 +123,11 @@ app.home = kendo.observable({
 
             provider.Users.currentUser().then(
                 function(user) {
-                    provider.Users.update({ 'TermoAceite': true }, //data
-                        { 'Id': user.result.Id }, // filter
+                    provider.Users.updateSingle(
+                        {
+                            'Id': user.result.Id, // filter
+                            'TermoAceite': true
+                        },
                         function(data){
                             app.mobileApp.navigate('components/' + redirect + '/view.html');
                         },
@@ -233,10 +236,8 @@ app.home = kendo.observable({
         });
 
     parent.set('homeModel', homeModel);
+    
     parent.set('afterShow', function(e) {
-        //Esconde o HEADER
-        //navbar = e.view.element && e.view.element.find('header [data-role="navbar"]');
-        //navbar.hide();
         if (e && e.view && e.view.params && e.view.params.logout) {
             if (localStorage) {
                 localStorage.setItem(rememberKey, null);
@@ -268,13 +269,13 @@ function onDrawerShow() {
 
     var name = data && data.Username ? data.Username : '';
     var tia = data && data.tia ? data.tia : '';
-    var fotoUrl = data && data.fotoUrl ? data.fotoUrl : undefined;
+    var fotoUri = data && data.fotoUri ? data.fotoUri : undefined;
 
     $('#drawerUser').text(name);
     $('#drawerTIA').text(tia);
 
-    if (fotoUrl) {    
-        $('#drawerPicture').attr('src', fotoUrl);
+    if (fotoUri) {    
+        $('#drawerPicture').attr('src', fotoUri);
     }
 }
 

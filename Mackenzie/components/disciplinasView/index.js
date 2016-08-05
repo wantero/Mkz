@@ -77,7 +77,7 @@ app.disciplinasView = kendo.observable({
                 dataProvider: dataProvider,
                 read: {
                     headers: {
-                        "X-Everlive-Expand": {"Professores": true}
+                        "X-Everlive-Expand": {"Professor": true}
                     }
                 }
             },
@@ -163,6 +163,7 @@ app.disciplinasView = kendo.observable({
                 app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + dataItem.uid);
             },
             detailsShow: function(e) {
+                app.displayUser();
                 disciplinasViewModel.setCurrentItemByUid(e.view.params.uid);
             },
             setCurrentItemByUid: function(uid) {
@@ -240,18 +241,10 @@ app.disciplinasView = kendo.observable({
             }
         }
 
+        app.displayUser();
+
         // Armazena o parametro recebido pela VIEW
         viewParam = param;
-        
-        /*var popup = $("#disciplinas").kendoWindow({
-            width: 200,
-            height: 200,
-            title: "Centered Window",
-            visible: false            
-        }).data("kendoWindow");
-
-        popup.open();
-        popup.center();*/
 
         fetchFilteredData(viewParam);
     });
