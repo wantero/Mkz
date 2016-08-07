@@ -15,7 +15,7 @@
 
 		    <div class="aval-wrap prox-aula">
 		    	<p>Próxima aula: <b>01/08/2016 - Hoje</b></p>
-		    	<a data-role="button" data-align="left" data-bind="events: { click: selectPublicacoes }"></a>
+		    	<a data-role="button" data-align="left" data-bind="events: { click: selectPublicacoes }"><span></span></a>
 
 		    	<div class="grupo-wrap um">
 			    	<a data-role="button" data-align="left" data-icon="i-film">20 Documentos</a>
@@ -67,19 +67,36 @@
 	      </ul>
 
 	      <ul id="first-period" data-role="buttongroup" class="km-widget km-buttongroup">
-	          <li class="km-button km-state-active"><span class="km-text">Docs</span></li>
-	          <li class="km-button"><span class="km-text">Imagens</span></li>
-	          <li class="km-button"><span class="km-text">Mensagem</span></li>
-	          <li class="km-button"><span class="km-text">Videos</span></li>
+	          <li class="km-button km-state-active"><span data-role="button">Docs</span></li>
+	          <li class="km-button"><span data-role="button">Imagens</span></li>
+	          <li class="km-button"><span data-role="button">Mensagem</span></li>
+	          <li class="km-button"><span data-role="button">Videos</span></li>
 	      </ul>
 
-	      <div data-role="scroller">
-	      	Aula_20160303_revisao.docx<br>
-	      	<b>Enviado por: Brad Pit</b>
-	      	Aula_20160303_revisao.docx<br>
-	      	<b>Enviado por: Brad Pit</b>
-	      	Aula_20160303_revisao.docx<br>
-	      	<b>Enviado por: Brad Pit</b>
+	      <div data-role="scroller" class="lista-arquivos">
+	      	<ul data-role="listview">
+	      		<li>
+	      			<div class="docs-wrap">
+				      	<p>Aula_20160303_revisao.docx<p>
+				      	<b>Enviado por: Brad Pit</b>
+	      			</div>
+			      	<p>450kb</p>
+	      		</li>
+	      		<li>
+	      			<div class="docs-wrap">
+				      	<p>Aula_20160303_revisao.docx<p>
+				      	<b>Enviado por: Brad Pit</b>
+	      			</div>
+			      	<p>205kb</p>
+	      		</li>
+	      		<li>
+	      			<div class="docs-wrap">
+				      	<p>Aula_20160303_revisao.docx<p>
+				      	<b>Enviado por: Brad Pit</b>
+	      			</div>
+			      	<p>370kb</p>
+	      		</li>
+	      	</ul>
 	      </div>
 	    </div>
     </div>
