@@ -216,6 +216,28 @@ app.home = kendo.observable({
 
                 provider.Users.register(tia, password, attrs, successHandler, init);
             },
+            forgotPassword: function() {
+                if (!homeModel.tia) {
+                    alert('Missing TIA');
+                    return false;
+                }
+
+                var userForgotPassword = {
+                    Username: homeModel.tia.toLowerCase()
+                };
+
+                provider.Users.resetPassword(userForgotPassword,
+                    function() {
+                        app.showMessage('Um email foi enviado. Favor seguir as instruções.');
+                    },
+                    function(e) {
+                        if (e.code && e.code == 228) {
+                            alert(e.message);
+                        } else {
+                            alert('Error on reset password!');
+                        }
+                    });
+            },
             aceite: function() {
                 // REGISTRA TERMO ACEITE DO USUARIO
                 app.showMessage({

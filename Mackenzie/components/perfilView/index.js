@@ -58,8 +58,15 @@ app.perfilView = kendo.observable({
                     'fotoUri': perfilViewModel.fields.fotoUri
                 },
                 function(data){
-                    app.showMessage('<b>Perfil alterado com sucesso.</b>'+
-                                        '<br><br>Para alterar a senha você precisará acessar sua caixa de e-mail e seguir as instruções enviadas.', app.perfilView.perfilViewModel.onAfterEnviar);
+                    dataProvider.Users.currentUser().then(
+                        function(user) {
+                            app.user.data = user.result;
+                            app.showMessage('<b>Perfil alterado com sucesso.</b>'+
+                                            '<br><br>Para alterar a senha você precisará acessar sua caixa de e-mail e seguir as instruções enviadas.', app.perfilView.perfilViewModel.onAfterEnviar);
+                        },
+                        function(error) {
+                            console.log('error:', error);
+                        });
                 },
                 function(error){
                     console.log('error on update user');

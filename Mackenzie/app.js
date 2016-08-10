@@ -11,6 +11,8 @@
                 skin: 'flat',
                 initial: 'components/home/view.html'
             });
+
+            kendo.culture("pt-BR");
         });
     };
 

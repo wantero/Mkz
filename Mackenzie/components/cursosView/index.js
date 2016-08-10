@@ -172,6 +172,13 @@ app.cursosView = kendo.observable({
                     operator: 'eq'
                 })));*/
 
+                if (cursosViewModel.scheduler) {
+                    cursosViewModel.scheduler.destroy();
+                    $("#scheduler").html("");
+                    cursosViewModel.scheduler = undefined;
+                }
+
+                cursosViewModel.filterScheduler();
             },
             detailsShow: function(e) {
                 app.displayUser();
@@ -214,7 +221,7 @@ app.cursosView = kendo.observable({
             disciplinaClick: function(e) {
                 //app.disciplinasView.disciplinasViewModel.itemClick(e);
                 //var dataItem = e.dataItem || cursosViewModel.originalItem;
-                cursosViewModel.set('currentDisciplina', e.dataItem);
+                app.disciplinasView.disciplinasViewModel.set('currentDisciplina', e.dataItem);
                 app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
             },
             detailOption: function(e) {
@@ -225,19 +232,198 @@ app.cursosView = kendo.observable({
                     cursosViewModel.selectDiaView();
                 }
             },
+            filterScheduler: function() {
+                if (!cursosViewModel.scheduler) {
+                    cursosViewModel.initScheduler();
+                    return;
+                }
+
+                function dayOfWeek(data) {
+                    return 'segunda';
+                }
+
+                var dayOfWeek = dayOfWeek(new Date());
+
+                try {
+                    var cursoId = app.cursosView.cursosViewModel.dataSource.data()[0].Id;
+                    //var disciplinaId = app.disciplinasView.disciplinasViewModel.dataSource.data()[0].Id;
+
+                    /*var dataSource = new kendo.data.SchedulerDataSource({
+                        //type: "everlive",
+                        typeName: 'GradeHorario',
+                        dataProvider: dataProvider,
+                        read: {
+                            headers: {
+                                "X-Everlive-Expand": {"Disciplina": true}
+                            }
+                        },
+                        filter: [
+                            { field: "Curso", operator: "eq", value: cursoId },
+                            { field: "Dia", operator: "eq", value: dayOfWeek }
+                        ]
+                    });
+
+                    dataSource.fetch(function() {
+                        console.log(dataSource);
+                    });
+
+                    cursosViewModel.scheduler.dataSource = gradeHorarioData;*/
+
+                    var query = new Everlive.Query();
+                    query.where().eq('Curso', cursoId);
+                    query.where().eq('Dia', dayOfWeek);
+                    query.expand({"Disciplina": true});
+
+                    //var gradeHorarioData;
+                    var data = dataProvider.data('GradeHorario');
+                    data.get(query)
+                        .then(function(data){
+                            try {
+                                /*var gradeHorarioData = kendo.data.DataSource({data: data.result});
+                                cursosViewModel.scheduler.dataSource = gradeHorarioData;*/
+                                var today = new Date();
+                                //var resources = {field: "disciplina", title: "Disciplina", dataSource: []};
+
+                                data.result.forEach(function(cur, index, arr) {
+                                    cur.start = cur.HorarioInicio;
+                                    cur.start.setDate(today.getDate());
+                                    cur.start.setMonth(today.getMonth());
+                                    cur.start.setFullYear(today.getFullYear());
+
+                                    cur.end = cur.HorarioFim;
+                                    cur.end.setDate(today.getDate());
+                                    cur.end.setMonth(today.getMonth());
+                                    cur.end.setFullYear(today.getFullYear());
+
+                                    cur.title = cur.Disciplina.Nome;
+                                    cur.disciplinaColor = cur.Disciplina.Id;
+                                    cur.colorId = cur.Disciplina.Id;
+
+                                    /*resources.dataSource.push({
+                                        text: cur.Disciplina.Nome,
+                                        value: index, //cur.Disciplina.Id,
+                                        color: "#6eb3fa"});*/
+                                });
+
+                                var dataSourceScheduler = new kendo.data.SchedulerDataSource({
+                                    data: data.result
+                                });
+
+                                cursosViewModel.scheduler.setDataSource(dataSourceScheduler);
+                            } catch(e) {
+                                alert(e.message);
+                            }
+                        },
+                        function(error){
+                            alert('error loading disciplinas');
+                        });    
+                } catch(e) {
+                    alert("Falha ao carregar grade de horário.");
+                }
+            },
             initScheduler: function() {
-                initScheduler();
-                cursosViewModel.scheduler = $("#scheduler").data("kendoScheduler");
+                var today = new Date();
+
+                var startTime = today;
+                    startTime.setHours(today.getHours());
+                    startTime.setMinutes(today.getMinutes());
+                    startTime.setSeconds(0);
+
+                var resourceList = []; //{field: "colorId", title: "Disciplina", dataSource: []};
+
+                var cursoId = app.cursosView.cursosViewModel.dataSource.data()[0].Id;
+
+                var query = new Everlive.Query();
+                query.where().eq('Cursos', cursoId);
+
+                try {
+                    var data = dataProvider.data('Disciplinas');
+                    data.get(query)
+                        .then(function(data) {
+                            data.result.forEach(function(cur, index, arr) {
+                                //resourceList.dataSource.push({
+                                resourceList.push({
+                                    text: cur.Nome,
+                                    value: cur.Id,
+                                    color: "#f58a8a"});
+                            });
+
+                            $("#scheduler").kendoScheduler({
+                                date: today,
+                                startTime: startTime,
+                                height: 400,
+                                mobile: true,
+                                timezone: "Etc/UTC",
+                                messages: {
+                                    today: "Hoje",
+                                    time: "Horário",
+                                    event: "Disciplina",
+                                    date: "DayXYZ"
+                                },
+                                views: [
+                                    {type: "day", allDaySlot: false, editable: false, selected: true, title: "Dia"},
+                                    {type: "week", allDaySlot: false, editable: false, title: "Semana"},
+                                    {type: "month", allDaySlot: false, editable: false, title: "Mes"},
+                                    {type: "agenda", title: "Agenda"}
+                                ],
+                                //timezone: "Etc/UTC",
+                                /*dataSource: [
+                                    {   id: 1,
+                                        start: new Date(2016, 7, 5, 16, 0, 0, 0),
+                                        end: new Date(2016, 7, 5, 17, 0, 0, 0),
+                                        title: "Introdução Sistema de Computação",
+                                        disciplina: 1 },
+                                    {   id: 2,
+                                        start: new Date(2016, 7, 5, 17, 0, 0, 0),
+                                        end: new Date(2016, 7, 5, 18, 0, 0, 0),
+                                        title: "Análise de Sistemas",
+                                        disciplina: 2 },
+                                    {   id: 3,
+                                        start: new Date(2016, 7, 5, 18, 0, 0, 0),
+                                        end: new Date(2016, 7, 5, 19, 0, 0, 0),
+                                        title: "Filosofia Aplicada",
+                                        disciplina: 3 },
+                                    {   id: 4,
+                                        start: new Date(2016, 7, 5, 19, 0, 0, 0),
+                                        end: new Date(2016, 7, 5, 20, 0, 0, 0),
+                                        title: "É noix mano",
+                                        disciplina: 1 },
+                                ],*/
+                                resources: [
+                                    {
+                                        field: "colorId",
+                                        dataSource: resourceList,
+                                        title: "Disciplina"
+                                    }
+                                ]
+                            });
+
+                            cursosViewModel.scheduler = $("#scheduler").data("kendoScheduler");
+                            cursosViewModel.filterScheduler();
+                        },
+                        function(error){
+                            alert('error loading disciplinas');
+                        }); 
+                } catch(e) {
+                    alert(e.message);
+                }
+    
+
             },
             selectDiaView: function() {
-                cursosViewModel.scheduler.view("agenda");
-                //cursosViewModel.scheduler.view("day");
+                if (cursosViewModel.scheduler) {
+                    cursosViewModel.scheduler.view("agenda");
+                }
             },
             selectSemanaView: function() {
-                cursosViewModel.scheduler.view("week");
+                if (cursosViewModel.scheduler) {
+                    cursosViewModel.scheduler.view("week");
+                }
             },
             selectMesView: function() {
-                cursosViewModel.scheduler.view("month");
+                if (cursosViewModel.scheduler) {
+                    cursosViewModel.scheduler.view("month");
+                }
             },
             linkBind: function(linkString) {
                 var linkChunks = linkString.split('|');
@@ -319,61 +505,7 @@ app.cursosView = kendo.observable({
 
 })(app.cursosView);
 
-function initScheduler() {
-    var today = new Date();
-
-    var startTime = today;
-        startTime.setHours(today.getHours());
-        startTime.setMinutes(today.getMinutes());
-        startTime.setSeconds(0);
-
-
-    $("#scheduler").kendoScheduler({
-        date: today,
-        startTime: startTime,
-        height: 400,
-        views: [
-            {type: "day", allDaySlot: false, editable: false, selected: true, title: "Dia"},
-            {type: "week", allDaySlot: false, editable: false, title: "Semana"},
-            {type: "month", allDaySlot: false, editable: false, title: "Mes"},
-            {type: "agenda", title: "Agenda"}
-        ],
-        //timezone: "Etc/UTC",
-        dataSource: [
-            {   id: 1,
-                start: new Date(2016, 7, 5, 16, 0, 0, 0),
-                end: new Date(2016, 7, 5, 17, 0, 0, 0),
-                title: "Introdução Sistema de Computação",
-                disciplina: 1 },
-            {   id: 2,
-                start: new Date(2016, 7, 5, 17, 0, 0, 0),
-                end: new Date(2016, 7, 5, 18, 0, 0, 0),
-                title: "Análise de Sistemas",
-                disciplina: 2 },
-            {   id: 3,
-                start: new Date(2016, 7, 5, 18, 0, 0, 0),
-                end: new Date(2016, 7, 5, 19, 0, 0, 0),
-                title: "Filosofia Aplicada",
-                disciplina: 3 },
-            {   id: 4,
-                start: new Date(2016, 7, 5, 19, 0, 0, 0),
-                end: new Date(2016, 7, 5, 20, 0, 0, 0),
-                title: "É noix mano",
-                disciplina: 1 },
-        ],
-        resources: [
-            {
-                field: "disciplina",
-                dataSource: [
-                    { text: "Computação", value: 1, color: "#6eb3fa" },
-                    { text: "Filosofia", value: 2, color: "#f58a8a" },
-                    { text: "Filosofia", value: 3, color: "#00e600" }
-                ],
-                title: "Room"
-            }
-        ]
-    });
-
+function initSchedulerX() {
         /*{
             batch: true,
             transport: {

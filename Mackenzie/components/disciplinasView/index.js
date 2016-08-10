@@ -34,7 +34,6 @@ app.disciplinasView = kendo.observable({
             }
         },
         processImage = function(img) {
-
             function isAbsolute(img) {
                 if  (img && (img.slice(0,  5)  ===  'http:' || img.slice(0,  6)  ===  'https:' || img.slice(0,  2)  ===  '//'  ||  img.slice(0,  5)  ===  'data:')) {
                     return true;
@@ -153,6 +152,14 @@ app.disciplinasView = kendo.observable({
                         }
                     }
                 })(result, layout);
+
+                if (!data.Professor) {
+                    data.Professor = {};
+                }
+
+                if (data.Professor && !data.Professor.Nome) {
+                    data.Professor.Nome = '';
+                }
 
                 return result;
             },
