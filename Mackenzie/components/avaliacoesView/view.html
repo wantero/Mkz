@@ -1,0 +1,30 @@
+<div id="cursos" data-role="view" data-title="" data-layout="main-detail" data-model="app.avaliacoesView" 
+     data-show="app.avaliacoesView.onShow" data-after-show="app.avaliacoesView.afterShow">
+
+    <h3>Avaliações Práticas</h3>
+
+    <div class="aval-wrap aval-praticas">
+        <ul class="masterDetailView" data-role="listview" data-auto-bind="true" data-style="" data-template="avaliacoesViewModelTemplate" 
+            xdata-show="app.avaliacoesView.onShow"
+            data-bind="{ source: avaliacoesViewModel.dataSource, events: {click: avaliacoesViewModel.itemClick} }" data-pull-to-refresh="true" data-endless-scroll="true">
+        </ul>
+    </div>
+
+    <script type="text/x-kendo-template" id="avaliacoesViewModelTemplate">
+    <div>
+        # data = app.avaliacoesView.avaliacoesViewModel.fixHierarchicalData(data); #
+
+        # if (data.showDisciplina) { #  
+            # console.log('diferente') ; #
+        <h3>#: data['Disciplina']['Nome'] #</h3>
+        # } #
+
+        <div class="tipo-avaliacao-wrap valido">
+            <p><span class="km-icon" data-icon="i-film"></span>#: data['Titulo'] #</p>
+            <p><b>(Expira em 2 dias)</b></p>
+        </div>
+
+        <a class="valido-button" data-role="button" data-align="left">Até #: data['Pontos'] # Pontos</a>
+    </div>
+    </script>
+</div>

@@ -1,0 +1,15 @@
+<div data-role="view" data-layout="main-detail" data-model="app.faqsView.faqsViewModel" 
+      data-show="app.faqsView.onDetailShow">
+      
+    <div>Perguntas Frequentes</div>
+
+    <div class="descricao-wrap">
+        <a data-role="backbutton" data-align="left"></a>
+        <p>FAQ:</p>
+        <h3 data-bind="text: currentItem['Titulo']"></h3>
+    </div>
+
+    <div>
+    	<span data-bind="html: currentItem['Texto']"></span>
+    </div>
+</div>

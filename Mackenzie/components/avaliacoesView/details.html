@@ -1,0 +1,70 @@
+<div data-role="view" data-title="" data-layout="main-detail" data-model="app.avaliacoesView.avaliacoesViewModel" 
+     xdata-bind="events: { show: detailsShow }" data-show="app.avaliacoesView.onDetailShow" xdata-init="app.avaliacoesView.avaliacoesViewModel.initScheduler" id="tabDisciplinas">
+     <div class="descricao-wrap">
+        <a data-role="backbutton" data-align="left"></a>
+        <p>Curso:</p>
+        <h3 data-bind="text: currentItem['Curso']"></h3>
+     </div>
+
+    <ul data-role="buttongroup" class="km-widget km-buttongroup">
+        <li id="btDisciplinas" class="km-button km-state-active" data-bind="events: { click: detailOption }"><span class="km-text">Disciplinas</span></li>
+        <li id="btAgenda" class="km-button" data-bind="events: { click: detailOption }"><span class="km-text">Agenda</span></li>
+    </ul>
+
+    <div class="disciplinas-wrap">
+        <div id="disciplinas">
+            <div class="details-content">
+                <ul id="first-period" data-role="buttongroup" class="km-widget km-buttongroup">
+                    <li class="km-button km-state-active"><span class="km-text">1º Sem</span></li>
+                    <li class="km-button"><span class="km-text">2º Sem</span></li>
+                    <li class="km-button"><span class="km-text">3º Sem</span></li>
+                    <li class="km-button"><span class="km-text">4º Sem</span></li>
+                    <li class="km-button"><span class="km-text">5º Sem</span></li>
+                    <li class="km-button"><span class="km-text">6º Sem</span></li>
+                    <li class="km-button"><span class="km-text">7º Sem</span></li>
+                    <li class="km-button"><span class="km-text">8º Sem</span></li>
+                </ul>
+            </div>
+
+            <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="disciplinasViewModelTemplate"
+                data-bind="{ source: currentItemDisciplinas, events: {click: disciplinaClick} }" data-pull-to-refresh="false" 
+                data-endless-scroll="false">
+            </ul>
+        </div>
+
+        <div id="agenda" style="display:none">
+            <div xdata-role="view" xdata-title="Detail Curso" xdata-layout="curso-detail" data-model="app.avaliacoesView.avaliacoesViewModel" 
+                 data-bind="events: { show: detailsShow }" id="tabAgenda">
+
+                <!--ul data-role="buttongroup" class="km-widget km-buttongroup">
+                    <li id="btDia" class="km-button km-state-active" data-bind="events: { click: selectDiaView }"><span class="km-text">Dia</span></li>
+                    <li id="btSemana" class="km-button" data-bind="events: { click: selectSemanaView }"><span class="km-text">Semana</span></li>
+                    <li id="btMes" class="km-button" data-bind="events: { click: selectMesView }"><span class="km-text">Mes</span></li>
+                </ul-->
+
+                <div id="scheduler"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/x-kendo-template" id="disciplinasViewModelTemplate">
+        <div class="user-thumb prof-thumb">
+            <img id="foto" class="km-thumbnail" src="styles/images/user-male.png" alt="Your photo">
+        </div>
+        <div class="image-with-text">
+            # data = app.disciplinasView.disciplinasViewModel.fixHierarchicalData(data); #
+            <h3>#: data['Nome'] #</h3>
+        </div>
+        <label class="km-label-above">
+            # nomeProfessor = data.Professor && data.Professor.Nome ? data.Professor.Nome : ''; #
+            <span>#: nomeProfessor #</span>
+        </label>
+    </script>
+</div>
+
+<div data-role="view" data-title="Detail Curso" data-layout="curso-detail" data-model="app.avaliacoesView.avaliacoesViewModel" 
+     data-bind="events: { show: detailsShow }" id="tabAgenda">
+    <a data-role="backbutton" data-align="left">Back</a>
+    <h3>Agenda:</h3><h3 data-bind="text: currentItem['Curso']"></h3>
+</div>

@@ -1,8 +1,7 @@
 'use strict';
 
 app.perfilView = kendo.observable({
-    onShow: function() {
-    },
+    onShow: function() {},
     afterShow: function() {}
 });
 
@@ -75,8 +74,31 @@ app.perfilView = kendo.observable({
         },
         onAfterEnviar: function() {
             $('#appDrawer').data('kendoMobileDrawer').show();
-        },
-        onShow: function() {
+        }
+    });
+
+    function onPictureSuccess(imageData) {
+        var file = {
+            Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
+            ContentType: "image/jpeg",
+            base64: imageData,
+        };
+
+        dataProvider.Files.create(file, function(response) {
+            perfilViewModel.fields.fotoUri = response.result.Uri;
+            $('#foto').attr('src', perfilViewModel.fields.fotoUri);
+        }, function(err) {
+            navigator.notification.alert("Unfortunately the upload failed: " + err.message);
+        });
+    };
+
+    function onPictureError() {
+        navigator.notification.alert("Unfortunately we were not able to retrieve the image");
+    };
+
+    parent.set('perfilViewModel', perfilViewModel);
+
+    parent.set('onShow', function() {
             var data = app.getUserData();
             app.displayUser();
 
@@ -104,34 +126,8 @@ app.perfilView = kendo.observable({
             $('#editarPerfilClose').click(function() {
                 $('#appDrawer').data('kendoMobileDrawer').show();
             });
-        }
-    });
 
-    function onPictureSuccess(imageData) {
-        var file = {
-            Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
-            ContentType: "image/jpeg",
-            base64: imageData,
-        };
-
-        dataProvider.Files.create(file, function(response) {
-            perfilViewModel.fields.fotoUri = response.result.Uri;
-
-            /*var imgEl = document.createElement("img");
-            imgEl.setAttribute('src', fileUri);
-            imgEl.style.position = "absolute";
-            document.body.appendChild(imgEl);*/
-            $('#foto').attr('src', perfilViewModel.fields.fotoUri);
-        }, function(err) {
-            navigator.notification.alert("Unfortunately the upload failed: " + err.message);
-        });
-    };
-
-    function onPictureError() {
-        navigator.notification.alert("Unfortunately we were not able to retrieve the image");
-    };
-
-    parent.set('perfilViewModel', perfilViewModel);
+    })
 })(app.perfilView);
 
 // START_CUSTOM_CODE_perfilViewModel

@@ -5,10 +5,6 @@ app.cursosView = kendo.observable({
     afterShow: function() {}
 });
 
-// START_CUSTOM_CODE_cursosView
-// Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
-
-// END_CUSTOM_CODE_cursosView
 (function(parent) {    
     var viewParam = "";
     var dataProvider = app.data.mackenzie,
@@ -81,8 +77,6 @@ app.cursosView = kendo.observable({
                     }
                 }
             },
-            filterable: true,
-            filters: [{ field: "Id", operator: "eq", value: "1" }],
             change: function(e) {
                 var data = this.data();
                 for (var i = 0; i < data.length; i++) {
@@ -166,11 +160,6 @@ app.cursosView = kendo.observable({
                 var dataItem = e.dataItem || cursosViewModel.originalItem;
 
                 app.mobileApp.navigate('#components/cursosView/details.html?uid=' + dataItem.uid);
-                /*app.mobileApp.navigate('components/disciplinasView/view.html?filter=' + encodeURIComponent(JSON.stringify({
-                    field: 'Cursos',
-                    value: dataItem.Id,
-                    operator: 'eq'
-                })));*/
 
                 if (cursosViewModel.scheduler) {
                     cursosViewModel.scheduler.destroy();
@@ -219,8 +208,6 @@ app.cursosView = kendo.observable({
                 return itemModel;
             },
             disciplinaClick: function(e) {
-                //app.disciplinasView.disciplinasViewModel.itemClick(e);
-                //var dataItem = e.dataItem || cursosViewModel.originalItem;
                 app.disciplinasView.disciplinasViewModel.set('currentDisciplina', e.dataItem);
                 app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
             },
@@ -238,75 +225,63 @@ app.cursosView = kendo.observable({
                     return;
                 }
 
-                function dayOfWeek(data) {
-                    return 'segunda';
+                function dayOfWeek(date) {
+                    var week = ['domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado'];
+                    return week[date.getDay()];
                 }
 
                 var dayOfWeek = dayOfWeek(new Date());
 
                 try {
                     var cursoId = app.cursosView.cursosViewModel.dataSource.data()[0].Id;
-                    //var disciplinaId = app.disciplinasView.disciplinasViewModel.dataSource.data()[0].Id;
-
-                    /*var dataSource = new kendo.data.SchedulerDataSource({
-                        //type: "everlive",
-                        typeName: 'GradeHorario',
-                        dataProvider: dataProvider,
-                        read: {
-                            headers: {
-                                "X-Everlive-Expand": {"Disciplina": true}
-                            }
-                        },
-                        filter: [
-                            { field: "Curso", operator: "eq", value: cursoId },
-                            { field: "Dia", operator: "eq", value: dayOfWeek }
-                        ]
-                    });
-
-                    dataSource.fetch(function() {
-                        console.log(dataSource);
-                    });
-
-                    cursosViewModel.scheduler.dataSource = gradeHorarioData;*/
-
                     var query = new Everlive.Query();
+
                     query.where().eq('Curso', cursoId);
-                    query.where().eq('Dia', dayOfWeek);
+                    //query.where().eq('Dia', dayOfWeek);
                     query.expand({"Disciplina": true});
 
-                    //var gradeHorarioData;
                     var data = dataProvider.data('GradeHorario');
                     data.get(query)
                         .then(function(data){
                             try {
-                                /*var gradeHorarioData = kendo.data.DataSource({data: data.result});
-                                cursosViewModel.scheduler.dataSource = gradeHorarioData;*/
                                 var today = new Date();
-                                //var resources = {field: "disciplina", title: "Disciplina", dataSource: []};
+                                var lastDayOfMonth = new Date(today.getFullYear(), today.getMonth()+1, 0).getDate();
+                                var dataScheduler = [];
 
                                 data.result.forEach(function(cur, index, arr) {
-                                    cur.start = cur.HorarioInicio;
-                                    cur.start.setDate(today.getDate());
-                                    cur.start.setMonth(today.getMonth());
-                                    cur.start.setFullYear(today.getFullYear());
 
-                                    cur.end = cur.HorarioFim;
-                                    cur.end.setDate(today.getDate());
-                                    cur.end.setMonth(today.getMonth());
-                                    cur.end.setFullYear(today.getFullYear());
+                                    function dayOfWeek(date) {
+                                        var week = ['domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado'];
+                                        return week[date.getDay()];
+                                    }
 
-                                    cur.title = cur.Disciplina.Nome;
-                                    cur.disciplinaColor = cur.Disciplina.Id;
-                                    cur.colorId = cur.Disciplina.Id;
+                                    for (var dia = 1; dia <= lastDayOfMonth; dia++) {
+                                        var calcDate = new Date(today.getFullYear(), today.getMonth(), dia);
 
-                                    /*resources.dataSource.push({
-                                        text: cur.Disciplina.Nome,
-                                        value: index, //cur.Disciplina.Id,
-                                        color: "#6eb3fa"});*/
+                                        if (dayOfWeek(calcDate) == cur.dia) {
+                                            var item = {};
+
+                                            item.start = new Date(cur.HorarioInicio);
+                                            item.start.setDate(calcDate.getDate());
+                                            item.start.setMonth(calcDate.getMonth());
+                                            item.start.setFullYear(calcDate.getFullYear());
+
+                                            item.end = new Date(cur.HorarioFim);
+                                            item.end.setDate(calcDate.getDate());
+                                            item.end.setMonth(calcDate.getMonth());
+                                            item.end.setFullYear(calcDate.getFullYear());
+
+                                            item.title = cur.Disciplina.Nome;
+                                            item.disciplinaColor = cur.Disciplina.Id;
+                                            item.colorId = cur.Disciplina.Id;
+
+                                            dataScheduler.push(item);
+                                        }
+                                    }
                                 });
 
                                 var dataSourceScheduler = new kendo.data.SchedulerDataSource({
-                                    data: data.result
+                                    data: dataScheduler //data.result
                                 });
 
                                 cursosViewModel.scheduler.setDataSource(dataSourceScheduler);
@@ -341,11 +316,11 @@ app.cursosView = kendo.observable({
                     data.get(query)
                         .then(function(data) {
                             data.result.forEach(function(cur, index, arr) {
-                                //resourceList.dataSource.push({
                                 resourceList.push({
                                     text: cur.Nome,
                                     value: cur.Id,
-                                    color: "#f58a8a"});
+                                    color: cur.color
+                                });
                             });
 
                             $("#scheduler").kendoScheduler({
@@ -358,7 +333,7 @@ app.cursosView = kendo.observable({
                                     today: "Hoje",
                                     time: "Horário",
                                     event: "Disciplina",
-                                    date: "DayXYZ"
+                                    date: "Dia"
                                 },
                                 views: [
                                     {type: "day", allDaySlot: false, editable: false, selected: true, title: "Dia"},
@@ -366,29 +341,6 @@ app.cursosView = kendo.observable({
                                     {type: "month", allDaySlot: false, editable: false, title: "Mes"},
                                     {type: "agenda", title: "Agenda"}
                                 ],
-                                //timezone: "Etc/UTC",
-                                /*dataSource: [
-                                    {   id: 1,
-                                        start: new Date(2016, 7, 5, 16, 0, 0, 0),
-                                        end: new Date(2016, 7, 5, 17, 0, 0, 0),
-                                        title: "Introdução Sistema de Computação",
-                                        disciplina: 1 },
-                                    {   id: 2,
-                                        start: new Date(2016, 7, 5, 17, 0, 0, 0),
-                                        end: new Date(2016, 7, 5, 18, 0, 0, 0),
-                                        title: "Análise de Sistemas",
-                                        disciplina: 2 },
-                                    {   id: 3,
-                                        start: new Date(2016, 7, 5, 18, 0, 0, 0),
-                                        end: new Date(2016, 7, 5, 19, 0, 0, 0),
-                                        title: "Filosofia Aplicada",
-                                        disciplina: 3 },
-                                    {   id: 4,
-                                        start: new Date(2016, 7, 5, 19, 0, 0, 0),
-                                        end: new Date(2016, 7, 5, 20, 0, 0, 0),
-                                        title: "É noix mano",
-                                        disciplina: 1 },
-                                ],*/
                                 resources: [
                                     {
                                         field: "colorId",
@@ -498,82 +450,8 @@ app.cursosView = kendo.observable({
 
         cursosViewModel.setCurrentItemByUid(e.view.params.uid);
 
-        $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active'); //trigger('click');
+        $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active');
         $('#disciplinas').show().siblings().hide();
-        //cursosViewModel.initScheduler();
-    })
+    });
 
 })(app.cursosView);
-
-function initSchedulerX() {
-        /*{
-            batch: true,
-            transport: {
-                read: {
-                    url: "//demos.telerik.com/kendo-ui/service/tasks",
-                    dataType: "jsonp"
-                },
-                update: {
-                    url: "//demos.telerik.com/kendo-ui/service/tasks/update",
-                    dataType: "jsonp"
-                },
-                create: {
-                    url: "//demos.telerik.com/kendo-ui/service/tasks/create",
-                    dataType: "jsonp"
-                },
-                destroy: {
-                    url: "//demos.telerik.com/kendo-ui/service/tasks/destroy",
-                    dataType: "jsonp"
-                },
-                parameterMap: function(options, operation) {
-                    if (operation !== "read" && options.models) {
-                        return {models: kendo.stringify(options.models)};
-                    }
-                }
-            },
-            schema: {
-                model: {
-                    id: "taskId",
-                    fields: {
-                        taskId: { from: "TaskID", type: "number" },
-                        title: { from: "Title", defaultValue: "No title", validation: { required: true } },
-                        start: { type: "date", from: "Start" },
-                        end: { type: "date", from: "End" },
-                        startTimezone: { from: "StartTimezone" },
-                        endTimezone: { from: "EndTimezone" },
-                        description: { from: "Description" },
-                        recurrenceId: { from: "RecurrenceID" },
-                        recurrenceRule: { from: "RecurrenceRule" },
-                        recurrenceException: { from: "RecurrenceException" },
-                        ownerId: { from: "OwnerID", defaultValue: 1 },
-                        isAllDay: { type: "boolean", from: "IsAllDay" }
-                    }
-                }
-            },
-            filter: {
-                logic: "or",
-                filters: [
-                    { field: "ownerId", operator: "eq", value: 1 },
-                    { field: "ownerId", operator: "eq", value: 2 }
-                ]
-            }
-        },
-        resources: [
-            {
-                field: "ownerId",
-                title: "Owner",
-                dataSource: [
-                    { text: "Alex", value: 1, color: "#f8a398" },
-                    { text: "Bob", value: 2, color: "#51a0ed" },
-                    { text: "Charlie", value: 3, color: "#56ca85" }
-                ]
-            }
-        ]
-    });*/
-};
-
-
-// START_CUSTOM_CODE_cursosViewModel
-// Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
-
-// END_CUSTOM_CODE_cursosViewModel

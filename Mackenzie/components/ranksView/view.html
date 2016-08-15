@@ -1,0 +1,47 @@
+<div id="cursos" data-role="view" data-title="" data-layout="main-detail" data-model="app.ranksView.ranksViewModel" 
+     data-show="app.ranksView.onShow" data-after-show="app.ranksView.afterShow" data-init="app.ranksView.onInit">
+     
+    <div>Rankings</div>
+
+    <div class="descricao-wrap">
+        <h3>Curso:</h3>
+        <h3 data-bind="text: Curso"></h3>
+    </div>
+
+    <div class="masterDetailView" data-role="listview" data-auto-bind="true" data-style="" data-template="ranksViewModelTemplate" 
+        data-bind="{ source: ranking }" data-pull-to-refresh="false" data-endless-scroll="false">
+    </div>
+
+    <div class="descricao-wrap">
+        <h3>Sua posição atual</h3>
+    </div>
+
+    <ul>
+        <li>
+            <span data-bind="text: suaPosicao.text"></span>
+            <span class="user-thumb">
+                <img id="foto" class="km-thumbnail" data-bind="attr: { src: suaPosicao.fotoUri }" alt="Your photo">
+            </span>
+            <span data-bind="text: suaPosicao.nome"></span>
+            <span data-bind="text: suaPosicao.pontos"></span>
+        </li>
+    </ul>
+
+    <div>
+        <h3 data-bind="text: currentItem['Curso']"></h3>
+    </div>
+
+    <script type="text/x-kendo-template" id="ranksViewModelTemplate">            
+            # data = app.ranksView.ranksViewModel.fixHierarchicalData(data); #
+        <!--div>
+            # data = app.ranksView.ranksViewModel.fixHierarchicalData(data); #
+            <h3>#: data['Titulo'] #</h3>
+        </div-->
+        <span> #: data['text'] # </span>
+        <span class="user-thumb">
+            <img id="foto" class="km-thumbnail" src="#: data['fotoUri'] #" alt="Your photo">
+        </span>
+        <span> #: data['nome'] # </span>
+        <span> #: data['pontos'] # </span>
+    </script>
+</div>

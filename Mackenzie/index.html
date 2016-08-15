@@ -4,22 +4,37 @@
 <head>
     <title></title>
     <meta charset="utf-8">
-    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet">
+
+    <!--<link href="http://kendo.cdn.telerik.com/2016.2.714/styles/kendo.common-nova.min.css" rel="stylesheet" />
+    <link href="http://kendo.cdn.telerik.com/2016.2.714/styles/kendo.nova.min.css" rel="stylesheet" />
+    <link href="http://kendo.cdn.telerik.com/2016.2.714/styles/kendo.mobile.nova.min.css" rel="stylesheet" />  -->
+
+
     <link href="kendo/styles/kendo.common.min.css" rel="stylesheet">
     <link href="kendo/styles/kendo.uniform.min.css" rel="stylesheet">
+    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet">
     <link href="kendo/styles/kendo.mobile.makenzie.css" rel="stylesheet">
 
     <link href="styles/overrides.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
     <link href="styles/app.css" rel="stylesheet">
 
+
     <script src="cordova.js"></script>
     <script src="kendo/js/jquery.min.js"></script>
+
+
+    <!-- <script src="http://kendo.cdn.telerik.com/2016.2.714/js/kendo.all.min.js"></script>
+    <script src="http://kendo.cdn.telerik.com/2016.2.714/js/kendo.timezones.min.js"></script>  -->
+
+
     <!--script src="kendo/js/kendo.mobile.min.js"></script-->
     <script src="kendo/js/kendo.all.min.js"></script>
+    
     <script src="kendo/js/cultures/kendo.culture.pt-BR.min.js"></script>
     <script src="app.js"></script>
-    <script src="bower_components/everlive/min/everlive.all.min.js"></script>
+    <!--script src="bower_components/everlive/min/everlive.all.min.js"></script-->
+    <script src="bower_components/everlive/min/everlive-171.all.min.js"></script>
     <script src="dataProviders/mackenzie.js"></script>
 </head>
 
@@ -28,6 +43,9 @@
     <script src="components/disciplinasView/index.js"></script>
     <script src="components/cursosView/index.js"></script>
     <script src="components/perfilView/index.js"></script>
+    <script src="components/faqsView/index.js"></script>
+    <script src="components/ranksView/index.js"></script>
+    <script src="components/avaliacoesView/index.js"></script>
     <script src="components/home/index.js"></script>
 
     <!-- Layout principal com HEADER -->
@@ -164,20 +182,20 @@
                 <a href="components/cursosView/view.html" data-icon="bookmarks"><span>Disciplinas</span></a>
             </li>
 
-            <li style="display:none">
-                <a href="components/home/view.html" data-icon="bookmarks"><span>Resultado de Provas</span></a>
+            <li>
+                <a href="components/avaliacoesView/view.html" data-icon="bookmarks"><span>Resultado de Provas</span></a>
             </li>
 
-            <li style="display:none">
-                <a href="components/home/view.html" data-icon="bookmarks"><span>Rankings</span></a>
+            <li>
+                <a href="components/ranksView/view.html" data-icon="bookmarks"><span>Rankings</span></a>
             </li>
 
             <li style="display:none">
                 <a href="components/home/view.html" data-icon="bookmarks"><span>Minhas Publicações</span></a>
             </li>
 
-            <li style="display:none">
-                <a href="components/home/view.html" data-icon="info"><span>Perguntas Frequentes</span></a>
+            <li>
+                <a href="components/faqsView/view.html" data-icon="info"><span>Perguntas Frequentes</span></a>
             </li>
 
             <li>
