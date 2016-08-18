@@ -1,0 +1,90 @@
+.km-flat .km-view .km-navbar,
+.km-flat div[data-layout="main-nonav"] .km-content,
+.km-flat .km-view .km-content .km-list > li .km-switch .km-switch-container,
+.km-flat .km-view .km-content .km-list .km-state-active .km-listview-link,
+.logo-img,
+.km-loader,
+.logo-mackenzie,
+#perfilViewModel .button-group .km-button,
+.km-flat .km-view .km-footer .km-button,
+.km-flat .km-view .km-footer .km-button.km-state-active,
+.avaliacoes-wrap #tabAvaliacoes .km-button.km-back,
+.avaliacoes-wrap #tabPublicacoes .km-buttongroup .km-state-active,
+.km-flat .km-view .disciplinas-wrap #agenda .km-buttongroup .km-state-active {
+	background-color: #EA2D2E;
+}
+
+#kendoUiMobileApp .km-listview-wrapper + .button-group-vertical .km-button,
+.km-flat .km-view .km-content .km-button,
+.km-flat .km-view .km-content .descricao-wrap > .km-button.km-back.km-state-active,
+.km-flat .km-view .km-content .avaliacoes-wrap .prox-aula .km-button.km-state-active,
+.km-flat .km-view .km-content .km-button.km-back.km-state-active,
+#kendoUiMobileApp .aval-praticas .tipo-avaliacao-wrap + .km-button.km-state-active {
+	background-color: transparent;
+}
+
+
+/**** AUXILIAR CLASSES ****/
+/**************************/
+.thum-sm {
+	height: 30px;
+	width: 30px;
+}
+.thumb-md {
+	height: 40px;
+	width: 40px;
+}
+.thumb-lg {
+	height: 70px;
+	width: 70px;
+}
+
+
+/****** COLOR CLASSES ******/
+/***************************/
+.bg-claro {
+	background-color: #f3f3f3;
+}
+.bg-medio {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+/****** ICONS CLASSES ******/
+/***************************/
+.icon-sair::after {
+	content: "\e0b3";
+}
+.icon-localizacao::after {
+	content: "\e0b4";
+}
+.icon-ranking::after {
+	content: "\e0c4";
+}
+.icon-faq::after {
+	content: "\e0fb";
+}
+.icon-prova-branco::after {
+	content: "\e20b";
+}
+.icon-prova-preto::after {
+	content: "\e30b";
+}
+.icon-home-branco::after {
+	content: "\e212";
+}
+.icon-home-preto::after {
+	content: "\e312";
+}
+.icon-user-branco::after {
+	content: "\e219";
+}
+.icon-user-preto::after {
+	content: "\e319";
+}
+.icon-search-branco::after {
+	content: "\e21e";
+}
+.icon-search-preto::after {
+	content: "\e31e";
+}

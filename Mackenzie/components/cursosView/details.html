@@ -1,14 +1,20 @@
 <div data-role="view" data-title="" data-layout="main-detail" data-model="app.cursosView.cursosViewModel" 
      xdata-bind="events: { show: detailsShow }" data-show="app.cursosView.onDetailShow" xdata-init="app.cursosView.cursosViewModel.initScheduler" id="tabDisciplinas">
-     <div class="descricao-wrap">
-        <a data-role="backbutton" data-align="left"></a>
-        <p>Curso:</p>
-        <h3 data-bind="text: currentItem['Curso']"></h3>
+     <div class="descricao-wrap bg-claro">
+         <div class="descricao-disc">
+            <a data-role="backbutton" data-align="left"></a>
+            <p>Curso:</p>
+            <h3 data-bind="text: currentItem['Curso']"></h3>
+         </div>
      </div>
 
     <ul data-role="buttongroup" class="km-widget km-buttongroup">
-        <li id="btDisciplinas" class="km-button km-state-active" data-bind="events: { click: detailOption }"><span class="km-text">Disciplinas</span></li>
-        <li id="btAgenda" class="km-button" data-bind="events: { click: detailOption }"><span class="km-text">Agenda</span></li>
+        <li id="btDisciplinas" class="km-button km-state-active" data-bind="events: { click: detailOption }">
+            <span class="km-text">Disciplinas</span>
+        </li>
+        <li id="btAgenda" class="km-button" data-bind="events: { click: detailOption }">
+            <span class="km-text">Agenda</span>
+        </li>
     </ul>
 
     <div class="disciplinas-wrap">
