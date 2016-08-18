@@ -1,29 +1,42 @@
 <div id="ranks" data-role="view" data-title="" data-layout="main-detail" data-model="app.ranksView.ranksViewModel" 
      data-show="app.ranksView.onShow" data-after-show="app.ranksView.afterShow" xdata-init="app.ranksView.onInit">
      
-    <div>Rankings</div>
-
-    <div class="descricao-wrap">
-        <h3>Curso:</h3>
-        <h3 data-bind="text: dataSource['Curso']"></h3>
-    </div>
-
-    <div class="masterDetailView" data-role="listview" data-auto-bind="true" data-style="" data-template="ranksViewModelTemplate" 
-        data-bind="{ source: dataSource.ranking }" data-pull-to-refresh="false" data-endless-scroll="false">
+    <div class="section-name-wrap">
+        <div class="section-icon-name">
+            <span class="km-icon icon-ranking" data-icon=""></span>
+            <span>Rankings</span>
+        </div>
+        <a class="link-x" id=""></a>
     </div>
 
     <div class="descricao-wrap">
+        <div class="descricao-disc">
+            <h3>Curso:</h3>
+            <p data-bind="text: Curso"></p>
+        </div>
+    </div>
+
+    <div class="rank-descricao">
+        <p>Posição</p>
+        <p>Pontos</p>
+    </div>
+
+    <ul class="masterDetailView" data-role="listview" data-auto-bind="true" data-style="" data-template="ranksViewModelTemplate" 
+        data-bind="{ source: ranking }" data-pull-to-refresh="false" data-endless-scroll="false">
+    </ul>
+
+    <div class="descricao-wrap sua-posicao">
         <h3>Sua posição atual</h3>
     </div>
 
-    <ul>
-        <li>
-            <span data-bind="text: dataSource.suaPosicao.text"></span>
-            <span class="user-thumb">
-                <img id="foto" class="km-thumbnail" data-bind="attr: { src: dataSource.suaPosicao.fotoUri }" alt="Your photo">
-            </span>
-            <span data-bind="text: dataSource.suaPosicao.nome"></span>
-            <span data-bind="text: dataSource.suaPosicao.pontos"></span>
+    <ul class="masterDetailView" data-role="listview">
+        <li data-uid=""> <!-- data-uid usado como seletor do css -->
+            <span data-bind="text: suaPosicao.text"></span>
+            <div class="user-thumb rank-thumb">
+                <img class="km-thumbnail" data-bind="attr: { src: suaPosicao.fotoUri }" alt="Your photo">
+            </div>
+            <span data-bind="text: suaPosicao.nome"></span>
+            <span data-bind="text: suaPosicao.pontos"></span>
         </li>
     </ul>
 
@@ -34,9 +47,9 @@
             <h3>#: data['Titulo'] #</h3>
         </div-->
         <span> #: data['text'] # </span>
-        <span class="user-thumb">
-            <img id="foto" class="km-thumbnail" src="#: data['fotoUri'] #" alt="Your photo">
-        </span>
+        <div class="user-thumb rank-thumb">
+            <img class="km-thumbnail" src="#: data['fotoUri'] #" alt="Your photo">
+        </div>
         <span> #: data['nome'] # </span>
         <span> #: data['pontos'] # </span>
     </script>

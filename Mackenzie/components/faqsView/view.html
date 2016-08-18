@@ -1,10 +1,17 @@
-<div id="cursos" data-role="view" data-title="" data-layout="main-detail" data-model="app.faqsView" 
+<div id="mackz-faq" data-role="view" data-title="" data-layout="main-detail" data-model="app.faqsView" 
      data-show="app.faqsView.onShow" data-after-show="app.faqsView.afterShow">
     
-    <div>Perguntas Frequentes</div>
+    <div class="section-name-wrap">
+        <div class="section-icon-name">
+            <span class="km-icon icon-faq" data-icon=""></span>
+            <span>Perguntas Frequentes</span>
+        </div>
+        <a class="link-x" id=""></a>
+    </div>
     
-    <form>
-        <input id="Pesquisa" placeholder="Pesquisar FAQ" type="text" onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)">
+    <form class="section-name-wrap">
+        <input id="Pesquisa" placeholder="Pesquisar FAQ" type="text" onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro">
+        <button class="faq-reset" type="reset">Cancelar</button>
     </form>
 
 

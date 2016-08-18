@@ -2,35 +2,10 @@
 	height: 100%;
 }
 
-.km-flat .km-view .km-navbar,
-.km-flat div[data-layout="main-nonav"] .km-content,
-.km-flat .km-view .km-content .km-list > li .km-switch .km-switch-container,
-.km-flat .km-view .km-content .km-list .km-state-active .km-listview-link,
-.logo-img,
-.km-loader,
-.logo-mackenzie,
-#perfilViewModel .button-group .km-button,
-.km-flat .km-view .km-footer .km-button,
-.km-flat .km-view .km-footer .km-button.km-state-active,
-.avaliacoes-wrap #tabAvaliacoes .km-button.km-back,
-.avaliacoes-wrap #tabPublicacoes .km-buttongroup .km-state-active,
-.km-flat .km-view .disciplinas-wrap #agenda .km-buttongroup .km-state-active {
-	background-color: #EA2D2E;
-}
-
-#kendoUiMobileApp .km-listview-wrapper + .button-group-vertical .km-button,
-.km-flat .km-view .km-content .km-button,
-.km-flat .km-view .km-content .descricao-wrap > .km-button.km-back.km-state-active,
-.km-flat .km-view .km-content .avaliacoes-wrap .prox-aula .km-button.km-state-active,
-#kendoUiMobileApp .aval-praticas .tipo-avaliacao-wrap + .km-button.km-state-active {
-	background-color: transparent;
-}
-
 /*** INÍCIO - LOGO MACKENZIE ***/
 div[data-role="header"] .km-widget {
 	border: none;
 }
-
 
 div[data-layout="main-nonav"] .logo-mackenzie {
 	height: 100%;
@@ -284,6 +259,65 @@ div[data-layout="main-loading"] .logo-mackenzie,
 	.km-flat .km-view .km-footer .km-button .km-icon::after {
 		color: #fff;
 	}
+	.km-flat .km-view .km-footer .km-button .km-search::after {
+		content: "\e31e";
+		font-size: 0.7em;
+		line-height: 1.5em;
+	}
+
+
+/*** HEADER - NOME DAS SEÇÕES ***/
+.section-name-wrap {
+	position: relative;
+	height: 50px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+	.section-name-wrap a {
+		text-decoration: none;
+		font-size: 1.1em;
+	}
+	.section-name-wrap .km-icon {
+	    height: 33px;
+	    width: 33px;
+	    display: inline-block;
+	}
+	.section-name-wrap .km-icon::after {
+		font-size: 1.7em;
+		line-height: 1.4em;
+	}
+
+	.section-name-wrap .link-x {
+		position: relative;
+		float: right;
+		height: 40px;
+		width: 30px;
+		margin: 0.3em 0.6em 0 -1em;
+	}
+	.section-name-wrap .link-x::before,
+	.section-name-wrap .link-x::after {
+		content: "";
+		position: absolute;
+		height: 100%;
+		width: 2px;
+		background-color: #ccc;
+	}
+	.section-name-wrap .link-x::before {
+		-webkit-transform: rotate(45deg);
+			-ms-transform: rotate(45deg);
+				transform: rotate(45deg);
+	}
+	.section-name-wrap .link-x::after {
+		-webkit-transform: rotate(-45deg);
+			-ms-transform: rotate(-45deg);
+				transform: rotate(-45deg);
+	}
+
+.section-icon-name {
+	display: inline-block;
+	height: 100%;
+	padding: 0.3em 0;
+}
 
 /*** MENU HAMBURGUER ***/
 .km-header .km-navbar .km-leftitem a[data-rel="drawer"],
@@ -322,7 +356,9 @@ div[data-layout="main-loading"] .logo-mackenzie,
 .main-view-logo {
 	height: 100%;
 	padding: 0.4em;
-	transform: translate(-50%);
+	-webkit-transform: translate(-50%);
+		-ms-transform: translate(-50%);
+			transform: translate(-50%);
 }
 
 .main-header-username {
@@ -357,13 +393,19 @@ div[data-layout="main-loading"] .logo-mackenzie,
 #navigation-container li.km-state-active {
 	background-color: #EA2D2E;
 }
+	#navigation-container li .km-listview-link span {
+		margin-left: 0;
+	}
 	#navigation-container li .km-listview-link span:nth-child(2) {
 		display: inline-block;
-		transform: translateY(-0.35em);
+		-webkit-transform: translateY(-0.35em);
+			-ms-transform: translateY(-0.35em);
+				transform: translateY(-0.35em);
 	}
 	#navigation-container li .km-listview-link::after {
-		border-width: 2px 2px 0 0;
-		box-shadow: none;
+		content: none;
+		/*border-width: 2px 2px 0 0;
+		box-shadow: none;*/
 	}
 	#navigation-container li.km-state-active .km-listview-link::after {
 		border-color: #fff;
@@ -372,22 +414,68 @@ div[data-layout="main-loading"] .logo-mackenzie,
 	li.km-state-active .km-listview-link .km-icon::before {
 		content: none;
 	}
+	/* ICONS MAIN MENU */
+	#navigation-container li:nth-child(3) .km-listview-link .km-bookmarks::after {
+		content: "\e20b";
+	}
+	#navigation-container li:nth-child(4) .km-listview-link .km-bookmarks::after {
+		content: "\e0c4";
+	}
+	#navigation-container li .km-listview-link .km-info::after {
+		content: "\e0fb";
+	}
+	#navigation-container li .km-listview-link .km-action::after {
+		content: "\e0b3";
+	}
+	#navigation-container li .km-listview-link .km-contacts::after {
+		content: "\e219";
+	}
+
 
 .km-widget .km-listview-link {
-	font-size: 1.2em;
+	font-size: 1.15em;
 	line-height: normal;
 }
 	.km-listview-link .km-icon {
 		height: auto;
 		width: auto;
-		margin-right: 1em;
+		margin-right: 0.7em;
 	}
 	.km-listview-link .km-icon::after {
-		font-size: 2em;
+		font-size: 1.7em;
+		line-height: 1.2em;
 	}
 
+/*** ESCURECIMENTO DA VIEW - MENU ACTIVE ***/
+div[style="transform-origin: left top 0px; transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view,
+div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view {
+	position: relative;
+}
+	@keyframes fundo-escuro {
+		0% {background-color: rgba(0, 0, 0, 0)}
+		100% {background-color: rgba(0, 0, 0, 0.3);}
+	}
+	-webkit-@keyframes fundo-escuro {
+		0% {background-color: rgba(0, 0, 0, 0)}
+		100% {background-color: rgba(0, 0, 0, 0.3);}
+	}
+
+	div[style="transform-origin: left top 0px; transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view::before,
+	div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view::before {
+	    content: "";
+	    position: absolute;
+	    z-index: 10;
+	    height: 100%;
+	    width: 100%;
+	    background-color: rgba(0, 0, 0, 0.3);
+	    -webkit-animation: fundo-escuro 0.2s;
+	    		animation: fundo-escuro 0.2s;
+	}
 
 /*** USER MENU ***/
+#appDrawer {
+	/*width: 265px;*/
+}
 #appDrawer .km-header .km-view-title {
 	height: 100%;
     min-height: 47px;
@@ -427,6 +515,7 @@ div[data-layout="main-loading"] .logo-mackenzie,
 	.tia-number p:nth-child(2) {
 		text-indent: 3px;
 	}
+
 
 /****** MODAL WINDOW ******/
 /**************************/
@@ -481,53 +570,94 @@ div[data-layout="main-loading"] .logo-mackenzie,
 	}
 
 
+/******** RANKING ********/
+/*************************/
+#rankings .km-scroll-wrapper .masterDetailView li[data-uid] {
+	width: 100%;
+	padding-right: 1em;
+}
+#rankings .masterDetailView li[data-uid] .user-thumb.rank-thumb {
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	margin: 0;
+}
+	#rankings .masterDetailView li[data-uid] span {
+		display: inline-block;
+		max-width: 140px;
+	}
+	#rankings .masterDetailView li[data-uid] span:first-of-type {
+		font-size: 1.2em;
+		margin: 0 0.5em 0 1em;
+		-webkit-transform: translateY(-0.8em);
+			-ms-transform: translateY(-0.8em);
+				transform: translateY(-0.8em);
+	}
+	#rankings .masterDetailView li[data-uid] span:nth-of-type(2) {
+		-webkit-transform: translateY(-1em);
+			-ms-transform: translateY(-1em);
+				transform: translateY(-1em);
+	}
+	#rankings .masterDetailView li[data-uid] span:last-of-type {
+		float: right;
+		-webkit-transform: translateY(0.8em);
+			-ms-transform: translateY(0.8em);
+				transform: translateY(0.8em);
+	}
+
+#rankings .rank-descricao p {
+	display: inline-block;
+	margin: 0.4em 0.8em;
+	font-size: 1.2em;
+}
+	#rankings .rank-descricao p:last-child {
+		float: right;
+	}
+
+#rankings .descricao-wrap {
+	height: 100%;
+	border-bottom: none;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+	#rankings .descricao-wrap h3 {
+		padding: 0.5em 1em;
+	}
+
+	#rankings .descricao-wrap.sua-posicao + .km-listview-wrapper li {
+		background-color: rgba(0, 0, 0, 0.065);
+	}
+
+
+/*** PERGUNTAS FREQUENTES ***/
+/****************************/
+form.section-name-wrap {
+	padding: 0.5em 1em;
+}
+.faq-pesquisa {
+	float: left;
+	width: 75%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 1em;
+}
+.faq-reset {
+	float: right;
+    padding: 0.5em 0;
+    font-size: 1em;
+    border: none;
+    color: #333;
+}
+#kendoUiMobileApp #mackz-faq .km-scroll-wrapper .masterDetailView li {
+	position: absolute;
+}
+	#kendoUiMobileApp #mackz-faq .km-scroll-wrapper .masterDetailView li .image-with-text {
+		line-height: 36px;
+	}
+
 
 /***** EDITAR PERFIL ******/
 /**************************/
-.editar-perfil {
-	position: relative;
-	height: 50px;
-	background-color: #fff;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-	text-align: center;
-}
-	.editar-perfil a {
-		text-decoration: none;
-		font-size: 1.1em;
-	}
-	.editar-perfil .km-icon {
-	    height: 33px;
-	    width: 33px;
-	    display: inline-block;
-	}
-	.editar-perfil .km-icon::after {
-		content: "\e219";
-		font-size: 1.7em;
-		line-height: 1.4em;
-	}
-
-	.editar-perfil .link-x {
-		position: absolute;
-		top: 10px;
-		right: 10px;
-		height: 30px;
-		width: 30px;
-	}
-	.editar-perfil .link-x::before,
-	.editar-perfil .link-x::after {
-		content: "";
-		position: absolute;
-		height: 100%;
-		width: 2px;
-		background-color: #ccc;
-	}
-	.editar-perfil .link-x::before {
-		transform: rotate(45deg);
-	}
-	.editar-perfil .link-x::after {
-		transform: rotate(-45deg);
-	}
-
 #perfilViewModel form {
 	padding: 1em 2em 2em;
 }
@@ -551,9 +681,9 @@ div[data-layout="main-loading"] .logo-mackenzie,
 #perfilViewModel .form-content-item {
 	border-top-width: 1px;
 }
-	#perfilViewModel .form-content-item input {
+	/*#perfilViewModel .form-content-item input {
 		width: 75%;
-	}
+	}*/
 
 #perfilViewModel .button-group {
 	display: inline-block;
@@ -571,9 +701,6 @@ div[data-layout="main-loading"] .logo-mackenzie,
 
 /*** CURSOS e DISCIPLINAS ***/
 /****************************/
-.km-flat .km-view .km-header + .km-content {
-	/*margin-top: 2em;*/
-}
 .km-flat .km-view .km-header > .km-tabstrip {
 	width: 100%;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -623,6 +750,7 @@ div[data-layout="main-loading"] .logo-mackenzie,
 	    border-top: 4px solid #ccc;
 	    border-right: 4px solid #ccc;
 	    -webkit-transform: rotate(45deg);
+	    	-ms-transform: rotate(45deg);
 	    		transform: rotate(45deg);
 	}
 	#cursos .km-scroll-wrapper .km-listview-wrapper li .km-label-above {
@@ -631,22 +759,25 @@ div[data-layout="main-loading"] .logo-mackenzie,
 
 /*** CURSO SELECIONADO VIEW ***/
 .descricao-wrap {
-	overflow: hidden;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-	.descricao-wrap > .km-button.km-back,
+	.descricao-wrap > .descricao-disc {
+		overflow: hidden;
+	}
+	.descricao-wrap > .descricao-disc .km-button.km-back,
 	.descricao-wrap p,
 	.descricao-wrap h3 {
 		float: left;
 	}
-	.descricao-wrap > .km-button.km-back {
+	.descricao-wrap > .descricao-disc .km-button.km-back {
 	    height: 26px;
 	    width: 20px;
 	    margin: 1em 0 1em 1em;
 	    border-radius: 0;
-	    border-width: 3px 0 0 3px;
+	    border-width: 4px 0 0 4px;
 	    border-color: #ccc;
 	    -webkit-transform: rotate(-45deg);
+	    	-ms-transform: rotate(-45deg);
 	    		transform: rotate(-45deg);
 	}
 	.descricao-wrap p {
@@ -654,6 +785,7 @@ div[data-layout="main-loading"] .logo-mackenzie,
 		margin: 0;
     	font-size: 0.9em;
     	-webkit-transform: translate(-0.5em, 1.2em);
+    		-ms-transform: translate(-0.5em, 1.2em);
 	    		transform: translate(-0.5em, 1.2em);
 	}
 	.descricao-wrap h3 {
@@ -662,6 +794,22 @@ div[data-layout="main-loading"] .logo-mackenzie,
 	    font-size: 1em;
 	    padding: 1em 0;
 	}
+
+	.descricao-wrap > .descricao-prof {
+		display: flex;
+		display: -webkit-flex;
+		-webkit-align-items: center;
+				align-items: center;
+		-webkit-justify-content: center;
+				justify-content: center;
+		padding: 0 1em 0.5em;
+	}
+	.descricao-wrap > .descricao-prof .user-thumb {
+		display: inline-block;
+		height: 30px;
+		width: 30px;
+		margin-right: 0.5em;
+	}
 	#tabDisciplinas .descricao-wrap h3 {
 	    width: 74%;
 	}
@@ -669,6 +817,10 @@ div[data-layout="main-loading"] .logo-mackenzie,
 	    float: right;
 	    width: 67%;
 	    margin-left: -7px;
+	}
+	#disciplinasViewModelDetailsView .descricao-wrap .km-label-above {
+		display: inline-block;
+		/*width: 100%;*/
 	}
 
 /*** BOTÕES SEMESTRES e ANO (DESC. DISCIPLINAS) ***/
@@ -729,18 +881,11 @@ div[data-layout="main-loading"] .logo-mackenzie,
 	.km-flat .km-view .disciplinas-wrap #agenda .km-buttongroup .km-button {
 		padding: 0.45em 0;
 	}
-	.km-flat .km-view .disciplinas-wrap #agenda .km-buttongroup .km-button:not(:nth-child(2)) {
-		width: 33%;
-	}
-	.km-flat .km-view .disciplinas-wrap #agenda .km-buttongroup .km-button:nth-child(2) {
-		width: 34%;
-	}
-
 	.km-flat .km-view .disciplinas-wrap #agenda .km-buttongroup .km-button:first-child {
-		border-radius: 4px 0 0 4px;
+		/*border-radius: 4px 0 0 4px;*/
 	}
 	.km-flat .km-view .disciplinas-wrap #agenda .km-buttongroup .km-button:last-child {
-		border-radius: 0 4px 4px 0;
+		/*border-radius: 0 4px 4px 0;*/
 		border-top: 1px solid rgba(0, 0, 0, 0.1);
 	}
 
@@ -795,6 +940,7 @@ div[data-layout="main-loading"] .logo-mackenzie,
 	    border-color: #ccc;
 	    border-style: solid;
 	    -webkit-transform: rotate(45deg);
+	    	-ms-transform: rotate(45deg);
 	    		transform: rotate(45deg);
 	}
 

@@ -1,15 +1,23 @@
 <div data-role="view" data-layout="main-detail" data-model="app.faqsView.faqsViewModel" 
       data-show="app.faqsView.onDetailShow">
       
-    <div>Perguntas Frequentes</div>
-
-    <div class="descricao-wrap">
-        <a data-role="backbutton" data-align="left"></a>
-        <p>FAQ:</p>
-        <h3 data-bind="text: currentItem['Titulo']"></h3>
+    <div class="section-name-wrap">
+        <div class="section-icon-name">
+            <span class="km-icon icon-faq" data-icon=""></span>
+            <span>Perguntas Frequentes</span>
+        </div>
+        <a class="link-x" id=""></a>
     </div>
 
-    <div>
-    	<span data-bind="html: currentItem['Texto']"></span>
+    <div class="descricao-wrap">
+        <div class="descricao-disc bg-claro">
+            <a data-role="backbutton" data-align="left"></a>
+            <p>FAQ:</p>
+            <h3 data-bind="text: currentItem['Titulo']"></h3>
+        </div>
+    </div>
+
+    <div class="texto-wrap">
+    	<p data-bind="html: currentItem['Texto']"></p>
     </div>
 </div>
