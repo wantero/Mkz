@@ -1,0 +1,55 @@
+<div data-role="view" data-title="" data-layout="main-detail" data-model="app.avaliacoesView.avaliacoesViewModel" 
+     xdata-bind="events: { show: detailsShow }" data-show="app.avaliacoesView.onResultadoShow"
+     xdata-init="app.avaliacoesView.avaliacoesViewModel.initScheduler">
+
+
+    <!-- <div class="descricao-wrap">
+        <a data-role="backbutton" data-align="left"></a>
+    </div> -->
+
+    <h3>Avaliações Práticas (Resultado)</h3>
+
+    <h3 data-bind="text: currentItem.Disciplina.Nome"></h3>
+    <p><span class="km-icon" data-icon="i-film" data-bind="text: currentItem.Disciplina.Professor.Nome"></span></p>
+
+    <p><span class="km-icon" data-icon="i-film" data-bind="text: currentItem.Titulo"></span></p>
+    <p><span>(Total <span data-bind="text: currentItem.TotalPontos"></span><span> Pontos)</p>
+
+    <div>
+        <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="questoesResultadoTemplate" data-type="group"
+            data-bind="{ source: currentItemQuestoes }" data-pull-to-refresh="false" data-endless-scroll="false"  id="resultadoQuestionario">
+        </ul>
+    </div>
+    
+    <div class="button-group button-group-vertical">
+        <a class="primary" data-role="button" data-bind="events: { click: respostasOk }">Ok</a>
+    </div>
+
+    <script type="text/x-kendo-template" id="questoesResultadoTemplate">
+        # data = app.avaliacoesView.avaliacoesViewModel.fixHierarchicalData(data); #
+
+        <h3>#: data['Titulo'] #</h3>
+
+        # if (data.OpcaoCorreta == data.Resposta) { #
+            <span class="k-icon k-i-tick"></span>
+        # } else { #
+            <span class="k-icon k-i-close"></span>
+        # } #
+
+        # for (var i=0; i < data.Opcoes.length; i ++) { #
+        #     opcao = data.Opcoes[i]; #
+        #     opcaoName = data.PerguntaId; #
+        #     opcaoId = opcaoName+'-OP'+opcao.Opcao; #
+
+            <div class="km-nova">
+                <input type="radio" class="km-radio" name="#: opcaoName #" id="#: opcaoId #" value="#: opcao.Opcao #" ></input>
+                <label class="km-radio-label" for="#: opcaoId #"> #:  opcao.Texto # </label>
+
+                # if (opcao.Opcao == data.OpcaoCorreta) { #
+                    <span class="k-icon k-i-tick"></span>
+                # } #
+            </div>
+        # } #
+
+    </script>
+</div>

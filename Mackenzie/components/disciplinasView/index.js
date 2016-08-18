@@ -193,6 +193,35 @@ app.disciplinasView = kendo.observable({
 
                 return itemModel;
             },
+            avaliacaoClick: function(e) {
+                //app.avaliacoesView.avaliacoesViewModel.itemClick(e);
+                var item = e.button.parents('li').attr('data-uid');
+                var model = disciplinasViewModel.get('avaliacoes');
+                var dataItem;
+
+                for (var i=0; i < model.length; i++) {
+                    if (model[i].uid == item) {
+                        dataItem = model[i];
+                        break;
+                    }
+                }
+                //var dataItem = dataSource.getByUid(item); // || avaliacoesViewModel.originalItem;
+                dataItem.Flow = 'disciplinas';      
+                app.avaliacoesView.avaliacoesViewModel.set('currentItem', dataItem);
+
+                app.avaliacoesView.avaliacoesViewModel.loadQuestoesAvaliacao(dataItem.Id, function(data) {
+                    app.avaliacoesView.avaliacoesViewModel.set('currentItemQuestoes', data);
+
+                    app.mobileApp.navigate('#components/avaliacoesView/details.html?uid=' + dataItem.uid);
+                });
+
+            },
+            detailBackClick: function(e) {
+                //app.cursosView.cursosViewModel.get('currentItem', app.cursosView.cursosViewModel.get('originalItem'));
+                history.go(-1);
+                /*var dataItem = app.cursosView.cursosViewModel.get('originalItem');
+                app.mobileApp.navigate('#components/cursosView/details.html?uid=' + dataItem.uid);*/
+            },
             linkBind: function(linkString) {
                 var linkChunks = linkString.split('|');
                 if (linkChunks[0].length === 0) {

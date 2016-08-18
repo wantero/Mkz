@@ -67,8 +67,8 @@ app.ranksView = kendo.observable({
             }
         },
         dataSourceOptions = {
-            /*transport:{
-                read: function(OPTIONS) {
+            /*transport: {
+                read: function(options) {
                     Everlive.$.businessLogic.invokeCloudFunction("GetRanking", {})
                         .then(function (data) {
                             options.success(data);
@@ -76,7 +76,7 @@ app.ranksView = kendo.observable({
                         function (err) {
                             console.log('error loading ranking');
                             options.error(data);
-                        });
+                        });             
                 }
             },*/
             change: function(e) {
@@ -93,6 +93,16 @@ app.ranksView = kendo.observable({
                     alert(JSON.stringify(e.xhr));
                 }
             },
+            /*schema: {
+                model: {
+                    fields: {
+                        'Curso': {
+                            field: 'Curso',
+                            defaultValue: ''
+                        },
+                    }
+                }
+            },*/
             serverFiltering: true,
             serverSorting: true,
             serverPaging: true,
@@ -173,9 +183,7 @@ app.ranksView = kendo.observable({
     }
 
     parent.set('onInit', function(e) {
-        ranksViewModel.set('Curso', '');
-        ranksViewModel.set('ranking', []);
-        ranksViewModel.set('suaPosicao', {});
+        ranksViewModel.set('datasource', {Curso:"", ranking: [], suaPosicao: {}});
     });
 
     parent.set('onShow', function(e) {
@@ -198,9 +206,8 @@ app.ranksView = kendo.observable({
 
         Everlive.$.businessLogic.invokeCloudFunction("GetRanking", {})
             .then(function (data) {
-                ranksViewModel.set('Curso', data.curso);
-                ranksViewModel.set('ranking', data.ranking);
-                ranksViewModel.set('suaPosicao', data.suaPosicao);
+                ranksViewModel.set('dataSource', data);
+                console.log('data', data);
             },
             function (err) {
                 console.log('error loading ranking');

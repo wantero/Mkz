@@ -1,7 +1,7 @@
 <div data-role="view" data-title="" data-layout="main-detail" data-model="app.cursosView.cursosViewModel" 
      xdata-bind="events: { show: detailsShow }" data-show="app.cursosView.onDetailShow" xdata-init="app.cursosView.cursosViewModel.initScheduler" id="tabDisciplinas">
      <div class="descricao-wrap">
-        <a data-role="backbutton" data-align="left"></a>
+        <a data-role="backbutton" data-align="left" xdata-bind="events: { click: viewBackClick }"></a>
         <p>Curso:</p>
         <h3 data-bind="text: currentItem['Curso']"></h3>
      </div>

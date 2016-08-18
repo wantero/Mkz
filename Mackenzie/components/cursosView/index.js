@@ -169,6 +169,9 @@ app.cursosView = kendo.observable({
 
                 cursosViewModel.filterScheduler();
             },
+            viewBackClick: function(e) {
+                app.mobileApp.navigate('#components/cursosView/view.html');
+            },
             detailsShow: function(e) {
                 app.displayUser();
         
@@ -209,7 +212,19 @@ app.cursosView = kendo.observable({
             },
             disciplinaClick: function(e) {
                 app.disciplinasView.disciplinasViewModel.set('currentDisciplina', e.dataItem);
-                app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
+                app.avaliacoesView.avaliacoesViewModel.loadAvaliacoes(e.dataItem.Id, function(data) {
+                    app.disciplinasView.disciplinasViewModel.set('avaliacoes', data);
+                    app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
+                });
+            },
+            avaliacoesBack: function(e) {
+                var dataItem = app.disciplinasView.disciplinasViewModel.get('currentDisciplina');
+
+                app.avaliacoesView.avaliacoesViewModel.loadAvaliacoes(dataItem.Id, function(data) {
+                    app.disciplinasView.disciplinasViewModel.set('avaliacoes', data);
+                    history.go(-2);
+                    //app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + dataItem.uid);
+                });
             },
             detailOption: function(e) {
                 if (e.currentTarget.id === 'btDisciplinas') {
@@ -426,6 +441,29 @@ app.cursosView = kendo.observable({
                 backbutton.css('visibility', 'hidden');
             }
         }
+
+/*if (!history.hasOwnProperty('state')) {
+    (function (push, rep) {
+        // history.state is always initialised to null
+        history.myState = null;
+
+        history.pushState = function (state) {
+            push.apply(history, arguments);
+
+            history.myState = state;
+        };
+        history.replaceState = function (state) {
+            rep.apply(history, arguments);
+
+            history.myState = state;
+        };
+
+        window.addEventListener('popstate', function (e) {
+            history.myState = e.state;
+        }, true);
+
+    })(history.pushState, history.replaceState);
+}*/
 
         app.displayUser();
 

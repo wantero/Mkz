@@ -1,7 +1,7 @@
 <div data-role="view" data-title="" data-layout="main-detail" data-model="app.disciplinasView.disciplinasViewModel" 
 		 data-bind="events: { source: currentDisciplina }" data-show="app.disciplinasView.onDetailShow" id="disciplinasViewModelDetailsView">
 	 <div class="descricao-wrap">
-	    <a data-role="backbutton" data-align="left"></a>
+	    <a data-role="backbutton" data-align="left" xdata-bind="events: { click: detailBackClick }"></a>
 	    <p>Disciplina:</p>
 	    <h3 data-bind="text: currentDisciplina['Nome']"></h3>
       <label class="km-label-above">
@@ -32,9 +32,9 @@
 
 		    <div class="aval-wrap aval-praticas">
 		    	<h3>Avaliações Práticas</h3>
-		    	<ul data-role="listview">
+		    	<!-- <ul data-role="listview">
 		    		<li>
-		    			<div class="tipo-avaliacao-wrap valido"> <!-- VÁLIDO -->
+		    			<div class="tipo-avaliacao-wrap valido">
 			    			<p><span class="km-icon" data-icon="i-film"></span>Avaliação 1</p>
 			    			<p><b>(Expira em 2 dias)</b></p>
 		    			</div>
@@ -42,19 +42,26 @@
 		    		</li>
 
 		    		<li>
-		    			<div class="tipo-avaliacao-wrap realizado"> <!-- REALIZADO -->
+		    			<div class="tipo-avaliacao-wrap realizado">
 			    			<p><span class="km-icon" data-icon="i-film"></span>Avaliação 2</p>
 		    			</div>
 		    			<a class="realizado-button" data-role="button" data-align="left" disabled>Já realizado</a>
 		    		</li>
 
 		    		<li>
-		    			<div class="tipo-avaliacao-wrap expirado"> <!-- EXPIRADO -->
+		    			<div class="tipo-avaliacao-wrap expirado">
 			    			<p><span class="km-icon" data-icon="i-film"></span>Avaliação 3</p>
 		    			</div>
 		    			<a class="expirado-button" data-role="button" data-align="left">Expirado</a>
 		    		</li>
-		    	</ul>
+		    	</ul> -->
+
+			    <div class="aval-wrap aval-praticas">
+			        <ul class="masterDetailView" data-role="listview" data-auto-bind="true" data-style="" data-template="avaliacoesTemplate" 
+			            xdata-show="app.avaliacoesView.onShow"
+			            data-bind="{ source: avaliacoes }" data-pull-to-refresh="false" data-endless-scroll="false">
+			        </ul>
+			    </div>
 		    </div>
 	    </div>
 
@@ -103,4 +110,29 @@
 	      </div>
 	    </div>
     </div>
+
+
+    <script type="text/x-kendo-template" id="avaliacoesTemplate">
+        <div>
+            # data = app.disciplinasView.disciplinasViewModel.fixHierarchicalData(data); #
+
+            <div class="tipo-avaliacao-wrap valido">
+                <p><span class="km-icon" data-icon="i-film"></span>#: data['Titulo'] #</p>
+                <p><b>#: data['ExpiracaoText'] #</b></p>
+                <p><span class="km-icon" data-icon="i-film"></span>#: data['Disciplina']['Professor']['Nome'] #</p>
+            </div>
+
+            # situacao = data.Situacao.toLowerCase(); #
+
+            # if (situacao == 'expirado') { #
+            <!--a class="expirado-button" data-role="button" data-align="left">Expirado</a-->
+            # } else { #
+                # if (situacao == 'realizado') { #
+                <a class="realizado-button" data-role="button" data-align="left" disabled>Já realizado</a>
+                # } else { #
+                <a class="valido-button" data-role="button" data-align="left" data-bind="{ events: { click: avaliacaoClick } }">Até #: data['Pontos'] # Pontos</a>
+                # } #
+            # } #
+        </div>
+    </script>
 </div>
