@@ -1,5 +1,5 @@
-<div id="ranks" data-role="view" data-title="" data-layout="main-detail" data-model="app.ranksView.ranksViewModel" 
-     data-show="app.ranksView.onShow" data-after-show="app.ranksView.afterShow" xdata-init="app.ranksView.onInit">
+<div id="rankings" data-role="view" data-title="" data-layout="main-detail" data-model="app.ranksView.ranksViewModel" 
+     data-show="app.ranksView.onShow" data-after-show="app.ranksView.afterShow" data-init="app.ranksView.onInit">
      
     <div class="section-name-wrap">
         <div class="section-icon-name">
@@ -12,7 +12,7 @@
     <div class="descricao-wrap">
         <div class="descricao-disc">
             <h3>Curso:</h3>
-            <p data-bind="text: Curso"></p>
+            <p data-bind="text: dataSource.Curso"></p>
         </div>
     </div>
 
@@ -22,7 +22,7 @@
     </div>
 
     <ul class="masterDetailView" data-role="listview" data-auto-bind="true" data-style="" data-template="ranksViewModelTemplate" 
-        data-bind="{ source: ranking }" data-pull-to-refresh="false" data-endless-scroll="false">
+        data-bind="{ source: dataSource.ranking }" data-pull-to-refresh="false" data-endless-scroll="false">
     </ul>
 
     <div class="descricao-wrap sua-posicao">
@@ -31,12 +31,12 @@
 
     <ul class="masterDetailView" data-role="listview">
         <li data-uid=""> <!-- data-uid usado como seletor do css -->
-            <span data-bind="text: suaPosicao.text"></span>
+            <span data-bind="text: dataSource.suaPosicao.text"></span>
             <div class="user-thumb rank-thumb">
-                <img class="km-thumbnail" data-bind="attr: { src: suaPosicao.fotoUri }" alt="Your photo">
+                <img class="km-thumbnail" data-bind="attr: { src: dataSource.suaPosicao.fotoUri }" alt="Your photo">
             </div>
-            <span data-bind="text: suaPosicao.nome"></span>
-            <span data-bind="text: suaPosicao.pontos"></span>
+            <span data-bind="text: dataSource.suaPosicao.nome"></span>
+            <span data-bind="text: dataSource.suaPosicao.pontos"></span>
         </li>
     </ul>
 
