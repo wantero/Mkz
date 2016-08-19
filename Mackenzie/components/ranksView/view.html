@@ -11,8 +11,8 @@
 
     <div class="descricao-wrap">
         <div class="descricao-disc">
-            <h3>Curso:</h3>
-            <p data-bind="text: dataSource.Curso"></p>
+            <p>Curso:</p>
+            <h3 data-bind="text: dataSource.Curso"></h3>
         </div>
     </div>
 
@@ -30,7 +30,7 @@
     </div>
 
     <ul class="masterDetailView" data-role="listview">
-        <li data-uid=""> <!-- data-uid usado como seletor do css -->
+        <li data-uid="" class="bg-claro">
             <span data-bind="text: dataSource.suaPosicao.text"></span>
             <div class="user-thumb rank-thumb">
                 <img class="km-thumbnail" data-bind="attr: { src: dataSource.suaPosicao.fotoUri }" alt="Your photo">

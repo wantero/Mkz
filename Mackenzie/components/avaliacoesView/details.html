@@ -1,19 +1,30 @@
-<div data-role="view" data-title="" data-layout="main-detail" data-model="app.avaliacoesView.avaliacoesViewModel" 
+<div id="aval-praticas" data-role="view" data-title="" data-layout="main-detail" data-model="app.avaliacoesView.avaliacoesViewModel" 
      xdata-bind="events: { show: detailsShow }" data-show="app.avaliacoesView.onDetailShow"
      xdata-init="app.avaliacoesView.avaliacoesViewModel.initScheduler">
 
-    <div class="descricao-wrap">
+    <div class="section-name-wrap">
         <a data-role="backbutton" data-align="left"></a>
+
+        <div class="section-icon-name flaticon-tests">
+            <span class="km-icon" data-icon="info"></span>
+            <span>Avaliações Práticas</span>
+        </div>
+        <a class="link-x" id=""></a>
     </div>
 
+    <h4 data-bind="text: currentItem.Disciplina.Nome"></h4>
+    <div class="prof-disciplina-wrap">
+        <div class="user-thumb rank-thumb thumb-sm">
+            <img class="km-thumbnail" src="../../styles/images/user-male.png" alt="Your photo">
+        </div>
+        <p><span data-bind="text: currentItem.Disciplina.Professor.Nome"></span></p>
+    </div>
 
-    <h3>Avaliações Práticas</h3>
-
-    <h3 data-bind="text: currentItem.Disciplina.Nome"></h3>
-    <p><span class="km-icon" data-icon="i-film" data-bind="text: currentItem.Disciplina.Professor.Nome"></span></p>
-
-    <p><span class="km-icon" data-icon="i-film" data-bind="text: currentItem.Titulo"></span></p>
-    <p><span>(Até <span data-bind="text: currentItem.Pontos"></span><span> Pontos)</p>
+    <div class="section-icon-name flaticon-tests">
+        <span class="km-icon" data-icon="info"></span>
+        <h2 data-bind="text: currentItem.Titulo"></h2>
+    </div>
+    <p>(Até <span data-bind="text: currentItem.Pontos"></span> Pontos)</p>
 
     <form>
         <ul class="masterDetailView" data-role="listview" data-auto-bind="true" data-template="questoesTemplate" data-type="group"
@@ -28,7 +39,7 @@
     <script type="text/x-kendo-template" id="questoesTemplate">
         # data = app.avaliacoesView.avaliacoesViewModel.fixHierarchicalData(data); #
 
-        <h3>#: data['Titulo'] #</h3>
+        <h4>#: data['Titulo'] #</h4>
 
         # for (var i=0; i < data.Opcoes.length; i ++) { #
         #     opcao = data.Opcoes[i]; #

@@ -1,7 +1,13 @@
-<div id="cursos" data-role="view" data-title="" data-layout="main-detail" data-model="app.avaliacoesView"
+<div id="avaliacoes" data-role="view" data-title="" data-layout="main-detail" data-model="app.avaliacoesView"
      xdata-init="app.avaliacoesView.onInit" data-show="app.avaliacoesView.onShow" data-after-show="app.avaliacoesView.afterShow">
 
-    <h3>Avaliações Práticas</h3>
+    <div class="section-name-wrap">
+        <div class="section-icon-name flaticon-tests">
+            <span class="km-icon" data-icon="info"></span>
+            <span>Avaliações Práticas</span>
+        </div>
+        <a class="link-x" id=""></a>
+    </div>
 
     <div class="aval-wrap aval-praticas">
         <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="" data-template="avaliacoesViewModelTemplate" 
@@ -16,13 +22,19 @@
             # data = app.avaliacoesView.avaliacoesViewModel.fixHierarchicalData(data); #
 
             # if (data.showDisciplina) { #
-            <h3>#: data['Disciplina']['Nome'] #</h3>
+            <h4>#: data['Disciplina']['Nome'] #</h4>
             # } #
+
+            <div class="prof-disciplina-wrap">
+                <div class="user-thumb rank-thumb thumb-sm">
+                    <img class="km-thumbnail" src="../../styles/images/user-male.png" alt="Your photo">
+                </div>
+                <p>#: data['Disciplina']['Professor']['Nome'] #</p>
+            </div>
 
             <div class="tipo-avaliacao-wrap valido">
                 <p><span class="km-icon" data-icon="i-film"></span>#: data['Titulo'] #</p>
                 <p><b>#: data['ExpiracaoText'] #</b></p>
-                <p><span class="km-icon" data-icon="i-film"></span>#: data['Disciplina']['Professor']['Nome'] #</p>
             </div>
 
             # situacao = data.Situacao.toLowerCase(); #

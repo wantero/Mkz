@@ -26,7 +26,7 @@
 
 /**** AUXILIAR CLASSES ****/
 /**************************/
-.thum-sm {
+.thumb-sm {
 	height: 30px;
 	width: 30px;
 }
@@ -42,10 +42,13 @@
 
 /****** COLOR CLASSES ******/
 /***************************/
-.bg-claro {
-	background-color: #f3f3f3;
+#kendoUiMobileApp .bg-branco {
+	background-color: #fff;
 }
-.bg-medio {
+#kendoUiMobileApp .bg-claro {
+	background-color: #f0f0f0;
+}
+#kendoUiMobileApp .bg-medio {
 	background-color: rgba(0, 0, 0, 0.1);
 }
 
