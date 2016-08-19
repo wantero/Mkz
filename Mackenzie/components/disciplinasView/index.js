@@ -279,10 +279,31 @@ app.disciplinasView = kendo.observable({
 
         app.displayUser();
 
-        // Armazena o parametro recebido pela VIEW
-        viewParam = param;
+        function getCursos() {
+            var queryCursos = new Everlive.Query();
+            queryCursos.where().eq('Users', app.getUserData().Id);
 
-        fetchFilteredData(viewParam);
+            var dataCursos = dataProvider.data('Cursos');
+            dataCursos.get(queryCursos)
+                .then(function(data) {
+                    var cursos = [];
+                    for (var i=0; i < data.result.length; i++) {
+                        cursos.push(data.result[i].Id);
+                    }
+                    
+                    // Fixa o filtro do usuário logado
+                    param = [{ field: "Cursos", operator: "eq", value: cursos }];
+
+                    // Armazena o parametro recebido pela VIEW
+                    viewParam = param;     
+
+                    fetchFilteredData(viewParam);
+                }, function(err) {
+                    alert('Error loading data (Cursos)');
+                });
+        }
+
+        getCursos();
     });
 
     parent.set('onDetailShow', function(e) {

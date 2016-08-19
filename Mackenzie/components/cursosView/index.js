@@ -228,9 +228,9 @@ app.cursosView = kendo.observable({
             },
             detailOption: function(e) {
                 if (e.currentTarget.id === 'btDisciplinas') {
-                    $('#disciplinas').show().siblings().hide();
+                    $('#tabCursoDisciplinas').show().siblings().hide();
                 } else {
-                    $('#agenda').show().siblings().hide();
+                    $('#tabCursoAgenda').show().siblings().hide();
                     cursosViewModel.selectDiaView();
                 }
             },
@@ -442,29 +442,6 @@ app.cursosView = kendo.observable({
             }
         }
 
-/*if (!history.hasOwnProperty('state')) {
-    (function (push, rep) {
-        // history.state is always initialised to null
-        history.myState = null;
-
-        history.pushState = function (state) {
-            push.apply(history, arguments);
-
-            history.myState = state;
-        };
-        history.replaceState = function (state) {
-            rep.apply(history, arguments);
-
-            history.myState = state;
-        };
-
-        window.addEventListener('popstate', function (e) {
-            history.myState = e.state;
-        }, true);
-
-    })(history.pushState, history.replaceState);
-}*/
-
         app.displayUser();
 
         dataProvider.Users.currentUser().then(
@@ -489,7 +466,7 @@ app.cursosView = kendo.observable({
         cursosViewModel.setCurrentItemByUid(e.view.params.uid);
 
         $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active');
-        $('#disciplinas').show().siblings().hide();
+        $('#tabCursoDisciplinas').show().siblings().hide();
     });
 
 })(app.cursosView);
