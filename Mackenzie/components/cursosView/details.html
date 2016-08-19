@@ -1,5 +1,6 @@
 <div data-role="view" data-title="" data-layout="main-detail" data-model="app.cursosView.cursosViewModel" 
-     xdata-bind="events: { show: detailsShow }" data-show="app.cursosView.onDetailShow" xdata-init="app.cursosView.cursosViewModel.initScheduler" id="tabDisciplinas">
+     xdata-bind="events: { show: detailsShow }" data-show="app.cursosView.onDetailShow" xdata-init="app.cursosView.cursosViewModel.initScheduler"
+     id="tabDisciplinas">
      <div class="descricao-wrap bg-claro">
          <div class="descricao-disc">
             <a data-role="backbutton" data-align="left"></a>
@@ -18,7 +19,7 @@
     </ul>
 
     <div class="disciplinas-wrap">
-        <div id="disciplinas">
+        <div id="tabCursoDisciplinas">
             <div class="details-content">
                 <ul id="first-period" data-role="buttongroup" class="km-widget km-buttongroup">
                     <li class="km-button km-state-active"><span class="km-text">1º Sem</span></li>
@@ -32,13 +33,13 @@
                 </ul>
             </div>
 
-            <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="disciplinasViewModelTemplate"
+            <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="disciplinasDetailViewModelTemplate"
                 data-bind="{ source: currentItemDisciplinas, events: {click: disciplinaClick} }" data-pull-to-refresh="false" 
                 data-endless-scroll="false">
             </ul>
         </div>
 
-        <div id="agenda" style="display:none">
+        <div id="tabCursoAgenda" style="display:none">
             <div xdata-role="view" xdata-title="Detail Curso" xdata-layout="curso-detail" data-model="app.cursosView.cursosViewModel" 
                  data-bind="events: { show: detailsShow }" id="tabAgenda">
 
@@ -54,7 +55,7 @@
     </div>
 
 
-    <script type="text/x-kendo-template" id="disciplinasViewModelTemplate">
+    <script type="text/x-kendo-template" id="disciplinasDetailViewModelTemplate">
         <div class="user-thumb prof-thumb">
             <img id="foto" class="km-thumbnail" src="styles/images/user-male.png" alt="Your photo">
         </div>
