@@ -1145,16 +1145,20 @@ form.section-name-wrap {
 }
 
 /*** DISCIPLINAS VIEW ***/
-#tabCursoDisciplinas .details-content .km-buttongroup .km-button.km-state-active {
+#tabCursoDisciplinas .details-content .km-buttongroup .km-button.km-state-active,
+#disciplinas .details-content .km-buttongroup .km-button.km-state-active {
 	background-color: #EA2D2E;
 }
-#tabCursoDisciplinas .km-scroll-wrapper {
+#tabCursoDisciplinas .km-scroll-wrapper,
+#disciplinas .km-scroll-wrapper {
 	padding: 0;
 }
-#tabCursoDisciplinas .masterDetailView {
+#tabCursoDisciplinas .masterDetailView,
+#disciplinas .masterDetailView {
 	padding-top: 2em;
 }
-#kendoUiMobileApp #tabCursoDisciplinas .km-listview-wrapper li .user-thumb.prof-thumb {
+#kendoUiMobileApp #tabCursoDisciplinas .km-listview-wrapper li .user-thumb.prof-thumb,
+#kendoUiMobileApp #disciplinas .km-listview-wrapper li .user-thumb.prof-thumb {
 	display: inline-block;
 	float: left;
 	height: 40px;
@@ -1162,12 +1166,13 @@ form.section-name-wrap {
 	margin: 0;
 }
 #kendoUiMobileApp #tabCursoDisciplinas .km-listview-wrapper li .prof-thumb + .image-with-text,
-#kendoUiMobileApp #tabCursoDisciplinas .km-listview-wrapper li label {
+#kendoUiMobileApp #tabCursoDisciplinas .km-listview-wrapper li label,
+#kendoUiMobileApp #disciplinas .km-listview-wrapper li .prof-thumb + .image-with-text,
+#kendoUiMobileApp #disciplinas .km-listview-wrapper li label {
     display: inline-block;
     float: right;
     width: 83%;
 }
-#kendoUiMobileApp #disciplina
 
 /*** AGENDA VIEW ***/
 #agenda ul {
