@@ -193,8 +193,7 @@ app.avaliacoesView = kendo.observable({
                     avaliacao.TotalPontos = pontos;
                 }
 
-                //addResposta();
-                app.mobileApp.navigate('#components/avaliacoesView/result.html');
+                addResposta();
 
                 function addResposta() {
                     var dataRespostas = dataProvider.data('RespostasAvaliacao');
