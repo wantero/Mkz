@@ -61,33 +61,33 @@
 .icon-localizacao::after {
 	content: "\e0b4";
 }
-.icon-ranking::after {
+/*.icon-ranking::after {
 	content: "\e0c4";
-}
-.icon-faq::after {
+}*/
+/*.icon-faq::after {
 	content: "\e0fb";
-}
+}*/
 .icon-prova-branco::after {
 	content: "\e20b";
 }
 .icon-prova-preto::after {
 	content: "\e30b";
 }
-.icon-home-branco::after {
+/*.icon-home-branco::after {
 	content: "\e212";
 }
 .icon-home-preto::after {
 	content: "\e312";
-}
-.icon-user-branco::after {
+}*/
+/*.icon-user-branco::after {
 	content: "\e219";
 }
 .icon-user-preto::after {
 	content: "\e319";
-}
-.icon-search-branco::after {
+}*/
+/*.icon-search-branco::after {
 	content: "\e21e";
 }
 .icon-search-preto::after {
 	content: "\e31e";
-}
+}*/

@@ -29,24 +29,24 @@
   /*margin-left: 20px;*/
 }
 
+.flaticon-book .km-icon:after { content: "\f108"; }
 .flaticon-calendar .km-icon:after { content: "\f100"; }
-.flaticon-ranking .km-icon:after { content: "\f101"; }
-.flaticon-exit .km-icon:after { content: "\f102"; }
-.flaticon-gps .km-icon:after { content: "\f103"; }
-.flaticon-test-result .km-icon:after { content: "\f104"; }
+.flaticon-docs .km-icon:after { content: "\f110"; }
 .flaticon-email .km-icon:after { content: "\f105"; }
+.flaticon-exit .km-icon:after { content: "\f102"; }
+.flaticon-faq .km-icon:after { content: "\f109"; }
+.flaticon-gps .km-icon:after { content: "\f103"; }
+.flaticon-home .km-icon:after { content: "\f111"; }
+.flaticon-movie .km-icon:after { content: "\f10e"; }
 .flaticon-picture .km-icon:after { content: "\f106"; }
 .flaticon-pin .km-icon:after { content: "\f107"; }
-.flaticon-book .km-icon:after { content: "\f108"; }
-.flaticon-faq .km-icon:after { content: "\f109"; }
-.flaticon-search .km-icon:after { content: "\f10a"; }
-.flaticon-tests .km-icon:after { content: "\f10b"; }
 .flaticon-publication .km-icon:after { content: "\f10c"; }
-.flaticon-user .km-icon:after { content: "\f10d"; }
-.flaticon-movie .km-icon:after { content: "\f10e"; }
 .flaticon-qr-code .km-icon:after { content: "\f10f"; }
-.flaticon-docs .km-icon:after { content: "\f110"; }
-.flaticon-home .km-icon:after { content: "\f111"; }
+.flaticon-ranking .km-icon:after { content: "\f101"; }
+.flaticon-search .km-icon:after { content: "\f10a"; }
+.flaticon-test-result .km-icon:after { content: "\f104"; }
+.flaticon-tests .km-icon:after { content: "\f10b"; }
+.flaticon-user .km-icon:after { content: "\f10d"; }
 
 /*
 .flaticon-calendar:

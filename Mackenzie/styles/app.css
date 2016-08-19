@@ -260,9 +260,8 @@ div[data-layout="main-loading"] .logo-mackenzie,
 		color: #fff;
 	}
 	.km-flat .km-view .km-footer .km-button .km-search::after {
-		content: "\e31e";
-		font-size: 0.7em;
-		line-height: 1.5em;
+		font-size: 0.8em;
+		line-height: 1.3em;
 	}
 
 
@@ -575,24 +574,24 @@ div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view
 #kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li {
 	padding: 1em;
 }
+	#kendoUiMobileApp #avaliacoes /*.aval-praticas*/ .masterDetailView li > div,
+	#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li > div > h3,
+	#kendoUiMobileApp /*#avaliacoes .aval-praticas*/ .masterDetailView li > div p {
+		margin: 0;
+	}
 	#kendoUiMobileApp #avaliacoes /*.aval-praticas*/ .masterDetailView li > div {
 		display: inline-block;
 		width: 100%;
-		margin: 0;
 	}
-	#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li > div > h4 {
+	#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li > div > h3 {
 		text-align: center;
-		margin: 0 0 0.3em;
-	}
-	#kendoUiMobileApp /*#avaliacoes .aval-praticas*/ .masterDetailView li > div p {
-		margin: 0;
 	}
 
 #kendoUiMobileApp /*#avaliacoes*/ .prof-disciplina-wrap {
 	display: flex;
 	align-content: center;
 	justify-content: center;
-	margin-bottom: 0.8em; 
+	margin-bottom: 1em; 
 }
 	#kendoUiMobileApp /*#avaliacoes*/ .prof-disciplina-wrap p {
 		padding: 0.6em 0.5em 0;
@@ -639,13 +638,44 @@ div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view
 		font-weight: normal;
 	}
 	#kendoUiMobileApp #aval-praticas .prof-disciplina-wrap + .section-icon-name + p {
-		margin: 0.3em 1em;
+		margin: 0;
+		padding: 0.3em 1em 1em;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		text-indent: 1.5em;
 	}
 	#kendoUiMobileApp #aval-praticas .prof-disciplina-wrap + .section-icon-name .km-icon::after {
 		display: inline;
 		font-size: 1.2em;
 		margin-right: 0.3em;
+	}
+
+/*** QUESTIONÁRIOS ***/
+#kendoUiMobileApp #aval-praticas #formQuestionario li h3 {
+	font-weight: normal;
+	margin-bottom: 1em;
+}
+
+#kendoUiMobileApp #aval-praticas #formQuestionario .km-nova .km-radio-label {
+	font-size: 1em;
+	color: #777;
+}
+	#kendoUiMobileApp #aval-praticas #formQuestionario .km-nova {
+		margin-bottom: 0;
+	}
+	#kendoUiMobileApp #aval-praticas .section-name-wrap + h3 {
+		text-align: center;
+		margin: 0.8em 0 0;
+	}
+	#kendoUiMobileApp #aval-praticas #formQuestionario .km-nova .km-radio-label::before {
+		height: 1.2em;
+		width: 1.2em;
+		border-color: #777;
+	}
+	#kendoUiMobileApp #aval-praticas #formQuestionario .km-nova input.km-radio:checked + .km-radio-label:after {
+		height: 0.8em;
+		width: 0.8em;
+		top: 45%;
+		left: 0.265em;
 	}
 
 
