@@ -170,6 +170,9 @@ app.ranksView = kendo.observable({
                     return processImage(this.get("currentItem." + imageField.split("|")[0]));
                 }
                 return processImage(imageField);
+            },
+            rankingsClose: function() {
+                $('#appDrawer').data('kendoMobileDrawer').show();
             }
         });
 
@@ -207,10 +210,10 @@ app.ranksView = kendo.observable({
         Everlive.$.businessLogic.invokeCloudFunction("GetRanking", {})
             .then(function (data) {
                 ranksViewModel.set('dataSource', data);
-                console.log('data', data);
+                $('#rankingsData').show();
             },
             function (err) {
-                console.log('error loading ranking');
+                alert('Error loading rankings');
             });
     });
 

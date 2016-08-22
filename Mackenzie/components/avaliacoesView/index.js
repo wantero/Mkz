@@ -174,6 +174,9 @@ app.avaliacoesView = kendo.observable({
                     app.mobileApp.navigate('#components/avaliacoesView/details.html?uid=' + dataItem.uid);
                 });
             },
+            avaliacoesClose: function() {
+                $('#appDrawer').data('kendoMobileDrawer').show();
+            },
             enviarRepostas: function(e) {
                 var form = $('form');
                 var avaliacao = avaliacoesViewModel.get('currentItem');

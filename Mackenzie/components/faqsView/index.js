@@ -158,6 +158,9 @@ app.faqsView = kendo.observable({
                 //app.mobileApp.navigate('#components/faqsView/details.html?uid=' + dataItem.uid);
                 app.mobileApp.navigate('#components/faqsView/details.html');
             },
+            faqsClose: function() {
+                $('#appDrawer').data('kendoMobileDrawer').show();
+            },
             setCurrentItemByUid: function(uid) {
                 var item = uid,
                     dataSource = faqsViewModel.get('dataSource'),

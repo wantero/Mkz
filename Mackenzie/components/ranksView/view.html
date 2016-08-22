@@ -6,40 +6,42 @@
             <span class="km-icon" data-icon=""></span>
             <span>Rankings</span>
         </div>
-        <a class="link-x" id=""></a>
+        <a class="link-x" data-bind="{ events: { click: rankingsClose } }"></a>
     </div>
 
-    <div class="descricao-wrap">
-        <div class="descricao-disc">
-            <p>Curso:</p>
-            <h3 data-bind="text: dataSource.Curso"></h3>
-        </div>
-    </div>
-
-    <div class="rank-descricao">
-        <p>Posição</p>
-        <p>Pontos</p>
-    </div>
-
-    <ul class="masterDetailView" data-role="listview" data-auto-bind="true" data-style="" data-template="ranksViewModelTemplate" 
-        data-bind="{ source: dataSource.ranking }" data-pull-to-refresh="false" data-endless-scroll="false">
-    </ul>
-
-    <div class="descricao-wrap sua-posicao">
-        <h3>Sua posição atual</h3>
-    </div>
-
-    <ul class="masterDetailView" data-role="listview">
-        <li data-uid="" class="bg-claro">
-            <span data-bind="text: dataSource.suaPosicao.text"></span>
-            <div class="user-thumb rank-thumb">
-                <img class="km-thumbnail" data-bind="attr: { src: dataSource.suaPosicao.fotoUri }" alt="Your photo">
+    <div id="rankingsData" style="display:none">
+        <div class="descricao-wrap">
+            <div class="descricao-disc">
+                <p>Curso:</p>
+                <h3 data-bind="text: dataSource.Curso"></h3>
             </div>
-            <span data-bind="text: dataSource.suaPosicao.nome"></span>
-            <span data-bind="text: dataSource.suaPosicao.pontos"></span>
-        </li>
-    </ul>
+        </div>
 
+        <div class="rank-descricao">
+            <p>Posição</p>
+            <p>Pontos</p>
+        </div>
+
+        <ul class="masterDetailView" data-role="listview" data-auto-bind="true" data-style="" data-template="ranksViewModelTemplate" 
+            data-bind="{ source: dataSource.ranking }" data-pull-to-refresh="false" data-endless-scroll="false">
+        </ul>
+
+        <div class="descricao-wrap sua-posicao">
+            <h3>Sua posição atual</h3>
+        </div>
+
+        <ul class="masterDetailView" data-role="listview">
+            <li data-uid="" class="bg-claro">
+                <span data-bind="text: dataSource.suaPosicao.text"></span>
+                <div class="user-thumb rank-thumb">
+                    <img class="km-thumbnail" data-bind="attr: { src: dataSource.suaPosicao.fotoUri }" alt="Your photo">
+                </div>
+                <span data-bind="text: dataSource.suaPosicao.nome"></span>
+                <span data-bind="text: dataSource.suaPosicao.pontos"></span>
+            </li>
+        </ul>
+    </div>
+    
     <script type="text/x-kendo-template" id="ranksViewModelTemplate">            
             # data = app.ranksView.ranksViewModel.fixHierarchicalData(data); #
         <!--div>
