@@ -7,13 +7,27 @@
         <a data-role="backbutton" data-align="left"></a>
     </div> -->
 
-    <h3>Avaliações Práticas (Resultado)</h3>
+    <div class="section-name-wrap resultado">
+        <div class="section-icon-name flaticon-tests">
+            <span class="km-icon" data-icon="info"></span>
+            <span>Avaliações Práticas <br>(Resultado)</span>
+        </div>
+        <a class="link-x" id=""></a>
+    </div>
 
     <h3 data-bind="text: currentItem.Disciplina.Nome"></h3>
-    <p><span class="km-icon" data-icon="i-film" data-bind="text: currentItem.Disciplina.Professor.Nome"></span></p>
+    <div class="prof-disciplina-wrap">
+        <div class="user-thumb rank-thumb thumb-sm">
+            <img class="km-thumbnail" src="../../styles/images/user-male.png" alt="Your photo">
+        </div>
+        <p><span data-bind="text: currentItem.Disciplina.Professor.Nome"></span></p>
+    </div>
 
-    <p><span class="km-icon" data-icon="i-film" data-bind="text: currentItem.Titulo"></span></p>
-    <p><span>(Total <span data-bind="text: currentItem.TotalPontos"></span><span> Pontos)</p>
+    <div class="section-icon-name flaticon-tests">
+        <span class="km-icon" data-icon="info"></span>
+        <h2 data-bind="text: currentItem.Titulo"></h2>
+    </div>
+    <p>(Total <span data-bind="text: currentItem.TotalPontos"></span> Pontos)</p>
 
     <div>
         <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="questoesResultadoTemplate" data-type="group"

@@ -8,7 +8,7 @@
 		 </div>
 
 		<div class="descricao-prof">
-			<div class="user-thumb prof-thumb">
+			<div class="user-thumb prof-thumb thumb-md">
 				<img class="km-thumbnail" src="styles/images/user-male.png" alt="Professor photo">
 			</div>
 			<label class="km-label-above">
@@ -19,9 +19,14 @@
 
     <div class="avaliacoes-wrap">
 	    <div id="tabAvaliacoes">
-		    <a data-role="backbutton" data-align="left">
-		    	<span class="km-icon"></span>
-		    	Deseja fazer Checkin nesta aula?
+	    	<!-- <div class="flaticon-pin">
+    			<span class="km-icon" data-icon="i-film"></span>
+    			<a data-role="backbutton" data-align="left">Deseja fazer Checkin nesta aula?</a>
+		    </div> -->
+
+		    <a class="flaticon-pin" data-role="backbutton" data-align="left">
+		    	<span class="km-icon" data-icon="i-film"></span>
+		    	<span>Deseja fazer Checkin nesta aula?</span>
 		    </a>
 
 		    <div class="aval-wrap prox-aula">
@@ -29,12 +34,30 @@
 		    	<a data-role="button" data-align="left" data-bind="events: { click: selectPublicacoes }"><span></span></a>
 
 		    	<div class="grupo-wrap um">
-			    	<a data-role="button" data-align="left" data-icon="i-film">20 Documentos</a>
-			    	<a data-role="button" data-align="left" data-icon="i-image">3 Imagens</a>
+			    	<!-- <a data-role="button" data-align="left" data-icon="i-film">20 Documentos</a> -->
+			    	<!-- <a data-role="button" data-align="left" data-icon="i-image">3 Imagens</a> -->
+
+			    	<div class="flaticon-docs">
+		    			<span class="km-icon" data-icon="i-film"></span>
+		    			<a data-role="button" data-align="left">20 Documentos</a>
+				    </div>
+		    		<div class="flaticon-picture">
+		    			<span class="km-icon" data-icon="i-film"></span>
+		    			<a data-role="button" data-align="left">3 Imagens</a>
+				    </div>
 		    	</div>
 		    	<div class="grupo-wrap dois">
-			    	<a data-role="button" data-align="left" data-icon="i-envelop-open">15 Mensagens</a>
-			    	<a data-role="button" data-align="left" data-icon="play">6 Videos</a>
+			    	<!-- <a data-role="button" data-align="left" data-icon="i-envelop-open">15 Mensagens</a>
+			    	<a data-role="button" data-align="left" data-icon="play">6 Videos</a> -->
+
+			    	<div class="flaticon-email">
+		    			<span class="km-icon" data-icon="i-film"></span>
+		    			<a data-role="button" data-align="left">15 Mensagens</a>
+				    </div>
+		    		<div class="flaticon-movie">
+		    			<span class="km-icon" data-icon="i-film"></span>
+		    			<a data-role="button" data-align="left">6 Vídeos</a>
+				    </div>
 		    	</div>
 		    </div>
 
@@ -85,10 +108,16 @@
 	      </ul>
 
 	      <ul id="first-period-2" data-role="buttongroup" class="km-widget km-buttongroup">
-	          <li class="km-button km-state-active" data-icon="i-film">Docs</li>
+	          	<li class="flaticon-docs km-state-active"><span class="km-icon" data-icon="i-film"></span>Docs</li>
+	    		<li class="flaticon-picture"><span class="km-icon" data-icon="i-film"></span>6 Vídeos</li>
+	    		<li class="flaticon-email"><span class="km-icon" data-icon="i-film"></span>Mensagens</li>
+	    		<li class="flaticon-movie"><span class="km-icon" data-icon="i-film"></span>Vídeos</li>
+
+	          <!-- <li class="km-button km-state-active" data-icon="i-film">Docs</li>
 	          <li class="km-button" data-icon="i-image">Imagens</li>
 	          <li class="km-button" data-icon="i-envelop-open">Mensagem</li>
-	          <li class="km-button" data-icon="play">Videos</li>
+	          <li class="km-button" data-icon="play">Videos</li> -->
+
 	      </ul>
 
 	      <div data-role="scroller" class="lista-arquivos">

@@ -21,46 +21,60 @@
   }
 }
 
-[class^="flaticon-"] .km-icon:before, [class*=" flaticon-"] .km-icon:before,
-[class^="flaticon-"] .km-icon:after, [class*=" flaticon-"] .km-icon:after {   
-  font-family: Flaticon;
-  /*font-size: 1em;*/
-  font-style: normal;
-  /*margin-left: 20px;*/
+[class^="flaticon-"] .km-icon,
+[class*=" flaticon-"] .km-icon {
+  height: auto;
+  width: auto;
 }
 
-.flaticon-book .km-icon:after { content: "\f108"; }
-.flaticon-calendar .km-icon:after { content: "\f100"; }
-.flaticon-docs .km-icon:after { content: "\f110"; }
-.flaticon-email .km-icon:after { content: "\f105"; }
-.flaticon-exit .km-icon:after { content: "\f102"; }
-.flaticon-faq .km-icon:after { content: "\f109"; }
-.flaticon-gps .km-icon:after { content: "\f103"; }
-.flaticon-home .km-icon:after { content: "\f111"; }
-.flaticon-movie .km-icon:after { content: "\f10e"; }
-.flaticon-picture .km-icon:after { content: "\f106"; }
-.flaticon-pin .km-icon:after { content: "\f107"; }
-.flaticon-publication .km-icon:after { content: "\f10c"; }
-.flaticon-qr-code .km-icon:after { content: "\f10f"; }
-.flaticon-ranking .km-icon:after { content: "\f101"; }
-.flaticon-search .km-icon:after { content: "\f10a"; }
-.flaticon-test-result .km-icon:after { content: "\f104"; }
-.flaticon-tests .km-icon:after { content: "\f10b"; }
-.flaticon-user .km-icon:after { content: "\f10d"; }
+/*[class^="flaticon-"] .km-icon:before, [class*=" flaticon-"] .km-icon:before,*/
+[class^="flaticon-"] .km-icon:after,
+[class*=" flaticon-"] .km-icon:after {   
+  display: inline-block;
+  width: auto;
+  font-family: Flaticon;
+  font-style: normal;
+  color: #444;
+}
+
+.flaticon-book .km-icon::after { content: "\f10c"; }
+.flaticon-calendar .km-icon::after { content: "\f100"; }
+.flaticon-check .km-icon::after { content: "\f102"; }
+.flaticon-docs .km-icon::after { content: "\f113"; }
+.flaticon-email .km-icon:after { content: "\f109"; }
+.flaticon-exit .km-icon::after { content: "\f105"; }
+.flaticon-faq .km-icon::after { content: "\f10d"; }
+.flaticon-final-result .km-icon::after { content: "\f101"; }
+.flaticon-home .km-icon::after { content: "\f114"; }
+.flaticon-movie .km-icon::after { content: "\f111"; }
+.flaticon-picture .km-icon::after { content: "\f10a"; }
+.flaticon-pin .km-icon::after { content: "\f10b"; }
+.flaticon-pin-search .km-icon::after { content: "\f106"; }
+.flaticon-publication .km-icon::after { content: "\f10f"; }
+.flaticon-qr-code .km-icon::after { content: "\f112"; }
+.flaticon-ranking .km-icon::after { content: "\f103"; }
+.flaticon-search .km-icon::after { content: "\f10e"; }
+.flaticon-test-result .km-icon::after { content: "\f107"; }
+.flaticon-tests .km-icon::after { content: "\f108"; }
+.flaticon-user .km-icon::after { content: "\f110"; }
+.flaticon-x .km-icon::after { content: "\f104"; }
 
 /*
 .flaticon-calendar:
+.flaticon-check:
+.flaticon-check-1: --final-result
 .flaticon-cup: --ranking
+.flaticon-delete: --x
 .flaticon-exit:
-.flaticon-gps:
+.flaticon-gps: --pin-search
 .flaticon-interface: --test-result
+.flaticon-multimedia: --test
 .flaticon-note: --email
 .flaticon-photo: --picture
 .flaticon-pin:
 .flaticon-reading: --book
 .flaticon-round: --faq
-.flaticon-search:
-.flaticon-signature: --tests
+.flaticon-search: 
 .flaticon-social: --publication
 .flaticon-social-1: --user
 .flaticon-technology: --movie
