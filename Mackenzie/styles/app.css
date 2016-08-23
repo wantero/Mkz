@@ -1062,6 +1062,7 @@ form.section-name-wrap {
 	}
 
 .km-flat .km-view .descricao-wrap + .km-buttongroup {
+	display: flex;
 	width: 100%;
 	padding: 0 1em;
 }
@@ -1217,9 +1218,136 @@ form.section-name-wrap {
 }
 
 /*** AGENDA VIEW ***/
-#agenda ul {
-	display: inline-block;
+#tabCursoAgenda #tabAgenda .km-pane-wrapper {
+	position: relative;
+	height: auto !important;
 }
+	#tabCursoAgenda #tabAgenda .km-widget {
+		position: relative;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler,
+	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-layout .k-scheduler-content {
+		height: 100% !important;
+	}
+
+#tabCursoAgenda #tabAgenda #scheduler {
+	border-top: 0;
+}
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap {
+		background-image: none;
+	}
+
+	/* DROPDOWN DIA/MÊS/SEMANA */
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child {
+		padding: 0 0.95em 0.8em;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child ul {
+	    width: auto;
+	    border: 1px solid rgba(0, 0, 0, 0.1);
+	    border-radius: 4px;
+	    background: none;
+		background-color: #e8e8e8;
+	    box-sizing: border-box;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child .k-scheduler-navigation {
+		width: 30%;
+	}
+		#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child .k-scheduler-navigation li,
+		#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child .k-scheduler-navigation li a {
+			width: 100%;
+		}
+		#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child .k-scheduler-navigation li a {
+			padding: 0.13em 0;
+			text-align: center;
+		}
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child .k-scheduler-views {
+		width: 60%;
+	    top: 0;
+	    right: 0.85em;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child .k-scheduler-navigation li.k-state-hover,
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child .k-scheduler-views li:hover {
+		border-radius: 4px;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child ul li {
+		border: none;
+		background: none;
+		border-radius: 0;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child ul li:active {
+		background-color: #EA2D2E;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child ul li:active .k-link {
+		color: #fff;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child .k-scheduler-views li .k-link {
+		padding: 0.5em 2em 0.5em 1em;
+		line-height: normal;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child ul.k-state-expanded li .k-link {
+	}
+
+	/* DATA DO DIA/SEMANA REFERENTE */
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation {
+		background-image: none;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-prev {
+		float: left;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-next {
+		float: right;
+	}
+		#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-prev span,
+		#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-next span {
+		    background-image: none;
+		    border-style: solid;
+		    border-color: #ccc;
+		}
+		#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-prev span {
+		    border-width: 4px 0 0 4px;
+		    -webkit-transform: rotate(-45deg);
+		    	-ms-transform: rotate(-45deg);
+		    		transform: rotate(-45deg);
+		}
+		#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-next span {
+		    border-width: 4px 4px 0 0;
+		    -webkit-transform: rotate(45deg);
+		    	-ms-transform: rotate(45deg);
+		    		transform: rotate(45deg);
+		}
+		#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-prev span::before,
+		#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-next span::before {
+			content: none;
+		}
+
+	/* TABELA COM CONTEÚDO DA AGENDA */
+	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agendaview tr:first-child .k-scheduler-table > tbody > tr:first-child th {
+		width: 50%;
+		text-align: center;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agendaview tr:nth-child(2) .k-scheduler-table .k-scheduler-timecolumn,
+	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agendaview tr:nth-child(2) .k-scheduler-table .k-scheduler-timecolumn + td {
+		vertical-align: middle;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agendaview tr:nth-child(2) .k-scheduler-table tr .k-scheduler-datecolumn {
+		background-color: #e8e8e8;
+		padding: 0.3em 1em;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agendaview tr:nth-child(2) .k-scheduler-table tr.k-state-hover {
+		background-image: none;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agendaview tr:nth-child(2) .k-scheduler-table .k-today {
+		background-color: #fff;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agendaview tr:nth-child(2) .k-scheduler-table .k-task {
+		padding-left: 1.5em;
+		text-indent: -1.5em;
+	}
+	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agendaview tr:nth-child(2) .k-scheduler-table .k-task span {
+		margin-top: -0.15em;
+	}
+
+
 
 /*** DISCIPLINAS DETAILS ***/
 .avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) {
