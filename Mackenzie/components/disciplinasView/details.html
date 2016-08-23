@@ -164,7 +164,7 @@
             <!--a class="expirado-button" data-role="button" data-align="left">Expirado</a-->
             # } else { #
                 # if (situacao == 'realizado') { #
-                <a class="realizado-button" data-role="button" data-align="left" disabled>Já realizado</a>
+                <a class="realizado-button" data-role="button" data-align="left" data-bind="{ events: { click: jaRealizadoClick} }">Já realizado</a>
                 # } else { #
                 <a class="valido-button" data-role="button" data-align="left" data-bind="{ events: { click: avaliacaoClick } }">Até #: data['Pontos'] # Pontos</a>
                 # } #

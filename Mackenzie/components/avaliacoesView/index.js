@@ -174,6 +174,19 @@ app.avaliacoesView = kendo.observable({
                     app.mobileApp.navigate('#components/avaliacoesView/details.html?uid=' + dataItem.uid);
                 });
             },
+            jaRealizadoClick: function(e) {
+                var item = e.button.parents('li').attr('data-uid');
+                var dataItem = dataSource.getByUid(item);
+
+                avaliacoesViewModel.setCurrentItemByUid(dataItem.uid);  
+                
+                avaliacoesViewModel.loadQuestoesAvaliacao(dataItem.Id, function(data) {
+                    avaliacoesViewModel.set('currentItemQuestoes', data);
+                    avaliacoesViewModel.loadRespostasAvaliacao(dataItem.Id, function() {
+                        app.mobileApp.navigate('#components/avaliacoesView/result.html?uid=' + dataItem.uid);
+                    });
+                });
+            },
             avaliacoesClose: function() {
                 $('#appDrawer').data('kendoMobileDrawer').show();
             },
@@ -340,6 +353,71 @@ app.avaliacoesView = kendo.observable({
                     function(error){
                         alert('Error loading data (Questoes)');
                     });
+            },
+            loadRespostasAvaliacao: function(idAvaliacao, cb) {
+                getRespostasAvaliacao(idAvaliacao, cb);
+
+                function getRespostasAvaliacao(idAvaliacao, cb) {
+                    var queryRespostasAvaliacao = new Everlive.Query();
+                    queryRespostasAvaliacao.where().eq('User', app.getUserData().Id);
+                    queryRespostasAvaliacao.where().eq('Avaliacao', idAvaliacao);
+
+                    var dataRespostasAvaliacao = dataProvider.data('RespostasAvaliacao');
+                    dataRespostasAvaliacao.get(queryRespostasAvaliacao)
+                        .then(function(data) {
+                            if (!data.result.length) {
+                                alert('Error loading data (RespostasAvaliacao)');
+                                return;
+                            }
+
+                            getRespostaQuestaoAvaliacao(data.result[0], cb);
+                        }, function(err) {
+                            alert('Error loading data (Cursos)');
+                        });
+                }
+
+                function getRespostaQuestaoAvaliacao(respostasAvaliacao, cb) {
+                    var queryRespostaQuestaoAvaliacao = new Everlive.Query();
+                    queryRespostaQuestaoAvaliacao.where().eq('RespostaAvaliacao', respostasAvaliacao.Id);
+
+                    var dataRespostaQuestaoAvaliacao = dataProvider.data('RespostaQuestaoAvaliacao');
+                    dataRespostaQuestaoAvaliacao.get(queryRespostaQuestaoAvaliacao)
+                        .then(function(data) {
+                            if (!data.result.length) {
+                                alert('Error loading data (RespostaQuestaoAvaliacao)');
+                                return;
+                            }
+
+                            var respostas = data.result;
+                            var questoes = avaliacoesViewModel.get('currentItemQuestoes');
+                            var pontos = 0;
+
+                            for (var i=0; i < questoes.length; i++) {
+                                for (var k=0; k < respostas.length; k++) {
+                                    if (questoes[i].Id == respostas[k].Questao) {
+                                        questoes[i].Resposta = respostas[k].Resposta;
+                                        console.log('correta: ',questoes[i].OpcaoCorreta,'resposta',respostas[k].Resposta);
+                                        break;
+                                    }
+                                }
+
+                                if (questoes[i].OpcaoCorreta == questoes[i].Resposta) {
+                                    pontos += questoes[i].Pontos;
+                                }
+                            }
+
+                            var avaliacao = avaliacoesViewModel.get('currentItem');
+                            avaliacao.TotalPontos = pontos;
+                            avaliacao.Flow = 'jarealizado';
+                            avaliacoesViewModel.set('currentItem', avaliacao);
+
+                            if (cb) {
+                                cb();
+                            }
+                        }, function(err) {
+                            alert('Error loading data (Cursos)');
+                        });
+                }
             }
         });
 
@@ -559,8 +637,14 @@ app.avaliacoesView = kendo.observable({
 
         var questoes = avaliacoesViewModel.get('currentItemQuestoes');
 
-        for (var i=0; i < questoes.length; i++) {
+        for (var i=0; questoes && i < questoes.length; i++) {
             form.find('#'+questoes[i].PerguntaId+'-OP'+questoes[i].Resposta).attr('checked', 'checked');
+        }
+
+        var avaliacao = avaliacoesViewModel.get('currentItem');
+        if (avaliacao.Flow && avaliacao.Flow.toLowerCase() == 'jarealizado') {
+            $('#resultOkButton').hide();
+            $('#resultBackButton').show();
         }
     });    
 
