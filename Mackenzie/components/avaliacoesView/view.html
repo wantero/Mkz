@@ -43,7 +43,7 @@
             <!--a class="expirado-button" data-role="button" data-align="left">Expirado</a-->
             # } else { #
                 # if (situacao == 'realizado') { #
-                <a class="realizado-button" data-role="button" data-align="left" xdisabled  data-bind="{ events: { click: avaliacoesViewModel.jaRealizadoClick} }">Já realizado</a>
+                <a class="realizado-button" data-role="button" data-align="left" data-bind="{ events: { click: avaliacoesViewModel.jaRealizadoClick} }">Já realizado</a>
                 # } else { #
                 <a class="valido-button" data-role="button" data-align="left" data-bind="{ events: { click: avaliacoesViewModel.itemClick} }">Até #: data['Pontos'] # Pontos</a>
                 # } #

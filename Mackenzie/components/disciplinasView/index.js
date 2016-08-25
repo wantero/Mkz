@@ -167,7 +167,12 @@ app.disciplinasView = kendo.observable({
                 var dataItem = e.dataItem || disciplinasViewModel.originalItem;
                 disciplinasViewModel.set('currentDisciplina', e.dataItem);
 
-                app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + dataItem.uid);
+                app.avaliacoesView.avaliacoesViewModel.loadAvaliacoes(e.dataItem.Id, function(data) {
+                    disciplinasViewModel.set('avaliacoes', data);
+                    app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
+                });
+
+                //app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + dataItem.uid);
             },
             detailsShow: function(e) {
                 app.displayUser();
@@ -231,9 +236,11 @@ app.disciplinasView = kendo.observable({
                 dataItem.Flow = 'disciplinas';      
                 app.avaliacoesView.avaliacoesViewModel.set('currentItem', dataItem);
                 
-                app.avaliacoesView.avaliacoesViewModel.loadQuestoesAvaliacao(dataItem.Id, function(data) {
-                    app.avaliacoesView.avaliacoesViewModel.set('currentItemQuestoes', data);
-                    app.avaliacoesView.avaliacoesViewModel.loadRespostasAvaliacao(dataItem.Id, function() {
+                app.avaliacoesView.avaliacoesViewModel.loadQuestoesAvaliacao(dataItem.Id, function(avaliacoes) {
+                    app.avaliacoesView.avaliacoesViewModel.set('currentItemQuestoes', avaliacoes);
+                    app.avaliacoesView.avaliacoesViewModel.loadRespostasAvaliacao(dataItem.Id, function(respostas) {
+                        app.avaliacoesView.avaliacoesViewModel.set('currentItemQuestoes', respostas);
+
                         app.mobileApp.navigate('#components/avaliacoesView/result.html?uid=' + dataItem.uid);
                     });
                 });

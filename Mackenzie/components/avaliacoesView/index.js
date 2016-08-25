@@ -396,7 +396,6 @@ app.avaliacoesView = kendo.observable({
                                 for (var k=0; k < respostas.length; k++) {
                                     if (questoes[i].Id == respostas[k].Questao) {
                                         questoes[i].Resposta = respostas[k].Resposta;
-                                        console.log('correta: ',questoes[i].OpcaoCorreta,'resposta',respostas[k].Resposta);
                                         break;
                                     }
                                 }
@@ -412,7 +411,7 @@ app.avaliacoesView = kendo.observable({
                             avaliacoesViewModel.set('currentItem', avaliacao);
 
                             if (cb) {
-                                cb();
+                                cb(questoes);
                             }
                         }, function(err) {
                             alert('Error loading data (Cursos)');
