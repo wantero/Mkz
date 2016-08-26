@@ -56,7 +56,7 @@
             <div data-role="navbar">
                 <span data-role="view-title"></span>
                 <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon=""></a>
-                <img class="main-view-logo" src="styles/images/Logo-Mackenzie-app.png" alt="M">
+                <img class="main-view-logo" src="styles/images/Logo-Mackenzie-app.svg" alt="M">
 
                 <div data-title="Nome User" class="main-header-username">
                     <!-- É possível inserir o user name no data-title? -->
@@ -88,7 +88,7 @@
             <div data-role="navbar">
                 <span data-role="view-title"></span>
                 <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon=""></a>
-                <img class="main-view-logo" src="styles/images/Logo-Mackenzie-app.png" alt="M">
+                <img class="main-view-logo" src="styles/images/Logo-Mackenzie-app.svg" alt="M">
 
                 <div data-title="Nome User" class="main-header-username">
                     <!-- É possível inserir o user name no data-title? -->
@@ -105,7 +105,7 @@
 
             <div data-role="tabstrip" id="tabCurso">
                 <a href="components/cursosView/view.html">Cursos</a>
-                <a href="components/disciplinasView/view.html">Disciplinas</a>
+                <a href="components/disciplinasView/view.html">Componentes</a>
                 <!-- <a href="#tabstrip-teste">Tags</a> -->
             </div>
         </header>
@@ -127,7 +127,7 @@
             <div data-role="navbar">
                 <span data-role="view-title"></span>
                 <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon=""></a>
-                <img class="main-view-logo" src="styles/images/Logo-Mackenzie-app.png" alt="M">
+                <img class="main-view-logo" src="styles/images/Logo-Mackenzie-app.svg" alt="M">
 
                 <div data-title="Nome User" class="main-header-username">
                     <!-- É possível inserir o user name no data-title? -->
@@ -165,11 +165,13 @@
                     <img id="drawerPicture" class="km-thumbnail" src="styles/images/user-male.png" alt="Your photo">
                 </div>
 
-                <span xdata-role="view-title" id="drawerUser"></span>
+                <div class="info-user-wrap">
+                    <span xdata-role="view-title" id="drawerUser"></span>
 
-                <div class="tia-number" > <!-- TIA number aqui -->
-                    <p>TIA</p>
-                    <p id="drawerTIA"></p>
+                    <div class="tia-number" > <!-- TIA number aqui -->
+                        <p>TIA</p>
+                        <p id="drawerTIA"></p>
+                    </div>
                 </div>
             </div>
         </header>
@@ -181,7 +183,7 @@
             </li>
 
             <li>
-                <a href="components/cursosView/view.html" data-icon="home" class="flaticon-book"><span>Disciplinas</span></a>
+                <a href="components/cursosView/view.html" data-icon="home" class="flaticon-book"><span>Componentes</span></a>
             </li>
 
             <li>
@@ -220,22 +222,14 @@
             </div>
             
             <div class="logo-mackenzie">
-                <img src="styles/images/Logo-Mackenzie-app.png" alt="M">
+                <img src="styles/images/Logo-Mackenzie-app.svg" alt="M">
             </div>
         </header>
     </div>
 
-    <!-- ACEITE SCREEN -->
+    <!-- TERMOS DE PRIVACIDADE SCREEN -->
     <div data-role="layout" data-id="main-aceite">
-        <header data-role="header">
-            <div data-role="navbar">
-                <span data-role="view-title"></span>
-            </div>
-            
-            <!-- <div class="logo-mackenzie">
-                <img src="styles/images/Logo-Mackenzie-app.png" alt="M">
-            </div> -->
-        </header>
+        <!-- layout aceite -->
     </div>
 
     <!-- MESSAGE DIALOG -->

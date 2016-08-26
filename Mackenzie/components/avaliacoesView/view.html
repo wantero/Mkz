@@ -4,7 +4,7 @@
     <div class="section-name-wrap">
         <div class="section-icon-name flaticon-tests">
             <span class="km-icon" data-icon="info"></span>
-            <span>Avaliações Práticas</span>
+            <span>Quiz</span>
         </div>
         <a class="link-x" data-bind="{ events: { click: avaliacoesViewModel.avaliacoesClose } }"></a>
     </div>
@@ -29,7 +29,11 @@
                 <div class="user-thumb rank-thumb thumb-sm">
                     <img class="km-thumbnail" src="../../styles/images/user-male.png" alt="Your photo">
                 </div>
-                <p>#: data['Disciplina']['Professor']['Nome'] #</p>
+                <p><span>#: data['Disciplina']['Professor']['Nome'] #<span><br>
+                    <span class="unid-turma-sala unid">FCI</span>
+                    <span class="unid-turma-sala turma">3A</span>
+                    <span class="unid-turma-sala sala">701</span>
+                </p>
             </div>
 
             <div class="tipo-avaliacao-wrap valido">

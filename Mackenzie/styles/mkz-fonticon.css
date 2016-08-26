@@ -21,19 +21,20 @@
   }
 }
 
-[class^="flaticon-"] .km-icon,
-[class*=" flaticon-"] .km-icon {
+.km-root .km-pane a[class^="flaticon-"] .km-icon,
+.km-root .km-pane a[class*=" flaticon-"] .km-icon {
   height: auto;
   width: auto;
+  display: inline-block;
 }
 
-/*[class^="flaticon-"] .km-icon:before, [class*=" flaticon-"] .km-icon:before,*/
 [class^="flaticon-"] .km-icon:after,
 [class*=" flaticon-"] .km-icon:after {   
   display: inline-block;
   width: auto;
   font-family: Flaticon;
   font-style: normal;
+  line-height: 1em;
   color: #444;
 }
 

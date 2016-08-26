@@ -1,3 +1,13 @@
+/* CORES
+	Vermelho: #EA2D2E;
+	Azul: #1486CC;
+	Cinza: #CCC;
+	Cinza1: rgba(0, 0, 0, 0.1);
+	Cinza-claro: #F0F0F0;
+	Cinza-claro2: #F5F5F5;
+	Text-color: #4c5356;
+*/
+
 .km-flat .km-view .km-navbar,
 .km-flat div[data-layout="main-nonav"] .km-content,
 .km-flat .km-view .km-content .km-list > li .km-switch .km-switch-container,
@@ -24,6 +34,54 @@
 }
 
 
+/*** BORDER COLOR GERAL ***/
+/**************************/
+.descricao-wrap,
+.section-name-wrap,
+#perfilViewModel .form-content-item,
+#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name + p,
+.km-flat .km-view .km-header > .km-tabstrip,
+.km-flat .km-view .km-header > .km-tabstrip .km-button.km-state-active,
+#rankingsData .descricao-wrap > .descricao-disc,
+.avaliacoes-wrap .prox-aula,
+.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) .km-button.km-state-active,
+#navigation-container li,
+#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .section-name-wrap .km-back,
+#kendoUiMobileApp .km-scroll-wrapper .masterDetailView li,
+.descricao-wrap > .descricao-disc .km-button.km-back ,
+.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li,
+.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2),
+.km-flat .km-view .disciplinas-wrap .km-buttongroup li,
+.km-flat .km-view .descricao-wrap + .km-buttongroup .km-button,
+.avaliacoes-wrap .prox-aula p + .km-button span,
+#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-prev span,
+#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-next span {
+	border-color: #CCC;
+}
+.descricao-wrap,
+.section-name-wrap,
+#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name + p,
+.km-flat .km-view .km-header > .km-tabstrip,
+.km-flat .km-view .km-header > .km-tabstrip .km-button.km-state-active,
+#rankingsData .descricao-wrap > .descricao-disc,
+.avaliacoes-wrap .prox-aula,
+.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) .km-button.km-state-active {
+	border-bottom-style: solid;
+}
+.descricao-wrap,
+.section-name-wrap,
+#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name + p,
+.km-flat .km-view .km-header > .km-tabstrip,
+#rankingsData .descricao-wrap > .descricao-disc,
+.avaliacoes-wrap .prox-aula {
+	border-bottom-width: 1px;
+}
+.km-flat .km-view .km-header > .km-tabstrip .km-button.km-state-active,
+.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) .km-button.km-state-active {
+	border-bottom-width: 3px;
+}
+	
+
 /**** AUXILIAR CLASSES ****/
 /**************************/
 .thumb-sm {
@@ -33,6 +91,10 @@
 .thumb-md {
 	height: 40px;
 	width: 40px;
+}
+.thumb-xmd {
+	height: 50px;
+	width: 50px;
 }
 .thumb-lg {
 	height: 70px;
@@ -53,41 +115,152 @@
 }
 
 
-/****** ICONS CLASSES ******/
+
 /***************************/
-.icon-sair::after {
-	content: "\e0b3";
+/****** MEDIA SCREENS ******/
+/***************************/
+@media screen and (min-device-width: 480px) and (max-device-width: 767px) {
+
+	#kendoUiMobileApp .km-header,
+	#kendoUiMobileApp .descricao-wrap > .descricao-disc {
+		height: 50px;
+	}
+		#kendoUiMobileApp .descricao-wrap > .descricao-disc .km-button.km-back {
+			margin-top: 0.75em;
+		}
+
 }
-.icon-localizacao::after {
-	content: "\e0b4";
+
+@media screen and (min-device-width: 480px) {
+
+	#kendoUiMobileApp .descricao-wrap > .descricao-prof {
+		margin-top: -5px;
+	}
+
+	#kendoUiMobileApp div[data-layout="main-aceite"] .km-view-title {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+		#kendoUiMobileApp div[data-layout="main-aceite"] .km-view-title .logo-mackenzie {
+			margin: 0.3em 0;
+		}
+		#kendoUiMobileApp div[data-layout="main-aceite"] .km-view-title h4 {
+		    margin: 0 0 0 1em;
+		    text-align: left;
+		    white-space: normal;
+		}
+
+	#mackz-faq .km-scroll-wrapper .masterDetailView li .image-with-text::after {
+		height: 20px;
+		width: 20px;
+		top: -0.15em;
+	}
+
 }
-/*.icon-ranking::after {
-	content: "\e0c4";
-}*/
-/*.icon-faq::after {
-	content: "\e0fb";
-}*/
-.icon-prova-branco::after {
-	content: "\e20b";
+
+@media screen and (min-device-width: 568px) {
+
+	div[data-url="components/home/view.html"] .km-content .km-scroll-container,
+	.masterDetailView:not(.km-virtual-list) li .image-with-text,
+	.masterDetailView:not(.km-virtual-list) li .km-label-above,
+	#mackz-faq .km-scroll-wrapper .masterDetailView li .image-with-text {
+		width: 70%;
+	}
+
+	.km-flat .km-view .descricao-wrap + .km-buttongroup,
+	.km-flat .km-view .disciplinas-wrap .details-content,
+	#kendoUiMobileApp .avaliacoes-wrap .aval-praticas .km-listview-wrapper li,
+	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type,
+	#tabPublicacoes .lista-arquivos {
+		width: 75%;
+	}
+
+	div[data-url="components/home/view.html"] .km-content .km-scroll-container,
+	.km-flat .km-view .disciplinas-wrap .details-content,
+	#kendoUiMobileApp .avaliacoes-wrap .aval-praticas .km-listview-wrapper li,
+	#tabPublicacoes .lista-arquivos,
+	#mackz-faq .km-scroll-wrapper .masterDetailView li .image-with-text {
+		margin: 0 auto;
+	}
+
+	.masterDetailView li .km-label-above {
+		display: block;
+	}
+
+	#kendoUiMobileApp .km-scroll-wrapper .masterDetailView li,
+	#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li,
+	#rankings .km-scroll-wrapper .masterDetailView li[data-uid],
+	#rankings .km-scroll-wrapper .rank-descricao {
+		padding: 1em 10%;
+	}
+	#rankings .km-scroll-wrapper .sua-posicao {
+		padding-right: 20%;
+		padding-left: 20%;
+	}
+		#kendoUiMobileApp .masterDetailView li .image-with-text {
+			position: relative;
+		}
+		#kendoUiMobileApp .masterDetailView li .image-with-text::after {
+			top: 0.2em;
+			right: 0;
+		}
+
+	#mackz-faq form.section-name-wrap {
+		padding-right: 15%;
+		padding-left: 15%;
+	}
+		#kendoUiMobileApp #mackz-faq .masterDetailView li {
+			padding: 1em;
+		}
+
+	#perfilViewModel form {
+		padding: 1em 20% 2em;
+	}
+
 }
-.icon-prova-preto::after {
-	content: "\e30b";
+
+@media screen and (min-device-width: 667px) {
+
+	html.km-root { font-size: 16px; }
+
+	#appDrawer { width: 50%; }
+
+	div[data-url="components/home/termoAceite.html"] .km-content .privac-texto {
+		width: 80%;
+		margin: 0 auto
+	}
+
+	#kendoUiMobileApp .km-scroll-wrapper .masterDetailView li,
+	#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li,
+	#rankings .km-scroll-wrapper .masterDetailView li[data-uid],
+	#rankings .km-scroll-wrapper .rank-descricao {
+		padding: 1em 15%;
+	}
+
+	div.section-name-wrap {
+		height: 60px;
+	}
+
+	form.section-name-wrap {
+		padding: 0.35em 1em;
+	}
+
 }
-/*.icon-home-branco::after {
-	content: "\e212";
+
+@media screen and (min-device-width: 768px) {
+
+	html.km-root {font-size: 20px;}
+
+	.descricao-wrap > .descricao-disc .km-button.km-back {
+		height: 37px;
+	}
+
+	.km-flat .km-view .km-footer {
+		height: 60px;
+	}
+		.km-flat .km-view .km-footer .km-icon {
+			font-size: 40px;
+		}
+
 }
-.icon-home-preto::after {
-	content: "\e312";
-}*/
-/*.icon-user-branco::after {
-	content: "\e219";
-}
-.icon-user-preto::after {
-	content: "\e319";
-}*/
-/*.icon-search-branco::after {
-	content: "\e21e";
-}
-.icon-search-preto::after {
-	content: "\e31e";
-}*/

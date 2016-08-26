@@ -34,11 +34,11 @@ div[data-layout="main-nonav"] .logo-mackenzie.login img {
 }
 
 /*** INÍCIO - LOGIN FORMULÁRIO ***/
-div[data-model="app.home"] .km-content .km-scroll-container {
+div[data-url="components/home/view.html"] .km-content .km-scroll-container {
 	padding: 1em 2em 2em;
 }
 	@media screen and (min-device-width: 730px) {
-		.km-content .km-scroll-container {
+		div[data-url="components/home/view.html"] .km-content .km-scroll-container {
 			width: 60%;
 			margin: 0 auto;
 		}
@@ -160,11 +160,6 @@ div[data-layout="main-nonav"] .logo-mackenzie.new img {
 /**************************/
 /***** LOADING PAGE ******/
 /*************************/
-/*.loading-screen {
-	height: 100%;
-    background-color: #EA2D2E;
-}*/
-
 div[data-layout="main-loading"] .logo-mackenzie,
 .loading-wrap {
     position: relative;
@@ -217,8 +212,62 @@ div[data-layout="main-loading"] .logo-mackenzie,
 /**************************/
 /****** ACEITE PAGE ******/
 /*************************/
+div[data-layout="main-aceite"] .km-header {
+	height: auto;
+}
+	div[data-layout="main-aceite"] .logo-mackenzie {
+		display: block;
+		margin: 0.3em auto;
+	}
+	div[data-layout="main-aceite"] .logo-mackenzie img {
+		height: 100%;
+	}
 
+	div[data-layout="main-aceite"] .km-header h4 {
+		font-weight: normal;
+	}
 
+	div[data-layout="main-aceite"] h4 {	/* H4 DO DOCUMENTO EM GERAL */
+		margin: 0 0 0.3em;
+		line-height: 1.2em;
+	}
+
+div[data-layout="main-aceite"] .km-content .km-scroll-container {
+	padding: 0;
+}
+	div[data-layout="main-aceite"] .km-content .privac-texto {
+		padding: 1.5em;
+	}
+	div[data-layout="main-aceite"] .km-content .privac-texto section {
+		margin-bottom: 1em;
+	}
+	div[data-layout="main-aceite"] .km-content .privac-texto p,
+	div[data-layout="main-aceite"] .km-content .privac-texto li {
+		margin: 0 0 0.5em;
+		line-height: 1.4em;
+	}
+	div[data-layout="main-aceite"] .km-content .privac-texto ul {
+		padding-left: 2em; 
+	}
+
+#kendoUiMobileApp div[data-layout="main-aceite"] footer {
+	height: auto;
+	font-size: inherit;
+}
+	#kendoUiMobileApp div[data-layout="main-aceite"] .button-footer-wrap {
+		display: flex;
+		display: -webkit-flex;
+	}
+	#kendoUiMobileApp div[data-layout="main-aceite"] .button-footer-wrap a {
+		padding: 0.7em;
+		border-radius: 0;
+	}
+		#kendoUiMobileApp div[data-layout="main-aceite"] .button-footer-wrap a:first-child {
+			border-width: 0 1px 0 0;
+		}
+		#kendoUiMobileApp div[data-layout="main-aceite"] .button-footer-wrap a:nth-child(2) {
+			border-width: 0 0 0 1px;
+		}
 
 
 /**************************/
@@ -239,9 +288,16 @@ div[data-layout="main-loading"] .logo-mackenzie,
     text-indent: -2em;
 }
 
+ul.masterDetailView {
+	padding-bottom: 45px;
+}
+
 /*** FOOTER ÍCONES ***/
 .km-flat .km-view .km-footer {
+	position: fixed;
+	bottom: 0;
 	height: 45px;
+	font-size: 10px;
 }
 	.km-flat .km-view .km-footer .km-tabstrip {
 		display: block;
@@ -254,42 +310,34 @@ div[data-layout="main-loading"] .logo-mackenzie,
 	    width: 20%;
 	}
 	.km-flat .km-view .km-footer .km-button.km-state-active {
-		border-bottom: 2px solid #fff;
+		border-bottom: 2px solid #FFF;
 	}
 	.km-flat .km-view .km-footer .km-button .km-icon::after {
-		color: #fff;
+		color: #FFF;
 	}
 	.km-flat .km-view .km-footer .km-button .km-search::after {
 		font-size: 0.8em;
-		line-height: 1.3em;
 	}
 
 
 /*** HEADER - NOME DAS SEÇÕES ***/
 .section-name-wrap {
 	position: relative;
-	height: 50px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	overflow: auto;
+	/*border-bottom: 1px solid #CCC;*/
 	text-align: center;
+	background-color: #FFF;
 }
 	.section-name-wrap a {
 		text-decoration: none;
 		font-size: 1.1em;
 	}
-	.section-name-wrap .km-icon {
-	    height: 33px;
-	    width: 33px;
-	    display: inline-block;
-	}
 	.section-name-wrap .km-icon::after {
 		font-size: 1.7em;
-		line-height: 1.7em;
 	}
 	.section-name-wrap .km-icon + span {
 		display: inline-block;
-		-webkit-transform: translateY(0.4em);
-			-ms-transform: translateY(0.4em);
-				transform: translateY(0.4em);
+		margin-left: 0.3em;
 	}
 
 	.section-name-wrap .link-x {
@@ -321,7 +369,7 @@ div[data-layout="main-loading"] .logo-mackenzie,
 .section-icon-name {
 	display: inline-block;
 	height: 100%;
-	padding: 0.3em 0;
+	padding: 0.6em 0;
 }
 
 /*** MENU HAMBURGUER ***/
@@ -329,7 +377,7 @@ div[data-layout="main-loading"] .logo-mackenzie,
 .km-header .km-navbar .km-leftitem a[data-rel="drawer"]::before,
 .km-header .km-navbar .km-leftitem a[data-rel="drawer"]::after {
     height: 5px;
-    background-color: #fff;
+    background-color: #FFF;
     border-radius: 1px;
 }
 
@@ -355,7 +403,7 @@ div[data-layout="main-loading"] .logo-mackenzie,
 	}
 
 /*** HEADER - LOGO + NOME USER ***/
-.km-leftitem + .km-view-title {
+.km-navbar .km-leftitem + .km-view-title {
 	height: 100%;
 }
 .main-view-logo {
@@ -400,7 +448,7 @@ div[data-layout="main-loading"] .logo-mackenzie,
 	background-color: #EA2D2E;
 }
 	#navigation-container li.km-state-active .km-icon::after {
-		color: #fff;
+		color: #FFF;
 	}
 	#navigation-container li .km-listview-link span {
 		margin-left: 0;
@@ -415,7 +463,7 @@ div[data-layout="main-loading"] .logo-mackenzie,
 		content: none;
 	}
 	#navigation-container li.km-state-active .km-listview-link::after {
-		border-color: #fff;
+		border-color: #FFF;
 	}
 
 	li.km-state-active .km-listview-link .km-icon::before {
@@ -424,7 +472,9 @@ div[data-layout="main-loading"] .logo-mackenzie,
 
 .km-widget .km-listview-link {
 	display: flex;
-	align-items: flex-end;
+	display: -webkit-flex;
+	-webkit-align-items: flex-end;
+			align-items: flex-end;
 	font-size: 1.15em;
 	line-height: normal;
 }
@@ -439,8 +489,8 @@ div[data-layout="main-loading"] .logo-mackenzie,
 	}
 
 /*** ESCURECIMENTO DA VIEW - MENU ACTIVE ***/
-div[style="transform-origin: left top 0px; transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view,
-div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view {
+div[style^="transform-origin: left top 0px; transform: translate3d"].km-widget.km-view,
+div[style^="transform: translate3d"].km-widget.km-view {
 	position: relative;
 }
 	@keyframes fundo-escuro {
@@ -452,8 +502,8 @@ div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view
 		100% {background-color: rgba(0, 0, 0, 0.3);}
 	}
 
-	div[style="transform-origin: left top 0px; transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view::before,
-	div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view::before {
+	div[style^="transform-origin: left top 0px; transform: translate3d"].km-widget.km-view::before,
+	div[style^="transform: translate3d"].km-widget.km-view::before {
 	    content: "";
 	    position: absolute;
 	    z-index: 10;
@@ -465,15 +515,23 @@ div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view
 	}
 
 /*** USER MENU ***/
+#appDrawer {
+	width: 80%;
+}
 #appDrawer .km-header .km-view-title {
 	height: 100%;
-    min-height: 47px;
     line-height: normal;
 	text-align: left;
+	display: flex;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+			align-items: center;
 }
+	#appDrawer .info-user-wrap {
+		margin-left: 0.5em;
+	}
 	#appDrawer .km-view-title span {
 		display: block;
-		margin-top: 0.5em;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
@@ -481,7 +539,7 @@ div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view
 /*#appDrawer*/ .user-thumb {
     overflow: hidden;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: #FFF;
 }
 	/*#appDrawer*/ .user-thumb .km-thumbnail {
 		height: 100%;
@@ -491,8 +549,7 @@ div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view
     	display: inline-block;
     	float: left;
 	    height: 90%;
-	    width: 53px;
-    	margin: 0.2em 0.5em 0.15em 0.3em;
+    	margin-left: 0.3em; 
 	}
 
 .tia-number {
@@ -511,18 +568,10 @@ div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view
 /**************************/
 #kendoUiMobileApp .km-modalview-root .k-animation-container {
 	height: auto !important;
-	padding: 0 !important;
-}
-#kendoUiMobileApp .km-modalview-root .k-animation-container > .km-modalview-wrapper::before {
-	content: none;
 }
 #kendoUiMobileApp .km-modalview-root .km-modalview-wrapper,
 #modalview-message {
 	position: relative !important;
-}
-#kendoUiMobileApp .km-modalview-root .km-modalview-wrapper {
-	background-color: transparent;
-	border: none;
 }
 
 #modalview-message {
@@ -542,15 +591,43 @@ div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view
 	#modalview-message .km-footer .km-widget {
 		border: none;
 	}
+	#modalview-message .km-footer #modalview-message-option {
+		display: flex;
+		display: -webkit-flex;
+		-webkit-flex-wrap: wrap;
+				flex-wrap: wrap;
+	}
+	#modalview-message .km-footer .km-rightitem,
+	#modalview-message .km-footer .km-leftitem {
+		position: static;
+		width: 50%;
+	}
+	#modalview-message .km-footer .km-rightitem {
+		border-right: 1px solid #CCC;
+	}
+
+	#modalview-message .km-footer .km-rightitem .km-button,
+	#modalview-message .km-footer .km-leftitem .km-button {
+		padding: 1em;
+	}
+	#modalview-message .km-footer .km-rightitem .km-button {
+		border-radius: 0 0 0 4px;
+	}
+	#modalview-message .km-footer .km-leftitem .km-button {
+		border-radius: 0 0 4px 0;
+	}
+
 	#modalview-message .km-footer .km-button {
 		width: 100%;
-		padding: 0;
 		margin: 0;
 		border-width: 1px 0 0;
-		border-top: 1px solid #ccc;
+		border-top: 1px solid #CCC;
+		color: #1486CC;
+		background-color: #FFF;
+	}
+	#modalview-message .km-footer #modalview-ok-button {
+		padding: 0;
 		border-radius: 0 0 4px 4px;
-		color: #000;
-		background-color: #fff;
 	}
 	#modalview-message .km-footer .km-button.km-state-active {
 		background-color: #EA6A6A;
@@ -578,18 +655,23 @@ div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view
 		display: inline-block;
 		width: 100%;
 	}
-	#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li > div > h3 {
-		text-align: center;
+
+	#kendoUiMobileApp #aval-praticas .prof-disciplina-wrap {
+		padding: 0 1em;
+	}
+	#kendoUiMobileApp #aval-praticas form .masterDetailView {
+		padding-bottom: 0;
 	}
 
 #kendoUiMobileApp /*#avaliacoes*/ .prof-disciplina-wrap {
 	display: flex;
-	align-content: center;
-	justify-content: center;
-	margin-bottom: 1em; 
+	display: -webkit-flex;
+	-webkit-align-content: center;
+			align-content: center;
+	margin: 0.5em 0 1em; 
 }
 	#kendoUiMobileApp /*#avaliacoes*/ .prof-disciplina-wrap p {
-		padding: 0.6em 0.5em 0;
+		padding: 0 0.5em;
 	}
 
 #kendoUiMobileApp /*#avaliacoes*/ .aval-praticas .aval-wrap {
@@ -605,10 +687,11 @@ div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view
 	float: left;
     height: 30px;
     width: 30px;
-    border-width: 4px 0 0 4px;
-    border-color: #ccc;
-    transform: rotate(-45deg);
     margin: 0.6em 0 0 1em;
+    border-width: 4px 0 0 4px;
+    -webkit-transform: rotate(-45deg);
+    	-ms-transform: rotate(-45deg);
+    		transform: rotate(-45deg);
 }
 	#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .link-x {
 		margin-left: -0.5em;
@@ -623,7 +706,9 @@ div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view
 
 #kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name {
 	display: flex;
-	align-items: center;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+			align-items: center;
 	width: 100%;
 	padding: 0 1em;
 }
@@ -635,7 +720,6 @@ div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view
 	#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name + p {
 		margin: 0;
 		padding: 0.3em 1em 1em;
-		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		text-indent: 1.5em;
 	}
 	#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name + p + div {
@@ -655,9 +739,14 @@ div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view
 	padding: 0 1em 1em;
 }
 
+#kendoUiMobileApp #aval-praticas .section-name-wrap > .km-back {
+	height: 22px;
+	width: 22px;
+	padding: 0;
+}
+
 /*** QUESTIONÁRIOS e RESPOSTAS ***/
 #kendoUiMobileApp div[data-show^="app.avaliacoesView."] li h3 {
-	font-weight: normal;
 	margin-bottom: 1em;
 }
 
@@ -732,6 +821,9 @@ div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view
 
 /******** RANKING ********/
 /*************************/
+#rankings #rankingsData .km-listview-wrapper:nth-child(3) .masterDetailView {
+	padding-bottom: 0;
+}
 #rankings .km-scroll-wrapper .masterDetailView li[data-uid] {
 	width: 100%;
 	padding-right: 1em;
@@ -789,17 +881,19 @@ div[style="transform: translate3d(250px, 0px, 0px) scale(1);"].km-widget.km-view
 	#rankings .descricao-wrap .descricao-disc p,
 	#rankings .descricao-wrap h3 {
 		float: none;
+		margin-left: 0.3em;
 	}
 	#rankings .descricao-wrap .descricao-disc p {
 	    font-size: 0.8em;
 	    letter-spacing: 1px;
- 	    -webkit-transform: translateY(-0.3em);
-	 	    -ms-transform: translateY(-0.3em);
-	 	    	transform: translateY(-0.3em);
+ 	    -webkit-transform: translateY(0.25em);
+	 	    -ms-transform: translateY(0.25em);
+	 	    	transform: translateY(0.25em);
 	}
 
 	#rankings .descricao-wrap.sua-posicao {
 		padding: 0.4em 1em 0.5em;
+		border-bottom: 2px solid #FFF;
 	}
 
 
@@ -812,7 +906,7 @@ form.section-name-wrap {
 	float: left;
 	width: 77%;
     padding: 0.5em;
-    border: 1px solid #ccc;
+    border: 1px solid #CCC;
     border-radius: 3px;
     font-size: 1em;
 }
@@ -823,13 +917,30 @@ form.section-name-wrap {
     border: none;
     color: #555;
 }
+
 #kendoUiMobileApp #mackz-faq .km-scroll-wrapper .masterDetailView li {
-	position: absolute;
+	transform: none !important;
 }
 	#kendoUiMobileApp #mackz-faq .km-scroll-wrapper .masterDetailView li .image-with-text {
-		line-height: 36px;
+		position: relative;
 	}
 
+#kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap {
+	padding: 1.5em 1.5em 5em;
+}
+	#kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap h1 {
+		margin: 0 0 1em;
+	}
+	#kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap p {
+		margin: 0.7em 0;
+		line-height: 1.4em;
+	}
+#kendoUiMobileApp #mackz-faq .km-listview-wrapper li::after {
+	height: 20px;
+	width: 20px;
+	top: calc(50% - 12px);
+	top: -webkit-calc(50% - 12px);
+}
 
 /***** EDITAR PERFIL ******/
 /**************************/
@@ -845,7 +956,7 @@ form.section-name-wrap {
 	    height: 70px;
 	    width: 70px;
 	    margin: 0 auto 0.2em;
-	    border: 1px solid rgba(0, 0, 0, 0.1);
+	    border: 1px solid #CCC;
 	}
 	#perfilViewModel .user-thumb + a {
 		display: block;
@@ -875,15 +986,16 @@ form.section-name-wrap {
 /****************************/
 .km-flat .km-view .km-header > .km-tabstrip {
 	width: 100%;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	/*border-bottom: 1px solid #CCC;*/
 }
 	.km-flat .km-view .km-header > .km-tabstrip .km-button {
-	    font-size: 1em;
 	    width: 50%;
+	    padding: 0.8em;
+	    font-size: 1em;
 	}
 	.km-flat .km-view .km-header > .km-tabstrip .km-button.km-state-active {
-	    background-color: #fff;
-	    border-bottom: 2px solid #bbb;
+	    background-color: #FFF;
+	    border-bottom-width: 2px;
 	}
 	.km-flat .km-view .km-header > .km-tabstrip .km-button.km-state-active .km-text {
 	    color: #000;
@@ -894,46 +1006,52 @@ form.section-name-wrap {
 
 /*** CURSOS VIEW ***/
 #cursos .km-scroll-wrapper .km-listview-wrapper li:not(.km-load-more) {
-	padding-top: 3.5em;
+	padding-top: 4em;
 }
 	#cursos .km-scroll-wrapper .km-listview-wrapper li:not(.km-load-more) .image-with-text {
 		position: relative;
-	}
-	#cursos .km-scroll-wrapper .km-listview-wrapper li:not(.km-load-more) .image-with-text::after {
-		top: calc(50% - 10px);
-		right: -10%;
 	}
 	/*#cursos*/ .km-scroll-wrapper .km-listview-wrapper li h3 {
 		margin: 0;
 	}
 	/*#cursos*/ #kendoUiMobileApp .km-scroll-wrapper .masterDetailView li {
 		position: relative;
-		min-height: 67px;
-		padding: 1em 3em 1em 1em;
+		padding: 1em;
 		margin: 0;
+		border-left: 0;
+		border-radius: 0;
 	}
-	/*#cursos*/ .km-scroll-wrapper .km-listview-wrapper li .image-with-text::after {
+	/*#cursos*/ .km-scroll-container > .km-listview-wrapper:only-of-type .masterDetailView li::after,
+	#tabCursoDisciplinas .km-listview-wrapper .masterDetailView li::after,
+	#mackz-faq .km-listview-wrapper .masterDetailView li::after {
 	    content: "";
 	    position: absolute;
 	    top: calc(50% - 17px);
-	    right: 5%;
+	    top: -webkit-calc(50% - 17px);
+	    right: 1.5em;
 	    height: 30px;
 	    width: 30px;
-	    border-top: 5px solid #ccc;
-	    border-right: 5px solid #ccc;
+	    border-top: 5px solid #CCC;
+	    border-right: 5px solid #CCC;
 	    -webkit-transform: rotate(45deg);
 	    	-ms-transform: rotate(45deg);
 	    		transform: rotate(45deg);
 	}
+		#cursos .km-scroll-container > .km-listview-wrapper:only-of-type .masterDetailView li:nth-child(3)::after {
+			top: 50%;
+		}
+
 	#cursos .km-scroll-wrapper .km-listview-wrapper li .km-label-above {
 		font-size: 0.8em;
 	}
 
 /*** CURSO SELECIONADO VIEW ***/
 .descricao-wrap {
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	/*border-bottom: 1px solid #CCC;*/
 }
 	.descricao-wrap > .descricao-disc {
+		display: flex;
+		display: -webkit-flex;
 		overflow: hidden;
 	}
 	.descricao-wrap > .descricao-disc .km-button.km-back,
@@ -947,7 +1065,7 @@ form.section-name-wrap {
 	    margin: 1em 0 1em 1em;
 	    border-radius: 0;
 	    border-width: 5px 0 0 5px;
-	    border-color: #ccc;
+	    /*border-color: #CCC;*/
 	    -webkit-transform: rotate(-45deg);
 	    	-ms-transform: rotate(-45deg);
 	    		transform: rotate(-45deg);
@@ -956,9 +1074,9 @@ form.section-name-wrap {
 		display: inline-block;
 		margin: 0;
     	font-size: 0.9em;
-    	-webkit-transform: translate(-0.5em, 1.1em);
-    		-ms-transform: translate(-0.5em, 1.1em);
-	    		transform: translate(-0.5em, 1.1em);
+    	-webkit-transform: translate(-0.5em, 1.05em);
+    		-ms-transform: translate(-0.5em, 1.05em);
+	    		transform: translate(-0.5em, 1.05em);
 	}
 	.descricao-wrap h3 {
 	    display: inline-block;
@@ -987,17 +1105,15 @@ form.section-name-wrap {
 	}
 	#disciplinasViewModelDetailsView .descricao-wrap h3 {
 	    float: right;
-	    width: 67%;
-	    margin-left: -7px;
 	}
 	#disciplinasViewModelDetailsView .descricao-wrap .km-label-above {
 		display: inline-block;
-		/*width: 100%;*/
 	}
 
 /*** BOTÕES SEMESTRES e ANO (DESC. DISCIPLINAS) ***/
 .km-flat .km-view .disciplinas-wrap .km-buttongroup {
 	display: block;
+	overflow: auto;
 	padding: 0 1em;
 	margin: 0 auto 0.5em;
 }
@@ -1013,22 +1129,25 @@ form.section-name-wrap {
 		padding: 0.8em 1.2em;
 	}
 
+	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li,
 	.km-flat .km-view .disciplinas-wrap .km-buttongroup li {
+		width: 25%;
 		padding: 0.9em 0.8em;
+		border-width: 1px 1px 1px 0;
 	}
 	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li:first-child,
 	.km-flat .km-view .disciplinas-wrap .km-buttongroup li:first-child {
 		border-radius: 4px 0 0;
+		border-left-width: 1px;
 	}
 	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li:nth-child(4),
 	.km-flat .km-view .disciplinas-wrap .km-buttongroup li:nth-child(4) {
 		border-radius: 0 4px 0 0;
-		border-right: 1px solid rgba(0, 0, 0, 0.1);
 	}
 	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li:nth-child(5),
 	.km-flat .km-view .disciplinas-wrap .km-buttongroup li:nth-child(5) {
 		border-radius: 0 0 0 4px;
-		border-left: 1px solid rgba(0, 0, 0, 0.1);
+		border-left-width: 1px;
 	}
 	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li:nth-child(8),
 	.km-flat .km-view .disciplinas-wrap .km-buttongroup li:nth-child(8) {
@@ -1053,21 +1172,20 @@ form.section-name-wrap {
 	.km-flat .km-view .disciplinas-wrap #agenda .km-buttongroup .km-button {
 		padding: 0.45em 0;
 	}
-	.km-flat .km-view .disciplinas-wrap #agenda .km-buttongroup .km-button:first-child {
-		/*border-radius: 4px 0 0 4px;*/
-	}
 	.km-flat .km-view .disciplinas-wrap #agenda .km-buttongroup .km-button:last-child {
-		/*border-radius: 0 4px 4px 0;*/
-		border-top: 1px solid rgba(0, 0, 0, 0.1);
+		border-top: 1px solid #CCC;
 	}
 
 .km-flat .km-view .descricao-wrap + .km-buttongroup {
 	display: flex;
+	display: -webkit-flex;
 	width: 100%;
-	padding: 0 1em;
+	padding: 0.5em 1em 0;
 }
 	.km-flat .km-view .descricao-wrap + .km-buttongroup .km-button {
 		width: 50%;
+		padding: 0.5em;
+		/*border-color: #CCC;*/
 	}
 	.km-flat .km-view .descricao-wrap + .km-buttongroup .km-button.km-state-active {
 		background-color: #EA2D2E;
@@ -1079,7 +1197,7 @@ form.section-name-wrap {
 	margin: 0;
     border: 0;
     border-radius: 0;
-    color: #fff;
+    color: #FFF;
 }
 	.avaliacoes-wrap #tabAvaliacoes .km-back .km-icon::after {
 		font-size: 1.2em;
@@ -1089,10 +1207,13 @@ form.section-name-wrap {
 .avaliacoes-wrap .prox-aula {
 	position: relative;
 	padding: 0 1.2em 1em;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	/*border-bottom: 1px solid #CCC;*/
 }
 	.avaliacoes-wrap .prox-aula p {
 		display: inline-block;
+		width: 100%;
+		margin: 1em 0;
+		text-align: center;
 	}
 	.avaliacoes-wrap .prox-aula p + .km-button {
 		position: absolute;
@@ -1109,7 +1230,7 @@ form.section-name-wrap {
 		width: 18px;
 		margin-top: 0.5em;
 		border-width: 3px 3px 0 0;
-	    border-color: #ccc;
+	    /*border-color: #CCC;*/
 	    border-style: solid;
 	    -webkit-transform: rotate(45deg);
 	    	-ms-transform: rotate(45deg);
@@ -1120,10 +1241,22 @@ form.section-name-wrap {
 		display: inline-block;
 		width: 49%;
 	}
+		@media screen and (min-width: 415px) {
+			.avaliacoes-wrap .prox-aula .grupo-wrap.um {
+				text-align: right;
+			}
+		}
+
+	.avaliacoes-wrap .prox-aula .grupo-wrap div[class^="flaticon-"] {
+		display: inline-block;
+	}
 	.avaliacoes-wrap .prox-aula .grupo-wrap .km-button {
 		padding: 0.8em 0.8em 0 0;
 		margin: 0;
 		border: none;
+	}
+	.avaliacoes-wrap .prox-aula .grupo-wrap .km-button.km-state-active {
+		color: #444;
 	}
 	.avaliacoes-wrap .prox-aula .km-button .km-icon::after {
 		font-size: 1.1em;
@@ -1181,15 +1314,15 @@ form.section-name-wrap {
 	border-color: green;
 }
 #kendoUiMobileApp .aval-praticas .tipo-avaliacao-wrap + .realizado-button {
-	background-color: #ccc;
+	background-color: #CCC;
 	opacity: 0.7;
 }
 #kendoUiMobileApp .aval-praticas .tipo-avaliacao-wrap + .expirado-button {
 	background-color: #EA2D2E;
-	color: #fff;
+	color: #FFF;
 }
 
-/*** DISCIPLINAS VIEW ***/
+/*** COMPONENTES VIEW ***/
 #tabCursoDisciplinas .details-content .km-buttongroup .km-button.km-state-active,
 #disciplinas .details-content .km-buttongroup .km-button.km-state-active {
 	background-color: #EA2D2E;
@@ -1198,9 +1331,11 @@ form.section-name-wrap {
 #disciplinas .km-scroll-wrapper {
 	padding: 0;
 }
-#tabCursoDisciplinas .masterDetailView,
+#tabCursoDisciplinas .masterDetailView {
+	padding-top: 1em;
+}
 #disciplinas .masterDetailView {
-	padding-top: 2em;
+	padding-top: 2.5em;
 }
 #kendoUiMobileApp #tabCursoDisciplinas .km-listview-wrapper li .user-thumb.prof-thumb,
 #kendoUiMobileApp #disciplinas .km-listview-wrapper li .user-thumb.prof-thumb {
@@ -1212,15 +1347,30 @@ form.section-name-wrap {
 #kendoUiMobileApp #tabCursoDisciplinas .km-listview-wrapper li label,
 #kendoUiMobileApp #disciplinas .km-listview-wrapper li .prof-thumb + .image-with-text,
 #kendoUiMobileApp #disciplinas .km-listview-wrapper li label {
+    position: relative;
     display: inline-block;
     float: right;
     width: 83%;
+    padding-right: 32px;
 }
+	#kendoUiMobileApp /*.km-label-above*/ .unid-turma-sala {
+		font-size: 0.8em;
+		color: #1486CC;
+	}
+	#kendoUiMobileApp /*.km-label-above*/ .unid-turma-sala:not(.sala)::after {
+		content: "";
+	    height: 100%;
+	    padding: 0 0.4em;
+	    margin-right: 0.2em;
+	    border-right: 1px solid;
+	}
+
 
 /*** AGENDA VIEW ***/
 #tabCursoAgenda #tabAgenda .km-pane-wrapper {
 	position: relative;
 	height: auto !important;
+	padding-bottom: 45px;
 }
 	#tabCursoAgenda #tabAgenda .km-widget {
 		position: relative;
@@ -1243,10 +1393,10 @@ form.section-name-wrap {
 	}
 	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child ul {
 	    width: auto;
-	    border: 1px solid rgba(0, 0, 0, 0.1);
+	    border: 1px solid #CCC;
 	    border-radius: 4px;
 	    background: none;
-		background-color: #e8e8e8;
+		background-color: #EEE;
 	    box-sizing: border-box;
 	}
 	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child .k-scheduler-navigation {
@@ -1301,7 +1451,7 @@ form.section-name-wrap {
 		#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-next span {
 		    background-image: none;
 		    border-style: solid;
-		    border-color: #ccc;
+		    /*border-color: #CCC;*/
 		}
 		#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-prev span {
 		    border-width: 4px 0 0 4px;
@@ -1353,7 +1503,8 @@ form.section-name-wrap {
 .avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) {
 	width: 100%;
 	margin: 0.5em 0;
-	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	border-width: 1px 0;
+	border-style: solid;
 }
 	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) a {
 		border-radius: 0;
@@ -1363,8 +1514,8 @@ form.section-name-wrap {
 	}
 	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) .km-button.km-state-active {
 		background-color: transparent;
-		color: #4c5356;
-		border-bottom: 3px solid #ccc;
+		color: #4C5356;
+		border-bottom-width: 3px;
 	}
 
 	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) .km-button {
