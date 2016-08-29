@@ -143,7 +143,8 @@
 		justify-content: center;
 	}
 		#kendoUiMobileApp div[data-layout="main-aceite"] .km-view-title .logo-mackenzie {
-			margin: 0.3em 0;
+			margin: 0;
+			padding: 0.3em 0;
 		}
 		#kendoUiMobileApp div[data-layout="main-aceite"] .km-view-title h4 {
 		    margin: 0 0 0 1em;
@@ -188,11 +189,18 @@
 		display: block;
 	}
 
+	#cursos .km-scroll-container > .km-listview-wrapper:only-of-type .masterDetailView li:nth-child(3)::after {
+		right: 10%;
+	}
+	#tabCursoDisciplinas .km-listview-wrapper .masterDetailView li::after {
+		right: 15%;
+	}
+
 	#kendoUiMobileApp .km-scroll-wrapper .masterDetailView li,
 	#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li,
 	#rankings .km-scroll-wrapper .masterDetailView li[data-uid],
 	#rankings .km-scroll-wrapper .rank-descricao {
-		padding: 1em 10%;
+		padding: 1em 15% 1em 10%;
 	}
 	#rankings .km-scroll-wrapper .sua-posicao {
 		padding-right: 20%;

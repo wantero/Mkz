@@ -288,7 +288,11 @@ div[data-layout="main-aceite"] .km-content .km-scroll-container {
     text-indent: -2em;
 }
 
-ul.masterDetailView {
+
+/* PADDING-BOTTOM PARA O FOOTER */
+ul.masterDetailView,
+#tabCursoAgenda #tabAgenda .km-pane-wrapper,
+#tabPublicacoes {
 	padding-bottom: 45px;
 }
 
@@ -308,6 +312,7 @@ ul.masterDetailView {
 	    float: left;
 	    height: 100%;
 	    width: 20%;
+	    border-top: 1px solid rgba(0, 0, 0, 0.1);
 	}
 	.km-flat .km-view .km-footer .km-button.km-state-active {
 		border-bottom: 2px solid #FFF;
@@ -369,7 +374,7 @@ ul.masterDetailView {
 .section-icon-name {
 	display: inline-block;
 	height: 100%;
-	padding: 0.6em 0;
+	padding: 0.7em 0;
 }
 
 /*** MENU HAMBURGUER ***/
@@ -403,6 +408,9 @@ ul.masterDetailView {
 	}
 
 /*** HEADER - LOGO + NOME USER ***/
+#kendoUiMobileApp .km-header .km-navbar {
+	border-bottom-color: rgba(0, 0, 0, 0.1);
+}
 .km-navbar .km-leftitem + .km-view-title {
 	height: 100%;
 }
@@ -548,7 +556,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#appDrawer .user-thumb {
     	display: inline-block;
     	float: left;
-	    height: 90%;
+	    height: 53px;
+	    width: 53px;
     	margin-left: 0.3em; 
 	}
 
@@ -926,7 +935,7 @@ form.section-name-wrap {
 	}
 
 #kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap {
-	padding: 1.5em 1.5em 5em;
+	padding: 1.5em 1.5em 3.5em;
 }
 	#kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap h1 {
 		margin: 0 0 1em;
@@ -1061,14 +1070,17 @@ form.section-name-wrap {
 	}
 	.descricao-wrap > .descricao-disc .km-button.km-back {
 	    height: 28px;
-	    width: 20px;
+	    width: 28px;
+	    padding: 0;
 	    margin: 1em 0 1em 1em;
 	    border-radius: 0;
 	    border-width: 5px 0 0 5px;
-	    /*border-color: #CCC;*/
 	    -webkit-transform: rotate(-45deg);
 	    	-ms-transform: rotate(-45deg);
 	    		transform: rotate(-45deg);
+	}
+	#disciplinasViewModelDetailsView .descricao-wrap > .descricao-disc .km-button.km-back {
+		width: 31px;
 	}
 	.descricao-wrap p {
 		display: inline-block;
@@ -1370,7 +1382,6 @@ form.section-name-wrap {
 #tabCursoAgenda #tabAgenda .km-pane-wrapper {
 	position: relative;
 	height: auto !important;
-	padding-bottom: 45px;
 }
 	#tabCursoAgenda #tabAgenda .km-widget {
 		position: relative;
