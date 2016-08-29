@@ -1,5 +1,5 @@
 <div id="avaliacoes" data-role="view" data-title="" data-layout="main-detail" data-model="app.avaliacoesView"
-     xdata-init="app.avaliacoesView.onInit" data-show="app.avaliacoesView.onShow" data-after-show="app.avaliacoesView.afterShow">
+     xdata-init="app.avaliacoesView.onInit" data-show="app.avaliacoesView.onShow">
 
     <div class="section-name-wrap">
         <div class="section-icon-name flaticon-tests">
@@ -9,7 +9,7 @@
         <a class="link-x" data-bind="{ events: { click: avaliacoesViewModel.avaliacoesClose } }"></a>
     </div>
 
-    <div class="aval-wrap aval-praticas">
+    <div id="avaliacoesData" class="aval-wrap aval-praticas" xstyle="display:none">
         <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="" data-template="avaliacoesViewModelTemplate" 
             xdata-show="app.avaliacoesView.onShow"
             data-bind="{ source: avaliacoesViewModel.dataSource }" data-pull-to-refresh="true" data-endless-scroll="false"
