@@ -1,5 +1,5 @@
 <div id="aval-praticas" data-role="view" data-title="" data-layout="main-detail" data-model="app.avaliacoesView.avaliacoesViewModel" 
-     xdata-bind="events: { show: detailsShow }" data-show="app.avaliacoesView.onDetailShow"
+     xdata-bind="events: { show: detailsShow }" data-show="app.avaliacoesView.onDetailShow" data-after-show="app.avaliacoesView.onDetailAfterShow"
      xdata-init="app.avaliacoesView.avaliacoesViewModel.initScheduler">
 
     <div class="section-name-wrap">
@@ -28,10 +28,10 @@
         <span class="km-icon" data-icon="info"></span>
         <h2 data-bind="text: currentItem.Titulo"></h2>
     </div>
-    <p>(Até <span data-bind="text: currentItem.Pontos"></span> Pontos)</p>
+    <p>(Até <span data-bind="text: currentItem.Pontos"></span> Pontos) (Questionario)</p>
 
     <form>
-        <ul class="masterDetailView" data-role="listview" data-auto-bind="true" data-template="questoesTemplate" data-type="group"
+        <ul class="masterDetailView" data-role="listview" data-auto-bind="true" data-template="questoesQuestionarioTemplate" data-type="group"
             data-bind="{ source: currentItemQuestoes }" data-pull-to-refresh="false" data-endless-scroll="false" id="formQuestionario">
         </ul>
     </form>
@@ -40,7 +40,7 @@
         <a class="primary" data-role="button" data-bind="events: { click: enviarRepostas }">Enviar</a>
     </div>
 
-    <script type="text/x-kendo-template" id="questoesTemplate">
+    <script type="text/x-kendo-template" id="questoesQuestionarioTemplate">
         # data = app.avaliacoesView.avaliacoesViewModel.fixHierarchicalData(data); #
 
         <h3>#: data['Titulo'] #</h3>

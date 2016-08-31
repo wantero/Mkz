@@ -70,9 +70,12 @@ app.avaliacoesView = kendo.observable({
         dataSourceOptions = {
             transport: {
                 read: function(options) {
+                    //$('#avaliacoesData').hide();
+
                     loadAvaliacoes(null, function(data) {
                         //avaliacoesViewModel.set('dataSource', data);
                         options.success(data);
+                        //$('#avaliacoesData').show();
                     });                    
                 }
             },
@@ -169,8 +172,8 @@ app.avaliacoesView = kendo.observable({
 
                 avaliacoesViewModel.setCurrentItemByUid(dataItem.uid);
 
-                avaliacoesViewModel.loadQuestoesAvaliacao(dataItem.Id, function(data) {
-                    avaliacoesViewModel.set('currentItemQuestoes', data);
+                avaliacoesViewModel.loadQuestoesAvaliacao(dataItem.Id, function(questoes) {
+                    avaliacoesViewModel.set('currentItemQuestoes', questoes);
                     app.mobileApp.navigate('#components/avaliacoesView/details.html?uid=' + dataItem.uid);
                 });
             },
@@ -180,9 +183,10 @@ app.avaliacoesView = kendo.observable({
 
                 avaliacoesViewModel.setCurrentItemByUid(dataItem.uid);  
                 
-                avaliacoesViewModel.loadQuestoesAvaliacao(dataItem.Id, function(data) {
-                    avaliacoesViewModel.set('currentItemQuestoes', data);
-                    avaliacoesViewModel.loadRespostasAvaliacao(dataItem.Id, function() {
+                avaliacoesViewModel.loadQuestoesAvaliacao(dataItem.Id, function(questoes) {
+                    //avaliacoesViewModel.set('currentItemQuestoes', questoes);
+                    avaliacoesViewModel.loadRespostasAvaliacao(questoes, dataItem.Id, function(questoes) {
+                        avaliacoesViewModel.set('currentItemQuestoes', questoes);
                         app.mobileApp.navigate('#components/avaliacoesView/result.html?uid=' + dataItem.uid);
                     });
                 });
@@ -354,13 +358,16 @@ app.avaliacoesView = kendo.observable({
                         alert('Error loading data (Questoes)');
                     });
             },
-            loadRespostasAvaliacao: function(idAvaliacao, cb) {
+            loadRespostasAvaliacao: function(questoes, idAvaliacao, cb) {
                 getRespostasAvaliacao(idAvaliacao, cb);
 
                 function getRespostasAvaliacao(idAvaliacao, cb) {
                     var queryRespostasAvaliacao = new Everlive.Query();
-                    queryRespostasAvaliacao.where().eq('User', app.getUserData().Id);
-                    queryRespostasAvaliacao.where().eq('Avaliacao', idAvaliacao);
+                    queryRespostasAvaliacao.where()
+                        .and()
+                            .eq('User', app.getUserData().Id)
+                            .eq('Avaliacao', idAvaliacao);
+                    //queryRespostasAvaliacao.expand({"Avaliacao": true});
 
                     var dataRespostasAvaliacao = dataProvider.data('RespostasAvaliacao');
                     dataRespostasAvaliacao.get(queryRespostasAvaliacao)
@@ -370,13 +377,13 @@ app.avaliacoesView = kendo.observable({
                                 return;
                             }
 
-                            getRespostaQuestaoAvaliacao(data.result[0], cb);
+                            getRespostaQuestaoAvaliacao(questoes, data.result[0], cb);
                         }, function(err) {
                             alert('Error loading data (Cursos)');
                         });
                 }
 
-                function getRespostaQuestaoAvaliacao(respostasAvaliacao, cb) {
+                function getRespostaQuestaoAvaliacao(questoes, respostasAvaliacao, cb) {
                     var queryRespostaQuestaoAvaliacao = new Everlive.Query();
                     queryRespostaQuestaoAvaliacao.where().eq('RespostaAvaliacao', respostasAvaliacao.Id);
 
@@ -387,15 +394,37 @@ app.avaliacoesView = kendo.observable({
                                 alert('Error loading data (RespostaQuestaoAvaliacao)');
                                 return;
                             }
+                            
+                            var avaliacao = avaliacoesViewModel.get('currentItem');
+                            avaliacao.Flow = 'jarealizado';
+
+                            var today = new Date();
+                            
+                            today.setHours(0);
+                            today.setMinutes(0);
+                            today.setSeconds(0);
+
+                            avaliacao.Situacao = 'realizado';
+
+                            if (avaliacao.Expiracao.toString() === today.toString()) {
+                                avaliacao.Situacao = 'valido';
+                            } else if (avaliacao.Expiracao < today) {
+                                avaliacao.Situacao = 'expirado';
+                            } else if (avaliacao.Expiracao > today) {
+                                avaliacao.Situacao = 'valido';
+                            }
+
+                            console.log("Avaliação situação: ", avaliacao.Situacao);
 
                             var respostas = data.result;
-                            var questoes = avaliacoesViewModel.get('currentItemQuestoes');
+                            //var questoes = avaliacoesViewModel.get('currentItemQuestoes');
                             var pontos = 0;
 
                             for (var i=0; i < questoes.length; i++) {
                                 for (var k=0; k < respostas.length; k++) {
                                     if (questoes[i].Id == respostas[k].Questao) {
                                         questoes[i].Resposta = respostas[k].Resposta;
+                                        questoes[i].SituacaoAvaliacao = avaliacao.Situacao.toLowerCase();
                                         break;
                                     }
                                 }
@@ -405,9 +434,7 @@ app.avaliacoesView = kendo.observable({
                                 }
                             }
 
-                            var avaliacao = avaliacoesViewModel.get('currentItem');
                             avaliacao.TotalPontos = pontos;
-                            avaliacao.Flow = 'jarealizado';
                             avaliacoesViewModel.set('currentItem', avaliacao);
 
                             if (cb) {
@@ -590,6 +617,7 @@ app.avaliacoesView = kendo.observable({
     });*/
 
     parent.set('onShow', function(e) {
+        console.log('>>> on show');
         var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
             isListmenu = false,
             backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');
@@ -618,20 +646,27 @@ app.avaliacoesView = kendo.observable({
     });
 
     parent.set('onDetailShow', function(e) {
+        console.log('>>> on detail show');
         app.displayUser();
+    });
 
-        $('#formQuestionario .km-radio').each(function(index, item) {
+    parent.set('onDetailAfterShow', function(e) {
+        console.log('>>> on detail after show');
+        $('#avaliacoesData').show();
+
+        $('#formQuestionario .km-radio, #formQuestionario .km-radio-label').each(function(index, item) {
             $(item).removeAttr('disabled');
         });
     });
 
     parent.set('onResultadoShow', function(e) {
+        console.log('>>> on resulado show');
         app.displayUser();
 
         var form = $('#resultadoQuestionario');
 
-        form.find('.km-radio').each(function(index, item) {
-            $(item).attr('disabled', 'disabeld');
+        form.find('.km-radio, .km-radio-label').each(function(index, item) {
+            $(item).attr('disabled', true);
         });
 
         var questoes = avaliacoesViewModel.get('currentItemQuestoes');
@@ -644,6 +679,9 @@ app.avaliacoesView = kendo.observable({
         if (avaliacao.Flow && avaliacao.Flow.toLowerCase() == 'jarealizado') {
             $('#resultOkButton').hide();
             $('#resultBackButton').show();
+        } else {
+            $('#resultOkButton').show();
+            $('#resultBackButton').hide();
         }
     });    
 
