@@ -107,6 +107,7 @@
 #kendoUiMobileApp .bg-branco {
 	background-color: #fff;
 }
+#kendoUiMobileApp .km-flat .km-list .bg-claro,
 #kendoUiMobileApp .bg-claro {
 	background-color: #f0f0f0;
 }
@@ -126,6 +127,7 @@
 		height: 50px;
 	}
 		#kendoUiMobileApp .descricao-wrap > .descricao-disc .km-button.km-back {
+			padding: 0 0.6em;
 			margin-top: 0.75em;
 		}
 

@@ -72,12 +72,20 @@
 
             </div>
 
-            <div class="section-name-wrap">
+            <div id="header-perfil" class="section-name-wrap">
                 <div class="section-icon-name flaticon-user">
                     <span class="km-icon" data-icon=""></span>
                     <span>Editar Perfil</span>
                 </div>
                 <a class="link-x" id="editarPerfilClose"></a>
+            </div>
+
+            <div id="header-faq" class="section-name-wrap">
+                <div class="section-icon-name flaticon-faq">
+                    <span class="km-icon" data-icon=""></span>
+                    <span>Perguntas Frequentes</span>
+                </div>
+                <a class="link-x" data-bind="{ events: { click: faqsViewModel.faqsClose } }"></a>
             </div>
         </header>
     </div>

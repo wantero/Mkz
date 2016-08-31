@@ -29,7 +29,8 @@
 }
 
 [class^="flaticon-"] .km-icon:after,
-[class*=" flaticon-"] .km-icon:after {   
+[class*=" flaticon-"] .km-icon:after,
+.flaticon-clock .km-icon:before {   
   display: inline-block;
   width: auto;
   font-family: Flaticon;
@@ -38,48 +39,61 @@
   color: #444;
 }
 
-.flaticon-book .km-icon::after { content: "\f10c"; }
-.flaticon-calendar .km-icon::after { content: "\f100"; }
+.flaticon-book .km-icon::after { content: "\f10e"; }
+.flaticon-calendar .km-icon::after { content: "\f101"; }
+.flaticon-camera .km-icon::after { content: "\f116"; }
 .flaticon-check .km-icon::after { content: "\f102"; }
-.flaticon-docs .km-icon::after { content: "\f113"; }
-.flaticon-email .km-icon:after { content: "\f109"; }
-.flaticon-exit .km-icon::after { content: "\f105"; }
-.flaticon-faq .km-icon::after { content: "\f10d"; }
-.flaticon-final-result .km-icon::after { content: "\f101"; }
-.flaticon-home .km-icon::after { content: "\f114"; }
-.flaticon-movie .km-icon::after { content: "\f111"; }
-.flaticon-picture .km-icon::after { content: "\f10a"; }
-.flaticon-pin .km-icon::after { content: "\f10b"; }
-.flaticon-pin-search .km-icon::after { content: "\f106"; }
-.flaticon-publication .km-icon::after { content: "\f10f"; }
-.flaticon-qr-code .km-icon::after { content: "\f112"; }
-.flaticon-ranking .km-icon::after { content: "\f103"; }
-.flaticon-search .km-icon::after { content: "\f10e"; }
-.flaticon-test-result .km-icon::after { content: "\f107"; }
-.flaticon-tests .km-icon::after { content: "\f108"; }
-.flaticon-user .km-icon::after { content: "\f110"; }
-.flaticon-x .km-icon::after { content: "\f104"; }
+.flaticon-clock .km-icon::before { content: "\f118"; }
+.flaticon-comment .km-icon::after { content: "\f109"; }
+.flaticon-docs .km-icon::after { content: "\f117"; }
+.flaticon-email .km-icon::after { content: "\f10b"; }
+.flaticon-exit .km-icon::after { content: "\f106"; }
+.flaticon-faq .km-icon::after { content: "\f10f"; }
+.flaticon-final-result .km-icon::after { content: "\f103"; }
+.flaticon-home .km-icon::after { content: "\f119"; }
+.flaticon-movie .km-icon::after { content: "\f114"; }
+.flaticon-picture .km-icon::after { content: "\f10c"; }
+.flaticon-pin .km-icon::after { content: "\f10d"; }
+.flaticon-pin-search .km-icon::after { content: "\f107"; }
+.flaticon-post .km-icon::after { content: "\f11a"; }
+.flaticon-publication .km-icon::after { content: "\f112"; }
+.flaticon-ranking .km-icon::after { content: "\f104"; }
+.flaticon-search .km-icon::after { content: "\f110"; }
+.flaticon-share .km-icon::after { content: "\f100"; }
+.flaticon-smiley .km-icon::after { content: "\f111"; }
+.flaticon-test .km-icon::after { content: "\f10a"; }
+.flaticon-test-result .km-icon::after { content: "\f108"; }
+.flaticon-user .km-icon::after { content: "\f113"; }
+.flaticon-qr-code .km-icon::after { content: "\f115"; }
+.flaticon-x .km-icon::after { content: "\f105"; }
+
 
 /*
-.flaticon-calendar:
-.flaticon-check:
+.flaticon-arrows: --share
+.flaticon-calendar
+.flaticon-check
 .flaticon-check-1: --final-result
 .flaticon-cup: --ranking
 .flaticon-delete: --x
-.flaticon-exit:
+.flaticon-exit
 .flaticon-gps: --pin-search
 .flaticon-interface: --test-result
+.flaticon-interface-1: --comment
 .flaticon-multimedia: --test
 .flaticon-note: --email
 .flaticon-photo: --picture
-.flaticon-pin:
+.flaticon-pin
 .flaticon-reading: --book
 .flaticon-round: --faq
-.flaticon-search: 
+.flaticon-search
+.flaticon-smiley
 .flaticon-social: --publication
 .flaticon-social-1: --user
 .flaticon-technology: --movie
 .flaticon-technology-1: --qr-code
+.flaticon-technology-2: --camera
 .flaticon-three: --docs
+.flaticon-time: --clock
 .flaticon-web: --home
+.flaticon-write: --post
 */
