@@ -3,7 +3,7 @@
      xdata-init="app.avaliacoesView.avaliacoesViewModel.initScheduler">
 
     <div class="section-name-wrap">
-        <a data-role="backbutton" data-align="left"></a>
+        <a data-role="backbutton" data-align="left"></a> 
 
         <div class="section-icon-name flaticon-tests">
             <span class="km-icon" data-icon="info"></span>
@@ -30,11 +30,11 @@
     </div>
     <p>(Até <span data-bind="text: currentItem.Pontos"></span> Pontos) (Questionario)</p>
 
-    <form>
-        <ul class="masterDetailView" data-role="listview" data-auto-bind="true" data-template="questoesQuestionarioTemplate" data-type="group"
+    <div id="questionario">
+        <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="questoesQuestionarioTemplate" data-type="group"
             data-bind="{ source: currentItemQuestoes }" data-pull-to-refresh="false" data-endless-scroll="false" id="formQuestionario">
         </ul>
-    </form>
+    </div>
     
     <div class="button-group button-group-vertical">
         <a class="primary" data-role="button" data-bind="events: { click: enviarRepostas }">Enviar</a>
@@ -48,7 +48,7 @@
         # for (var i=0; i < data.Opcoes.length; i ++) { #
         #     opcao = data.Opcoes[i]; #
         #     opcaoName = data.PerguntaId; #
-        #     opcaoId = opcaoName+'-OP'+opcao.Opcao; #
+        #     opcaoId = opcaoName+'-OP-Q-'+opcao.Opcao; #
 
             <div class="km-nova">
                 <input type="radio" class="km-radio" name="#: opcaoName #" id="#: opcaoId #" value="#: opcao.Opcao #"></input>

@@ -186,7 +186,7 @@ app.avaliacoesView = kendo.observable({
                 avaliacoesViewModel.loadQuestoesAvaliacao(dataItem.Id, function(questoes) {
                     //avaliacoesViewModel.set('currentItemQuestoes', questoes);
                     avaliacoesViewModel.loadRespostasAvaliacao(questoes, dataItem.Id, function(questoes) {
-                        avaliacoesViewModel.set('currentItemQuestoes', questoes);
+                        avaliacoesViewModel.set('currentItemRespostas', questoes);
                         app.mobileApp.navigate('#components/avaliacoesView/result.html?uid=' + dataItem.uid);
                     });
                 });
@@ -195,7 +195,7 @@ app.avaliacoesView = kendo.observable({
                 $('#appDrawer').data('kendoMobileDrawer').show();
             },
             enviarRepostas: function(e) {
-                var form = $('form');
+                var form = $('#questionario');
                 var avaliacao = avaliacoesViewModel.get('currentItem');
                 var questoes = avaliacoesViewModel.get('currentItemQuestoes');
                 var pontos = 0;
@@ -402,7 +402,7 @@ app.avaliacoesView = kendo.observable({
                             
                             today.setHours(0);
                             today.setMinutes(0);
-                            today.setSeconds(0);
+                            today.setSeconds(0); 
 
                             avaliacao.Situacao = 'realizado';
 
@@ -654,25 +654,33 @@ app.avaliacoesView = kendo.observable({
         console.log('>>> on detail after show');
         $('#avaliacoesData').show();
 
-        $('#formQuestionario .km-radio, #formQuestionario .km-radio-label').each(function(index, item) {
+        var parent = $('#formQuestionario');
+
+        parent.find('.km-radio, #formQuestionario .km-radio-label').each(function(index, item) {
             $(item).removeAttr('disabled');
         });
+
+        var questoes = avaliacoesViewModel.get('currentItemQuestoes');
+
+        for (var i=0; questoes && i < questoes.length; i++) {
+            parent.find('#'+questoes[i].PerguntaId+'-OP-Q-'+questoes[i].Resposta).attr('checked', true);
+        }
     });
 
     parent.set('onResultadoShow', function(e) {
         console.log('>>> on resulado show');
         app.displayUser();
 
-        var form = $('#resultadoQuestionario');
+        var parent = $('#resultadoQuestionario');
 
-        form.find('.km-radio, .km-radio-label').each(function(index, item) {
+        parent.find('.km-radio, .km-radio-label').each(function(index, item) {
             $(item).attr('disabled', true);
         });
 
-        var questoes = avaliacoesViewModel.get('currentItemQuestoes');
+        var questoes = avaliacoesViewModel.get('currentItemRespostas');
 
         for (var i=0; questoes && i < questoes.length; i++) {
-            form.find('#'+questoes[i].PerguntaId+'-OP'+questoes[i].Resposta).attr('checked', 'checked');
+            parent.find('#'+questoes[i].PerguntaId+'-OP-R-'+questoes[i].Resposta).attr('checked', true);
         }
 
         var avaliacao = avaliacoesViewModel.get('currentItem');

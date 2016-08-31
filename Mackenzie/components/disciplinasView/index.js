@@ -239,7 +239,7 @@ app.disciplinasView = kendo.observable({
                 app.avaliacoesView.avaliacoesViewModel.loadQuestoesAvaliacao(dataItem.Id, function(questoes) {
                     //app.avaliacoesView.avaliacoesViewModel.set('currentItemQuestoes', questoes);
                     app.avaliacoesView.avaliacoesViewModel.loadRespostasAvaliacao(questoes, dataItem.Id, function(respostas) {
-                        app.avaliacoesView.avaliacoesViewModel.set('currentItemQuestoes', respostas);
+                        app.avaliacoesView.avaliacoesViewModel.set('currentItemRespostas', respostas);
 
                         app.mobileApp.navigate('#components/avaliacoesView/result.html?uid=' + dataItem.uid);
                     });

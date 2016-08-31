@@ -3,7 +3,7 @@
 
 
     <!-- <div class="descricao-wrap">
-        <a data-role="backbutton" data-align="left"></a>
+        <a data-role="backbutton" data-align="left"></a> 
     </div> -->
 
     <div class="section-name-wrap resultado">
@@ -32,7 +32,7 @@
 
     <div>
         <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="questoesResultadoTemplate" data-type="group"
-            data-bind="{ source: currentItemQuestoes }" data-pull-to-refresh="false" data-endless-scroll="false"  id="resultadoQuestionario">
+            data-bind="{ source: currentItemRespostas }" data-pull-to-refresh="false" data-endless-scroll="false"  id="resultadoQuestionario">
         </ul>
     </div>
     
@@ -45,7 +45,7 @@
 
         <h3>#: data['Titulo'] #</h3>
 
-        # /*console.log('result.html: ', 'correta: ', data.OpcaoCorreta, 'resposta', data.Resposta); */ #
+        # console.log('result.html: ', 'correta: ', data.OpcaoCorreta, 'resposta', data.Resposta);  #
         
         # if (data.OpcaoCorreta == data.Resposta) { #
             <span class="k-icon k-i-tick"></span>
@@ -56,7 +56,7 @@
         # for (var i=0; i < data.Opcoes.length; i ++) { #
         #     opcao = data.Opcoes[i]; #
         #     opcaoName = data.PerguntaId; #
-        #     opcaoId = opcaoName+'-OP'+opcao.Opcao; #
+        #     opcaoId = opcaoName+'-OP-R-'+opcao.Opcao; #
 
             <div class="km-nova">
                 <input type="radio" class="km-radio" name="#: opcaoName #" id="#: opcaoId #" value="#: opcao.Opcao #" ></input>
