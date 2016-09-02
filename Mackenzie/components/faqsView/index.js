@@ -158,9 +158,9 @@ app.faqsView = kendo.observable({
                 //app.mobileApp.navigate('#components/faqsView/details.html?uid=' + dataItem.uid);
                 app.mobileApp.navigate('#components/faqsView/details.html');
             },
-            faqsClose: function() {
+            /*faqsClose: function() {
                 $('#appDrawer').data('kendoMobileDrawer').show();
-            },
+            },*/
             setCurrentItemByUid: function(uid) {
                 var item = uid,
                     dataSource = faqsViewModel.get('dataSource'),
@@ -216,6 +216,12 @@ app.faqsView = kendo.observable({
     }
 
     parent.set('onShow', function(e) {
+        $('#main-header-faq').show().siblings().hide();
+
+        $('#editarFaqsClose').click(function() {
+            $('#appDrawer').data('kendoMobileDrawer').show();
+        });
+
         var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
             isListmenu = false,
             backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');

@@ -99,34 +99,35 @@ app.perfilView = kendo.observable({
     parent.set('perfilViewModel', perfilViewModel);
 
     parent.set('onShow', function() {
-            var data = app.getUserData();
-            app.displayUser();
+        $('#main-header-perfil').show().siblings().hide();
 
-            if (app && app.user) {
-                if (app.user.data) {
-                    data = app.user.data;
-                } else {
-                    data = app.user;
-                }
+        $('#editarPerfilClose').click(function() {
+            $('#appDrawer').data('kendoMobileDrawer').show();
+        });
+        
+        var data = app.getUserData();
+        app.displayUser();
+
+        if (app && app.user) {
+            if (app.user.data) {
+                data = app.user.data;
+            } else {
+                data = app.user;
             }
+        }
 
-            perfilViewModel.fields.id = data.Id;
-            perfilViewModel.fields.tia = data.tia;
-            perfilViewModel.fields.nome = data.DisplayName;
-            perfilViewModel.fields.email = data.Email;
-            perfilViewModel.fields.fotoUri = data.fotoUri;
+        perfilViewModel.fields.id = data.Id;
+        perfilViewModel.fields.tia = data.tia;
+        perfilViewModel.fields.nome = data.DisplayName;
+        perfilViewModel.fields.email = data.Email;
+        perfilViewModel.fields.fotoUri = data.fotoUri;
 
-            $('#tia').text(perfilViewModel.fields.tia);
-            $('#nome').val(perfilViewModel.fields.nome);
-            $('#email').val(perfilViewModel.fields.email);
-            if (perfilViewModel.fields.fotoUri) {
-                $('#foto').attr('src', perfilViewModel.fields.fotoUri);
-            }
-
-            $('#editarPerfilClose').click(function() {
-                $('#appDrawer').data('kendoMobileDrawer').show();
-            });
-
+        $('#tia').text(perfilViewModel.fields.tia);
+        $('#nome').val(perfilViewModel.fields.nome);
+        $('#email').val(perfilViewModel.fields.email);
+        if (perfilViewModel.fields.fotoUri) {
+            $('#foto').attr('src', perfilViewModel.fields.fotoUri);
+        }
     })
 })(app.perfilView);
 

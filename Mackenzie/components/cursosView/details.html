@@ -20,7 +20,7 @@
 
     <div class="disciplinas-wrap">
         <div id="tabCursoDisciplinas">
-            <div class="details-content">
+            <!-- <div class="details-content">
                 <ul id="first-period" data-role="buttongroup" class="km-widget km-buttongroup">
                     <li class="km-button km-state-active"><span class="km-text">1º Sem</span></li>
                     <li class="km-button"><span class="km-text">2º Sem</span></li>
@@ -31,7 +31,7 @@
                     <li class="km-button"><span class="km-text">7º Sem</span></li>
                     <li class="km-button"><span class="km-text">8º Sem</span></li>
                 </ul>
-            </div>
+            </div> -->
 
             <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="disciplinasDetailViewModelTemplate"
                 data-bind="{ source: currentItemDisciplinas, events: {click: disciplinaClick} }" data-pull-to-refresh="false" 
@@ -65,6 +65,7 @@
         </div>
         <label class="km-label-above">
             # nomeProfessor = data.Professor && data.Professor.Nome ? data.Professor.Nome : ''; #
+            
             <span>#: nomeProfessor #</span><br>
             <span class="unid-turma-sala unid">FCI</span>
             <span class="unid-turma-sala turma">3A</span>

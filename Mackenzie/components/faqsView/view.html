@@ -1,4 +1,4 @@
-<div id="mackz-faq" data-role="view" data-title="" data-layout="main-detail" data-model="app.faqsView" 
+<div id="mackz-faq" data-role="view" data-title="" data-layout="main" data-model="app.faqsView" 
      data-show="app.faqsView.onShow" data-after-show="app.faqsView.afterShow">
     
     <!-- <div class="section-name-wrap">
@@ -9,6 +9,7 @@
         <a class="link-x" data-bind="{ events: { click: faqsViewModel.faqsClose } }"></a>
     </div> -->
     
+    <div>
     <form class="section-name-wrap">
         <input id="Pesquisa" placeholder="Pesquisar FAQ" type="text" onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro">
         <button class="faq-reset bg-branco" type="reset">Cancelar</button>
@@ -17,6 +18,7 @@
 
     <div class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="" data-template="faqsViewModelTemplate" 
         data-bind="{ source: faqsViewModel.dataSource, events: {click: faqsViewModel.itemClick} }" data-pull-to-refresh="true" data-endless-scroll="true">
+    </div>
     </div>
 
     <script type="text/x-kendo-template" id="faqsViewModelTemplate">            
