@@ -592,6 +592,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 }
 
 #modalview-message .km-footer {
+	position: relative;
 	height: auto;
 }
 	#modalview-message .km-footer,
@@ -606,6 +607,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		display: -webkit-flex;
 		-webkit-flex-wrap: wrap;
 				flex-wrap: wrap;
+		font-size: 1.5em;
 	}
 	#modalview-message .km-footer .km-rightitem,
 	#modalview-message .km-footer .km-leftitem {
@@ -647,7 +649,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 
 
-/*** RESULTADOS DE PROVAS ***/
+/*********** QUIZ ***********/
 /****************************/
 #avaliacoes .flaticon-tests .km-icon:after {
 	text-indent: 0.3em;
@@ -1063,17 +1065,15 @@ form.section-name-wrap {
 #perfilViewModel form {
 	padding: 1em 2em 2em;
 }
-#perfilViewModel.form-view {
-	padding-top: 3.5em;
+
+#perfilViewModel .user-thumb {
+    float: none;
+    display: block;
+    height: 70px;
+    width: 70px;
+    margin: 0 auto 0.2em;
+    border: 1px solid #CCC;
 }
-	#perfilViewModel .user-thumb {
-	    float: none;
-	    display: block;
-	    height: 70px;
-	    width: 70px;
-	    margin: 0 auto 0.2em;
-	    border: 1px solid #CCC;
-	}
 	#perfilViewModel .user-thumb + a {
 		display: block;
 		text-align: center;
@@ -1098,11 +1098,10 @@ form.section-name-wrap {
 	}
 
 
-/*** CURSOS e DISCIPLINAS ***/
+/*** CURSOS e COMPONENTES ***/
 /****************************/
 .km-flat .km-view .km-header > .km-tabstrip {
 	width: 100%;
-	/*border-bottom: 1px solid #CCC;*/
 }
 	.km-flat .km-view .km-header > .km-tabstrip .km-button {
 	    width: 50%;
@@ -1162,14 +1161,11 @@ form.section-name-wrap {
 	}
 
 /*** CURSO SELECIONADO VIEW ***/
-.descricao-wrap {
-	/*border-bottom: 1px solid #CCC;*/
+.descricao-wrap > .descricao-disc {
+	display: flex;
+	display: -webkit-flex;
+	overflow: hidden;
 }
-	.descricao-wrap > .descricao-disc {
-		display: flex;
-		display: -webkit-flex;
-		overflow: hidden;
-	}
 	.descricao-wrap > .descricao-disc .km-button.km-back,
 	.descricao-wrap p,
 	.descricao-wrap h3 {
@@ -1229,7 +1225,56 @@ form.section-name-wrap {
 		display: inline-block;
 	}
 
-/*** BOTÕES SEMESTRES e ANO (DESC. DISCIPLINAS) ***/
+/*** CHECKIN DE AULA ***/
+#mackz-checkin .checkin-header .flaticon-pin-search .km-icon::after {
+	font-size: 1.2em;
+}
+#mackz-checkin .checkin-header p {
+	display: inline-block;
+	font-size: 0.8em;
+}
+
+#mackz-checkin .checkin-conteudo-wrap .checkin-demo {
+	position: relative;
+	min-height: 12em;
+	width: 60%;
+	margin: 0 auto;
+	border: 1px solid #CCC;
+	border-radius: 3px;
+	background-color: #FFF;
+}
+	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .QR-code,
+	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .smartphone {
+		position: absolute;
+	}
+	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .QR-code {
+		left: 1em;
+		-webkit-animation: QR-demo 2s infinite;
+				animation: QR-demo 2s infinite;
+	}
+	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .QR-code::after {
+		font-size: 3em;
+	}
+	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .smartphone {
+		right: 0;
+		display: inline-block;
+		height: 10em;
+		width: 50%;
+		background: url(images/Smartphone.svg) no-repeat 50%; /* image, repeat e position */
+		background-size: 10em;
+		-webkit-animation: smartphone-demo 2s infinite;
+				animation: smartphone-demo 2s infinite;
+	}
+	#mackz-checkin .checkin-conteudo-wrap .km-button-group .km-button {
+		margin: 0;
+	    width: 100%;
+	    background-color: #FFF;
+	    border-radius: 0;
+	    border-width: 1px 0;
+	}
+
+
+/*** BOTÕES SEMESTRES e ANO (DESC. COMPONENTES ***/
 .km-flat .km-view .disciplinas-wrap .km-buttongroup {
 	display: block;
 	overflow: auto;

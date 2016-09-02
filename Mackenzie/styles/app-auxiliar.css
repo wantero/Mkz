@@ -18,6 +18,7 @@
 #kendoUiMobileApp .button-group .km-button,
 .km-flat .km-view .km-footer .km-button,
 .km-flat .km-view .km-footer .km-button.km-state-active,
+.km-flat .km-view .km-content .km-button.km-state-active,
 .avaliacoes-wrap #tabAvaliacoes .km-button.km-back,
 .avaliacoes-wrap #tabPublicacoes .km-buttongroup .km-state-active,
 .km-flat .km-view .disciplinas-wrap #agenda .km-buttongroup .km-state-active {
@@ -80,7 +81,19 @@
 .avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) .km-button.km-state-active {
 	border-bottom-width: 3px;
 }
-	
+
+
+/*** PADDING-TOP HEADER ***/
+/**************************/
+/*#tabDisciplinas .km-scroll-header + .km-scroll-container,
+#disciplinasViewModelDetailsView .km-scroll-header + .km-scroll-container,*/
+#avaliacoes .km-scroll-header + .km-scroll-container,
+#rankings .km-scroll-header + .km-scroll-container,
+#perfilViewModel.form-view,
+#mackz-faq .km-scroll-header + .km-scroll-container {
+	padding-top: 47px;
+}
+
 
 /**** AUXILIAR CLASSES ****/
 /**************************/
@@ -93,8 +106,8 @@
 	width: 40px;
 }
 .thumb-xmd {
-	height: 50px;
-	width: 50px;
+	height: 45px;
+	width: 45px;
 }
 .thumb-lg {
 	height: 70px;
@@ -114,6 +127,79 @@
 #kendoUiMobileApp .bg-medio {
 	background-color: rgba(0, 0, 0, 0.1);
 }
+
+
+/***** QR CODE ANIMATE *****/
+/***************************/
+@keyframes QR-demo {
+	0%, 15% {
+		-webkit-transform: translate(10%, 4.5em);
+			-ms-transform: translate(10%, 4.5em);
+				transform: translate(10%, 4.5em);
+	}
+	60%, 100% {
+		-webkit-transform: translate(130%, 4.5em);
+			-ms-transform: translate(130%, 4.5em);
+				transform: translate(130%, 4.5em);
+	}
+
+	0% {opacity: 0}
+	15% {opacity: 1;}
+	85% {opacity: 1;}
+	100% {opacity: 0;}
+}
+	@-webkit-keyframes QR-demo {
+		0%, 15% {
+			-webkit-transform: translate(10%, 4.5em);
+				-ms-transform: translate(10%, 4.5em);
+					transform: translate(10%, 4.5em);
+		}
+		60%, 100% {
+			-webkit-transform: translate(130%, 4.5em);
+				-ms-transform: translate(130%, 4.5em);
+					transform: translate(130%, 4.5em);
+		}
+
+		0% {opacity: 0;}
+		15% {opacity: 1;}
+		85% {opacity: 1;}
+		100% {opacity: 0;}
+	}
+
+@keyframes smartphone-demo {
+	0%, 15% {
+		-webkit-transform: translate(0%, 1em);
+			-ms-transform: translate(0%, 1em);
+				transform: translate(0%, 1em);
+	}
+	60%, 100% {
+		-webkit-transform: translate(-50%, 1em);
+			-ms-transform: translate(-50%, 1em);
+				transform: translate(-50%, 1em);
+	}
+
+	0% {opacity: 0;}
+	15% {opacity: 1;}
+	85% {opacity: 1;}
+	100% {opacity: 0;}
+}
+	@-webkit-keyframes smartphone-demo {
+		0%, 15% {
+		-webkit-transform: translate(0%, 1em);
+			-ms-transform: translate(0%, 1em);
+				transform: translate(0%, 1em);
+		}
+		60%, 100% {
+			-webkit-transform: translate(-50%, 1em);
+				-ms-transform: translate(-50%, 1em);
+					transform: translate(-50%, 1em);
+		}
+
+		0% {opacity: 0;}
+		15% {opacity: 1;}
+		85% {opacity: 1;}
+		100% {opacity: 0;}
+	}
 
 
 

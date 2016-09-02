@@ -22,7 +22,8 @@
 }
 
 .km-root .km-pane a[class^="flaticon-"] .km-icon,
-.km-root .km-pane a[class*=" flaticon-"] .km-icon {
+.km-root .km-pane a[class*=" flaticon-"] .km-icon,
+.flaticon-qr-code {
   height: auto;
   width: auto;
   display: inline-block;
@@ -30,7 +31,8 @@
 
 [class^="flaticon-"] .km-icon:after,
 [class*=" flaticon-"] .km-icon:after,
-.flaticon-clock .km-icon:before {   
+.flaticon-clock .km-icon:before,
+.flaticon-qr-code::after {   
   display: inline-block;
   width: auto;
   font-family: Flaticon;
@@ -61,10 +63,10 @@
 .flaticon-search .km-icon::after { content: "\f110"; }
 .flaticon-share .km-icon::after { content: "\f100"; }
 .flaticon-smiley .km-icon::after { content: "\f111"; }
-.flaticon-test .km-icon::after { content: "\f10a"; }
+.flaticon-tests .km-icon::after { content: "\f10a"; }
 .flaticon-test-result .km-icon::after { content: "\f108"; }
 .flaticon-user .km-icon::after { content: "\f113"; }
-.flaticon-qr-code .km-icon::after { content: "\f115"; }
+.flaticon-qr-code::after { content: "\f115"; }
 .flaticon-x .km-icon::after { content: "\f105"; }
 
 

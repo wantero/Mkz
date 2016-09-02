@@ -59,11 +59,8 @@
                 <img class="main-view-logo" src="styles/images/Logo-Mackenzie-app.svg" alt="M">
 
                 <div data-title="Nome User" class="main-header-username">
-                    <!-- É possível inserir o user name no data-title? -->
-                    <!-- <span data-role="view-title"></span> -->
                     <p id="displayUser" data-bind="app.user"></p>
 
-                    <!-- TIA number aqui -->
                     <div class="tia-number">
                         <p>TIA</p>
                         <p id="displayTIA"></p>
@@ -72,6 +69,7 @@
             </div>
 
             <div>
+                <!-- EDITAR PERFIL -->
                 <div id="main-header-perfil" class="section-name-wrap">
                     <div class="section-icon-name flaticon-user">
                         <span class="km-icon" data-icon=""></span>
@@ -80,6 +78,7 @@
                     <a class="link-x" id="editarPerfilClose"></a>
                 </div>
 
+                <!-- PERGUNTAS FREQUENTES -->
                 <div id="main-header-faq" class="section-name-wrap">
                     <div class="section-icon-name flaticon-faq">
                         <span class="km-icon" data-icon=""></span>
@@ -87,6 +86,47 @@
                     </div>
                     <a class="link-x" id="editarFaqsClose"></a>
                 </div>
+
+                <!-- QUIZ VIEW -->
+                <div class="section-name-wrap">
+                    <div class="section-icon-name flaticon-tests">
+                        <span class="km-icon" data-icon="info"></span> 
+                        <span>Quiz</span>
+                    </div>
+                    <a class="link-x" data-bind="{ events: { click: avaliacoesViewModel.avaliacoesClose } }"></a>
+                </div>
+
+                <!-- QUIZ DETAILS -->
+                <div class="section-name-wrap">
+                    <a data-role="backbutton" data-align="left"></a> 
+
+                    <div class="section-icon-name flaticon-tests">
+                        <span class="km-icon" data-icon="info"></span>
+                        <span>Quiz</span>
+                    </div>
+                    <!-- <a class="link-x" id=""></a> -->
+                </div>
+
+                <!-- QUIZ RESULTADO -->
+                <div class="section-name-wrap resultado">
+                    <a id="resultBackButton" data-role="backbutton" data-align="left" style="display:none"></a>
+
+                    <div class="section-icon-name flaticon-tests">
+                        <span class="km-icon" data-icon="info"></span>
+                        <span>Quiz <br>(Resultado)</span>
+                    </div>
+                    <!-- <a class="link-x" id=""></a> -->
+                </div>
+
+                <!-- RANKINGS -->
+                <div class="section-name-wrap">
+                    <div class="section-icon-name flaticon-ranking">
+                        <span class="km-icon" data-icon=""></span>
+                        <span>Rankings</span>
+                    </div>
+                    <a class="link-x" data-bind="{ events: { click: rankingsClose } }"></a>
+                </div>
+
             </div>
         </header>
     </div>
@@ -100,11 +140,8 @@
                 <img class="main-view-logo" src="styles/images/Logo-Mackenzie-app.svg" alt="M">
 
                 <div data-title="Nome User" class="main-header-username">
-                    <!-- É possível inserir o user name no data-title? -->
-                    <!-- <span data-role="view-title"></span> -->
                     <p id="displayUser"></p>
 
-                    <!-- TIA number aqui -->
                     <div class="tia-number">
                         <p>TIA</p>
                         <p id="displayTIA"></p>
@@ -123,9 +160,9 @@
             <div data-role="tabstrip" data-selected-index="1" data-select="onSelect">
                 <a data-icon="home" class="flaticon-home"></a>
                 <a data-icon="search" class="flaticon-search"></a>
-                <a data-icon="">---</a>
-                <a data-icon="">---</a>
-                <a data-icon="">---</a>
+                <a data-icon="search" class="flaticon-calendar"></a>
+                <a data-icon="search" class="flaticon-pin"></a>
+                <a data-icon="search" class="flaticon-check"></a>
             </div>
         </div>
     </div>    
@@ -139,11 +176,8 @@
                 <img class="main-view-logo" src="styles/images/Logo-Mackenzie-app.svg" alt="M">
 
                 <div data-title="Nome User" class="main-header-username">
-                    <!-- É possível inserir o user name no data-title? -->
-                    <!-- <span data-role="view-title"></span> -->
                     <p id="displayUser"></p>
 
-                    <!-- TIA number aqui -->
                     <div class="tia-number">
                         <p>TIA</p>
                         <p id="displayTIA"></p>
@@ -156,9 +190,9 @@
             <div data-role="tabstrip" data-selected-index="1" data-select="onSelect">
                 <a data-icon="home" class="flaticon-home"></a>
                 <a data-icon="search" class="flaticon-search"></a>
-                <a data-icon="">---</a>
-                <a data-icon="">---</a>
-                <a data-icon="">---</a>
+                <a data-icon="search" class="flaticon-calendar"></a>
+                <a data-icon="search" class="flaticon-pin"></a>
+                <a data-icon="search" class="flaticon-check"></a>
             </div>
         </div>   
 
@@ -167,7 +201,7 @@
     <div data-role="layout" data-id="main-nonav">
     </div>
 
-    <div id="appDrawer" data-role="drawer" data-title="" data-show="onDrawerShow"> <!-- É possível inserir o user name no data-title? -->
+    <div id="appDrawer" data-role="drawer" data-title="" data-show="onDrawerShow"> 
         <header data-role="header">
             <div data-role="navbar">
                 <div class="user-thumb">
@@ -177,7 +211,7 @@
                 <div class="info-user-wrap">
                     <span xdata-role="view-title" id="drawerUser"></span>
 
-                    <div class="tia-number" > <!-- TIA number aqui -->
+                    <div class="tia-number" >
                         <p>TIA</p>
                         <p id="drawerTIA"></p>
                     </div>
