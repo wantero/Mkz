@@ -30,7 +30,8 @@
 .km-flat .km-view .km-content .descricao-wrap > .km-button.km-back.km-state-active,
 .km-flat .km-view .km-content .avaliacoes-wrap .prox-aula .km-button.km-state-active,
 .km-flat .km-view .km-content .km-button.km-back.km-state-active,
-#kendoUiMobileApp .aval-praticas .tipo-avaliacao-wrap + .km-button.km-state-active {
+#kendoUiMobileApp .aval-praticas .tipo-avaliacao-wrap + .km-button.km-state-active,
+#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .section-name-wrap .km-back {
 	background-color: transparent;
 }
 
