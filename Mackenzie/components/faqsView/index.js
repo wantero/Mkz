@@ -216,9 +216,10 @@ app.faqsView = kendo.observable({
     }
 
     parent.set('onShow', function(e) {
-        $('#main-header-faq').show().siblings().hide();
+        app.displayUser();
 
-        $('#editarFaqsClose').click(function() {
+        e.view.element.find('#main-header-faq').show().siblings().hide();        
+        e.view.element.find('#editarFaqsClose').click(function() {
             $('#appDrawer').data('kendoMobileDrawer').show();
         });
 
@@ -236,8 +237,6 @@ app.faqsView = kendo.observable({
                 backbutton.css('visibility', 'hidden');
             }
         }
-
-        app.displayUser();
 
         // Armazena o parametro recebido pela VIEW
         viewParam = param;     

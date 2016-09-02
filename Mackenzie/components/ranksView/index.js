@@ -190,6 +190,11 @@ app.ranksView = kendo.observable({
     });
 
     parent.set('onShow', function(e) {
+        e.view.element.find('#main-header-ranking').show().siblings().hide();        
+        e.view.element.find('#rankingClose').click(function() {
+            $('#appDrawer').data('kendoMobileDrawer').show();
+        });
+
         var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
             isListmenu = false,
             backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');

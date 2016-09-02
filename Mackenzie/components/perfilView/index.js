@@ -98,13 +98,15 @@ app.perfilView = kendo.observable({
 
     parent.set('perfilViewModel', perfilViewModel);
 
-    parent.set('onShow', function() {
-        $('#main-header-perfil').show().siblings().hide();
+    parent.set('onShow', function(e) {
+        var data = app.getUserData();
+        app.displayUser();
 
-        $('#editarPerfilClose').click(function() {
+        e.view.element.find('#main-header-perfil').show().siblings().hide();        
+        e.view.element.find('#editarPerfilClose').click(function() {
             $('#appDrawer').data('kendoMobileDrawer').show();
         });
-        
+
         var data = app.getUserData();
         app.displayUser();
 

@@ -617,7 +617,11 @@ app.avaliacoesView = kendo.observable({
     });*/
 
     parent.set('onShow', function(e) {
-        console.log('>>> on show');
+        e.view.element.find('#main-header-quiz').show().siblings().hide();        
+        e.view.element.find('#quizClose').click(function() {
+            $('#appDrawer').data('kendoMobileDrawer').show();
+        });
+
         var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
             isListmenu = false,
             backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');
@@ -646,12 +650,11 @@ app.avaliacoesView = kendo.observable({
     });
 
     parent.set('onDetailShow', function(e) {
-        console.log('>>> on detail show');
         app.displayUser();
+        e.view.element.find('#main-header-quiz-detail').show().siblings().hide();        
     });
 
     parent.set('onDetailAfterShow', function(e) {
-        console.log('>>> on detail after show');
         $('#avaliacoesData').show();
 
         var parent = $('#formQuestionario');
@@ -668,8 +671,8 @@ app.avaliacoesView = kendo.observable({
     });
 
     parent.set('onResultadoShow', function(e) {
-        console.log('>>> on resulado show');
         app.displayUser();
+        e.view.element.find('#main-header-quiz-resultado').show().siblings().hide();        
 
         var parent = $('#resultadoQuestionario');
 
@@ -685,11 +688,11 @@ app.avaliacoesView = kendo.observable({
 
         var avaliacao = avaliacoesViewModel.get('currentItem');
         if (avaliacao.Flow && avaliacao.Flow.toLowerCase() == 'jarealizado') {
-            $('#resultOkButton').hide();
-            $('#resultBackButton').show();
+            e.view.element.find('#resultOkButton').hide();
+            e.view.element.find('#resultBackButton').show();
         } else {
-            $('#resultOkButton').show();
-            $('#resultBackButton').hide();
+            e.view.element.find('#resultOkButton').show();
+            e.view.element.find('#resultBackButton').hide();
         }
     });    
 

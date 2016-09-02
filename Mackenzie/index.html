@@ -70,7 +70,7 @@
 
             <div>
                 <!-- EDITAR PERFIL -->
-                <div id="main-header-perfil" class="section-name-wrap">
+                <div id="main-header-perfil" class="section-name-wrap" style="display:none">
                     <div class="section-icon-name flaticon-user">
                         <span class="km-icon" data-icon=""></span>
                         <span>Editar Perfil</span>
@@ -79,7 +79,7 @@
                 </div>
 
                 <!-- PERGUNTAS FREQUENTES -->
-                <div id="main-header-faq" class="section-name-wrap">
+                <div id="main-header-faq" class="section-name-wrap" style="display:none">
                     <div class="section-icon-name flaticon-faq">
                         <span class="km-icon" data-icon=""></span>
                         <span>Perguntas Frequentes</span>
@@ -88,16 +88,16 @@
                 </div>
 
                 <!-- QUIZ VIEW -->
-                <div class="section-name-wrap">
+                <div id="main-header-quiz" class="section-name-wrap" style="display:none">
                     <div class="section-icon-name flaticon-tests">
                         <span class="km-icon" data-icon="info"></span> 
                         <span>Quiz</span>
                     </div>
-                    <a class="link-x" data-bind="{ events: { click: avaliacoesViewModel.avaliacoesClose } }"></a>
+                    <a class="link-x" id="quizClose"></a>
                 </div>
 
                 <!-- QUIZ DETAILS -->
-                <div class="section-name-wrap">
+                <div id="main-header-quiz-detail" class="section-name-wrap" style="display:none">
                     <a data-role="backbutton" data-align="left"></a> 
 
                     <div class="section-icon-name flaticon-tests">
@@ -108,23 +108,23 @@
                 </div>
 
                 <!-- QUIZ RESULTADO -->
-                <div class="section-name-wrap resultado">
+                <div id="main-header-quiz-resultado" class="section-name-wrap resultado" style="display:none">
                     <a id="resultBackButton" data-role="backbutton" data-align="left" style="display:none"></a>
 
                     <div class="section-icon-name flaticon-tests">
                         <span class="km-icon" data-icon="info"></span>
-                        <span>Quiz <br>(Resultado)</span>
+                        <span>Quiz</span>
                     </div>
                     <!-- <a class="link-x" id=""></a> -->
                 </div>
 
                 <!-- RANKINGS -->
-                <div class="section-name-wrap">
+                <div id="main-header-ranking" class="section-name-wrap" style="display:none">
                     <div class="section-icon-name flaticon-ranking">
                         <span class="km-icon" data-icon=""></span>
                         <span>Rankings</span>
                     </div>
-                    <a class="link-x" data-bind="{ events: { click: rankingsClose } }"></a>
+                    <a class="link-x" id="rankingClose"></a>
                 </div>
 
             </div>
