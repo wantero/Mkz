@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Teste Checkin</title>
+		
+		<link href="../../kendo/styles/kendo.common.min.css" rel="stylesheet">
+		<link href="../../kendo/styles/kendo.uniform.min.css" rel="stylesheet">
+		<link href="../../kendo/styles/kendo.mobile.all.min.css" rel="stylesheet">
+		<link href="../../kendo/styles/kendo.mobile.makenzie.css" rel="stylesheet">
+
+		<link href="../../styles/overrides.css" rel="stylesheet">
+		<link href="../../styles/main.css" rel="stylesheet">
+		<link href="../../styles/mkz-fonticon.css" rel="stylesheet">
+		<link href="../../styles/app.css" rel="stylesheet">
+		<link href="../../styles/app-auxiliar.css" rel="stylesheet">
+
+		<script src="cordova.js"></script>
+		<script src="kendo/js/jquery.min.js"></script>
+
+		<script src="kendo/js/kendo.all.min.js"></script>
+		
+		<script src="kendo/js/cultures/kendo.culture.pt-BR.min.js"></script>
+		<script src="app.js"></script>
+		<script src="bower_components/everlive/min/everlive-171.all.min.js"></script>
+		<script src="dataProviders/mackenzie.js"></script>
+
+		<style>
+			html, body {height: 100%;}
+			body.km-flat {margin: 0; font-size: 0.92em;}
+		</style>
+	</head>
+
+	<body class="km-widget km-flat" data-role="pane">
+		<div id="mackz-checkin">
+
+			<div class="section-name-wrap">
+			    <div class="section-icon-name flaticon-publication">
+			        <span class="km-icon" data-icon=""></span>
+			        <span>Check-in de Aula</span>
+			    </div>
+			    <a class="link-x" data-bind=""></a>
+			</div>
+			
+			<div class="section-name-wrap checkin-header" style="padding:0 0.8em;">
+				<div class="section-icon-name flaticon-pin-search">
+				    <span class="km-icon" data-icon=""></span>
+	            	<p>Escaneie o código QR disponível com o Professor</p>
+				</div>
+		    </div>
+
+		    <div class="checkin-conteudo-wrap">
+		    	<div class="modal-informativo-wrap">
+		    		<div class="checkin-demo">
+		    			<div class="QR-code flaticon-qr-code"></div>
+		    			<div class="smartphone"></div>
+		    		</div>
+
+		    		<div class="km-button-group">
+		    			<button class="km-button" data-role="button" type="button">Ok, entendi</button>
+		    		</div>	
+		    	</div>
+		    </div>
+			
+		</div>
+	    
+	</body>
+</html>
