@@ -1,83 +1,108 @@
-<div id="mackz-mural" data-role="view" data-title="" data-layout="main-detail" data-model="app.faqsView" 
-     data-show="app.faqsView.onShow" data-after-show="app.faqsView.afterShow">
+<div id="mackz-mural" data-role="view" data-title="" data-layout="main-detail" data-model="app.muralView" 
+     data-show="app.muralView.onShow">
     
-    <div class="section-name-wrap">
-        <div class="section-icon-name flaticon-publication">
-            <span class="km-icon" data-icon=""></span>
-            <span>Minhas Publicações</span>
-        </div>
-        <a class="link-x" data-bind=""></a>
-    </div>
-
-    <div class="section-name-wrap mural-header">
-        <p>Compartilhe um artigo, foto ou ideia</p>
-
-        <div class="mural-header-icons">
-            <div class="section-icon-name flaticon-post">
+    <div>
+        <div id="header-minhas-publicacoes" class="section-name-wrap">
+            <div class="section-icon-name flaticon-publication">
                 <span class="km-icon" data-icon=""></span>
+                <span>Minhas Publicações</span>
             </div>
-            <div class="section-icon-name flaticon-camera">
-                <span class="km-icon" data-icon=""></span>
-            </div>
+            <a class="link-x" id="muralPublicacoesClose"></a>
         </div>
-        <!-- <a class="link-x" data-bind=""></a> -->
-    </div>
 
-    <div class="mural-conteudo-wrap">
-        <ul class="masterDetailView km-widget km-listview km-list" data-role="listview">
-
-            <li data-uid="" class="bg-branco">
-
-                <!-- NOME DO USUÁRIO QUE POSTOU -->
-                <div class="post-user">
-                    <div class="user-thumb mural-thumb thumb-sm">
-                        <img class="km-thumbnail" data-bind="" src="../../styles/images/user-male.png" alt="Your photo">
-                    </div>
-
-                    <h4 data-bind="">Brad Pitt</h4>
-
-                    <div class="section-icon-name flaticon-clock">
+        <div id="header-mural-publicacoes" class="section-name-wrap mural-header">
+            <form class="section-name-wrap">
+                <input id="Pesquisa" placeholder="Compartilhe um artigo, foto ou ideia" type="text" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro">
+                <div class="mural-header-icons">
+                    <div class="section-icon-name flaticon-post">
                         <span class="km-icon" data-icon=""></span>
-                        1 hora atrás
+                    </div>
+                    <div class="section-icon-name flaticon-camera">
+                        <span class="km-icon" data-icon=""></span>
                     </div>
                 </div>
+            </form>
+        </div>
+    </div>
 
-                <!-- CONTEÚDO DO POST -->
-                <div class="post-conteudo-wrap">
-                    <div class="post-conteudo">
-                        <p>Os Tablets estão substituindo os cadernos...</p>
-                        <div class="post-imagem">
-                            <img src="http://www.tecnicosabc.com.br/images/imagens/tablet2.jpg">
+    <div id="muralList" class="aval-wrap aval-praticas" xstyle="display:none">
+        <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="" data-template="muralTemplate" 
+            data-bind="{ source: muralViewModel.dataSource }" data-pull-to-refresh="true" data-endless-scroll="false"
+            id="muralDetail">
+        </ul>
+    </div>
+
+
+    <script type="text/x-kendo-template" id="muralTemplate">
+        # data = app.muralView.muralViewModel.fixHierarchicalData(data); #
+        # console.log(data); #
+
+        <div class="mural-conteudo-wrap">
+            <ul class="masterDetailView km-widget km-listview km-list" data-role="listview">
+
+                <li data-uid="" class="bg-branco">
+
+                    <!-- NOME DO USUÁRIO QUE POSTOU -->
+                    <div class="post-user">
+                        <div class="user-thumb mural-thumb thumb-sm">
+                            # if (data.User.fotoUri && data.User.fotoUri != "") { #
+                            <img class="km-thumbnail" data-bind="" src="#: data.User.fotoUri #"  alt="Your photo">
+                            # } else { #
+                            <img class="km-thumbnail" data-bind="" src="../../styles/images/user-male.png" alt="Your photo">
+                            # } #
+                        </div>
+
+                        <h4#: data['User']['DisplayName'] #</h4>
+
+                        <div class="section-icon-name flaticon-clock">
+                            <span class="km-icon" data-icon=""></span>
+                            #: data['TempoPublicacao'] #
                         </div>
                     </div>
 
-                    <div class="section-icon-name flaticon-smiley">
-                        <span class="km-icon" data-icon=""></span>
-                        12
+                    <!-- CONTEÚDO DO POST -->
+                    <div class="post-conteudo-wrap">
+                        <div class="post-conteudo">
+                            <p>#: data['Titulo'] #</p>
+                            <div class="post-imagem">
+                                # if (data.Tipo && data.Tipo == "image") { #
+                                    # if (data.AnexoUri && data.AnexoUri != "") { #
+                                    <img src="#: data.AnexoUri #">
+                                    # } #
+                                # } #
+
+                                <!-- ADICIONAR AQUI OS MODELOS PARA OS OUTROS TIPOS -->
+                            </div>
+                        </div>
+
+                        <div class="section-icon-name flaticon-smiley">
+                            <span class="km-icon" data-icon=""></span>
+                            #: data.Likes.length #
+                        </div>
+                        <div class="section-icon-name flaticon-comment">
+                            <span class="km-icon" data-icon=""></span>
+                            <span>#: data.Comentarios.length #</span> comentário
+                        </div>
                     </div>
-                    <div class="section-icon-name flaticon-comment">
-                        <span class="km-icon" data-icon=""></span>
-                        <span>1</span> comentário
-                    </div>
-                </div>
 
-                <!-- BOTÕES AÇÕES LIKE/COMENTAR/COMPARTILHAR -->
-                <ul class="post-botoes">
-                    <li class="section-icon-name flaticon-smiley">
-                        <span class="km-icon" data-icon=""></span>
-                    </li>
+                    <!-- BOTÕES AÇÕES LIKE/COMENTAR/COMPARTILHAR -->
+                    <ul class="post-botoes">
+                        <li class="section-icon-name flaticon-smiley">
+                            <span class="km-icon" data-icon=""></span>
+                        </li>
 
-                    <li class="section-icon-name flaticon-comment">
-                        <span class="km-icon" data-icon=""></span>
-                    </li>
+                        <li class="section-icon-name flaticon-comment">
+                            <span class="km-icon" data-icon=""></span>
+                        </li>
 
-                    <li class="section-icon-name flaticon-share">
-                        <span class="km-icon" data-icon=""></span>
-                    </li>
-                </ul>
-            </li>
+                        <li class="section-icon-name flaticon-share">
+                            <span class="km-icon" data-icon=""></span>
+                        </li>
+                    </ul>
+                </li>
 
-        </ul>
-    </div>
-        
+            </ul>
+        </div>
+    </script>
+
 </div>
