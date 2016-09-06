@@ -161,6 +161,18 @@ app.disciplinasView = kendo.observable({
                     data.Professor.Nome = '';
                 }
 
+                if (data.Professor.Unidade && data.Professor.Unidade == '') {
+                    data.Professor.Unidade = '?';
+                }
+
+                if (data.Professor.Turma && data.Professor.Turma == '') {
+                    data.Professor.Turma = '?';
+                }
+
+                if (data.Professor.Sala && data.Professor.Sala == '') {
+                    data.Professor.Sala = '?';
+                }
+
                 return result;
             },
             itemClick: function(e) {
@@ -251,6 +263,17 @@ app.disciplinasView = kendo.observable({
                 /*var dataItem = app.cursosView.cursosViewModel.get('originalItem');
                 app.mobileApp.navigate('#components/cursosView/details.html?uid=' + dataItem.uid);*/
             },
+            publicacoesTabSelect: function(e) {
+                if (e.currentTarget.id === 'btDocs') {
+                    $('#tabPubDocs').show().siblings().hide();
+                } else if (e.currentTarget.id === 'btImages') {
+                    $('#tabPubImages').show().siblings().hide();
+                } else if (e.currentTarget.id === 'btMsgs') {
+                    $('#tabPubMsgs').show().siblings().hide();
+                } else if (e.currentTarget.id === 'btVideos') {
+                    $('#tabPubVideos').show().siblings().hide();
+                }
+            },
             linkBind: function(linkString) {
                 var linkChunks = linkString.split('|');
                 if (linkChunks[0].length === 0) {
@@ -336,6 +359,15 @@ app.disciplinasView = kendo.observable({
     });
 
     parent.set('onDetailShow', function(e) {
+        var publicacoesCount = disciplinasViewModel.get('publicacoesCount');
+
+        if (publicacoesCount) {
+            $('#tabAvaliacoes #docsCount').text(publicacoesCount.doc);
+            $('#tabAvaliacoes #videosCount').text(publicacoesCount.video);
+            $('#tabAvaliacoes #imagesCount').text(publicacoesCount.image);
+            $('#tabAvaliacoes #msgsCount').text(publicacoesCount.msg);
+        }
+
         disciplinasViewModel.selectAvaliacoes();
     })
 

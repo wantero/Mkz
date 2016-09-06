@@ -65,11 +65,13 @@
         </div>
         <label class="km-label-above">
             # nomeProfessor = data.Professor && data.Professor.Nome ? data.Professor.Nome : ''; #
-            
+            # unidade = data.Professor && data.Professor.Unidade ? data.Professor.Unidade : '?'; #
+            # turma = data.Professor && data.Professor.Turma ? data.Professor.Turma : '?'; #
+            # sala = data.Professor && data.Professor.Sala ? data.Professor.Sala : '?'; #           
             <span>#: nomeProfessor #</span><br>
-            <span class="unid-turma-sala unid">FCI</span>
-            <span class="unid-turma-sala turma">3A</span>
-            <span class="unid-turma-sala sala">701</span>
+            <span class="unid-turma-sala unid">#: unidade #</span>
+            <span class="unid-turma-sala turma">#: turma #</span>
+            <span class="unid-turma-sala sala">#: sala #</span>
         </label>
     </script>
 </div>

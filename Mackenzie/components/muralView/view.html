@@ -12,7 +12,7 @@
 
         <div id="header-mural-publicacoes" class="section-name-wrap mural-header">
             <form class="section-name-wrap">
-                <input id="Pesquisa" placeholder="Compartilhe um artigo, foto ou ideia" type="text" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro">
+                <input id="compartilhar" placeholder="Compartilhe um artigo, foto ou ideia" type="text" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro">
                 <div class="mural-header-icons">
                     <div class="section-icon-name flaticon-post">
                         <span class="km-icon" data-icon=""></span>
@@ -35,12 +35,11 @@
 
     <script type="text/x-kendo-template" id="muralTemplate">
         # data = app.muralView.muralViewModel.fixHierarchicalData(data); #
-        # console.log(data); #
 
         <div class="mural-conteudo-wrap">
             <ul class="masterDetailView km-widget km-listview km-list" data-role="listview">
 
-                <li data-uid="" class="bg-branco">
+                <li class="bg-branco">
 
                     <!-- NOME DO USUÁRIO QUE POSTOU -->
                     <div class="post-user">
@@ -77,30 +76,40 @@
 
                         <div class="section-icon-name flaticon-smiley">
                             <span class="km-icon" data-icon=""></span>
-                            #: data.Likes.length #
+                            <span id="likesCount">#: data.Likes.length #</span>
                         </div>
                         <div class="section-icon-name flaticon-comment">
                             <span class="km-icon" data-icon=""></span>
-                            <span>#: data.Comentarios.length #</span> comentário
+                            <span id="commentsCount">#: data.Comentarios.length #</span> comentário(s)
                         </div>
                     </div>
 
                     <!-- BOTÕES AÇÕES LIKE/COMENTAR/COMPARTILHAR -->
                     <ul class="post-botoes">
                         <li class="section-icon-name flaticon-smiley">
-                            <span class="km-icon" data-icon=""></span>
+                            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralLikeClick} }"></span>
                         </li>
 
                         <li class="section-icon-name flaticon-comment">
-                            <span class="km-icon" data-icon=""></span>
+                            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCommentClick} }"></span>
                         </li>
 
                         <li class="section-icon-name flaticon-share">
-                            <span class="km-icon" data-icon=""></span>
+                            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralShareClick} }"></span>
                         </li>
                     </ul>
-                </li>
 
+                    <div id="header-mural-comentario" class="section-name-wrap mural-header" style="display:none">
+                        <form class="section-name-wrap">
+                            <input id="novoComentario" placeholder="Digite aqui seu comentário" type="text" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro">
+                            <div class="mural-header-icons">
+                                <div class="section-icon-name flaticon-post">
+                                    <span class="km-icon" data-icon="" data-bind="{ events: {click: muralSendCommentClick} }"></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
             </ul>
         </div>
     </script>

@@ -133,11 +133,11 @@
         <!-- FOOTER -->
         <div data-role="footer">
             <div data-role="tabstrip" data-selected-index="1" data-select="onSelect">
-                <a data-icon="home" class="flaticon-home" href="components/muralView/view.html?tipo=mural"></a>
-                <a data-icon="search" class="flaticon-search" href="components/cursosView/view.html"></a>
-                <a data-icon="search" class="flaticon-calendar" href="components/cursosView/view.html"></a>
-                <a data-icon="search" class="flaticon-pin" href="components/checkinView/view.html"></a>
-                <a data-icon="search" class="flaticon-check" href=""></a>
+                <a xdata-icon="home" class="flaticon-home" href="components/muralView/view.html"></a>
+                <a xdata-icon="search" class="flaticon-search" href="components/cursosView/view.html"></a>
+                <a xdata-icon="search" class="flaticon-calendar" onclick="app.cursosView.cursosViewModel.selectSchedulerFromMenu()" x-href="components/cursosView/details.html"></a>
+                <a xdata-icon="search" class="flaticon-pin" href="components/checkinView/view.html"></a>
+                <a xdata-icon="search" class="flaticon-check" x-href=""></a>
             </div>
         </div>
     </div>
@@ -170,11 +170,11 @@
         <!-- FOOTER -->
         <div data-role="footer">
             <div data-role="tabstrip" data-selected-index="1" data-select="onSelect">
-                <a data-icon="home" class="flaticon-home" href="components/muralView/view.html?tipo=mural"></a>
-                <a data-icon="search" class="flaticon-search" href="components/cursosView/view.html"></a>
-                <a data-icon="search" class="flaticon-calendar" href="components/cursosView/view.html"></a>
-                <a data-icon="search" class="flaticon-pin" href="components/checkinView/view.html"></a>
-                <a data-icon="search" class="flaticon-check" href=""></a>
+                <a xdata-icon="home" class="flaticon-home" href="components/muralView/view.html"></a>
+                <a xdata-icon="search" class="flaticon-search" href="components/cursosView/view.html"></a>
+                <a xdata-icon="search" class="flaticon-calendar" data-bind="{events: {click: app.cursosView.cursosModelView.selectSchedulerFromMenu }}" x-href="components/cursosView/details.html"></a>
+                <a xdata-icon="search" class="flaticon-pin" href="components/checkinView/view.html"></a>
+                <a xdata-icon="search" class="flaticon-check" x-href=""></a>
             </div>
         </div>
     </div>    
@@ -198,15 +198,14 @@
             </div>
         </header>
 
-
         <!-- FOOTER -->
         <div data-role="footer">
             <div data-role="tabstrip" data-selected-index="1" data-select="onSelect">
-                <a data-icon="home" class="flaticon-home" href="components/muralView/view.html?tipo=mural"></a>
-                <a data-icon="search" class="flaticon-search" href="components/cursosView/view.html"></a>
-                <a data-icon="search" class="flaticon-calendar" href="components/cursosView/view.html"></a>
-                <a data-icon="search" class="flaticon-pin" href="components/checkinView/view.html"></a>
-                <a data-icon="search" class="flaticon-check" href=""></a>
+                <a xdata-icon="home" class="flaticon-home" href="components/muralView/view.html"></a>
+                <a xdata-icon="search" class="flaticon-search" href="components/cursosView/view.html"></a>
+                <a xdata-icon="search" class="flaticon-calendar" onclick="app.cursosView.cursosViewModel.selectSchedulerFromMenu()" x-href="components/cursosView/details.html"></a>
+                <a xdata-icon="search" class="flaticon-pin" href="components/checkinView/view.html"></a>
+                <a xdata-icon="search" class="flaticon-check" x-href=""></a>
             </div>
         </div>
     </div>    

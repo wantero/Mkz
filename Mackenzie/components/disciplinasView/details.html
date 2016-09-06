@@ -13,9 +13,9 @@
 			</div>
 			<label class="km-label-above">
 			    <span data-bind="text: currentDisciplina['Professor']['Nome']"></span><br>
-			    <span class="unid-turma-sala unid">FCI</span>
-			    <span class="unid-turma-sala turma">3A</span>
-			    <span class="unid-turma-sala sala">701</span>
+			    <span data-bind="text: currentDisciplina['Professor']['Unidade']" class="unid-turma-sala unid"></span>
+			    <span data-bind="text: currentDisciplina['Professor']['Turma']" class="unid-turma-sala turma"></span>
+			    <span data-bind="text: currentDisciplina['Professor']['Sala']" class="unid-turma-sala sala"></span>
 			</label>
 		</div>
 	 </div>
@@ -35,51 +35,27 @@
 		    	<div class="grupo-wrap um">
 			    	<div class="flaticon-docs">
 		    			<span class="km-icon" data-icon="i-film"></span>
-		    			<a data-role="button" data-align="left">20 Documentos</a>
+		    			<a data-role="button" data-align="left"><span id="docsCount">0</span> Documentos</a>
 				    </div>
 		    		<div class="flaticon-picture">
 		    			<span class="km-icon" data-icon="i-film"></span>
-		    			<a data-role="button" data-align="left">3 Imagens</a>
+		    			<a data-role="button" data-align="left"><span id="imagesCount">0</span> Imagens</a>
 				    </div>
 		    	</div>
 		    	<div class="grupo-wrap dois">
 			    	<div class="flaticon-email">
 		    			<span class="km-icon" data-icon="i-film"></span>
-		    			<a data-role="button" data-align="left">15 Mensagens</a>
+		    			<a data-role="button" data-align="left"><span id="msgsCount">0</span> Mensagens</a>
 				    </div>
 		    		<div class="flaticon-movie">
 		    			<span class="km-icon" data-icon="i-film"></span>
-		    			<a data-role="button" data-align="left">6 Vídeos</a>
+		    			<a data-role="button" data-align="left"><span id="videosCount">0</span> Vídeos</a>
 				    </div>
 		    	</div>
 		    </div>
 
 		    <div class="aval-wrap aval-praticas">
 		    	<h3>Quiz</h3>
-		    	<!-- <ul data-role="listview">
-		    		<li>
-		    			<div class="tipo-avaliacao-wrap valido">
-			    			<p><span class="km-icon" data-icon="i-film"></span>Avaliação 1</p>
-			    			<p><b>(Expira em 2 dias)</b></p>
-		    			</div>
-		    			<a class="valido-button" data-role="button" data-align="left">Até 5 Pontos</a>
-		    		</li>
-
-		    		<li>
-		    			<div class="tipo-avaliacao-wrap realizado">
-			    			<p><span class="km-icon" data-icon="i-film"></span>Avaliação 2</p>
-		    			</div>
-		    			<a class="realizado-button" data-role="button" data-align="left" disabled>Já realizado</a>
-		    		</li>
-
-		    		<li>
-		    			<div class="tipo-avaliacao-wrap expirado">
-			    			<p><span class="km-icon" data-icon="i-film"></span>Avaliação 3</p>
-		    			</div>
-		    			<a class="expirado-button" data-role="button" data-align="left">Expirado</a>
-		    		</li>
-		    	</ul> -->
-
 			    <div class="aval-wrap aval-praticas">
 			        <ul class="masterDetailView" data-role="listview" data-auto-bind="true" data-style="" data-template="avaliacoesTemplate" 
 			            xdata-show="app.avaliacoesView.onShow"
@@ -90,54 +66,68 @@
 	    </div>
 
 	    <div id="tabPublicacoes" style="display:none">
-	      <ul id="first-period" data-role="buttongroup" class="km-widget km-buttongroup">
-	          <li class="km-button km-state-active"><span class="km-text">2010</span></li>
-	          <li class="km-button"><span class="km-text">2011</span></li>
-	          <li class="km-button"><span class="km-text">2012</span></li>
-	          <li class="km-button"><span class="km-text">2013</span></li>
-	          <li class="km-button"><span class="km-text">2014</span></li>
-	          <li class="km-button"><span class="km-text">2015</span></li>
-	          <li class="km-button"><span class="km-text">2016</span></li>
-	      </ul>
+			<div id="header-disciplinas-publicacoes" class="section-name-wrap mural-header">
+				<form class="section-name-wrap">
+					<input id="disciplina-compartilhar" placeholder="Compartilhe um artigo, foto ou ideia" type="text" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro">
+					<div class="mural-header-icons">
+						<div class="section-icon-name flaticon-post">
+							<span class="km-icon" data-icon=""></span>
+						</div>
+						<div class="section-icon-name flaticon-camera">
+							<span class="km-icon" data-icon=""></span>
+						</div>
+					</div>
+				</form>
+			</div>
 
-	      <ul id="first-period-2" data-role="buttongroup" class="km-widget km-buttongroup">
-	          	<li class="flaticon-docs km-state-active"><span class="km-icon" data-icon="i-film"></span>Docs</li>
-	    		<li class="flaticon-picture"><span class="km-icon" data-icon="i-film"></span>6 Vídeos</li>
-	    		<li class="flaticon-email"><span class="km-icon" data-icon="i-film"></span>Mensagens</li>
-	    		<li class="flaticon-movie"><span class="km-icon" data-icon="i-film"></span>Vídeos</li>
+			<!-- NAO REMOVER -->
+			<!-- <ul id="first-period" data-role="buttongroup" class="km-widget km-buttongroup">
+				<li class="km-button km-state-active"><span class="km-text">2010</span></li>
+				<li class="km-button"><span class="km-text">2011</span></li>
+				<li class="km-button"><span class="km-text">2012</span></li>
+				<li class="km-button"><span class="km-text">2013</span></li>
+				<li class="km-button"><span class="km-text">2014</span></li>
+				<li class="km-button"><span class="km-text">2015</span></li>
+				<li class="km-button"><span class="km-text">2016</span></li>
+			</ul> -->
 
-	          <!-- <li class="km-button km-state-active" data-icon="i-film">Docs</li>
-	          <li class="km-button" data-icon="i-image">Imagens</li>
-	          <li class="km-button" data-icon="i-envelop-open">Mensagem</li>
-	          <li class="km-button" data-icon="play">Videos</li> -->
+			<ul id="first-period-2" data-role="buttongroup" class="km-widget km-buttongroup">
+				<li id="btDocs" class="flaticon-docs km-state-active" data-bind="events: { click: publicacoesTabSelect }"><span class="km-icon" data-icon="i-film"></span>Docs</li>
+				<li id="btImages" class="flaticon-picture" data-bind="events: { click: publicacoesTabSelect }"><span class="km-icon" data-icon="i-film"></span>Imagens</li>
+				<li id="btMsgs" class="flaticon-email" data-bind="events: { click: publicacoesTabSelect }"><span class="km-icon" data-icon="i-film"></span>Mensagens</li>
+				<li id="btVideos" class="flaticon-movie" data-bind="events: { click: publicacoesTabSelect }"><span class="km-icon" data-icon="i-film"></span>Vídeos</li>
+			</ul>
 
-	      </ul>
+			<div>
+		     	<div id="tabPubDocs" data-role="scroller" class="lista-arquivos">
+					<ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="tabPubDocsTemplate"
+					    data-bind="{ source: publicacoes }" data-pull-to-refresh="false" 
+					    data-endless-scroll="false"> <!-- , events: { click: algoClick } -->
+					</ul>
+				</div>
 
-	      <div data-role="scroller" class="lista-arquivos">
-	      	<ul data-role="listview">
-	      		<li>
-	      			<div class="docs-wrap">
-				      	<p>Aula_20160303_revisao.docx<p>
-				      	<b>Enviado por: Brad Pit</b>
-	      			</div>
-			      	<p>450kb</p>
-	      		</li>
-	      		<li>
-	      			<div class="docs-wrap">
-				      	<p>Aula_20160303_revisao.docx<p>
-				      	<b>Enviado por: Brad Pit</b>
-	      			</div>
-			      	<p>205kb</p>
-	      		</li>
-	      		<li>
-	      			<div class="docs-wrap">
-				      	<p>Aula_20160303_revisao.docx<p>
-				      	<b>Enviado por: Brad Pit</b>
-	      			</div>
-			      	<p>370kb</p>
-	      		</li>
-	      	</ul>
-	      </div>
+				<div id="tabPubImages" data-role="scroller" class="lista-arquivos" style="display:none">
+		            <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="tabPubImagesTemplate"
+		                data-bind="{ source: publicacoes }" data-pull-to-refresh="false" 
+		                data-endless-scroll="false"> <!-- , events: { click: algoClick } -->
+		            </ul>
+		      	</div>
+
+		      	<div id="tabPubMsgs" data-role="scroller" class="lista-arquivos" style="display:none">
+		            <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="tabPubMsgsTemplate"
+		                data-bind="{ source: publicacoes }" data-pull-to-refresh="false" 
+		                data-endless-scroll="false"> <!-- , events: { click: algoClick } -->
+		            </ul>
+		      	</div>
+
+		      	<div id="tabPubVideos" data-role="scroller" class="lista-arquivos" style="display:none">
+		            <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="tabPubVideosTemplate"
+		                data-bind="{ source: publicacoes }" data-pull-to-refresh="false" 
+		                data-endless-scroll="false"> <!-- , events: { click: algoClick } -->
+		            </ul>
+		      	</div>
+	      	</div>
+
 	    </div>
     </div>
 
@@ -163,5 +153,135 @@
                 # } #
             # } #
         </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="tabPubDocsTemplate">
+        # data = app.muralView.muralViewModel.fixHierarchicalData(data); #
+        # console.log('docs', data); #
+
+        # if (data.Tipo && data.Tipo == 'doc') { #
+	    	<div>
+	  			<div class="docs-wrap">
+			      	<p>#: data.FileName #<p>
+			      	<b>Enviado por: #: data.User.DisplayName #</b>
+	  			</div>
+		      	<p>#: data.FileSize #kb</p>
+	      	</div>
+        # } #       
+    </script>
+
+    <script type="text/x-kendo-template" id="tabPubImagesTemplate">
+        # data = app.muralView.muralViewModel.fixHierarchicalData(data); #
+        # console.log('images', data); #
+
+        # if (data.Tipo && data.Tipo == "image") { #
+
+            #console.log('tipo', data.Tipo, 'anexo', data.AenxoUri); #
+
+	        <div class="mural-conteudo-wrap">
+	            <ul class="masterDetailView km-widget km-listview km-list" data-role="listview">
+	                <li class="bg-branco">
+
+	                    <!-- NOME DO USUÁRIO QUE POSTOU -->
+	                    <div class="post-user">
+	                        <div class="user-thumb mural-thumb thumb-sm">
+	                            # if (data.User.fotoUri && data.User.fotoUri != "") { #
+	                            <img class="km-thumbnail" data-bind="" src="#: data.User.fotoUri #"  alt="Your photo">
+	                            # } else { #
+	                            <img class="km-thumbnail" data-bind="" src="../../styles/images/user-male.png" alt="Your photo">
+	                            # } #
+	                        </div>
+
+	                        <h4>#: data['User']['DisplayName'] #</h4>
+
+	                        <div class="section-icon-name flaticon-clock">
+	                            <span class="km-icon" data-icon=""></span>
+	                            #: data['TempoPublicacao'] #
+	                        </div>                        
+	                    </div>
+
+	                    <!-- CONTEÚDO DO POST -->
+	                    <div class="post-conteudo-wrap">
+	                        <div class="post-conteudo">
+		                        # if (data.Titulo && data.Titulo != '') { #
+		                            <p>#: data['Titulo'] #</p>
+	                        	# } #
+	                            <div class="post-imagem">
+                                    # if (data.AnexoUri && data.AnexoUri != "") { #
+                                    	<img src="#: data.AnexoUri #">
+                                    # } #
+	                            </div>
+	                        </div>
+	                    </div>
+	                </li>
+	            </ul>
+	        </div>
+        # } #
+    </script>
+
+    <script type="text/x-kendo-template" id="tabPubMsgsTemplate">
+        # data = app.muralView.muralViewModel.fixHierarchicalData(data); #
+        # console.log('msgs', data); #
+    	
+        # if (data.Tipo && data.Tipo == 'msg') { #
+	    	<div>
+	  			<div class="docs-wrap">
+	                # if (data.Titulo && data.Titulo != '') { #
+	                    <h4>#: data['Titulo'] #</h4>
+	            	# } #
+			      	<p>#: data.Texto #<p>
+			      	<b>Enviado por: #: data.User.DisplayName #</b>
+	  			</div>
+    	  	</div>
+        # } #       
+    </script>
+
+    <script type="text/x-kendo-template" id="tabPubVideosTemplate">
+        # data = app.muralView.muralViewModel.fixHierarchicalData(data); #
+        # console.log('videos', data); #
+
+        # if (data.Tipo && data.Tipo == 'video') { #	
+
+            #console.log('tipo', data.Tipo, 'anexo', data.AenxoUri); #
+
+	        <div class="mural-conteudo-wrap">
+	            <ul class="masterDetailView km-widget km-listview km-list" data-role="listview">
+	                <li class="bg-branco">
+
+	                    <!-- NOME DO USUÁRIO QUE POSTOU -->
+	                    <div class="post-user">
+	                        <div class="user-thumb mural-thumb thumb-sm">
+	                            # if (data.User.fotoUri && data.User.fotoUri != "") { #
+	                            <img class="km-thumbnail" data-bind="" src="#: data.User.fotoUri #"  alt="Your photo">
+	                            # } else { #
+	                            <img class="km-thumbnail" data-bind="" src="../../styles/images/user-male.png" alt="Your photo">
+	                            # } #
+	                        </div>
+
+	                        <h4>#: data['User']['DisplayName'] #</h4>
+
+	                        <div class="section-icon-name flaticon-clock">
+	                            <span class="km-icon" data-icon=""></span>
+	                            #: data['TempoPublicacao'] #
+	                        </div>                        
+	                    </div>
+
+	                    <!-- CONTEÚDO DO POST -->
+	                    <div class="post-conteudo-wrap">
+	                        <div class="post-conteudo">
+		                        # if (data.Titulo && data.Titulo != '') { #
+		                            <p>#: data['Titulo'] #</p>
+	                        	# } #
+	                            <div class="post-imagem">
+                                    # if (data.AnexoUri && data.AnexoUri != "") { #
+                                    	<img src="#: data.AnexoUri #">
+                                    # } #
+	                            </div>
+	                        </div>
+	                    </div>
+	                </li>
+	            </ul>
+	        </div>
+        # } #       
     </script>
 </div>

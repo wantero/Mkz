@@ -182,6 +182,9 @@ app.cursosView = kendo.observable({
                     dataSource = cursosViewModel.get('dataSource'),
                     itemModel = dataSource.getByUid(item);
 
+                cursosViewModel.setCurrentItemById(itemModel);
+            },
+            setCurrentItemById: function(itemModel) {
                 if (!itemModel) {
                     alert('error loading disciplinas');
                     return;
@@ -211,10 +214,39 @@ app.cursosView = kendo.observable({
                 return itemModel;
             },
             disciplinaClick: function(e) {
-                app.disciplinasView.disciplinasViewModel.set('currentDisciplina', e.dataItem);
-                app.avaliacoesView.avaliacoesViewModel.loadAvaliacoes(e.dataItem.Id, function(data) {
-                    app.disciplinasView.disciplinasViewModel.set('avaliacoes', data);
-                    app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
+                var data = e.dataItem;
+                app.disciplinasView.disciplinasViewModel.set('currentDisciplina', data);
+
+                if (data.Professor.Unidade == '') {
+                    data.Professor.Unidade = '?';
+                }
+
+                if (data.Professor.Turma == '') {
+                    data.Professor.Turma = '?';
+                }
+
+                if (data.Professor.Sala == '') {
+                    data.Professor.Sala = '?';
+                }
+
+                app.cursosView.cursosViewModel.loadPublicacoes(e.dataItem.Id, function(publicacoes) {
+                    app.disciplinasView.disciplinasViewModel.set('publicacoes', publicacoes);
+                    
+                    app.disciplinasView.disciplinasViewModel.set('publicacoesCount', 
+                        { doc: publicacoes.docCount,
+                          video: publicacoes.videoCount,
+                          image: publicacoes.imageCount,
+                          msg: publicacoes.msgCount });                    
+
+                    $('#tabAvaliacoes #docsCount').text(publicacoes.docCount);
+                    $('#tabAvaliacoes #videosCount').text(publicacoes.videoCount);
+                    $('#tabAvaliacoes #imagesCount').text(publicacoes.imageCount);
+                    $('#tabAvaliacoes #msgsCount').text(publicacoes.msgCount);
+
+                    app.avaliacoesView.avaliacoesViewModel.loadAvaliacoes(e.dataItem.Id, function(data) {
+                        app.disciplinasView.disciplinasViewModel.set('avaliacoes', data);
+                        app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
+                    });
                 });
             },
             avaliacoesBack: function(e) {
@@ -234,7 +266,44 @@ app.cursosView = kendo.observable({
                     cursosViewModel.selectDiaView();
                 }
             },
-            filterScheduler: function() {
+            selectSchedulerFromMenu: function() {
+                app.mobileApp.navigate('#components/cursosView/details.html?from=menu');
+            },
+            loadPublicacoes: function(disciplinaId, done) {
+                var query = new Everlive.Query();
+                query.where().eq('Disciplina', disciplinaId);
+                query.expand({"User": true});
+                //query.order('Ordem');
+
+                var data = dataProvider.data('Publicacoes');
+                data.get(query)
+                    .then(function(data) {
+                        var publicacoes = data.result;
+                        
+                        publicacoes.imageCount = 0;
+                        publicacoes.videoCount = 0;
+                        publicacoes.docCount = 0;
+                        publicacoes.msgCount = 0;
+
+                        for (var i=0; i < publicacoes.length; i++) {
+                            if (publicacoes[i].Tipo == 'image') {
+                                publicacoes.imageCount++;
+                            } else if (publicacoes[i].Tipo == 'video') {
+                                publicacoes.videoCount++;
+                            } else if (publicacoes[i].Tipo == 'doc') {
+                                publicacoes.docCount++;
+                            } else if (publicacoes[i].Tipo == 'msg') {
+                                publicacoes.msgCount++;
+                            }
+                        }
+
+                        done(publicacoes);
+                    },
+                    function(error){
+                        alert('Error loading data (Questoes)');
+                    });
+            },
+            filterScheduler: function(cb) {
                 if (!cursosViewModel.scheduler) {
                     cursosViewModel.initScheduler();
                     return;
@@ -248,7 +317,9 @@ app.cursosView = kendo.observable({
                 var dayOfWeek = dayOfWeek(new Date());
 
                 try {
-                    var cursoId = app.cursosView.cursosViewModel.dataSource.data()[0].Id;
+                    var currentItem = cursosViewModel.get('currentItem');
+                    var cursoId = currentItem.Id;
+                    //var cursoId = app.cursosView.cursosViewModel.dataSource.data()[0].Id;
                     var query = new Everlive.Query();
 
                     query.where().eq('Curso', cursoId);
@@ -300,6 +371,10 @@ app.cursosView = kendo.observable({
                                 });
 
                                 cursosViewModel.scheduler.setDataSource(dataSourceScheduler);
+
+                                if (cb) {
+                                    cb();
+                                }
                             } catch(e) {
                                 alert(e.message);
                             }
@@ -311,7 +386,7 @@ app.cursosView = kendo.observable({
                     alert("Falha ao carregar grade de horário.");
                 }
             },
-            initScheduler: function() {
+            initScheduler: function(cb) {
                 var today = new Date();
 
                 var startTime = today;
@@ -321,7 +396,9 @@ app.cursosView = kendo.observable({
 
                 var resourceList = []; //{field: "colorId", title: "Disciplina", dataSource: []};
 
-                var cursoId = app.cursosView.cursosViewModel.dataSource.data()[0].Id;
+                var currentItem = cursosViewModel.get('currentItem');
+                var cursoId = currentItem.Id;
+                //var cursoId = app.cursosView.cursosViewModel.dataSource.data()[0].Id;
 
                 var query = new Everlive.Query();
                 query.where().eq('Cursos', cursoId);
@@ -366,7 +443,7 @@ app.cursosView = kendo.observable({
                             });
 
                             cursosViewModel.scheduler = $("#scheduler").data("kendoScheduler");
-                            cursosViewModel.filterScheduler();
+                            cursosViewModel.filterScheduler(cb);
                         },
                         function(error){
                             alert('error loading disciplinas');
@@ -374,8 +451,6 @@ app.cursosView = kendo.observable({
                 } catch(e) {
                     alert(e.message);
                 }
-    
-
             },
             selectDiaView: function() {
                 if (cursosViewModel.scheduler) {
@@ -463,10 +538,55 @@ app.cursosView = kendo.observable({
     parent.set('onDetailShow', function(e) {
         app.displayUser();
 
-        cursosViewModel.setCurrentItemByUid(e.view.params.uid);
+        $('#btAgenda').addClass('km-state-active').siblings().removeClass('km-state-active');
+        $('#tabCursoAgenda').show().siblings().hide();
 
-        $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active');
-        $('#tabCursoDisciplinas').show().siblings().hide();
+        if (cursosViewModel.scheduler) {
+            cursosViewModel.scheduler.destroy();
+            $("#scheduler").html("");
+            cursosViewModel.scheduler = undefined;
+        }
+
+        if (e.view.params.from && e.view.params.from == 'menu') {
+            function getCursos(cb) {
+                var queryCursos = new Everlive.Query();
+                queryCursos.where().eq('Users', app.getUserData().Id);
+
+                var dataCursos = dataProvider.data('Cursos');
+                dataCursos.get(queryCursos)
+                    .then(function(data) {
+                        var cursos = [];
+                        for (var i=0; i < data.result.length; i++) {
+                            cursos.push(data.result[i]);
+                        }
+
+                        cb(cursos);
+                    }, function(err) {
+                        alert('Error loading data (Cursos)');
+                    });
+            }
+
+            getCursos(function(cursos) {
+                cursosViewModel.setCurrentItemById(cursos[0]);  
+
+                /*if (cursosViewModel.scheduler) {
+                    cursosViewModel.scheduler.destroy();
+                    $("#scheduler").html("");
+                    cursosViewModel.scheduler = undefined;
+                }*/
+
+                cursosViewModel.initScheduler(function() {
+                    /*$('#btAgenda').addClass('km-state-active').siblings().removeClass('km-state-active');
+                    $('#tabCursoAgenda').show().siblings().hide();*/
+                    cursosViewModel.selectDiaView();                    
+                });
+            });
+        } else {
+            cursosViewModel.setCurrentItemByUid(e.view.params.uid);
+
+            $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active');
+            $('#tabCursoDisciplinas').show().siblings().hide();
+        }
     });
 
 })(app.cursosView);

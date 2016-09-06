@@ -5,7 +5,7 @@ app.muralView = kendo.observable({
     afterShow: function() {}
 });
 
-(function(parent) {    
+(function(parent) {
     var viewParam = "";
     var dataProvider = app.data.mackenzie,
         fetchFilteredData = function(paramFilter, searchFilter) {
@@ -165,6 +165,103 @@ app.muralView = kendo.observable({
 
                 return result;
             },
+            muralLikeClick: function(e) {
+				var dataPublicacoes = dataProvider.data('Publicacoes');
+
+				// "$push" adds an item to an array.
+				// "$addToSet" adds elements to an array only if they do not already exist in the set.
+				var attributes = {
+				    "$push": {
+				        "Likes": app.getUserData().Id
+				    }
+				};
+
+				var filter = {
+				    'Id': e.data.Id
+				};
+
+				dataPublicacoes.rawUpdate(attributes, filter,
+					function (data) {
+						if (data.result) {
+	                    	var $likesCount = $(e.currentTarget).closest('div').find('#likesCount');
+	                    	$likesCount.text(Number($likesCount.text())+data.result);
+						}
+					},
+					function (error) {
+				    	console.log(JSON.stringify(error));
+					}
+				);
+            },
+            muralCommentClick: function(e) {
+                var $comments = $(e.currentTarget).closest('ul').siblings('#header-mural-comentario');
+                if ($comments.is(':visible')) {
+                    $(e.currentTarget).closest('ul').siblings('#header-mural-comentario').hide();
+                } else {
+                    $(e.currentTarget).closest('ul').siblings('#header-mural-comentario').show();
+                }
+            },
+            muralSendCommentClick: function(e) {
+            	function updatePublicacoes(publicacoesId, comentarioId, cb) {
+                    var dataPublicacoes = dataProvider.data('Publicacoes');
+
+					var attributes = {
+					    "$push": {
+					        "Comentarios": comentarioId
+					    }
+					};
+
+					var filter = {
+					    'Id': publicacoesId
+					};
+
+					dataPublicacoes.rawUpdate(attributes, filter,
+						function (data) {
+							if (data.result) {
+		                    	if (cb) {
+		                    		cb(data.result);
+		                    	}
+							}
+						},
+						function (error) {
+					    	console.log(JSON.stringify(error));
+						}
+					);
+            	}
+
+            	var $comment = $(e.currentTarget).closest('ul').find('#novoComentario');
+                var commentText = $comment.val();
+
+            	if (commentText == '') {
+            		alert('Favor preencher o comentário!');
+            		return;
+            	}
+
+            	var dataComentarios = dataProvider.data('PublicacoesComentarios');
+
+				dataComentarios.create({
+                        'Comentario': commentText,
+                        'User': app.getUserData().Id
+                    },
+				    function(data){
+				        if (data.result) {
+                            console.log('User Id:', e.data.Id, 'Comentario Id:', data.result.Id);
+					        updatePublicacoes(e.data.Id, data.result.Id, function(data) {
+                                var $commentsCount = $(e.currentTarget).closest('ul').find('#commentsCount');
+                                $commentsCount.text(Number($commentsCount.text())+data);
+
+                                $comment.val('');
+                                muralViewModel.muralCommentClick(e);
+                                $(e.currentTarget).closest('ul').find('#header-mural-comentario').hide();
+					        });
+				        }
+				    },
+				    function(error){
+				        alert(JSON.stringify(error));
+				    });
+            },
+            muralShareClick: function(e) {
+            	alert('share');
+            },
             getTimeDiff: function(datetime) {
 			    var now = new Date().getTime();
 			    var datetime = typeof datetime !== 'undefined' ? new Date(datetime).getTime() : new Date();
@@ -283,11 +380,16 @@ app.muralView = kendo.observable({
 
         app.displayUser();
 
-        /*loadAvaliacoes(null, function(data) {
-            muralViewModel.set('dataSource', data);
-        });*/
-
         // Armazena o parametro recebido pela VIEW
+        //param = [{ field: "Disciplina", operator: "contains", value: '' }];
+        param = {
+           logic:"or",
+           filters: [
+               {field: "Disciplina", operator: "eq", value: ''},
+               {field: "Disciplina", operator: "eq", value: null},
+           ]
+        };
+
         viewParam = param;
 
         fetchFilteredData(viewParam);
