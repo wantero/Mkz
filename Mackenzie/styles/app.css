@@ -317,6 +317,10 @@ ul.masterDetailView,
 	.km-flat .km-view .km-footer .km-button.km-state-active {
 		border-bottom: 2px solid #FFF;
 	}
+	.km-flat .km-view .km-footer .km-button .km-icon {
+		margin: 0;
+		line-height: 0.95em;
+	}
 	.km-flat .km-view .km-footer .km-button .km-icon::after {
 		color: #FFF;
 	}
@@ -543,12 +547,12 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		text-overflow: ellipsis;
 	}
 
-/*#appDrawer*/ .user-thumb {
+.user-thumb {
     overflow: hidden;
     border-radius: 50%;
     background-color: #FFF;
 }
-	/*#appDrawer*/ .user-thumb .km-thumbnail {
+	.user-thumb .km-thumbnail {
 		height: auto;
 		max-height: 100%;
 		background-color: #ccc;
@@ -660,12 +664,12 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li {
 	padding: 1em;
 }
-	#kendoUiMobileApp #avaliacoes /*.aval-praticas*/ .masterDetailView li > div,
+	#kendoUiMobileApp #avaliacoes  .masterDetailView li > div,
 	#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li > div > h3,
-	#kendoUiMobileApp /*#avaliacoes .aval-praticas*/ .masterDetailView li > div p {
+	#kendoUiMobileApp .masterDetailView li > div p {
 		margin: 0;
 	}
-	#kendoUiMobileApp #avaliacoes /*.aval-praticas*/ .masterDetailView li > div {
+	#kendoUiMobileApp #avaliacoes  .masterDetailView li > div {
 		display: inline-block;
 		width: 100%;
 	}
@@ -677,22 +681,22 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		padding-bottom: 0;
 	}
 
-#kendoUiMobileApp /*#avaliacoes*/ .prof-disciplina-wrap {
+#kendoUiMobileApp .prof-disciplina-wrap {
 	display: flex;
 	display: -webkit-flex;
 	-webkit-align-content: center;
 			align-content: center;
 	margin: 0.5em 0 1em; 
 }
-	#kendoUiMobileApp /*#avaliacoes*/ .prof-disciplina-wrap p {
+	#kendoUiMobileApp .prof-disciplina-wrap p {
 		padding: 0 0.5em;
 	}
 
-#kendoUiMobileApp /*#avaliacoes*/ .aval-praticas .aval-wrap {
+#kendoUiMobileApp .aval-praticas .aval-wrap {
 	float: none;
 	max-width: none;
 }
-	#kendoUiMobileApp /*#avaliacoes*/ .aval-praticas .aval-wrap p {
+	#kendoUiMobileApp .aval-praticas .aval-wrap p {
 		display: inline-block;
 		text-indent: 0;
 	}
@@ -745,9 +749,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		margin-right: 0.3em;
 	}
 
-/*#kendoUiMobileApp div[data-url="components/avaliacoesView/result.html"] .resultado .km-icon::after {
-	line-height: 0.8em;
-}*/
 #kendoUiMobileApp #aval-praticas .button-group,
 #kendoUiMobileApp div[data-url="components/avaliacoesView/result.html"] .button-group {
 	padding: 0 1em 1em;
@@ -943,7 +944,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #mackz-mural .mural-conteudo-wrap {
 	height: 100%;
 	background-color: #FFF;
-	margin: 0;
 }
 	#mackz-mural .mural-conteudo-wrap .masterDetailView {
 		padding-bottom: 0;
@@ -989,8 +989,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		content: none;
 	}
 
-#mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo > p,
-#mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .section-icon-name:nth-child(2) {
+#mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .section-icon-name:nth-child(2),
+#mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo > p {
 	padding: 0.8em 1em;
 }
 	#mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem {
@@ -1006,12 +1006,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		max-height: 100%;
 		max-width: 100%;
 		margin: 0 auto;
-	}
-	#mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .section-icon-name:first-child {
-		padding: 0.7em 0 0.7em 0.3em;
-	}
-	#mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .section-icon-name:nth-child(2) {
-		padding-right: 1em;
 	}
 	#mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .km-icon {
 		width: auto;
@@ -1031,7 +1025,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#mackz-mural .mural-conteudo-wrap .masterDetailView .post-botoes .km-icon {
 		height: auto;
 		width: auto;
-		/*margin: 0 0.5em 0 0;*/
 	}
 	#mackz-mural .mural-conteudo-wrap .masterDetailView .post-botoes .km-icon::after {
 		font-size: 1.7em;
@@ -1108,10 +1101,10 @@ form.section-name-wrap {
 	line-height: 1em;
 }
 
-#kendoUiMobileApp /*#perfilViewModel*/ .button-group {
+#kendoUiMobileApp .button-group {
 	display: block;
 }
-	#kendoUiMobileApp /*#perfilViewModel*/ .button-group .km-button {
+	#kendoUiMobileApp .button-group .km-button {
 	    display: inline-block;
 		height: 100%;
 		width: 100%;
@@ -1150,17 +1143,17 @@ form.section-name-wrap {
 	#cursos .km-scroll-wrapper .km-listview-wrapper li:not(.km-load-more) .image-with-text {
 		position: relative;
 	}
-	/*#cursos*/ .km-scroll-wrapper .km-listview-wrapper li h3 {
+	.km-scroll-wrapper .km-listview-wrapper li h3 {
 		margin: 0;
 	}
-	/*#cursos*/ #kendoUiMobileApp .km-scroll-wrapper .masterDetailView li {
+	#kendoUiMobileApp .km-scroll-wrapper .masterDetailView li {
 		position: relative;
 		padding: 1em;
 		margin: 0;
 		border-left: 0;
 		border-radius: 0;
 	}
-	/*#cursos*/ .km-scroll-container > .km-listview-wrapper:only-of-type .masterDetailView li::after,
+	.km-scroll-container > .km-listview-wrapper:only-of-type .masterDetailView li::after,
 	#tabCursoDisciplinas .km-listview-wrapper .masterDetailView li::after,
 	#mackz-faq .km-listview-wrapper .masterDetailView li::after {
 	    content: "";
@@ -1272,22 +1265,25 @@ form.section-name-wrap {
 		position: absolute;
 	}
 	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .QR-code {
-		left: 1em;
-		-webkit-animation: QR-demo 3s infinite;
-				animation: QR-demo 3s infinite;
+		left: 1.5em;
+		/*-webkit-animation: QR-demo 3s infinite;
+				animation: QR-demo 3s infinite;*/
+		top: calc(50% - 22px);
+		top: -webkit-calc(50% - 22px);
 	}
 	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .QR-code::after {
 		font-size: 3em;
 	}
 	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .smartphone {
-		right: 0;
+		right: 1.5em;
+		top: 1em;
 		display: inline-block;
 		height: 10em;
 		width: 50%;
 		background: url(images/Smartphone.svg) no-repeat 50%; /* image, repeat e position */
 		background-size: 10em;
-		-webkit-animation: smartphone-demo 3s infinite;
-				animation: smartphone-demo 3s infinite;
+		/*-webkit-animation: smartphone-demo 3s infinite;
+				animation: smartphone-demo 3s infinite;*/
 	}
 	#mackz-checkin .km-button-group .km-button {
 		margin: 0;
@@ -1295,6 +1291,26 @@ form.section-name-wrap {
 	    background-color: #FFF;
 	    border-radius: 0;
 	    border-width: 1px 0;
+	}
+
+#mackz-checkin .qr-demo-window {
+	position: absolute;
+	width: 100%;
+}
+	#mackz-checkin .qr-demo-window .section-icon-name {
+		padding: 0;
+	}
+
+#mackz-checkin .qr-camera-wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+	#mackz-checkin .camera-imagem-wrap {
+		min-height: 300px;
+	}
+	#mackz-checkin .camera-imagem-wrap img {
+		width: 100%;
 	}
 
 
@@ -1373,7 +1389,6 @@ form.section-name-wrap {
 	.km-flat .km-view .descricao-wrap + .km-buttongroup .km-button {
 		width: 50%;
 		padding: 0.5em;
-		/*border-color: #CCC;*/
 	}
 	.km-flat .km-view .descricao-wrap + .km-buttongroup .km-button.km-state-active {
 		background-color: #EA2D2E;
@@ -1395,7 +1410,6 @@ form.section-name-wrap {
 .avaliacoes-wrap .prox-aula {
 	position: relative;
 	padding: 0 1.2em 1em;
-	/*border-bottom: 1px solid #CCC;*/
 }
 	.avaliacoes-wrap .prox-aula p {
 		display: inline-block;
@@ -1418,7 +1432,6 @@ form.section-name-wrap {
 		width: 18px;
 		margin-top: 0.5em;
 		border-width: 3px 3px 0 0;
-	    /*border-color: #CCC;*/
 	    border-style: solid;
 	    -webkit-transform: rotate(45deg);
 	    	-ms-transform: rotate(45deg);
@@ -1542,11 +1555,11 @@ form.section-name-wrap {
     width: 83%;
     padding-right: 32px;
 }
-	#kendoUiMobileApp /*.km-label-above*/ .unid-turma-sala {
+	#kendoUiMobileApp .unid-turma-sala {
 		font-size: 0.8em;
 		color: #1486CC;
 	}
-	#kendoUiMobileApp /*.km-label-above*/ .unid-turma-sala:not(.sala)::after {
+	#kendoUiMobileApp .unid-turma-sala:not(.sala)::after {
 		content: "";
 	    height: 100%;
 	    padding: 0 0.4em;
@@ -1639,7 +1652,6 @@ form.section-name-wrap {
 		#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-next span {
 		    background-image: none;
 		    border-style: solid;
-		    /*border-color: #CCC;*/
 		}
 		#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-prev span {
 		    border-width: 4px 0 0 4px;
