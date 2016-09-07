@@ -835,7 +835,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		color: green;
 	}
 	#kendoUiMobileApp #resultadoQuestionario li .k-i-close::after {
-		content: "\f105";
+		content: "\f108";
 		color: #EA2D2E;
 	}
 
@@ -925,19 +925,22 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	box-shadow: 0 3px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
-#mackz-mural .mural-header {
+#mackz-mural .mural-header,
+#header-disciplinas-publicacoes {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 0 1em;
 	z-index: 1;
 }
-	#mackz-mural .mural-header form {
+	#mackz-mural .mural-header form,
+	#header-disciplinas-publicacoes form {
 		width: 100%;
 		padding: 0.7em 0;
 		border-bottom: 0;
 	}
-	#mackz-mural .mural-header .mural-header-icons .section-icon-name {
+	#mackz-mural .mural-header .mural-header-icons .section-icon-name,
+	#header-disciplinas-publicacoes .mural-header-icons .section-icon-name {
 		padding: 0.25em 0 0.25em 0.2em;
 	}
 
@@ -1028,6 +1031,33 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#mackz-mural .mural-conteudo-wrap .masterDetailView .post-botoes .km-icon::after {
 		font-size: 1.7em;
+	}
+
+#mackz-mural .mural-conteudo-wrap .mural-header form > textarea {
+	height: 50px;
+	border: 1px solid;
+	resize: none;
+}
+	#mackz-mural .mural-conteudo-wrap .mural-header form > textarea + .mural-header-icons {
+		display: inline-block;
+	}
+	#mackz-mural .mural-conteudo-wrap .mural-header form > textarea + .mural-header-icons .section-icon-name {
+		padding: 0.5em 0.5em 0 0;
+	}
+	#mackz-mural .mural-conteudo-wrap .mural-header .flaticon-comment-ok .km-icon::after {
+		color: green;
+	}
+	#mackz-mural .mural-conteudo-wrap .mural-header .flaticon-comment-cancel .km-icon::after {
+		color: #EA2D2E;
+	}
+	#mackz-mural .mural-conteudo-wrap .mural-header textarea + .mural-header-icons .km-icon {
+		margin: 0;
+		height: auto;
+		width: auto;
+	}
+	#mackz-mural .mural-conteudo-wrap .mural-header textarea + .mural-header-icons .km-icon::after {
+		line-height: normal;
+		vertical-align: baseline;
 	}
 
 
@@ -1368,6 +1398,53 @@ form.section-name-wrap {
 	.km-flat .km-view .disciplinas-wrap .km-buttongroup li:nth-child(8) {
 		border-top: 0;
 	}
+
+#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2 {
+	padding: 0;
+	margin: 0;
+	border-top: 0;
+}
+	#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2 li {
+		width: auto;
+	}
+
+#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .lista-arquivos,
+#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .bg-branco {
+	padding: 0;
+}
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView > li {
+		padding: 1em 1.5em;
+	}
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView > li::after,
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .km-icon::before {
+		content: none;
+	}
+
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView > li,
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .mural-conteudo-wrap,
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user,
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-conteudo-wrap,
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user h4,
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .km-icon {
+		margin: 0;
+	}
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .user-thumb,
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user h4 {
+		display: inline-block;
+	}
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .section-icon-name {
+		display: block;
+		padding: 0.5em 0 1em 0;
+		font-size: 0.8em;
+	}
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .km-icon::after {
+		line-height: 0.7em;
+	}
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-imagem {
+		margin: 0.5em 0;
+	}
+
+
 
 /*** AGENDA ***/
 .km-flat .km-view .disciplinas-wrap #agenda .km-buttongroup {

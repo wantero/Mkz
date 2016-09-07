@@ -27,43 +27,90 @@
 		<script src="dataProviders/mackenzie.js"></script>
 
 		<style>
-			html, body {height: 100%;}
-			body.km-flat {margin: 0; font-size: 0.92em;}
+			html, body {height:100%;}
+			body.km-flat {margin:0; font-size:0.92em;}
+			[data-role="tabstrip"],
+			[data-role="navbar"] { 
+				display: flex;
+				justify-content: space-around;
+				background-color: #EA2D2E;
+			}
+			[data-role="navbar"] {height:60px;}
+			[data-role="tabstrip"] {height:45px;}
+			.main-view-logo {transform:none;}
+			footer [class*="flaticon-"] {
+				display: inline-block;
+				padding: 0 1em;
+			}
+			footer [class*="flaticon-"] .km-icon::after {
+				color: #FFF;
+				font-size: 2em;
+				line-height: 1.6em;
+			}
+
 		</style>
 	</head>
 
 	<body class="km-widget km-flat" data-role="pane">
-		<div id="mackz-checkin">
+		<div>
+		    <header data-role="header">
+		        <div data-role="navbar">
+		            <img class="main-view-logo" src="../../styles/images/Logo-Mackenzie-app.svg" alt="M">
+		        </div>
+		    </header>
 
-			<div class="section-name-wrap">
-			    <div class="section-icon-name flaticon-publication">
-			        <span class="km-icon" data-icon=""></span>
-			        <span>Check-in de Aula</span>
-			    </div>
-			    <a class="link-x" data-bind=""></a>
-			</div>
-			
-			<div class="section-name-wrap checkin-header" style="padding:0 0.8em;">
-				<div class="section-icon-name flaticon-pin-search">
-				    <span class="km-icon" data-icon=""></span>
-	            	<p>Escaneie o código QR disponível com o Professor</p>
-				</div>
-		    </div>
 
-		    <div class="checkin-conteudo-wrap">
-		    	<div class="modal-informativo-wrap">
-		    		<div class="checkin-demo">
-		    			<div class="QR-code flaticon-qr-code"></div>
-		    			<div class="smartphone"></div>
-		    		</div>
+	    	<div id="mackz-checkin">
 
-		    		<div class="km-button-group">
-		    			<button class="km-button" data-role="button" type="button">Ok, entendi</button>
-		    		</div>	
-		    	</div>
-		    </div>
-			
-		</div>
-	    
+	    		<div class="section-name-wrap">
+	    		    <div class="section-icon-name flaticon-publication">
+	    		        <span class="km-icon" data-icon=""></span>
+	    		        <span>Check-in de Aula</span>
+	    		    </div>
+	    		    <a class="link-x" data-bind=""></a>
+	    		</div>
+	    		
+	    		<div class="qr-demo-window">
+		    		<div class="section-name-wrap checkin-header" style="padding:0 0.8em;">
+		    			<div class="section-icon-name flaticon-pin-search">
+		    			    <span class="km-icon" data-icon=""></span>
+		                	<p>Escaneie o código QR disponível com o Professor</p>
+		    			</div>
+		    	    </div>
+
+		    	    <div class="checkin-conteudo-wrap">
+		    	    	<div class="modal-informativo-wrap">
+		    	    		<div class="checkin-demo">
+		    	    			<div class="QR-code flaticon-qr-code"></div>
+		    	    			<div class="smartphone"></div>
+		    	    		</div>
+		    	    	</div>
+		    	    </div>
+
+    	    		<div class="km-button-group">
+    	    			<button class="km-button" data-role="button" type="button">Ok, entendi</button>
+    	    		</div>	
+	    		</div>
+
+	    		<div class="qr-camera-wrap">
+	    			<div class="camera-imagem-wrap">
+	    				<img src="../../styles/images/user-male.png">
+	    			</div>
+	    		</div>
+	    		
+	    	</div>
+
+
+		    <!-- FOOTER -->
+		    <footer data-role="footer">
+		        <div data-role="tabstrip" data-selected-index="1" data-select="onSelect">
+		            <a class="flaticon-home"><span class="km-icon"></span></a>
+		            <a class="flaticon-search"><span class="km-icon"></span></a>
+		            <a class="flaticon-calendar"><span class="km-icon"></span></a>
+		            <a class="flaticon-pin"><span class="km-icon"></span></a>
+		            <a class="flaticon-check"><span class="km-icon"></span></a>
+		        </div>
+		    </footer>
+		</div>    
 	</body>
 </html>

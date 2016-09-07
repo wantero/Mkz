@@ -101,10 +101,13 @@
 
                     <div id="header-mural-comentario" class="section-name-wrap mural-header" style="display:none">
                         <form class="section-name-wrap">
-                            <input id="novoComentario" placeholder="Digite aqui seu comentário" type="text" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro">
+                            <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro"></textarea>
                             <div class="mural-header-icons">
-                                <div class="section-icon-name flaticon-post">
+                                <div class="section-icon-name flaticon-comment-ok">
                                     <span class="km-icon" data-icon="" data-bind="{ events: {click: muralSendCommentClick} }"></span>
+                                </div>
+                                <div class="section-icon-name flaticon-comment-cancel">
+                                    <span class="km-icon" data-icon="" data-bind=""></span>
                                 </div>
                             </div>
                         </form>

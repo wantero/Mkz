@@ -57,7 +57,9 @@
 .km-flat .km-view .descricao-wrap + .km-buttongroup .km-button,
 .avaliacoes-wrap .prox-aula p + .km-button span,
 #tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-prev span,
-#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-next span {
+#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-next span,
+#kendoUiMobileApp #header-disciplinas-publicacoes form > textarea,
+#mackz-mural .mural-conteudo-wrap .mural-header form > textarea {
 	border-color: #CCC;
 }
 .descricao-wrap,
