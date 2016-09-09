@@ -17,19 +17,6 @@ app.perfilView = kendo.observable({
             fotoUri: '',
             id: ''
         },
-        /*submit: function() {
-            //pictureSource=navigator.camera.PictureSourceType;
-            //destinationType=navigator.camera.DestinationType;
-
-            var cameraConfig = {
-                destinationType: navigator.camera.DestinationType.DATA_URL,
-                targetWidth: 400,
-                targetHeight: 300,
-                sourceType: navigator.camera.PictureSourceType.CAMERA
-            };
-            
-            navigator.camera.getPicture(onPictureSuccess, onPictureError, cameraConfig);
-        },*/
         cancel: function() {
             $('#appDrawer').data('kendoMobileDrawer').show();
         },
@@ -53,14 +40,15 @@ app.perfilView = kendo.observable({
                 navigator.notification.alert("Unfortunately we were not able to retrieve the image");
             };
 
-            function runCamera(width, height, success, error) {
+            function runCamera(width, height, success, error, type) {
                 var cameraConfig = {
                     destinationType: navigator.camera.DestinationType.DATA_URL,
                     targetWidth: width,
                     targetHeight: height,
                     //sourceType: navigator.camera.PictureSourceType.CAMERA
-                    sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
-                    mediaType: navigator.camera.MediaType.ALLMEDIA
+                    //sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+                    sourceType: type ? type : navigator.camera.PictureSourceType.CAMERA,
+                    mediaType: navigator.camera.MediaType.PICTURE
                 };
 
                 navigator.camera.getPicture(success, error, cameraConfig);
@@ -95,25 +83,6 @@ app.perfilView = kendo.observable({
             $('#appDrawer').data('kendoMobileDrawer').show();
         }
     });
-
-    /*function onPictureSuccess(imageData) {
-        var file = {
-            Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
-            ContentType: "image/jpeg",
-            base64: imageData,
-        };
-
-        dataProvider.Files.create(file, function(response) {
-            perfilViewModel.fields.fotoUri = response.result.Uri;
-            $('#foto').attr('src', perfilViewModel.fields.fotoUri);
-        }, function(err) {
-            navigator.notification.alert("Unfortunately the upload failed: " + err.message);
-        });
-    };
-
-    function onPictureError() {
-        navigator.notification.alert("Unfortunately we were not able to retrieve the image");
-    };*/
 
     parent.set('perfilViewModel', perfilViewModel);
 

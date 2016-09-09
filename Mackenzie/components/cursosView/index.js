@@ -539,16 +539,16 @@ app.cursosView = kendo.observable({
     parent.set('onDetailShow', function(e) {
         app.displayUser();
 
-        $('#btAgenda').addClass('km-state-active').siblings().removeClass('km-state-active');
-        $('#tabCursoAgenda').show().siblings().hide();
-
-        if (cursosViewModel.scheduler) {
-            cursosViewModel.scheduler.destroy();
-            $("#scheduler").html("");
-            cursosViewModel.scheduler = undefined;
-        }
-
         if (e.view.params.from && e.view.params.from == 'menu') {
+            $('#btAgenda').addClass('km-state-active').siblings().removeClass('km-state-active');
+            $('#tabCursoAgenda').show().siblings().hide();
+
+            if (cursosViewModel.scheduler) {
+                cursosViewModel.scheduler.destroy();
+                $("#scheduler").html("");
+                cursosViewModel.scheduler = undefined;
+            }
+
             function getCursos(cb) {
                 var queryCursos = new Everlive.Query();
                 queryCursos.where().eq('Users', app.getUserData().Id);
