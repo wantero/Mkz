@@ -181,6 +181,9 @@ app.faqsView = kendo.observable({
 
                 return itemModel;
             },
+            cancelarClick: function(e) {
+                $('#mackz-faq #Pesquisa').val('').trigger(jQuery.Event('keyup', {which: 8}));
+            },
             linkBind: function(linkString) {
                 var linkChunks = linkString.split('|');
                 if (linkChunks[0].length === 0) {

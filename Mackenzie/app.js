@@ -9,7 +9,7 @@
         $(function() {
             app.mobileApp = new kendo.mobile.Application(document.body, {
                 skin: 'flat',
-                initial: 'components/home/view.html'
+                initial: 'components/muralView/view.html'
             });
 
             kendo.culture("pt-BR");

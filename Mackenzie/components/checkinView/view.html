@@ -6,7 +6,7 @@
 	        <span class="km-icon" data-icon=""></span>
 	        <span>Check-in de Aula</span>
 	    </div>
-	    <a class="link-x" id="checkinClose"></a>
+	    <a class="link-x" data-bind="{ events: {click: checkinViewModel.checkinClose} }" id="checkinClose"></a>
 	</div>
 	
 	<div class="qr-demo-window">
@@ -28,7 +28,7 @@
 		    </div>
 
 			<div class="km-button-group">
-				<button class="km-button" data-role="button" type="button"  data-bind="{ events: {click: checkinOkClick} }">Ok, entendi</button>
+				<button class="km-button" data-role="button" type="button"  data-bind="{ events: {click: checkinViewModel.checkinOkClick} }">Ok, entendi</button>
 			</div>	
 		</div>
 	</div>

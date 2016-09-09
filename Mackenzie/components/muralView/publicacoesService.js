@@ -131,7 +131,7 @@ var PublicacoesService = {
     cameraPub: function(dataProvider, tituloId, disciplinaId) {
         var $titulo;
 
-        function onPictureSuccess(imageData) {
+        function onPictureSuccess(imageData, b, c) {
             var file = {
                 Filename: '\\mural\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
                 ContentType: "image/jpeg",
@@ -166,9 +166,15 @@ var PublicacoesService = {
             destinationType: navigator.camera.DestinationType.DATA_URL,
             targetWidth: width,
             targetHeight: height,
-            sourceType: navigator.camera.PictureSourceType.CAMERA
+            //sourceType: navigator.camera.PictureSourceType.CAMERA
+            sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+            mediaType: navigator.camera.MediaType.ALLMEDIA
         };
 
         navigator.camera.getPicture(success, error, cameraConfig);
+    },
+
+    runFile: function() {
+
     }
 }

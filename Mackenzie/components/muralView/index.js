@@ -313,6 +313,9 @@ app.muralView = kendo.observable({
             cameraClick: function(e) {
                 PublicacoesService.cameraPub(dataProvider, '#tituloCompartilhar');
             },
+            uploadFileClick: function(e) {
+				PublicacoesService.runFile(dataProvider);
+            },
             getTempoDecorrido: function(datetime) {
 			    var now = new Date().getTime();
 			    var datetime = typeof datetime !== 'undefined' ? new Date(datetime).getTime() : new Date();

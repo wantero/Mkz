@@ -5,36 +5,18 @@ app.perfilView = kendo.observable({
     afterShow: function() {}
 });
 
-// START_CUSTOM_CODE_perfilView
-// Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
-// END_CUSTOM_CODE_perfilView
-
-
 (function(parent) {
     var dataProvider = app.data.mackenzie;
 
     var perfilViewModel = kendo.observable({
         fields: {
-            senha: '',
+            //senha: '',
             email: '',
             nome: '',
             tia: '',
             fotoUri: '',
             id: ''
         },
-        /*submit: function() {
-            //pictureSource=navigator.camera.PictureSourceType;
-            //destinationType=navigator.camera.DestinationType;
-
-            var cameraConfig = {
-                destinationType: navigator.camera.DestinationType.DATA_URL,
-                targetWidth: 400,
-                targetHeight: 300,
-                sourceType: navigator.camera.PictureSourceType.CAMERA
-            };
-            
-            navigator.camera.getPicture(onPictureSuccess, onPictureError, cameraConfig);
-        },*/
         cancel: function() {
             $('#appDrawer').data('kendoMobileDrawer').show();
         },
@@ -58,7 +40,21 @@ app.perfilView = kendo.observable({
                 navigator.notification.alert("Unfortunately we were not able to retrieve the image");
             };
 
-            app.RunCamera(400, 300, onPictureSuccess, onPictureError);
+            function runCamera(width, height, success, error, type) {
+                var cameraConfig = {
+                    destinationType: navigator.camera.DestinationType.DATA_URL,
+                    targetWidth: width,
+                    targetHeight: height,
+                    //sourceType: navigator.camera.PictureSourceType.CAMERA
+                    //sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+                    sourceType: type ? type : navigator.camera.PictureSourceType.CAMERA,
+                    mediaType: navigator.camera.MediaType.PICTURE
+                };
+
+                navigator.camera.getPicture(success, error, cameraConfig);
+            };
+
+            runCamera(400, 300, onPictureSuccess, onPictureError);
         },
         enviar: function() {
             dataProvider.Users.updateSingle(
@@ -72,8 +68,7 @@ app.perfilView = kendo.observable({
                     dataProvider.Users.currentUser().then(
                         function(user) {
                             app.user.data = user.result;
-                            app.showMessage('<b>Perfil alterado com sucesso.</b>'+
-                                            '<br><br>Para alterar a senha você precisará acessar sua caixa de e-mail e seguir as instruções enviadas.', app.perfilView.perfilViewModel.onAfterEnviar);
+                            app.showMessage('<b>Perfil alterado com sucesso.</b>', app.perfilView.perfilViewModel.onAfterEnviar);
                         },
                         function(error) {
                             console.log('error:', error);
@@ -88,25 +83,6 @@ app.perfilView = kendo.observable({
             $('#appDrawer').data('kendoMobileDrawer').show();
         }
     });
-
-    /*function onPictureSuccess(imageData) {
-        var file = {
-            Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
-            ContentType: "image/jpeg",
-            base64: imageData,
-        };
-
-        dataProvider.Files.create(file, function(response) {
-            perfilViewModel.fields.fotoUri = response.result.Uri;
-            $('#foto').attr('src', perfilViewModel.fields.fotoUri);
-        }, function(err) {
-            navigator.notification.alert("Unfortunately the upload failed: " + err.message);
-        });
-    };
-
-    function onPictureError() {
-        navigator.notification.alert("Unfortunately we were not able to retrieve the image");
-    };*/
 
     parent.set('perfilViewModel', perfilViewModel);
 
@@ -144,7 +120,3 @@ app.perfilView = kendo.observable({
         }
     })
 })(app.perfilView);
-
-// START_CUSTOM_CODE_perfilViewModel
-// Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
-// END_CUSTOM_CODE_perfilViewModel

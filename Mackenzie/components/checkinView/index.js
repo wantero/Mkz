@@ -68,16 +68,6 @@ app.checkinView = kendo.observable({
             }
         },
         dataSourceOptions = {
-            /*type: 'everlive',
-            transport: {
-                typeName: 'Publicacoes',
-                dataProvider: dataProvider,
-                read: {
-                    headers: {
-                        "X-Everlive-Expand": {"User": true}
-                    }
-                }
-            },*/
             change: function(e) {
                 var data = this.data();
                 for (var i = 0; i < data.length; i++) {
@@ -179,7 +169,29 @@ app.checkinView = kendo.observable({
                 fetchFilteredData(param);
             },
             currentItem: {},
-            lastDisciplina: ""
+            lastDisciplina: "",
+            checkinClose: function(e) {
+                $('#appDrawer').data('kendoMobileDrawer').show();
+            },
+            checkinOkClick: function(e) {
+                function scanCode() {
+                    cordova.plugins.barcodeScanner.scan(
+                        function(result) { // success
+                            if (!result.cancelled) {
+                                if (result.text) {
+                                    alert('QR Code: '+result.text+'/'+result.format);
+                                }
+                            }
+                        },
+                        function(error) {  // error
+                            Alert('Fail on scan QR Code! '+error.message);
+                        }
+                    );
+                }
+
+                $('#modal-information').hide();
+                scanCode();   
+            }
         });
 
     if (typeof dataProvider.sbProviderReady === 'function') {
@@ -191,10 +203,7 @@ app.checkinView = kendo.observable({
     }
 
     parent.set('onShow', function(e) {
-        //e.view.element.find('#header-minhas-publicacoes').show().siblings().hide();        
-        e.view.element.find('#checkinClose').click(function() {
-            $('#appDrawer').data('kendoMobileDrawer').show();
-        });
+        $('#modal-information').show();
 
         var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
             isListmenu = false,
@@ -213,23 +222,12 @@ app.checkinView = kendo.observable({
 
         app.displayUser();
 
+
         // Armazena o parametro recebido pela VIEW
         //param = [{ field: "Disciplina", operator: "contains", value: '' }];
-        viewParam = param;
+        /*viewParam = param;*/
 
         fetchFilteredData(viewParam);
-    });
-
-    parent.set('checkinOkClick', function(e) {
-        function scanCode() {
-            cordova.plugins.barcodeScanner.scan(
-                function() {}, // success
-                function() {}  // error
-            );
-        }
-
-        $('#modal-information').hide();
-        scanCode();      
     });
 
 })(app.checkinView);
