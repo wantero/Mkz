@@ -68,13 +68,6 @@ app.muralView = kendo.observable({
             }
         },
         dataSourceOptions = {
-            /*transport: {
-                read: function(options) {
-                    loadAvaliacoes(null, function(data) {
-                        options.success(data);
-                    });                    
-                }
-            },*/
             type: 'everlive',
             transport: {
                 typeName: 'Publicacoes',
@@ -108,6 +101,7 @@ app.muralView = kendo.observable({
                     }
                 }
             },
+            sort: [{ field: "CreatedAt", dir: "desc" }],
             serverFiltering: true,
             serverSorting: true,
             serverPaging: true,
@@ -161,12 +155,16 @@ app.muralView = kendo.observable({
                     }
                 })(result, layout);
 
-                result.TempoPublicacao = this.getTimeDiff(data.CreatedAt);
+                result.TempoPublicacao = this.getTempoDecorrido(data.CreatedAt);
 
                 return result;
             },
             muralLikeClick: function(e) {
-				var dataPublicacoes = dataProvider.data('Publicacoes');
+				PublicacoesService.pushLikes(dataProvider, e.data.Id, app.getUserData().Id, function(data) {
+                	var $likesCount = $(e.currentTarget).closest('div').find('#likesCount');
+                	$likesCount.text(Number($likesCount.text())+data);
+		        });            	
+				/*var dataPublicacoes = dataProvider.data('Publicacoes');
 
 				// "$push" adds an item to an array.
 				// "$addToSet" adds elements to an array only if they do not already exist in the set.
@@ -190,7 +188,35 @@ app.muralView = kendo.observable({
 					function (error) {
 				    	console.log(JSON.stringify(error));
 					}
-				);
+				);*/
+            },
+            mensagemClick: function(e) {
+                var $mensagem = $('#header-mural-mensagem');
+                if ($mensagem.is(':visible')) {
+                    $mensagem.hide();
+                } else {
+                    $mensagem.show();
+                }
+            },
+            muralSendMsgClick: function(e) {
+                var $novaMensagem = $('#novaMensagem');
+                var $titulo = $('#tituloCompartilhar');
+
+                if (!PublicacoesService.verificaTitulo($titulo, 'Favor informar o titulo da publicacao!')) {
+                    return;
+                }
+
+                var texto = $novaMensagem.val().replace(/\n/g, '<br>');
+
+                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, null, function() {
+                    muralViewModel.muralCancelMsgClick(e);
+                    //var listView = $("#muralListView").kendoMobileListView();
+                    //listView.refresh();                        
+                });
+            },
+            muralCancelMsgClick: function(e) {
+                $('#header-mural-mensagem').hide();
+                $('#novaMensagem').val('');
             },
             muralCommentClick: function(e) {
                 var $comments = $(e.currentTarget).closest('ul').siblings('#header-mural-comentario');
@@ -200,8 +226,14 @@ app.muralView = kendo.observable({
                     $(e.currentTarget).closest('ul').siblings('#header-mural-comentario').show();
                 }
             },
+            muralCancelCommentClick: function(e) {
+                var $comment = $(e.currentTarget).closest('ul').find('#novoComentario');
+                $comment.val('');
+                $(e.currentTarget).closest('ul').find('#header-mural-comentario').hide();
+            },
             muralSendCommentClick: function(e) {
-            	function updatePublicacoes(publicacoesId, comentarioId, cb) {
+            	var element = e;
+            	/*function updatePublicacoes(publicacoesId, comentarioId, cb) {
                     var dataPublicacoes = dataProvider.data('Publicacoes');
 
 					var attributes = {
@@ -226,26 +258,39 @@ app.muralView = kendo.observable({
 					    	console.log(JSON.stringify(error));
 						}
 					);
-            	}
+            	}*/
 
-            	var $comment = $(e.currentTarget).closest('ul').find('#novoComentario');
-                var commentText = $comment.val();
+            	var $comment = $(element.currentTarget).closest('ul').find('#novoComentario');
 
-            	if (commentText == '') {
-            		alert('Favor preencher o comentário!');
-            		return;
-            	}
+                if (!PublicacoesService.verificaTitulo($comment, 'Favor informar o comentário!')) {
+                    return;
+                }
 
-            	var dataComentarios = dataProvider.data('PublicacoesComentarios');
+            	PublicacoesService.createComentarios(dataProvider, $comment.val(), app.getUserData().Id, function(data) {
+			        if (data) {
+                        console.log('User Id:', element.data.Id, 'Comentario Id:', data.Id);
+				        //updatePublicacoes(e.data.Id, data.result.Id, function(data) {
+				        PublicacoesService.pushComentarios(dataProvider, element.data.Id, data.Id, function(data) {
+                            var $commentsCount = $(element.currentTarget).closest('ul').find('#commentsCount');
+                            $commentsCount.text(Number($commentsCount.text())+data);
+
+                            $comment.val('');
+                            muralViewModel.muralCommentClick(element);
+                            $(element.currentTarget).closest('ul').find('#header-mural-comentario').hide();
+				        });
+			        }
+            	});
+            	/*var dataComentarios = dataProvider.data('PublicacoesComentarios');
 
 				dataComentarios.create({
-                        'Comentario': commentText,
+                        'Comentario': textComment,
                         'User': app.getUserData().Id
                     },
 				    function(data){
 				        if (data.result) {
                             console.log('User Id:', e.data.Id, 'Comentario Id:', data.result.Id);
-					        updatePublicacoes(e.data.Id, data.result.Id, function(data) {
+					        //updatePublicacoes(e.data.Id, data.result.Id, function(data) {
+					        PublicacoesService.pushComentarios(dataProvider, e.data.Id, data.result.Id, function(data) {
                                 var $commentsCount = $(e.currentTarget).closest('ul').find('#commentsCount');
                                 $commentsCount.text(Number($commentsCount.text())+data);
 
@@ -257,12 +302,18 @@ app.muralView = kendo.observable({
 				    },
 				    function(error){
 				        alert(JSON.stringify(error));
-				    });
+				    });*/
             },
             muralShareClick: function(e) {
             	alert('share');
             },
-            getTimeDiff: function(datetime) {
+            muralPublicacoesCloseClick: function(e) {
+                $('#appDrawer').data('kendoMobileDrawer').show();
+            },
+            cameraClick: function(e) {
+                PublicacoesService.cameraPub(dataProvider, '#tituloCompartilhar');
+            },
+            getTempoDecorrido: function(datetime) {
 			    var now = new Date().getTime();
 			    var datetime = typeof datetime !== 'undefined' ? new Date(datetime).getTime() : new Date();
 
@@ -283,41 +334,11 @@ app.muralView = kendo.observable({
 			    } else if (hours > 0) {
 			    	text = hours+" hora(s) atrás";
 			    } else if (mins > 0) {
-			    	mins+" minuto(s) atrás";
+			    	text = mins+" minuto(s) atrás";
 			    }
 
 			    return text;
-			},/*
-            itemClick: function(e) {
-                var item = e.button.parents('li').attr('data-uid');
-                var dataItem = dataSource.getByUid(item); // || muralViewModel.originalItem;
-
-                muralViewModel.setCurrentItemByUid(dataItem.uid);
-
-                muralViewModel.loadQuestoesAvaliacao(dataItem.Id, function(questoes) {
-                    muralViewModel.set('currentItemQuestoes', questoes);
-                    app.mobileApp.navigate('#components/muralView/details.html?uid=' + dataItem.uid);
-                });
-            },
-            setCurrentItemByUid: function(uid) {
-                var item = uid,
-                    dataSource = muralViewModel.get('dataSource'),
-                    itemModel = dataSource.getByUid(item);
-
-                if (!itemModel) {
-                    alert('Error loading data (Avaliacoes)');
-                    return;
-                }
-
-                muralViewModel.set('originalItem', itemModel);
-
-                itemModel.Flow = 'avaliacoes';                    
-                muralViewModel.set('currentItem',
-                    muralViewModel.fixHierarchicalData(itemModel));
-
-
-                return itemModel;
-            },*/
+			},
             linkBind: function(linkString) {
                 var linkChunks = linkString.split('|');
                 if (linkChunks[0].length === 0) {
@@ -355,10 +376,7 @@ app.muralView = kendo.observable({
     
     parent.set('onShow', function(e) {
     	if (e.view.params.tipo && e.view.params.tipo == 'minhaspub') {
-	        e.view.element.find('#header-minhas-publicacoes').show().siblings().hide();        
-	        e.view.element.find('#muralPublicacoesClose').click(function() {
-	            $('#appDrawer').data('kendoMobileDrawer').show();
-	        });
+	        e.view.element.find('#header-minhas-publicacoes').show().siblings().hide(); 
     	} else {
 	        e.view.element.find('#header-mural-publicacoes').show().siblings().hide();        
     	}
@@ -381,18 +399,108 @@ app.muralView = kendo.observable({
         app.displayUser();
 
         // Armazena o parametro recebido pela VIEW
-        //param = [{ field: "Disciplina", operator: "contains", value: '' }];
         param = {
-           logic:"or",
-           filters: [
-               {field: "Disciplina", operator: "eq", value: ''},
-               {field: "Disciplina", operator: "eq", value: null},
-           ]
+            logic:"or",
+            filters: [
+                {field: "Disciplina", operator: "eq", value: ''},
+                {field: "Disciplina", operator: "eq", value: null},
+            ]
         };
+
+        if (e.view.params.tipo && e.view.params.tipo == 'minhaspub') {
+        	param = {
+				logic: "and",
+				filters: [
+					param,
+					{ field:"User", operator:"eq", value: app.getUserData().Id }
+				]
+			}
+        }
 
         viewParam = param;
 
         fetchFilteredData(viewParam);
     });
+
+    /*function verificaTitulo() {
+        var $titulo = $('#tituloCompartilhar');
+
+        if ($titulo && $titulo.val() == '') {
+            alert('Favor informar o titulo da publicacao!');
+            return;
+        }
+
+        return $titulo;
+    }
+
+    function createPublicacao(tipo, texto, titulo, fileName, fileSize, anexoUri, disciplina, cb) {
+        var dataPublicacoes = dataProvider.data('Publicacoes');
+
+        dataPublicacoes.create(
+            {
+                'FileName': fileName ? fileName : '',
+                'FileSize': fileSize ? fileSize : '',
+                'Disciplina': disciplina ? disciplina : '',
+                'Comentarios': '',
+                'Likes': '',
+                'AnexoUri': anexoUri ? anexoUri : '',
+                'Texto': texto ? texto : '',
+                'Tipo': tipo,
+                'Titulo': titulo ? titulo : '',
+                'User': app.getUserData().Id
+            },
+            function(data){
+                if (data.result) {
+                    console.log('Create publicacoes:', data.result);
+
+                    if (cb) {
+                        try {
+                            cb();
+                        } catch(e) {
+                            alert('Error on Create Publicacoes: '+e.message);
+                        }
+                    }
+                }
+            },
+            function(error){
+                alert('Erro ao gravar Publicacoes! '+error.message);
+            }
+        );
+    };     
+
+    function cameraPub() {
+        var $titulo;
+
+        function onPictureSuccess(imageData) {
+            var file = {
+                Filename: '\\mural\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
+                ContentType: "image/jpeg",
+                base64: imageData,
+            };
+
+            dataProvider.Files.create(file, function(response) {                        
+                createPublicacao('image', null, $titulo.val(), null, null, response.result.Uri, null, function() {
+                    $titulo.val('');
+                    //var listView = $("#muralListView").kendoMobileListView();
+                    //listView.refresh();                        
+                });
+            }, function(err) {
+                navigator.notification.alert("Unfortunately the upload failed: " + err.message);
+            });
+        };
+
+        function onPictureError() {
+            navigator.notification.alert("Falha no acesso à camera!");
+        };           
+
+        $titulo = $('#tituloCompartilhar');
+
+        if ($titulo && $titulo.val() == '') {
+            alert('Favor informar o titulo da publicacao!');
+            return;
+        }
+
+        app.RunCamera(400, 300, onPictureSuccess, onPictureError);  
+    }*/
 
 })(app.muralView);

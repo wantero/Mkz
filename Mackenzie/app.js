@@ -175,8 +175,6 @@
         });
     }
 
-
-
 function onDrawerShow() {
     alert('s');
 }

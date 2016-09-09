@@ -272,7 +272,8 @@ app.cursosView = kendo.observable({
             loadPublicacoes: function(disciplinaId, done) {
                 var query = new Everlive.Query();
                 query.where().eq('Disciplina', disciplinaId);
-                query.expand({"User": true});
+                query.expand({'User': true});
+                query.orderDesc('CreatedAt');
                 //query.order('Ordem');
 
                 var data = dataProvider.data('Publicacoes');

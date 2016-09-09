@@ -5,11 +5,8 @@ app.disciplinasView = kendo.observable({
     afterShow: function() {}
 });
 
-// START_CUSTOM_CODE_disciplinasView
-// Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
-
-// END_CUSTOM_CODE_disciplinasView
 (function(parent) {
+    var headerMuralId = '#header-disciplinas-mensagem';
     var viewParam = "";
     var dataProvider = app.data.mackenzie,
         fetchFilteredData = function(paramFilter, searchFilter) {
@@ -274,6 +271,186 @@ app.disciplinasView = kendo.observable({
                     $('#tabPubVideos').show().siblings().hide();
                 }
             },
+            muralLikeClick: function(e) {
+                PublicacoesService.pushLikes(dataProvider, e.data.Id, app.getUserData().Id, function(data) {
+                    var $likesCount = $(e.currentTarget).closest('div').find('#likesCount');
+                    $likesCount.text(Number($likesCount.text())+data);
+                });             
+                /*var dataPublicacoes = dataProvider.data('Publicacoes');
+
+                // "$push" adds an item to an array.
+                // "$addToSet" adds elements to an array only if they do not already exist in the set.
+                var attributes = {
+                    "$push": {
+                        "Likes": app.getUserData().Id
+                    }
+                };
+
+                var filter = {
+                    'Id': e.data.Id
+                };
+
+                dataPublicacoes.rawUpdate(attributes, filter,
+                    function (data) {
+                        if (data.result) {
+                            var $likesCount = $(e.currentTarget).closest('div').find('#likesCount');
+                            $likesCount.text(Number($likesCount.text())+data.result);
+                        }
+                    },
+                    function (error) {
+                        console.log(JSON.stringify(error));
+                    }
+                );*/
+            },
+            mensagemClick: function(e) {
+                var $mensagem = $(headerMuralId);
+                if ($mensagem.is(':visible')) {
+                    $mensagem.hide();
+                } else {
+                    $mensagem.show();
+                }
+            },
+            muralSendMsgClick: function(e) {
+                /*var $novaMensagem = $('#novaMensagemDisciplina');
+                var $titulo = verificaTitulo();
+
+                if (!$titulo) {
+                    return;
+                }
+
+                var texto = $novaMensagem.val().replace(/\n/g, '<br>');
+                var current = disciplinasViewModel.get('currentDisciplina');
+
+                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, current.Id, function() {
+                    disciplinasViewModel.muralCancelMsgClick(e);
+                    //var listView = $("#muralListView").kendoMobileListView();
+                    //listView.refresh();                        
+                });*/
+
+                var $novaMensagem = $('#novaMensagemDisciplina');
+                var $titulo = $('#disciplinaTituloCompartilhar');
+
+                if (!PublicacoesService.verificaTitulo($titulo, 'Favor informar o titulo da publicacao!')) {
+                    return;
+                }
+
+                var texto = $novaMensagem.val().replace(/\n/g, '<br>');
+                var current = disciplinasViewModel.get('currentDisciplina');
+
+                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, current.Id, function() {
+                    disciplinasViewModel.muralCancelMsgClick(e);
+                    //var listView = $("#muralListView").kendoMobileListView();
+                    //listView.refresh();                        
+                });
+            },
+            muralCancelMsgClick: function(e) {
+                $(headerMuralId).hide();
+                $('#novaMensagemDisciplina').val('');
+            },
+            muralCommentClick: function(e) {
+                var $comments = $(e.currentTarget).closest('ul').siblings('#header-mural-comentario');
+                if ($comments.is(':visible')) {
+                    $(e.currentTarget).closest('ul').siblings('#header-mural-comentario').hide();
+                } else {
+                    $(e.currentTarget).closest('ul').siblings('#header-mural-comentario').show();
+                }
+            },
+            muralCancelCommentClick: function(e) {
+                var $comment = $(e.currentTarget).closest('ul').find('#novoComentario');
+                $comment.val('');
+                $(e.currentTarget).closest('ul').find('#header-mural-comentario').hide();
+            },
+            muralSendCommentClick: function(e) {
+                var element = e;
+                /*function updatePublicacoes(publicacoesId, comentarioId, cb) {
+                    var dataPublicacoes = dataProvider.data('Publicacoes');
+
+                    var attributes = {
+                        "$push": {
+                            "Comentarios": comentarioId
+                        }
+                    };
+
+                    var filter = {
+                        'Id': publicacoesId
+                    };
+
+                    dataPublicacoes.rawUpdate(attributes, filter,
+                        function (data) {
+                            if (data.result) {
+                                if (cb) {
+                                    cb(data.result);
+                                }
+                            }
+                        },
+                        function (error) {
+                            console.log(JSON.stringify(error));
+                        }
+                    );
+                }*/
+
+                var $comment = $(element.currentTarget).closest('ul').find('#novoComentario');
+
+                if (!PublicacoesService.verificaTitulo($comment, 'Favor informar o comentário!')) {
+                    return;
+                }
+
+                PublicacoesService.createComentarios(dataProvider, $comment.val(), app.getUserData().Id, function(data) {
+                    if (data) {
+                        console.log('User Id:', element.data.Id, 'Comentario Id:', data.Id);
+                        //updatePublicacoes(e.data.Id, data.result.Id, function(data) {
+                        PublicacoesService.pushComentarios(dataProvider, element.data.Id, data.Id, function(data) {
+                            var $commentsCount = $(element.currentTarget).closest('ul').find('#commentsCount');
+                            $commentsCount.text(Number($commentsCount.text())+data);
+
+                            $comment.val('');
+                            disciplinasViewModel.muralCommentClick(element);
+                            $(element.currentTarget).closest('ul').find('#header-mural-comentario').hide();
+                        });
+                    }
+                });
+
+                /*var $comment = $(e.currentTarget).closest('ul').find('#novoComentario');
+                var commentText = $comment.val();
+
+                if (commentText == '') {
+                    alert('Favor preencher o comentário!');
+                    return;
+                }
+
+                var dataComentarios = dataProvider.data('PublicacoesComentarios');
+
+                dataComentarios.create({
+                        'Comentario': commentText,
+                        'User': app.getUserData().Id
+                    },
+                    function(data){
+                        if (data.result) {
+                            console.log('User Id:', e.data.Id, 'Comentario Id:', data.result.Id);
+                            PublicacoesService.updatePublicacoes(dataProvider, e.data.Id, data.result.Id, function(data) {
+                                var $commentsCount = $(e.currentTarget).closest('ul').find('#commentsCount');
+                                $commentsCount.text(Number($commentsCount.text())+data);
+
+                                $comment.val('');
+                                disciplinasViewModel.muralCommentClick(e);
+                                $(e.currentTarget).closest('ul').find('#header-mural-comentario').hide();
+                            });
+                        }
+                    },
+                    function(error){
+                        alert(JSON.stringify(error));
+                    });*/
+            },
+            muralShareClick: function(e) {
+                alert('share');
+            },/*
+            muralPublicacoesCloseClick: function(e) {
+                $('#appDrawer').data('kendoMobileDrawer').show();
+            },*/
+            cameraClick: function(e) {
+                var current = disciplinasViewModel.get('currentDisciplina');
+                PublicacoesService.cameraPub(dataProvider, '#disciplinaTituloCompartilhar', current.Id);
+            },
             linkBind: function(linkString) {
                 var linkChunks = linkString.split('|');
                 if (linkChunks[0].length === 0) {
@@ -369,11 +546,89 @@ app.disciplinasView = kendo.observable({
         }
 
         disciplinasViewModel.selectAvaliacoes();
-    })
+    });
+
+
+
+    /*function verificaTitulo() {
+        var $titulo = $('#disciplinaTituloCompartilhar');
+
+        if ($titulo && $titulo.val() == '') {
+            alert('Favor informar o titulo da publicacao!');
+            return;
+        }
+
+        return $titulo;
+    }
+
+    function createPublicacao(tipo, texto, titulo, fileName, fileSize, anexoUri, disciplina, cb) {
+        var dataPublicacoes = dataProvider.data('Publicacoes');
+
+        dataPublicacoes.create(
+            {
+                'FileName': fileName ? fileName : '',
+                'FileSize': fileSize ? fileSize : '',
+                'Disciplina': disciplina ? disciplina : '',
+                'Comentarios': '',
+                'Likes': '',
+                'AnexoUri': anexoUri ? anexoUri : '',
+                'Texto': texto ? texto : '',
+                'Tipo': tipo,
+                'Titulo': titulo ? titulo : '',
+                'User': app.getUserData().Id
+            },
+            function(data){
+                if (data.result) {
+                    console.log('Create publicacoes:', data.result);
+
+                    if (cb) {
+                        try {
+                            cb();
+                        } catch(e) {
+                            alert('Error on Create Publicacoes: '+e.message);
+                        }
+                    }
+                }
+            },
+            function(error){
+                alert('Erro ao gravar Publicacoes! '+error.message);
+            }
+        );
+    };     
+
+    function cameraPub(disciplinaId) {
+        var $titulo;
+
+        function onPictureSuccess(imageData) {
+            var file = {
+                Filename: '\\mural\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
+                ContentType: "image/jpeg",
+                base64: imageData,
+            };
+
+            dataProvider.Files.create(file, function(response) {                        
+                createPublicacao('image', null, $titulo.val(), null, null, response.result.Uri, disciplinaId, function() {
+                    $titulo.val('');
+                    //var listView = $("#muralListView").kendoMobileListView();
+                    //listView.refresh();                        
+                });
+            }, function(err) {
+                navigator.notification.alert("Unfortunately the upload failed: " + err.message);
+            });
+        };
+
+        function onPictureError() {
+            navigator.notification.alert("Falha no acesso à camera!");
+        };           
+
+        $titulo = $('#disciplinaTituloCompartilhar');
+
+        if ($titulo && $titulo.val() == '') {
+            alert('Favor informar o titulo da publicacao!');
+            return;
+        }
+
+        app.RunCamera(400, 300, onPictureSuccess, onPictureError);  
+    }*/
 
 })(app.disciplinasView);
-
-// START_CUSTOM_CODE_disciplinasViewModel
-// Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
-
-// END_CUSTOM_CODE_disciplinasViewModel

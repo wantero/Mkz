@@ -68,17 +68,31 @@
 	    <div id="tabPublicacoes" style="display:none">
 			<div id="header-disciplinas-publicacoes" class="section-name-wrap mural-header">
 				<form class="section-name-wrap">
-					<input id="disciplina-compartilhar" placeholder="Compartilhe um artigo, foto ou ideia" type="text" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro">
+					<input id="disciplinaTituloCompartilhar" placeholder="Compartilhe um artigo, foto ou ideia" type="text" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro">
 					<div class="mural-header-icons">
 						<div class="section-icon-name flaticon-post">
-							<span class="km-icon" data-icon=""></span>
+							<span class="km-icon" data-icon="" data-bind="{ events: {click: mensagemClick} }"></span>
 						</div>
 						<div class="section-icon-name flaticon-camera">
-							<span class="km-icon" data-icon=""></span>
+							<span class="km-icon" data-icon="" data-bind="{ events: {click: cameraClick} }"></span>
 						</div>
 					</div>
 				</form>
 			</div>
+            
+	        <div id="header-disciplinas-mensagem" class="section-name-wrap mural-header" style="display:none">
+	            <form class="section-name-wrap">
+	                <textarea id="novaMensagemDisciplina" placeholder="Digite aqui sua publicação" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro"></textarea>
+	                <div class="mural-header-icons">
+	                    <div class="section-icon-name flaticon-comment-ok">
+	                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralSendMsgClick} }"></span>
+	                    </div>
+	                    <div class="section-icon-name flaticon-comment-cancel">
+	                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelMsgClick} }"></span>
+	                    </div>
+	                </div>
+	            </form>
+	        </div>  			
 
 			<!-- NAO REMOVER -->
 			<!-- <ul id="first-period" data-role="buttongroup" class="km-widget km-buttongroup">
@@ -212,6 +226,44 @@
                                     # } #
 	                            </div>
 	                        </div>
+
+	                        <div class="section-icon-name flaticon-smiley">
+	                            <span class="km-icon" data-icon=""></span>
+	                            <span id="likesCount">#: data.Likes.length #</span>
+	                        </div>
+	                        <div class="section-icon-name flaticon-comment">
+	                            <span class="km-icon" data-icon=""></span>
+	                            <span id="commentsCount">#: data.Comentarios.length #</span> comentário(s)
+	                        </div>
+	                    </div>
+
+	                    <!-- BOTÕES AÇÕES LIKE/COMENTAR/COMPARTILHAR -->
+	                    <ul class="post-botoes">
+	                        <li class="xsection-icon-name flaticon-smiley">
+	                            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralLikeClick} }"></span>
+	                        </li>
+
+	                        <li class="xsection-icon-name flaticon-comment">
+	                            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCommentClick} }"></span>
+	                        </li>
+
+	                        <li class="xsection-icon-name flaticon-share">
+	                            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralShareClick} }"></span>
+	                        </li>
+	                    </ul>
+
+	                    <div id="header-mural-comentario" class="section-name-wrap mural-header" style="display:none">
+	                        <form class="section-name-wrap">
+	                            <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro"></textarea>
+	                            <div class="mural-header-icons">
+	                                <div class="xsection-icon-name flaticon-comment-ok">
+	                                    <span class="km-icon" data-icon="" data-bind="{ events: {click: muralSendCommentClick} }"></span>
+	                                </div>
+	                                <div class="xsection-icon-name flaticon-comment-cancel">
+	                                    <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelCommentClick} }"></span>
+	                                </div>
+	                            </div>
+	                        </form>
 	                    </div>
 	                </li>
 	            </ul>
@@ -229,10 +281,48 @@
 	                # if (data.Titulo && data.Titulo != '') { #
 	                    <h4>#: data['Titulo'] #</h4>
 	            	# } #
-			      	<p>#: data.Texto #<p>
+			      	<p>#= data.Texto #<p>
 			      	<b>Enviado por: #: data.User.DisplayName #</b>
 	  			</div>
+
+                <div class="section-icon-name flaticon-smiley">
+                    <span class="km-icon" data-icon=""></span>
+                    <span id="likesCount">#: data.Likes.length #</span>
+                </div>
+                <div class="section-icon-name flaticon-comment">
+                    <span class="km-icon" data-icon=""></span>
+                    <span id="commentsCount">#: data.Comentarios.length #</span> comentário(s)
+                </div>
     	  	</div>
+
+	        <!-- BOTÕES AÇÕES LIKE/COMENTAR/COMPARTILHAR -->
+	        <ul class="post-botoes">
+	            <li class="xsection-icon-name flaticon-smiley">
+	                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralLikeClick} }"></span>
+	            </li>
+
+	            <li class="xsection-icon-name flaticon-comment">
+	                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCommentClick} }"></span>
+	            </li>
+
+	            <li class="xsection-icon-name flaticon-share">
+	                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralShareClick} }"></span>
+	            </li>
+	        </ul>
+
+	        <div id="header-mural-comentario" class="section-name-wrap mural-header" style="display:none">
+	            <form class="section-name-wrap">
+	                <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro"></textarea>
+	                <div class="mural-header-icons">
+	                    <div class="xsection-icon-name flaticon-comment-ok">
+	                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralSendCommentClick} }"></span>
+	                    </div>
+	                    <div class="xsection-icon-name flaticon-comment-cancel">
+	                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelCommentClick} }"></span>
+	                    </div>
+	                </div>
+	            </form>
+	        </div>
         # } #       
     </script>
 
@@ -274,11 +364,51 @@
 	                        	# } #
 	                            <div class="post-imagem">
                                     # if (data.AnexoUri && data.AnexoUri != "") { #
-                                    	<img src="#: data.AnexoUri #">
+                                    	<video controls> 
+										  <source src="#: data.AnexoUri #" type="video/mp4">
+										</video>
                                     # } #
 	                            </div>
 	                        </div>
+
+			                <div class="section-icon-name flaticon-smiley">
+			                    <span class="km-icon" data-icon=""></span>
+			                    <span id="likesCount">#: data.Likes.length #</span>
+			                </div>
+			                <div class="section-icon-name flaticon-comment">
+			                    <span class="km-icon" data-icon=""></span>
+			                    <span id="commentsCount">#: data.Comentarios.length #</span> comentário(s)
+			                </div>
 	                    </div>
+
+				        <!-- BOTÕES AÇÕES LIKE/COMENTAR/COMPARTILHAR -->
+				        <ul class="post-botoes">
+				            <li class="xsection-icon-name flaticon-smiley">
+				                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralLikeClick} }"></span>
+				            </li>
+
+				            <li class="xsection-icon-name flaticon-comment">
+				                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCommentClick} }"></span>
+				            </li>
+
+				            <li class="xsection-icon-name flaticon-share">
+				                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralShareClick} }"></span>
+				            </li>
+				        </ul>
+
+				        <div id="header-mural-comentario" class="section-name-wrap mural-header" style="display:none">
+				            <form class="section-name-wrap">
+				                <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro"></textarea>
+				                <div class="mural-header-icons">
+				                    <div class="xsection-icon-name flaticon-comment-ok">
+				                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralSendCommentClick} }"></span>
+				                    </div>
+				                    <div class="xsection-icon-name flaticon-comment-cancel">
+				                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelCommentClick} }"></span>
+				                    </div>
+				                </div>
+				            </form>
+				        </div>
 	                </li>
 	            </ul>
 	        </div>

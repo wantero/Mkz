@@ -7,26 +7,40 @@
                 <span class="km-icon" data-icon=""></span>
                 <span>Minhas Publicações</span>
             </div>
-            <a class="link-x" id="muralPublicacoesClose"></a>
+            <a class="link-x" data-bind="{ events: {click: muralViewModel.muralPublicacoesCloseClick} }"></a>
         </div>
 
         <div id="header-mural-publicacoes" class="section-name-wrap mural-header">
             <form class="section-name-wrap">
-                <input id="compartilhar" placeholder="Compartilhe um artigo, foto ou ideia" type="text" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro">
+                <input id="tituloCompartilhar" placeholder="Compartilhe um artigo, foto ou ideia" type="text" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro">
                 <div class="mural-header-icons">
                     <div class="section-icon-name flaticon-post">
-                        <span class="km-icon" data-icon=""></span>
+                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralViewModel.mensagemClick} }"></span>
                     </div>
                     <div class="section-icon-name flaticon-camera">
-                        <span class="km-icon" data-icon=""></span>
+                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralViewModel.cameraClick} }"></span>
+                    </div>
+                </div>   
+            </form>    
+        </div>
+            
+        <div id="header-mural-mensagem" class="section-name-wrap mural-header" style="display:none">
+            <form class="section-name-wrap">
+                <textarea id="novaMensagem" placeholder="Digite aqui sua publicação" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro"></textarea>
+                <div class="mural-header-icons">
+                    <div class="section-icon-name flaticon-comment-ok">
+                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralViewModel.muralSendMsgClick} }"></span>
+                    </div>
+                    <div class="section-icon-name flaticon-comment-cancel">
+                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralViewModel.muralCancelMsgClick} }"></span>
                     </div>
                 </div>
             </form>
-        </div>
+        </div>         
     </div>
 
     <div id="muralList" class="aval-wrap aval-praticas" xstyle="display:none">
-        <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="" data-template="muralTemplate" 
+        <ul id="muralListView" class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="" data-template="muralTemplate" 
             data-bind="{ source: muralViewModel.dataSource }" data-pull-to-refresh="true" data-endless-scroll="false"
             id="muralDetail">
         </ul>
@@ -35,6 +49,7 @@
 
     <script type="text/x-kendo-template" id="muralTemplate">
         # data = app.muralView.muralViewModel.fixHierarchicalData(data); #
+        # console.log('data:', data) #
 
         <div class="mural-conteudo-wrap">
             <ul class="masterDetailView km-widget km-listview km-list" data-role="listview">
@@ -66,8 +81,18 @@
                             <div class="post-imagem">
                                 # if (data.Tipo && data.Tipo == "image") { #
                                     # if (data.AnexoUri && data.AnexoUri != "") { #
-                                    <img src="#: data.AnexoUri #">
+                                    <img src="#: data.AnexoUri #"></img>
                                     # } #
+                                # } #
+
+                                # if (data.Tipo && data.Tipo == "msg") { #
+                                    <p>#= data.Texto #</p>
+                                # } #
+
+                                # if (data.Tipo && data.Tipo == "video") { #
+                                    <video controls> 
+                                      <source src="#: data.AnexoUri #" type="video/mp4">
+                                    </video>
                                 # } #
 
                                 <!-- ADICIONAR AQUI OS MODELOS PARA OS OUTROS TIPOS -->
@@ -107,7 +132,7 @@
                                     <span class="km-icon" data-icon="" data-bind="{ events: {click: muralSendCommentClick} }"></span>
                                 </div>
                                 <div class="section-icon-name flaticon-comment-cancel">
-                                    <span class="km-icon" data-icon="" data-bind=""></span>
+                                    <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelCommentClick} }"></span>
                                 </div>
                             </div>
                         </form>

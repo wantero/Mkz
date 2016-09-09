@@ -49,7 +49,8 @@
     <script src="components/faqsView/index.js"></script>
     <script src="components/ranksView/index.js"></script>
     <script src="components/avaliacoesView/index.js"></script>
-    <script src="components/muralView/index.js"></script>    
+    <script src="components/muralView/index.js"></script>  
+    <script src="components/muralView/publicacoesService.js"></script>  
     <script src="components/checkinView/index.js"></script>
 
     <!-- Layout principal com HEADER -->
@@ -138,7 +139,7 @@
                 <a xdata-icon="search" class="flaticon-search" href="components/cursosView/view.html"></a>
                 <a xdata-icon="search" class="flaticon-calendar" onclick="app.cursosView.cursosViewModel.selectSchedulerFromMenu()" x-href="components/cursosView/details.html"></a>
                 <a xdata-icon="search" class="flaticon-pin" href="components/checkinView/view.html"></a>
-                <a xdata-icon="search" class="flaticon-check" x-href=""></a>
+                <a xdata-icon="search" class="flaticon-check" href="components/avaliacoesView/view.html"></a>
             </div>
         </div>
     </div>
@@ -175,7 +176,7 @@
                 <a xdata-icon="search" class="flaticon-search" href="components/cursosView/view.html"></a>
                 <a xdata-icon="search" class="flaticon-calendar" data-bind="{events: {click: app.cursosView.cursosModelView.selectSchedulerFromMenu }}" x-href="components/cursosView/details.html"></a>
                 <a xdata-icon="search" class="flaticon-pin" href="components/checkinView/view.html"></a>
-                <a xdata-icon="search" class="flaticon-check" x-href=""></a>
+                <a xdata-icon="search" class="flaticon-check" href="components/avaliacoesView/view.html"></a>
             </div>
         </div>
     </div>    
@@ -206,7 +207,7 @@
                 <a xdata-icon="search" class="flaticon-search" href="components/cursosView/view.html"></a>
                 <a xdata-icon="search" class="flaticon-calendar" onclick="app.cursosView.cursosViewModel.selectSchedulerFromMenu()" x-href="components/cursosView/details.html"></a>
                 <a xdata-icon="search" class="flaticon-pin" href="components/checkinView/view.html"></a>
-                <a xdata-icon="search" class="flaticon-check" x-href=""></a>
+                <a xdata-icon="search" class="flaticon-check" href="components/avaliacoesView/view.html"></a>
             </div>
         </div>
     </div>    
@@ -232,10 +233,8 @@
             </div>
         </header>
         <ul id="navigation-container" data-role="listview">
-            <!--li><a href="components/home/view.html" data-icon="home">Acesso</a></li-->
-
-            <li style="display:none">
-                <a href="components/perfilView/view.html" data-icon="home" class="flaticon-home"><span>Feed de Atividades</span></a>
+            <li>
+                <a href="components/muralView/view.html" data-icon="home" class="flaticon-home"><span>Feed de Atividades</span></a>
             </li>
 
             <li>
@@ -250,8 +249,8 @@
                 <a href="components/ranksView/view.html" data-icon="home" class="flaticon-ranking"><span>Rankings</span></a>
             </li>
 
-            <li style="display:none">
-                <a href="components/home/view.html" data-icon="home" class="flaticon-publication"><span>Minhas Publicações</span></a>
+            <li>
+                <a href="components/muralView/view.html?tipo=minhaspub" data-icon="home" class="flaticon-publication"><span>Minhas Publicações</span></a>
             </li>
 
             <li>
@@ -263,10 +262,6 @@
             </li>
 
             <li><a href="components/home/termoAceite.html" data-icon="info">### Aceite (Teste) ###</a></li>
-
-            <li><a href="components/muralView/view.html?tipo=mural" data-icon="info">### Mural (Teste) ###</a></li>
-
-            <!-- <li><a href="components/checkinView/view.html" data-icon="info">### Checkin (Teste) ###</a></li> -->
 
             <li id="homeModellogout">
                 <a href="components/home/view.html?logout=true" data-position="end" data-icon="action" class="flaticon-exit"><span>Sair</span></a>
