@@ -4,10 +4,12 @@
     <div id="perfilViewModel" class="form-view">
 
         <form>
-            <div class="user-thumb">
-                <img id="foto" class="km-thumbnail" src="styles/images/user-male.png" alt="Your photo">
+            <div class="user-thumb-wrap">
+                <div class="user-thumb">
+                    <img id="foto" class="km-thumbnail" src="styles/images/user-male.png" alt="Your photo">
+                </div>
+                <a data-bind="events: { click: perfilViewModel.editarFoto }">Editar foto</a>
             </div>
-            <a  data-bind="events: { click: perfilViewModel.editarFoto }">Alterar foto</a>
         
             <ul class="form-content" data-role="listview" data-style="inset">
 

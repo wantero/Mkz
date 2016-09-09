@@ -35,9 +35,10 @@
 .flaticon-qr-code::after {   
   display: inline-block;
   width: auto;
+  line-height: 1em;
+  font-size: 0.8em;
   font-family: Flaticon;
   font-style: normal;
-  line-height: 1em;
   color: #444;
 }
 

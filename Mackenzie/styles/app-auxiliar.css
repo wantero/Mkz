@@ -36,6 +36,7 @@
 }
 
 
+/**************************/
 /*** BORDER COLOR GERAL ***/
 /**************************/
 .descricao-wrap,
@@ -86,6 +87,7 @@
 }
 
 
+/**************************/
 /*** PADDING-TOP HEADER ***/
 /**************************/
 /*#tabDisciplinas .km-scroll-header + .km-scroll-container,
@@ -98,6 +100,7 @@
 }
 
 
+/**************************/
 /**** AUXILIAR CLASSES ****/
 /**************************/
 .thumb-sm {
@@ -118,6 +121,7 @@
 }
 
 
+/***************************/
 /****** COLOR CLASSES ******/
 /***************************/
 #kendoUiMobileApp .bg-branco {
@@ -132,9 +136,10 @@
 }
 
 
+/***************************/
 /***** QR CODE ANIMATE *****/
 /***************************/
-@keyframes QR-demo {
+/*@keyframes QR-demo {
 	0%, 15% {
 		-webkit-transform: translate(10%, 4.5em);
 			-ms-transform: translate(10%, 4.5em);
@@ -202,8 +207,7 @@
 		15% {opacity: 1;}
 		85% {opacity: 1;}
 		100% {opacity: 0;}
-	}
-
+	}*/
 
 
 /***************************/
@@ -247,6 +251,10 @@
 		height: 20px;
 		width: 20px;
 		top: -0.15em;
+	}
+
+	#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2 {
+		padding: 0 15%;
 	}
 
 }

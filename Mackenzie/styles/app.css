@@ -749,9 +749,12 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		margin-right: 0.3em;
 	}
 
-#kendoUiMobileApp #aval-praticas .button-group,
+
 #kendoUiMobileApp div[data-url="components/avaliacoesView/result.html"] .button-group {
 	padding: 0 1em 1em;
+}
+#kendoUiMobileApp #aval-praticas .button-group {
+	padding: 0 1em 45px;
 }
 
 #kendoUiMobileApp #aval-praticas .section-name-wrap > .km-back,
@@ -928,8 +931,11 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #mackz-mural .mural-header,
 #header-disciplinas-publicacoes {
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+			align-items: center;
+	-webkit-justify-content: space-between;
+			justify-content: space-between;
 	padding: 0 1em;
 	z-index: 1;
 }
@@ -1018,7 +1024,9 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 #mackz-mural .mural-conteudo-wrap .masterDetailView .post-botoes {
 	display: flex;
-	justify-content: space-between;
+	display: -webkit-flex;
+	-webkit-justify-content: space-between;
+			justify-content: space-between;
 	padding: 0 3em;
 	margin-bottom: 4px;
 	border-width: 1px 0;
@@ -1083,7 +1091,9 @@ form.section-name-wrap {
 }
 
 #kendoUiMobileApp #mackz-faq .km-scroll-wrapper .masterDetailView li {
-	transform: none !important;
+	-webkit-transform: none !important;
+		-ms-transform: none !important;
+			transform: none !important;
 }
 	#kendoUiMobileApp #mackz-faq .km-scroll-wrapper .masterDetailView li .image-with-text {
 		position: relative;
@@ -1112,18 +1122,28 @@ form.section-name-wrap {
 	padding: 1em 2em 5em;
 }
 
-#perfilViewModel .user-thumb {
-    float: none;
-    display: block;
-    height: 70px;
-    width: 70px;
-    margin: 0 auto 0.2em;
-    border: 1px solid #CCC;
+#perfilViewModel .user-thumb-wrap,
+#perfilViewModel .user-thumb,
+#perfilViewModel .user-thumb + a {
+	display: block;
+	width: 70px;
 }
+#perfilViewModel .user-thumb-wrap {
+	position: relative;
+	margin: 0 auto;
+}
+	#perfilViewModel .user-thumb {
+	    float: none;
+	    height: 70px;
+	    margin: 0 auto 2.5em;
+	    border: 1px solid #CCC;
+	}
 	#perfilViewModel .user-thumb + a {
-		display: block;
+		position: absolute;
+		top: 0;
+		padding: 5.3em 0 1em;
 		text-align: center;
-		margin-bottom: 1em;
+		color: #1486CC;
 	}
 
 #perfilViewModel .form-content-item {
@@ -1333,8 +1353,11 @@ form.section-name-wrap {
 
 #mackz-checkin .qr-camera-wrap {
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	display: -webkit-flex;
+	-webkit-justify-content: center;
+			justify-content: center;
+	-webkit-align-items: center;
+			align-items: center;
 }
 	#mackz-checkin .camera-imagem-wrap {
 		min-height: 300px;
@@ -1400,12 +1423,20 @@ form.section-name-wrap {
 	}
 
 #disciplinasViewModelDetailsView #tabPublicacoes #first-period-2 {
-	padding: 0;
+	display: flex;
+	display: -webkit-flex;
+	-webkit-justify-content: space-between;
+			justify-content: space-between;
+	width: 100%;
+	padding: 0 0.5em;
 	margin: 0;
 	border-top: 0;
 }
 	#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2 li {
 		width: auto;
+	}
+	#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2 li > .km-text {
+		margin-left: 0; 
 	}
 
 #disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .lista-arquivos,
@@ -1536,23 +1567,20 @@ form.section-name-wrap {
 	.avaliacoes-wrap .prox-aula .grupo-wrap .km-button.km-state-active {
 		color: #444;
 	}
+	.avaliacoes-wrap .prox-aula .km-icon {
+		font-size: 1.4em;
+	}
 	.avaliacoes-wrap .prox-aula .km-button .km-icon::after {
 		font-size: 1.1em;
 	}
-	.avaliacoes-wrap .prox-aula .km-button .km-i-film::after {
-		content: "\e09c";
-	}
-	.avaliacoes-wrap .prox-aula .km-button .km-i-envelop-open::after {
-		content: "\e09a";
-	}
-	.avaliacoes-wrap .prox-aula .km-button .km-i-image::after {
-		content: "\e07c";
-	}
 
-.avaliacoes-wrap .aval-praticas h3 {
-	text-align: center;
-	margin-bottom: 0;
+.avaliacoes-wrap .aval-praticas {
+	padding-bottom: 20px;
 }
+	.avaliacoes-wrap .aval-praticas h3 {
+		text-align: center;
+		margin-bottom: 0;
+	}
 
 #kendoUiMobileApp .avaliacoes-wrap .aval-praticas .km-listview-wrapper li {
 	padding: 0.5em 1em;
