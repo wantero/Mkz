@@ -291,8 +291,7 @@ div[data-layout="main-aceite"] .km-content .km-scroll-container {
 
 /* PADDING-BOTTOM PARA O FOOTER */
 ul.masterDetailView,
-#tabCursoAgenda #tabAgenda .km-pane-wrapper,
-#tabPublicacoes {
+#tabCursoAgenda #tabAgenda .km-pane-wrapper {
 	padding-bottom: 45px;
 }
 
@@ -556,6 +555,13 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		height: auto;
 		max-height: 100%;
 		background-color: #ccc;
+
+		height: 100%;
+		width: 100%;
+		display: inline-block;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
 	}
 	#appDrawer .user-thumb {
     	display: inline-block;
@@ -924,7 +930,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 /*** MURAL DE PUBLICAÇÕES ***/
 /****************************/
 #mackz-mural .mural-header,
-#mackz-mural .mural-conteudo-wrap .masterDetailView .post-botoes {
+#kendoUiMobileApp/* #mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-botoes,
+#kendoUiMobileApp/* #mackz-mural*/ .publicacoes-button-wrap .masterDetailView .post-botoes {
 	box-shadow: 0 3px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
@@ -946,30 +953,32 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		border-bottom: 0;
 	}
 	#mackz-mural .mural-header .mural-header-icons .section-icon-name,
-	#header-disciplinas-publicacoes .mural-header-icons .section-icon-name {
+	#header-disciplinas-publicacoes .mural-header-icons .section-icon-name,
+	/*#tabPubImages */.mural-header-icons .xsection-icon-name {
+		display: inline-block;
 		padding: 0.25em 0 0.25em 0.2em;
 	}
 
-#mackz-mural .mural-conteudo-wrap {
+#kendoUiMobileApp/* #mackz-mural*/ .mural-conteudo-wrap {
 	height: 100%;
 	background-color: #FFF;
 }
-	#mackz-mural .mural-conteudo-wrap .masterDetailView {
+	#kendoUiMobileApp/* #mackz-mural*/ .mural-conteudo-wrap .masterDetailView {
 		padding-bottom: 0;
 		margin: 0;
 	}
-	#mackz-mural .mural-conteudo-wrap .masterDetailView > li {
+	#kendoUiMobileApp/* #mackz-mural*/ .mural-conteudo-wrap .masterDetailView > li {
 		padding: 0;
 		border: 0;
 	}
-	#mackz-mural .mural-conteudo-wrap .masterDetailView .mural-thumb {
+	#kendoUiMobileApp/* #mackz-mural*/ .mural-conteudo-wrap .masterDetailView .mural-thumb {
 		float: left;
 		display: inline-block;
 	}
-	#mackz-mural .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 {
+	#kendoUiMobileApp/* #mackz-mural*/ .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 {
 		text-indent: 0.5em;
 		float: left;
-		margin: 0;
+		margin: 0.3em 0 0;
 	}
 
 #mackz-mural #muralDetail li:not(.section-icon-name) {
@@ -977,52 +986,68 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	border-bottom: 0;
 }
 
-#kendoUiMobileApp #mackz-mural .mural-conteudo-wrap .masterDetailView .post-user,
-#kendoUiMobileApp #mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap {
+#kendoUiMobileApp/* #mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-user,
+#kendoUiMobileApp/* #mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap {
 	margin: 0;
 }
-#mackz-mural .mural-conteudo-wrap .masterDetailView .post-user {
+#kendoUiMobileApp/*#mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-user {
 	overflow: auto;
-	padding: 0.5em 1em;
+	padding: 1em 1em 0.5em;
 	border-bottom: 1px solid #DDD;
+	margin-top: 0 !important;
 }
-	#mackz-mural .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name {
+	#kendoUiMobileApp/*#mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name {
 		float: right;
 		padding: 0;
 		font-size: 0.8em;
 	}
-	#mackz-mural .mural-conteudo-wrap .masterDetailView .post-user .km-icon {
+	#kendoUiMobileApp/*#mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-user .km-icon {
 		margin: 3px 0 0;
 	}
-	#mackz-mural .mural-conteudo-wrap .masterDetailView .post-user .km-icon::after {
+	#kendoUiMobileApp/*#mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-user .km-icon::after {
 		content: none;
 	}
 
-#mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .section-icon-name:nth-child(2),
-#mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo > p {
+#kendoUiMobileApp/*#mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .section-icon-name:nth-child(2),
+#kendoUiMobileApp/*#mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-conteudo > p {
 	padding: 0.8em 1em;
 }
-	#mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem {
-		height: 80%;
-		max-height: 350px;
-		min-height: 200px;
-		overflow: hidden;
+	#kendoUiMobileApp/*#mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem {
+		height: 100%;
+		/*max-height: 350px;
+		min-height: 200px;*/
+		/*overflow: hidden;*/
+		position: relative;
 	}
-	#mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem img {
-		display: block;
+	/*#mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem img*/
+	#kendoUiMobileApp/*#mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem span {
+		/*display: block;
 		height: auto;
 		width: auto;
 		max-height: 100%;
 		max-width: 100%;
-		margin: 0 auto;
+		margin: 0 auto;*/
+		position: absolute;
+		top: 0;
+		display: inline-block;
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: 50% 50%;
+		height: 100%;
+		width: 100%;
 	}
-	#mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .km-icon {
+	#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .masterDetailView .post-conteudo-wrap .post-imagem img {
+		width: 100%;
+		visibility: hidden;
+	}
+	#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .masterDetailView .post-conteudo-wrap .km-icon {
 		width: auto;
 		height: auto;
 		margin: 0 0.2em 0 0;
 	}
 
-#mackz-mural .mural-conteudo-wrap .masterDetailView .post-botoes {
+/*#kendoUiMobileApp #mackz-mural .mural-conteudo-wrap .masterDetailView .post-botoes,*/
+#kendoUiMobileApp/*#mackz-mural*/ /*.publicacoes-button-wrap*/ .masterDetailView .post-botoes {
 	display: flex;
 	display: -webkit-flex;
 	-webkit-justify-content: space-between;
@@ -1033,40 +1058,49 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	border-style: solid;
 	border-color: #CCC;
 }
-	#mackz-mural .mural-conteudo-wrap .masterDetailView .post-botoes .km-icon {
+	/*#kendoUiMobileApp #mackz-mural .mural-conteudo-wrap .masterDetailView .post-botoes .km-icon,*/
+	#kendoUiMobileApp/*#mackz-mural*/ /*.publicacoes-button-wrap*/ .masterDetailView .post-botoes .km-icon {
 		height: auto;
 		width: auto;
+		margin: 0;
 	}
-	#mackz-mural .mural-conteudo-wrap .masterDetailView .post-botoes .km-icon::after {
+	/*#kendoUiMobileApp #mackz-mural .mural-conteudo-wrap .masterDetailView .post-botoes .km-icon::after,*/
+	#kendoUiMobileApp/*#mackz-mural*/ /*.publicacoes-button-wrap*/ .masterDetailView .post-botoes .km-icon::after {
 		font-size: 1.7em;
 	}
 
-#mackz-mural .mural-conteudo-wrap .mural-header form > textarea {
+#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .mural-header form > textarea {
 	height: 50px;
 	border: 1px solid;
 	resize: none;
 }
-	#mackz-mural .mural-conteudo-wrap .mural-header form > textarea + .mural-header-icons {
+	#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .mural-header form > textarea + .mural-header-icons {
 		display: inline-block;
 	}
-	#mackz-mural .mural-conteudo-wrap .mural-header form > textarea + .mural-header-icons .section-icon-name {
+	#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .mural-header form > textarea + .mural-header-icons .section-icon-name {
 		padding: 0.5em 0.5em 0 0;
 	}
-	#mackz-mural .mural-conteudo-wrap .mural-header .flaticon-comment-ok .km-icon::after {
+	#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .mural-header .flaticon-comment-ok .km-icon::after {
 		color: green;
 	}
-	#mackz-mural .mural-conteudo-wrap .mural-header .flaticon-comment-cancel .km-icon::after {
+	#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .mural-header .flaticon-comment-cancel .km-icon::after {
 		color: #EA2D2E;
 	}
-	#mackz-mural .mural-conteudo-wrap .mural-header textarea + .mural-header-icons .km-icon {
+	#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .mural-header textarea + .mural-header-icons .km-icon {
 		margin: 0;
 		height: auto;
 		width: auto;
 	}
-	#mackz-mural .mural-conteudo-wrap .mural-header textarea + .mural-header-icons .km-icon::after {
+	#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .mural-header textarea + .mural-header-icons .km-icon::after {
 		line-height: normal;
 		vertical-align: baseline;
 	}
+
+/* Suas publicações */
+#kendoUiMobileApp/*#mackz-mural*/ #muralList #muralListView > li,
+#kendoUiMobileApp/*#mackz-mural*/ #muralList #muralListView .bg-branco {
+	padding: 0;
+}
 
 
 /*** PERGUNTAS FREQUENTES ***/
@@ -1202,10 +1236,11 @@ form.section-name-wrap {
 		margin: 0;
 		border-left: 0;
 		border-radius: 0;
+		list-style: none;
 	}
-	.km-scroll-container > .km-listview-wrapper:only-of-type .masterDetailView li::after,
-	#tabCursoDisciplinas .km-listview-wrapper .masterDetailView li::after,
-	#mackz-faq .km-listview-wrapper .masterDetailView li::after {
+	.km-scroll-container > .km-listview-wrapper:only-of-type .masterDetailView  >li::after,
+	#tabCursoDisciplinas .km-listview-wrapper .masterDetailView > li::after,
+	#mackz-faq .km-listview-wrapper .masterDetailView > li::after {
 	    content: "";
 	    position: absolute;
 	    top: calc(50% - 17px);
@@ -1367,7 +1402,7 @@ form.section-name-wrap {
 	}
 
 
-/*** BOTÕES SEMESTRES e ANO (DESC. COMPONENTES ***/
+/*** BOTÕES SEMESTRES e ANO (DESC. COMPONENTES) ***/
 .km-flat .km-view .disciplinas-wrap .km-buttongroup {
 	display: block;
 	overflow: auto;
@@ -1428,24 +1463,28 @@ form.section-name-wrap {
 	-webkit-justify-content: space-between;
 			justify-content: space-between;
 	width: 100%;
-	padding: 0 0.5em;
+	padding: 0;
 	margin: 0;
 	border-top: 0;
 }
 	#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2 li {
 		width: auto;
 	}
+	#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2 li:first-child {
+		padding-left: 0.7em;
+	}
+	#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2 li:last-child {
+		padding-right: 0.7em;
+	}
 	#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2 li > .km-text {
 		margin-left: 0; 
 	}
 
 #disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .lista-arquivos,
+#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView > li,
 #disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .bg-branco {
 	padding: 0;
 }
-	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView > li {
-		padding: 1em 1.5em;
-	}
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView > li::after,
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .km-icon::before {
 		content: none;
@@ -1455,7 +1494,7 @@ form.section-name-wrap {
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .mural-conteudo-wrap,
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user,
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-conteudo-wrap,
-	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user h4,
+	/*#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user h4,*/
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .km-icon {
 		margin: 0;
 	}
@@ -1805,47 +1844,65 @@ form.section-name-wrap {
 
 
 /*** DISCIPLINAS DETAILS ***/
-.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) {
+.avaliacoes-wrap #tabPublicacoes /*.km-buttongroup:nth-child(2)*/ #first-period-2 {
 	width: 100%;
 	margin: 0.5em 0;
 	border-width: 1px 0;
 	border-style: solid;
 }
-	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) a {
+	.avaliacoes-wrap #tabPublicacoes /*.km-buttongroup:nth-child(2)*/ #first-period-2 a {
 		border-radius: 0;
 		border-left: none;
 		border-right: none;
 		padding: 0em;
 	}
-	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) .km-button.km-state-active {
+	.avaliacoes-wrap #tabPublicacoes /*.km-buttongroup:nth-child(2)*/ #first-period-2 .km-button.km-state-active {
 		background-color: transparent;
 		color: #4C5356;
 		border-bottom-width: 3px;
 	}
 
-	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) .km-button {
+	.avaliacoes-wrap #tabPublicacoes /*.km-buttongroup:nth-child(2)*/ #first-period-2 .km-button {
 		padding: 0.8em 0.3em;
 		border: none;
 		font-size: 0.9em;
 	}
-	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) .km-button .km-icon {
+	.avaliacoes-wrap #tabPublicacoes /*.km-buttongroup:nth-child(2)*/ #first-period-2 .km-button .km-icon {
 		width: auto;
 		margin: 0 0.3em 0 0;
 	}
-	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) .km-button .km-icon::after {
+	.avaliacoes-wrap #tabPublicacoes /*.km-buttongroup:nth-child(2)*/ #first-period-2 .km-button .km-icon::after {
 		display: block;
 		font-size: 1.2em;
 		line-height: 0.5em;
 	}
 
-	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) .km-button .km-text {
+	.avaliacoes-wrap #tabPublicacoes /*.km-buttongroup:nth-child(2)*/ #first-period-2 .km-button .km-text {
 		margin-left: 0.3em;
 	}
 
-#tabPublicacoes .km-buttongroup:first-child .km-button:nth-child(7) {
+.publicacoes-button-wrap #tabPubMsgs li > div > .docs-wrap {
+	width: 100%;
+    max-width: 100%;
+    padding: 0 1em;
+}
+	.publicacoes-button-wrap #tabPubMsgs li > div > .docs-wrap p:last-child {
+		margin: 1em 0 0.5em;
+	}
+	.publicacoes-button-wrap #tabPubMsgs h4 {
+		margin-top: 0.5em;
+	}
+	.publicacoes-button-wrap #tabPubMsgs li > div > .section-icon-name {
+		padding-left: 1em;
+	}
+	.publicacoes-button-wrap #tabPubMsgs li > div > .section-icon-name .km-icon {
+		margin: 0;
+	}
+
+#tabPublicacoes /*.km-buttongroup:first-child*/ #first-period .km-button:nth-child(7) {
 	border-radius: 0;
 }
-#tabPublicacoes .km-buttongroup:first-child .km-button:nth-child(8) {
+#tabPublicacoes /*.km-buttongroup:first-child*/ #first-period .km-button:nth-child(8) {
 	border-radius: 0 0 4px 0;
 }
 
@@ -1859,12 +1916,12 @@ form.section-name-wrap {
 		padding: 0;
 		border-bottom: none;
 	}
-	#tabPublicacoes .lista-arquivos li:not(:first-child) {
+	/*#tabPublicacoes .lista-arquivos li:not(:first-child) {
 		margin: 1.2em 0;
-	}
-	#tabPublicacoes .lista-arquivos li:first-child {
+	}*/
+	/*#tabPublicacoes .lista-arquivos li:first-child {
 		margin: 0.5em 0 0;
-	}
+	}*/
 	#tabPublicacoes .lista-arquivos li .docs-wrap,
 	#tabPublicacoes .lista-arquivos li .docs-wrap + p {
 		display: inline-block;

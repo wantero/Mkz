@@ -47,20 +47,20 @@
 .km-flat .km-view .km-header > .km-tabstrip .km-button.km-state-active,
 #rankingsData .descricao-wrap > .descricao-disc,
 .avaliacoes-wrap .prox-aula,
-.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) .km-button.km-state-active,
 #navigation-container li,
 #kendoUiMobileApp div[data-show^="app.avaliacoesView."] .section-name-wrap .km-back,
-#kendoUiMobileApp .km-scroll-wrapper .masterDetailView li,
+#kendoUiMobileApp .km-scroll-wrapper .masterDetailView > li,
 .descricao-wrap > .descricao-disc .km-button.km-back ,
 .avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type li,
-.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2),
+.avaliacoes-wrap #tabPublicacoes #first-period-2 .km-button.km-state-active,
+.avaliacoes-wrap #tabPublicacoes #first-period-2,
 .km-flat .km-view .disciplinas-wrap .km-buttongroup li,
 .km-flat .km-view .descricao-wrap + .km-buttongroup .km-button,
 .avaliacoes-wrap .prox-aula p + .km-button span,
 #tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-prev span,
 #tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-next span,
 #kendoUiMobileApp #header-disciplinas-publicacoes form > textarea,
-#mackz-mural .mural-conteudo-wrap .mural-header form > textarea {
+#kendoUiMobileApp .mural-header form > textarea {
 	border-color: #CCC;
 }
 .descricao-wrap,
@@ -70,7 +70,7 @@
 .km-flat .km-view .km-header > .km-tabstrip .km-button.km-state-active,
 #rankingsData .descricao-wrap > .descricao-disc,
 .avaliacoes-wrap .prox-aula,
-.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) .km-button.km-state-active {
+.avaliacoes-wrap #tabPublicacoes #first-period-2 .km-button.km-state-active {
 	border-bottom-style: solid;
 }
 .descricao-wrap,
@@ -82,7 +82,7 @@
 	border-bottom-width: 1px;
 }
 .km-flat .km-view .km-header > .km-tabstrip .km-button.km-state-active,
-.avaliacoes-wrap #tabPublicacoes .km-buttongroup:nth-child(2) .km-button.km-state-active {
+.avaliacoes-wrap #tabPublicacoes #first-period-2 .km-button.km-state-active {
 	border-bottom-width: 3px;
 }
 

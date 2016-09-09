@@ -174,7 +174,7 @@
         # console.log('docs', data); #
 
         # if (data.Tipo && data.Tipo == 'doc') { #
-	    	<div>
+	    	<div class="post-conteudo-wrap">
 	  			<div class="docs-wrap">
 			      	<p>#: data.FileName #<p>
 			      	<b>Enviado por: #: data.User.DisplayName #</b>
@@ -200,9 +200,11 @@
 	                    <div class="post-user">
 	                        <div class="user-thumb mural-thumb thumb-sm">
 	                            # if (data.User.fotoUri && data.User.fotoUri != "") { #
-	                            <img class="km-thumbnail" data-bind="" src="#: data.User.fotoUri #"  alt="Your photo">
+	                            <!-- <img class="km-thumbnail" data-bind="" src="#: data.User.fotoUri #"  alt="Your photo"> -->
+	                            <span class="km-thumbnail" data-bind="" style="background-image: url( #: data.User.fotoUri #" )"></span>
 	                            # } else { #
-	                            <img class="km-thumbnail" data-bind="" src="../../styles/images/user-male.png" alt="Your photo">
+	                            <!-- <img class="km-thumbnail" data-bind="" src="../../styles/images/user-male.png" alt="Your photo"> -->
+	                            <span class="km-thumbnail" data-bind="" style="background-image: url(../../styles/images/user-male.png)"></span>
 	                            # } #
 	                        </div>
 
@@ -222,6 +224,7 @@
 	                        	# } #
 	                            <div class="post-imagem">
                                     # if (data.AnexoUri && data.AnexoUri != "") { #
+                                    	<span style="background-image: url( #: data.AnexoUri # )"></span>
                                     	<img src="#: data.AnexoUri #">
                                     # } #
 	                            </div>
@@ -342,9 +345,11 @@
 	                    <div class="post-user">
 	                        <div class="user-thumb mural-thumb thumb-sm">
 	                            # if (data.User.fotoUri && data.User.fotoUri != "") { #
-	                            <img class="km-thumbnail" data-bind="" src="#: data.User.fotoUri #"  alt="Your photo">
+	                            <!-- <img class="km-thumbnail" data-bind="" src="#: data.User.fotoUri #"  alt="Your photo"> -->
+	                            <span class="km-thumbnail" data-bind="" style="background-image: url( #: data.User.fotoUri # )"></span>
 	                            # } else { #
-	                            <img class="km-thumbnail" data-bind="" src="../../styles/images/user-male.png" alt="Your photo">
+	                            <!-- <img class="km-thumbnail" data-bind="" src="../../styles/images/user-male.png" alt="Your photo"> -->
+	                            <span class="km-thumbnail" data-bind="" style="background-image: url( ../../styles/images/user-male.png )" alt="Your photo"></span>
 	                            # } #
 	                        </div>
 
