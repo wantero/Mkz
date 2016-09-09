@@ -5,17 +5,12 @@ app.perfilView = kendo.observable({
     afterShow: function() {}
 });
 
-// START_CUSTOM_CODE_perfilView
-// Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
-// END_CUSTOM_CODE_perfilView
-
-
 (function(parent) {
     var dataProvider = app.data.mackenzie;
 
     var perfilViewModel = kendo.observable({
         fields: {
-            senha: '',
+            //senha: '',
             email: '',
             nome: '',
             tia: '',
@@ -58,7 +53,20 @@ app.perfilView = kendo.observable({
                 navigator.notification.alert("Unfortunately we were not able to retrieve the image");
             };
 
-            app.RunCamera(400, 300, onPictureSuccess, onPictureError);
+            function runCamera(width, height, success, error) {
+                var cameraConfig = {
+                    destinationType: navigator.camera.DestinationType.DATA_URL,
+                    targetWidth: width,
+                    targetHeight: height,
+                    //sourceType: navigator.camera.PictureSourceType.CAMERA
+                    sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+                    mediaType: navigator.camera.MediaType.ALLMEDIA
+                };
+
+                navigator.camera.getPicture(success, error, cameraConfig);
+            };
+
+            runCamera(400, 300, onPictureSuccess, onPictureError);
         },
         enviar: function() {
             dataProvider.Users.updateSingle(
@@ -72,8 +80,7 @@ app.perfilView = kendo.observable({
                     dataProvider.Users.currentUser().then(
                         function(user) {
                             app.user.data = user.result;
-                            app.showMessage('<b>Perfil alterado com sucesso.</b>'+
-                                            '<br><br>Para alterar a senha você precisará acessar sua caixa de e-mail e seguir as instruções enviadas.', app.perfilView.perfilViewModel.onAfterEnviar);
+                            app.showMessage('<b>Perfil alterado com sucesso.</b>', app.perfilView.perfilViewModel.onAfterEnviar);
                         },
                         function(error) {
                             console.log('error:', error);
@@ -144,7 +151,3 @@ app.perfilView = kendo.observable({
         }
     })
 })(app.perfilView);
-
-// START_CUSTOM_CODE_perfilViewModel
-// Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
-// END_CUSTOM_CODE_perfilViewModel

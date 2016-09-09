@@ -20,6 +20,7 @@
     <script type="text/x-kendo-template" id="avaliacoesViewModelTemplate">
         <div>
             # data = app.avaliacoesView.avaliacoesViewModel.fixHierarchicalData(data); #
+            #console.log(data); #
 
             # if (data.showDisciplina) { #
             <h3>#: data['Disciplina']['Nome'] #</h3>
@@ -30,9 +31,14 @@
                     <img class="km-thumbnail" src="../../styles/images/user-male.png" alt="Your photo">
                 </div>
                 <p><span>#: data['Disciplina']['Professor']['Nome'] #<span><br>
-                    <span class="unid-turma-sala unid">FCI</span>
-                    <span class="unid-turma-sala turma">3A</span>
-                    <span class="unid-turma-sala sala">701</span>
+                    # professor = data.Disciplina && data.Disciplina.Professor ? data.Disciplina.Professor : undefined; #
+                    # unidade = professor && professor.Unidade ? professor.Unidade : '?'; #
+                    # turma = professor && professor.Turma ? professor.Turma : '?'; #
+                    # sala = professor && professor.Sala ? professor.Sala : '?'; #
+
+                    <span class="unid-turma-sala unid">#: unidade #</span>
+                    <span class="unid-turma-sala turma">#: turma #</span>
+                    <span class="unid-turma-sala sala">#: sala #</span>
                 </p>
             </div>
 
@@ -44,10 +50,10 @@
             # situacao = data.Situacao.toLowerCase(); #
 
             # if (situacao == 'expirado') { #
-            <!--a class="expirado-button" data-role="button" data-align="left">Expirado</a-->
+                <a class="realizado-button" data-role="button" data-align="left" data-bind="{ events: { click: avaliacoesViewModel.jaRealizadoClick} }">0/#: data.Pontos # Ponto(s)</a>
             # } else { #
                 # if (situacao == 'realizado') { #
-                <a class="realizado-button" data-role="button" data-align="left" data-bind="{ events: { click: avaliacoesViewModel.jaRealizadoClick} }">Já realizado</a>
+                <a class="realizado-button" data-role="button" data-align="left" data-bind="{ events: { click: avaliacoesViewModel.jaRealizadoClick} }">#: data.Respostas.Pontos #/#: data.Pontos # Ponto(s)</a>
                 # } else { #
                 <a class="valido-button" data-role="button" data-align="left" data-bind="{ events: { click: avaliacoesViewModel.itemClick} }">Até #: data['Pontos'] # Pontos</a>
                 # } #

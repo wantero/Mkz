@@ -25,7 +25,7 @@
 	    
 		    <a class="flaticon-pin" data-role="backbutton" data-align="left">
 		    	<span class="km-icon" data-icon="i-film"></span>
-		    	<span>Deseja fazer Check-in nesta aula?</span>
+		    	<a href="#components/checkinView/view.html"><span>Deseja fazer Check-in nesta aula?</span></a>
 		    </a>
 
 		    <div class="aval-wrap prox-aula">
@@ -159,9 +159,10 @@
 
             # if (situacao == 'expirado') { #
             <!--a class="expirado-button" data-role="button" data-align="left">Expirado</a-->
+                <a class="realizado-button" data-role="button" data-align="left" data-bind="{ events: { click: jaRealizadoClick} }">0/#: data.Pontos # Ponto(s)</a>
             # } else { #
                 # if (situacao == 'realizado') { #
-                <a class="realizado-button" data-role="button" data-align="left" data-bind="{ events: { click: jaRealizadoClick} }">Já realizado</a>
+                <a class="realizado-button" data-role="button" data-align="left" data-bind="{ events: { click: jaRealizadoClick} }">#: data.Respostas.Pontos #/#: data.Pontos # Ponto(s)</a>
                 # } else { #
                 <a class="valido-button" data-role="button" data-align="left" data-bind="{ events: { click: avaliacaoClick } }">Até #: data['Pontos'] # Pontos</a>
                 # } #
