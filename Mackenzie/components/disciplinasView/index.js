@@ -272,38 +272,22 @@ app.disciplinasView = kendo.observable({
                 }
             },
             muralLikeClick: function(e) {
-                PublicacoesService.pushLikes(dataProvider, e.data.Id, app.getUserData().Id, function(data) {
-                    var $likesCount = $(e.currentTarget).closest('div').find('#likesCount');
-                    $likesCount.text(Number($likesCount.text())+data);
-                });             
-                /*var dataPublicacoes = dataProvider.data('Publicacoes');
+                var userId = app.getUserData().Id;
 
-                // "$push" adds an item to an array.
-                // "$addToSet" adds elements to an array only if they do not already exist in the set.
-                var attributes = {
-                    "$push": {
-                        "Likes": app.getUserData().Id
-                    }
-                };
+                if (!findLike(e.data.Likes, userId)) {
+                    PublicacoesService.pushLikes(dataProvider, e.data.Id, app.getUserData().Id, function(data) {
+                        var $likesCount = $(e.currentTarget).closest('div').find('#likesCount');
+                        $likesCount.text(Number($likesCount.text())+data);
 
-                var filter = {
-                    'Id': e.data.Id
-                };
-
-                dataPublicacoes.rawUpdate(attributes, filter,
-                    function (data) {
-                        if (data.result) {
-                            var $likesCount = $(e.currentTarget).closest('div').find('#likesCount');
-                            $likesCount.text(Number($likesCount.text())+data.result);
-                        }
-                    },
-                    function (error) {
-                        console.log(JSON.stringify(error));
-                    }
-                );*/
+                        // Adidiona Like na lista.
+                        e.data.Likes.push(userId);
+                        $(e.currentTarget).parent().attr('style', 'background-color: blue');
+                    });
+                }
             },
             mensagemClick: function(e) {
                 var $mensagem = $(headerMuralId);
+
                 if ($mensagem.is(':visible')) {
                     $mensagem.hide();
                 } else {
@@ -311,22 +295,6 @@ app.disciplinasView = kendo.observable({
                 }
             },
             muralSendMsgClick: function(e) {
-                /*var $novaMensagem = $('#novaMensagemDisciplina');
-                var $titulo = verificaTitulo();
-
-                if (!$titulo) {
-                    return;
-                }
-
-                var texto = $novaMensagem.val().replace(/\n/g, '<br>');
-                var current = disciplinasViewModel.get('currentDisciplina');
-
-                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, current.Id, function() {
-                    disciplinasViewModel.muralCancelMsgClick(e);
-                    //var listView = $("#muralListView").kendoMobileListView();
-                    //listView.refresh();                        
-                });*/
-
                 var $novaMensagem = $('#novaMensagemDisciplina');
                 var $titulo = $('#disciplinaTituloCompartilhar');
 
@@ -348,11 +316,12 @@ app.disciplinasView = kendo.observable({
                 $('#novaMensagemDisciplina').val('');
             },
             muralCommentClick: function(e) {
-                var $comments = $(e.currentTarget).closest('ul').siblings('#header-mural-comentario');
+                var $comments = $(e.currentTarget).closest('ul').parent().closest('ul').find('#header-mural-comentario');
+                
                 if ($comments.is(':visible')) {
-                    $(e.currentTarget).closest('ul').siblings('#header-mural-comentario').hide();
+                    $comments.hide();
                 } else {
-                    $(e.currentTarget).closest('ul').siblings('#header-mural-comentario').show();
+                    $comments.show().siblings().hide();
                 }
             },
             muralCancelCommentClick: function(e) {
@@ -361,85 +330,107 @@ app.disciplinasView = kendo.observable({
                 $(e.currentTarget).closest('ul').find('#header-mural-comentario').hide();
             },
             muralSendCommentClick: function(e) {
-                var element = e;
-                /*function updatePublicacoes(publicacoesId, comentarioId, cb) {
-                    var dataPublicacoes = dataProvider.data('Publicacoes');
+                function getComentario(comentarioId, cb) {
+                    var queryCursos = new Everlive.Query();
+                    queryCursos.where().eq('Id', comentarioId);
 
-                    var attributes = {
-                        "$push": {
-                            "Comentarios": comentarioId
-                        }
-                    };
-
-                    var filter = {
-                        'Id': publicacoesId
-                    };
-
-                    dataPublicacoes.rawUpdate(attributes, filter,
-                        function (data) {
-                            if (data.result) {
-                                if (cb) {
+                    var dataCursos = dataProvider.data('PublicacoesComentarios');
+                    dataCursos.get(queryCursos)
+                        .then(function(data) {
+                            if (cb) {
+                                try {
                                     cb(data.result);
+                                } catch(e) {
+                                    alert('Error: '+e.message);
                                 }
                             }
-                        },
-                        function (error) {
-                            console.log(JSON.stringify(error));
-                        }
-                    );
-                }*/
+                        }, function(err) {
+                            alert('Error loading data (Users)');
+                        });
+                };
 
+                var element = e;
                 var $comment = $(element.currentTarget).closest('ul').find('#novoComentario');
 
                 if (!PublicacoesService.verificaTitulo($comment, 'Favor informar o comentário!')) {
                     return;
                 }
 
-                PublicacoesService.createComentarios(dataProvider, $comment.val(), app.getUserData().Id, function(data) {
-                    if (data) {
-                        console.log('User Id:', element.data.Id, 'Comentario Id:', data.Id);
-                        //updatePublicacoes(e.data.Id, data.result.Id, function(data) {
-                        PublicacoesService.pushComentarios(dataProvider, element.data.Id, data.Id, function(data) {
+                PublicacoesService.createComentarios(dataProvider, $comment.val(), app.getUserData().Id, function(comentario) {
+                    if (comentario) {
+                        PublicacoesService.pushComentarios(dataProvider, element.data.Id, comentario.Id, function(data) {
                             var $commentsCount = $(element.currentTarget).closest('ul').find('#commentsCount');
                             $commentsCount.text(Number($commentsCount.text())+data);
 
                             $comment.val('');
                             disciplinasViewModel.muralCommentClick(element);
                             $(element.currentTarget).closest('ul').find('#header-mural-comentario').hide();
+
+                            // Adidiona Comentario na lista.
+                            getComentario(comentario.Id, function(data) {
+                                e.data.Comentarios.push(data[0]);
+                            })
                         });
                     }
                 });
+            },
+            muralCommentsListClick: function(e) {
+                var allLoaded;
 
-                /*var $comment = $(e.currentTarget).closest('ul').find('#novoComentario');
-                var commentText = $comment.val();
+                function getUser(index, userId, cb) {
+                    var queryCursos = new Everlive.Query();
+                    queryCursos.where().eq('Id', userId);
 
-                if (commentText == '') {
-                    alert('Favor preencher o comentário!');
-                    return;
-                }
+                    var dataCursos = dataProvider.data('Users');
+                    dataCursos.get(queryCursos)
+                        .then(function(data) {
+                            if (cb) {
+                                try {
+                                    cb(index, data.result);
+                                } catch(e) {
+                                    alert('Error: '+e.message);
+                                }
+                            }
+                        }, function(err) {
+                            alert('Error loading data (Users)');
+                        });
+                };
 
-                var dataComentarios = dataProvider.data('PublicacoesComentarios');
+                function populate($commentList, comentarios) {
+                    var result = template(comentarios);
 
-                dataComentarios.create({
-                        'Comentario': commentText,
-                        'User': app.getUserData().Id
-                    },
-                    function(data){
-                        if (data.result) {
-                            console.log('User Id:', e.data.Id, 'Comentario Id:', data.result.Id);
-                            PublicacoesService.updatePublicacoes(dataProvider, e.data.Id, data.result.Id, function(data) {
-                                var $commentsCount = $(e.currentTarget).closest('ul').find('#commentsCount');
-                                $commentsCount.text(Number($commentsCount.text())+data);
+                    $commentList.html(result);
+                    $commentList.show().siblings().hide();
+                };
 
-                                $comment.val('');
-                                disciplinasViewModel.muralCommentClick(e);
-                                $(e.currentTarget).closest('ul').find('#header-mural-comentario').hide();
-                            });
+                if (e.data.Comentarios.length) {
+                    var $commentList = $(e.currentTarget).closest('ul').find('#header-mural-comentario-list');
+
+                    if ($commentList.is(':visible')) {
+                        $commentList.hide();
+                    } else {
+                        var template = kendo.template($("#comment-list-template").html());
+                        
+                        allLoaded = true;
+                        for (var i=0; i < e.data.Comentarios.length; i++) {
+                            if (!e.data.Comentarios[i].User.Id) {
+                                allLoaded = false;
+
+                                getUser(i, e.data.Comentarios[i].User, function(index, data) {
+                                    e.data.Comentarios[index].User = data[0];
+
+                                    if (index == e.data.Comentarios.length-1) {
+                                        populate($commentList, e.data.Comentarios);
+                                    }
+                                });
+                            }
                         }
-                    },
-                    function(error){
-                        alert(JSON.stringify(error));
-                    });*/
+
+                        if (allLoaded) {
+                            populate($commentList, e.data.Comentarios);
+                        }
+                    }
+                }
             },
             muralShareClick: function(e) {
                 alert('share');

@@ -74,7 +74,7 @@ app.muralView = kendo.observable({
                 dataProvider: dataProvider,
                 read: {
                     headers: {
-                        "X-Everlive-Expand": {"User": true}
+                        "X-Everlive-Expand": {"User": true, "Comentarios": true}
                     }
                 }
             },
@@ -156,39 +156,23 @@ app.muralView = kendo.observable({
                 })(result, layout);
 
                 result.TempoPublicacao = this.getTempoDecorrido(data.CreatedAt);
+                result.AlreadyLike = findLike(data.Likes, app.getUserData().Id);
 
                 return result;
             },
             muralLikeClick: function(e) {
-				PublicacoesService.pushLikes(dataProvider, e.data.Id, app.getUserData().Id, function(data) {
-                	var $likesCount = $(e.currentTarget).closest('div').find('#likesCount');
-                	$likesCount.text(Number($likesCount.text())+data);
-		        });            	
-				/*var dataPublicacoes = dataProvider.data('Publicacoes');
+                var userId = app.getUserData().Id;
 
-				// "$push" adds an item to an array.
-				// "$addToSet" adds elements to an array only if they do not already exist in the set.
-				var attributes = {
-				    "$push": {
-				        "Likes": app.getUserData().Id
-				    }
-				};
+                if (!findLike(e.data.Likes, userId)) {
+                    PublicacoesService.pushLikes(dataProvider, e.data.Id, app.getUserData().Id, function(data) {
+                        var $likesCount = $(e.currentTarget).closest('div').find('#likesCount');
+                        $likesCount.text(Number($likesCount.text())+data);
 
-				var filter = {
-				    'Id': e.data.Id
-				};
-
-				dataPublicacoes.rawUpdate(attributes, filter,
-					function (data) {
-						if (data.result) {
-	                    	var $likesCount = $(e.currentTarget).closest('div').find('#likesCount');
-	                    	$likesCount.text(Number($likesCount.text())+data.result);
-						}
-					},
-					function (error) {
-				    	console.log(JSON.stringify(error));
-					}
-				);*/
+                        // Adidiona Like na lista.
+                        e.data.Likes.push(userId);
+                        $(e.currentTarget).parent().attr('style', 'background-color: blue');
+                    });        
+                }
             },
             mensagemClick: function(e) {
                 var $mensagem = $('#header-mural-mensagem');
@@ -219,11 +203,12 @@ app.muralView = kendo.observable({
                 $('#novaMensagem').val('');
             },
             muralCommentClick: function(e) {
-                var $comments = $(e.currentTarget).closest('ul').siblings('#header-mural-comentario');
+                var $comments = $(e.currentTarget).closest('ul').parent().closest('ul').find('#header-mural-comentario');
+                
                 if ($comments.is(':visible')) {
-                    $(e.currentTarget).closest('ul').siblings('#header-mural-comentario').hide();
+                    $comments.hide();
                 } else {
-                    $(e.currentTarget).closest('ul').siblings('#header-mural-comentario').show();
+                    $comments.show().siblings().hide();
                 }
             },
             muralCancelCommentClick: function(e) {
@@ -232,77 +217,107 @@ app.muralView = kendo.observable({
                 $(e.currentTarget).closest('ul').find('#header-mural-comentario').hide();
             },
             muralSendCommentClick: function(e) {
+                function getComentario(comentarioId, cb) {
+                    var queryCursos = new Everlive.Query();
+                    queryCursos.where().eq('Id', comentarioId);
+
+                    var dataCursos = dataProvider.data('PublicacoesComentarios');
+                    dataCursos.get(queryCursos)
+                        .then(function(data) {
+                            if (cb) {
+                                try {
+                                    cb(data.result);
+                                } catch(e) {
+                                    alert('Error: '+e.message);
+                                }
+                            }
+                        }, function(err) {
+                            alert('Error loading data (Users)');
+                        });
+                };
+
             	var element = e;
-            	/*function updatePublicacoes(publicacoesId, comentarioId, cb) {
-                    var dataPublicacoes = dataProvider.data('Publicacoes');
-
-					var attributes = {
-					    "$push": {
-					        "Comentarios": comentarioId
-					    }
-					};
-
-					var filter = {
-					    'Id': publicacoesId
-					};
-
-					dataPublicacoes.rawUpdate(attributes, filter,
-						function (data) {
-							if (data.result) {
-		                    	if (cb) {
-		                    		cb(data.result);
-		                    	}
-							}
-						},
-						function (error) {
-					    	console.log(JSON.stringify(error));
-						}
-					);
-            	}*/
-
             	var $comment = $(element.currentTarget).closest('ul').find('#novoComentario');
 
                 if (!PublicacoesService.verificaTitulo($comment, 'Favor informar o comentário!')) {
                     return;
                 }
 
-            	PublicacoesService.createComentarios(dataProvider, $comment.val(), app.getUserData().Id, function(data) {
-			        if (data) {
-                        console.log('User Id:', element.data.Id, 'Comentario Id:', data.Id);
-				        //updatePublicacoes(e.data.Id, data.result.Id, function(data) {
-				        PublicacoesService.pushComentarios(dataProvider, element.data.Id, data.Id, function(data) {
+            	PublicacoesService.createComentarios(dataProvider, $comment.val(), app.getUserData().Id, function(comentario) {
+			        if (comentario) {
+				        PublicacoesService.pushComentarios(dataProvider, element.data.Id, comentario.Id, function(data) {
                             var $commentsCount = $(element.currentTarget).closest('ul').find('#commentsCount');
                             $commentsCount.text(Number($commentsCount.text())+data);
 
                             $comment.val('');
                             muralViewModel.muralCommentClick(element);
                             $(element.currentTarget).closest('ul').find('#header-mural-comentario').hide();
+
+                            // Adidiona Comentario na lista.
+                            getComentario(comentario.Id, function(data) {
+                                e.data.Comentarios.push(data[0]);
+                            })
 				        });
 			        }
             	});
-            	/*var dataComentarios = dataProvider.data('PublicacoesComentarios');
+            },
+            muralCommentsListClick: function(e) {
+                var allLoaded;
 
-				dataComentarios.create({
-                        'Comentario': textComment,
-                        'User': app.getUserData().Id
-                    },
-				    function(data){
-				        if (data.result) {
-                            console.log('User Id:', e.data.Id, 'Comentario Id:', data.result.Id);
-					        //updatePublicacoes(e.data.Id, data.result.Id, function(data) {
-					        PublicacoesService.pushComentarios(dataProvider, e.data.Id, data.result.Id, function(data) {
-                                var $commentsCount = $(e.currentTarget).closest('ul').find('#commentsCount');
-                                $commentsCount.text(Number($commentsCount.text())+data);
+                function getUser(index, userId, cb) {
+                    var queryCursos = new Everlive.Query();
+                    queryCursos.where().eq('Id', userId);
 
-                                $comment.val('');
-                                muralViewModel.muralCommentClick(e);
-                                $(e.currentTarget).closest('ul').find('#header-mural-comentario').hide();
-					        });
-				        }
-				    },
-				    function(error){
-				        alert(JSON.stringify(error));
-				    });*/
+                    var dataCursos = dataProvider.data('Users');
+                    dataCursos.get(queryCursos)
+                        .then(function(data) {
+                            if (cb) {
+                                try {
+                                    cb(index, data.result);
+                                } catch(e) {
+                                    alert('Error: '+e.message);
+                                }
+                            }
+                        }, function(err) {
+                            alert('Error loading data (Users)');
+                        });
+                };
+
+                function populate($commentList, comentarios) {
+                    var result = template(comentarios);
+
+                    $commentList.html(result);
+                    $commentList.show().siblings().hide();
+                };
+
+                if (e.data.Comentarios.length) {
+                    var $commentList = $(e.currentTarget).closest('ul').find('#header-mural-comentario-list');
+
+                    if ($commentList.is(':visible')) {
+                        $commentList.hide();
+                    } else {
+                        var template = kendo.template($("#comment-list-template").html());
+                        
+                        allLoaded = true;
+                        for (var i=0; i < e.data.Comentarios.length; i++) {
+                            if (!e.data.Comentarios[i].User.Id) {
+                                allLoaded = false;
+
+                                getUser(i, e.data.Comentarios[i].User, function(index, data) {
+                                    e.data.Comentarios[index].User = data[0];
+
+                                    if (index == e.data.Comentarios.length-1) {
+                                        populate($commentList, e.data.Comentarios);
+                                    }
+                                });
+                            }
+                        }
+
+                        if (allLoaded) {
+                            populate($commentList, e.data.Comentarios);
+                        }
+                    }
+                }
             },
             muralShareClick: function(e) {
             	alert('share');
@@ -379,7 +394,7 @@ app.muralView = kendo.observable({
     
     parent.set('onShow', function(e) {
     	if (e.view.params.tipo && e.view.params.tipo == 'minhaspub') {
-	        e.view.element.find('#header-minhas-publicacoes').show().siblings().hide(); 
+	        e.view.element.find('#header-minhas-publicacoes').show(); //.siblings().hide(); 
     	} else {
 	        e.view.element.find('#header-mural-publicacoes').show().siblings().hide();        
     	}
@@ -424,6 +439,16 @@ app.muralView = kendo.observable({
 
         fetchFilteredData(viewParam);
     });
+
+    function findLike(likeList, userId) {
+        for (var i=0; i <= likeList.length; i++) {
+            if (likeList[i] == userId) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     /*function verificaTitulo() {
         var $titulo = $('#tituloCompartilhar');

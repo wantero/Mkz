@@ -198,11 +198,12 @@ app.faqsView = kendo.observable({
                 return processImage(imageField);
             },
             filtraPesquisa: function(valueField) {
-                if (viewParam === null) {
+                var param = [{ field: "Titulo", operator: "contains", value: valueField }];
+                /*if (viewParam === null) {
                     var param = [{ field: "Titulo", operator: "contains", value: valueField }];
                 } else {
                     var param = [viewParam, { field: "Titulo", operator: "contains", value: valueField }];
-                }        
+                } */       
 
                 fetchFilteredData(param);
             },
@@ -241,8 +242,10 @@ app.faqsView = kendo.observable({
             }
         }
 
+
         // Armazena o parametro recebido pela VIEW
-        viewParam = param;     
+        param = { field: "Titulo", operator: "contains", value: $('#mackz-faq #Pesquisa').val() };
+        viewParam = param;
 
         fetchFilteredData(viewParam);
     });

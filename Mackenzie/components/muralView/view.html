@@ -106,15 +106,22 @@
                         </div>
                         <div class="section-icon-name flaticon-comment">
                             <span class="km-icon" data-icon=""></span>
-                            <span id="commentsCount">#: data.Comentarios.length #</span> comentário(s)
+                            <a data-bind="{ events: {click: muralCommentsListClick} }"><span id="commentsCount">#: data.Comentarios.length #</span> comentário(s)</a>
                         </div>
                     </div>
 
                     <!-- BOTÕES AÇÕES LIKE/COMENTAR/COMPARTILHAR -->
                     <ul class="post-botoes">
-                        <li class="section-icon-name flaticon-smiley">
-                            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralLikeClick} }"></span>
-                        </li>
+                        #console.log('liked: ',data.AlreadyLike);#
+                        # if (data.AlreadyLike) { #
+                            <li class="section-icon-name flaticon-smiley" style="background-color: blue">
+                                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralLikeClick} }"></span>
+                            </li>
+                        # } else { #
+                            <li class="section-icon-name flaticon-smiley">
+                                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralLikeClick} }"></span>
+                            </li>
+                        # } #
 
                         <li class="section-icon-name flaticon-comment">
                             <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCommentClick} }"></span>
@@ -125,22 +132,39 @@
                         </li>
                     </ul>
 
-                    <div id="header-mural-comentario" class="section-name-wrap mural-header" style="display:none">
-                        <form class="section-name-wrap">
-                            <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro"></textarea>
-                            <div class="mural-header-icons">
-                                <div class="section-icon-name flaticon-comment-ok">
-                                    <span class="km-icon" data-icon="" data-bind="{ events: {click: muralSendCommentClick} }"></span>
+                    <div>
+                        <div id="header-mural-comentario" class="section-name-wrap mural-header" style="display:none">
+                            <form class="section-name-wrap">
+                                <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro"></textarea>
+                                <div class="mural-header-icons">
+                                    <div class="section-icon-name flaticon-comment-ok">
+                                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralSendCommentClick} }"></span>
+                                    </div>
+                                    <div class="section-icon-name flaticon-comment-cancel">
+                                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelCommentClick} }"></span>
+                                    </div>
                                 </div>
-                                <div class="section-icon-name flaticon-comment-cancel">
-                                    <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelCommentClick} }"></span>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
+
+                        <div id="header-mural-comentario-list" class="section-name-wrap mural-header" style="display:none">
+                            Lista de comentários
+                        </div>
                     </div>
                 </li>
             </ul>
         </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="comment-list-template">
+        <ul>
+        # for (var i = 0; i < data.length; i++) { #
+            <li>
+                <p>#: data[i].Comentario #</p>
+                <div>#: data[i].User.DisplayName #</div>
+            </li>
+        # } #
+        </ul>
     </script>
 
 </div>
