@@ -21,7 +21,8 @@
 .km-flat .km-view .km-content .km-button.km-state-active,
 .avaliacoes-wrap #tabAvaliacoes .km-button.km-back,
 .avaliacoes-wrap #tabPublicacoes .km-buttongroup .km-state-active,
-.km-flat .km-view .disciplinas-wrap #agenda .km-buttongroup .km-state-active {
+.km-flat .km-view .disciplinas-wrap #agenda .km-buttongroup .km-state-active,
+#tabAvaliacoes .chekin-link-wrap {
 	background-color: #EA2D2E;
 }
 
@@ -60,7 +61,8 @@
 #tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-prev span,
 #tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-next span,
 #kendoUiMobileApp #header-disciplinas-publicacoes form > textarea,
-#kendoUiMobileApp .mural-header form > textarea {
+#kendoUiMobileApp #muralListView #header-mural-comentario form > textarea,
+#kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap .comboBox {
 	border-color: #CCC;
 }
 .descricao-wrap,

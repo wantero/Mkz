@@ -949,7 +949,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#mackz-mural .mural-header form,
 	#header-disciplinas-publicacoes form {
 		width: 100%;
-		padding: 0.7em 0;
+		padding: 1em 0;
 		border-bottom: 0;
 	}
 	#mackz-mural .mural-header .mural-header-icons .section-icon-name,
@@ -1014,24 +1014,24 @@ div[style^="transform: translate3d"].km-widget.km-view {
 }
 	#kendoUiMobileApp/*#mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem {
 		height: 100%;
-		/*max-height: 350px;
-		min-height: 200px;*/
-		/*overflow: hidden;*/
 		position: relative;
+		border-width: 1px 0;
+		border-color: rgba(0, 0, 0, 0.1);
+		border-style: solid;
 	}
-	/*#mackz-mural .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem img*/
+	#kendoUiMobileApp/*#mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem > p {
+		margin: 1em;
+	}
+	#kendoUiMobileApp/*#mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem > video {
+		width: 100%;
+		padding: 0 1em;
+	}
 	#kendoUiMobileApp/*#mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem span {
-		/*display: block;
-		height: auto;
-		width: auto;
-		max-height: 100%;
-		max-width: 100%;
-		margin: 0 auto;*/
 		position: absolute;
 		top: 0;
 		display: inline-block;
 		background-repeat: no-repeat;
-		background-size: contain;
+		background-size: cover;
 		background-position: 50% 50%;
 		height: 100%;
 		width: 100%;
@@ -1046,14 +1046,13 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		margin: 0 0.2em 0 0;
 	}
 
-/*#kendoUiMobileApp #mackz-mural .mural-conteudo-wrap .masterDetailView .post-botoes,*/
 #kendoUiMobileApp/*#mackz-mural*/ /*.publicacoes-button-wrap*/ .masterDetailView .post-botoes {
 	display: flex;
 	display: -webkit-flex;
 	-webkit-justify-content: space-between;
 			justify-content: space-between;
-	padding: 0 3em;
-	margin-bottom: 4px;
+	padding: 0 3em 0.1em;
+	/*margin-bottom: 4px;*/
 	border-width: 1px 0;
 	border-style: solid;
 	border-color: #CCC;
@@ -1068,39 +1067,85 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#kendoUiMobileApp/*#mackz-mural*/ /*.publicacoes-button-wrap*/ .masterDetailView .post-botoes .km-icon::after {
 		font-size: 1.7em;
 	}
+	#kendoUiMobileApp/*#mackz-mural*/ /*.publicacoes-button-wrap*/ .masterDetailView .post-botoes .smiley-curtiu .km-icon::after {
+		color: #1486CC;
+	}
 
-#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .mural-header form > textarea {
+#kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap {
+    /*display: flex;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    		align-items: center;
+    -webkit-justify-content: flex-start;
+    		justify-content: flex-start;*/
+	width: 100%;
+    overflow: auto;
+}
+	#kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap > .combo-descricao {
+		/*display: inline-block;*/
+		/*width: 30%;*/
+		margin: 0.5em 0 0.3em;
+		text-align: left;
+	}
+	#kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap .comboBox {
+		width: 100%;
+		padding: 0.4em;
+		margin-bottom: 1px;
+		border-radius: 0.3em;
+	}
+	#kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap .comboBox option {
+		padding: 0;
+		font-size: 0.9em;
+	}
+
+#kendoUiMobileApp #muralListView .masterDetailView .post-botoes + .novo-comentario-wrap {
+	margin: 0;
+}
+
+#kendoUiMobileApp #muralListView #header-mural-comentario form > textarea {
 	height: 50px;
 	border: 1px solid;
 	resize: none;
 }
-	#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .mural-header form > textarea + .mural-header-icons {
+	#kendoUiMobileApp #muralListView #header-mural-comentario form > textarea + .mural-header-icons {
 		display: inline-block;
 	}
-	#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .mural-header form > textarea + .mural-header-icons .section-icon-name {
+	#kendoUiMobileApp #muralListView #header-mural-comentario form > textarea + .mural-header-icons .section-icon-name {
 		padding: 0.5em 0.5em 0 0;
 	}
-	#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .mural-header .flaticon-comment-ok .km-icon::after {
+	#kendoUiMobileApp #muralListView #header-mural-comentario .flaticon-comment-ok .km-icon::after {
 		color: green;
 	}
-	#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .mural-header .flaticon-comment-cancel .km-icon::after {
+	#kendoUiMobileApp #muralListView #header-mural-comentario .flaticon-comment-cancel .km-icon::after {
 		color: #EA2D2E;
 	}
-	#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .mural-header textarea + .mural-header-icons .km-icon {
+	#kendoUiMobileApp #muralListView #header-mural-comentario textarea + .mural-header-icons .km-icon {
 		margin: 0;
 		height: auto;
 		width: auto;
 	}
-	#kendoUiMobileApp/*#mackz-mural*/ /*.mural-conteudo-wrap*/ .mural-header textarea + .mural-header-icons .km-icon::after {
+	#kendoUiMobileApp #muralListView #header-mural-comentario textarea + .mural-header-icons .km-icon::after {
 		line-height: normal;
 		vertical-align: baseline;
 	}
+#kendoUiMobileApp #muralListView #header-mural-comentario-list ul {
+	padding: 0;
+}
+	#kendoUiMobileApp #muralListView #header-mural-comentario-list ul li {
+		padding: 0.5em 0;
+		text-align: left;
+	}
+
 
 /* Suas publicações */
 #kendoUiMobileApp/*#mackz-mural*/ #muralList #muralListView > li,
 #kendoUiMobileApp/*#mackz-mural*/ #muralList #muralListView .bg-branco {
 	padding: 0;
+	border-bottom: 0;
 }
+	#kendoUiMobileApp/*#mackz-mural*/ #muralList #muralListView > li > .mural-conteudo-wrap {
+		margin: 0;
+	}
 
 
 /*** PERGUNTAS FREQUENTES ***/
@@ -1336,6 +1381,10 @@ form.section-name-wrap {
 	font-size: 0.8em;
 }
 
+#mackz-checkin .km-scroll-header + .km-scroll-container {
+	height: auto;
+}
+
 #mackz-checkin .checkin-conteudo-wrap .checkin-demo {
 	position: relative;
 	min-height: 12em;
@@ -1377,28 +1426,42 @@ form.section-name-wrap {
 	    border-radius: 0;
 	    border-width: 1px 0;
 	}
-
-#mackz-checkin .qr-demo-window {
-	position: absolute;
-	width: 100%;
-}
-	#mackz-checkin .qr-demo-window .section-icon-name {
-		padding: 0;
+	#mackz-checkin .km-button-group .km-button.km-state-active .km-text {
+		color: #333;
 	}
 
 #mackz-checkin .qr-camera-wrap {
-	display: flex;
-	display: -webkit-flex;
-	-webkit-justify-content: center;
-			justify-content: center;
-	-webkit-align-items: center;
-			align-items: center;
+	margin-bottom: 45px;
+	position: relative;
 }
 	#mackz-checkin .camera-imagem-wrap {
-		min-height: 300px;
+		height: 100%;
+		/*min-height: 300px;*/
 	}
 	#mackz-checkin .camera-imagem-wrap img {
 		width: 100%;
+	}
+#mackz-checkin .qr-demo-window {
+	position: absolute;
+	display: flex;
+	display: -webkit-flex;
+	-webkit-justify-content: space-between;
+			justify-content: space-between;
+	/*-webkit-align-content: space-around;
+			align-content: space-around;*/
+	-webkit-flex-direction: column;
+			flex-direction: column;
+	height: 100%;
+	width: 100%;
+}
+	#mackz-checkin .qr-demo-window .checkin-header {
+		padding: 0.5em 0.8em;
+	}
+	#mackz-checkin .qr-demo-window .checkin-header p {
+		margin: 0;
+	}
+	#mackz-checkin .qr-demo-window .section-icon-name {
+		padding: 0;
 	}
 
 
@@ -1552,6 +1615,28 @@ form.section-name-wrap {
 	.avaliacoes-wrap #tabAvaliacoes .km-back .km-icon::after {
 		font-size: 1.2em;
 		color: #fff;
+	}
+
+/* CHECKIN-LINK DISCIPLINAS */
+#tabAvaliacoes .chekin-link-wrap {
+	display: flex;
+	display: -webkit-flex;
+	-webkit-justify-content: center;
+			justify-content: center;
+	-webkit-align-items: center;
+			align-items: center;
+}
+	#tabAvaliacoes .chekin-link-wrap .flaticon-pin {
+		display: inline-block;
+		width: auto;
+		background-color: transparent;
+	}
+	#tabAvaliacoes .flaticon-pin .km-icon {
+		margin: 0;
+	}
+	#tabAvaliacoes .flaticon-pin + a {
+		color: #FFF;
+		text-decoration: none;
 	}
 
 .avaliacoes-wrap .prox-aula {
