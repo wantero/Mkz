@@ -172,6 +172,16 @@ app.muralView = kendo.observable({
                         e.data.Likes.push(userId);
                         $(e.currentTarget).parent().addClass('smiley-curtiu');
                     });        
+                } else {
+                    PublicacoesService.popLikes(dataProvider, e.data.Id, app.getUserData().Id, function(data) {
+                        var $likesCount = $(e.currentTarget).closest('div').find('#likesCount');
+                        $likesCount.text(Number($likesCount.text())-data);
+
+                        // Remove Like na lista.
+                        //delete e.data.Likes[e.data.Likes.indexOf(userId)];
+                        e.data.Likes.splice(e.data.Likes.indexOf(userId), 1);
+                        $(e.currentTarget).parent().removeClass('smiley-curtiu');
+                    }); 
                 }
             },
             mensagemClick: function(e) {

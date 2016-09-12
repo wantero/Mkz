@@ -153,7 +153,7 @@ var PublicacoesService = {
         // "$push" adds an item to an array.
         // "$addToSet" adds elements to an array only if they do not already exist in the set.
         var attributes = {
-            "$$pop": {
+            "$pop": {
                 "Likes": userId
             }
         };
