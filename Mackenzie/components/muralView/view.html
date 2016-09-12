@@ -166,11 +166,17 @@
     </script>
 
     <script type="text/x-kendo-template" id="comment-list-template">
-        <ul>
+        <ul class="lista-comentarios">
         # for (var i = 0; i < data.length; i++) { #
-            <li>
-                <p>#: data[i].Comentario #</p>
-                <div>#: data[i].User.DisplayName #</div>
+            <li class="item-comentario">
+                <div class="user-thumb thumb-sm">
+                    <span style="background-image: url( ../../styles/images/user-male.png )"></span>
+                    <img src=" ../../styles/images/user-male.png "/>
+                </div>
+                <div class="comentario-feito">
+                    <p>#: data[i].Comentario #</p>
+                    <span class="comentario-user-name">#: data[i].User.DisplayName #</span>
+                </div>
             </li>
         # } #
         </ul>

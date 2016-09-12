@@ -688,14 +688,22 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 
 #kendoUiMobileApp .prof-disciplina-wrap {
-	display: flex;
+	/*display: flex;
 	display: -webkit-flex;
 	-webkit-align-content: center;
-			align-content: center;
-	margin: 0.5em 0 1em; 
+			align-content: center;*/
+	margin: 0.5em 0 1em;
+	overflow: auto;
 }
+	#kendoUiMobileApp .prof-disciplina-wrap > .user-thumb,
 	#kendoUiMobileApp .prof-disciplina-wrap p {
-		padding: 0 0.5em;
+		float: left;
+	}
+	#kendoUiMobileApp :not(#avaliacoes) .prof-disciplina-wrap {
+		padding: 0 1em;
+	}
+	#kendoUiMobileApp .prof-disciplina-wrap p {
+		padding: 0.5em 0.5em 0;
 	}
 
 #kendoUiMobileApp .aval-praticas .aval-wrap {
@@ -729,10 +737,10 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 
 #kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name {
-	display: flex;
+	/*display: flex;
 	display: -webkit-flex;
 	-webkit-align-items: center;
-			align-items: center;
+			align-items: center;*/
 	width: 100%;
 	padding: 0 1em;
 }
@@ -753,6 +761,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		display: inline;
 		font-size: 1.2em;
 		margin-right: 0.3em;
+		vertical-align: baseline;
 	}
 
 
@@ -930,12 +939,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 /*** MURAL DE PUBLICAÇÕES ***/
 /****************************/
 #mackz-mural .mural-header,
-#kendoUiMobileApp/* #mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-botoes,
-#kendoUiMobileApp/* #mackz-mural*/ .publicacoes-button-wrap .masterDetailView .post-botoes {
-	box-shadow: 0 3px 3px 1px rgba(0, 0, 0, 0.1);
-}
-
-#mackz-mural .mural-header,
 #header-disciplinas-publicacoes {
 	display: flex;
 	display: -webkit-flex;
@@ -971,13 +974,15 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		padding: 0;
 		border: 0;
 	}
-	#kendoUiMobileApp/* #mackz-mural*/ .mural-conteudo-wrap .masterDetailView .mural-thumb {
+	#kendoUiMobileApp/* #mackz-mural*/ .mural-conteudo-wrap .masterDetailView .mural-thumb,
+	#kendoUiMobileApp/* #mackz-mural*/ .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 {
 		float: left;
+	}
+	#kendoUiMobileApp/* #mackz-mural*/ .mural-conteudo-wrap .masterDetailView .mural-thumb {
 		display: inline-block;
 	}
 	#kendoUiMobileApp/* #mackz-mural*/ .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 {
 		text-indent: 0.5em;
-		float: left;
 		margin: 0.3em 0 0;
 	}
 
@@ -995,6 +1000,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	padding: 1em 1em 0.5em;
 	border-bottom: 1px solid #DDD;
 	margin-top: 0 !important;
+	box-shadow: inset 0 3px 3px 1px rgba(0, 0, 0, 0.1);
 }
 	#kendoUiMobileApp/*#mackz-mural*/ .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name {
 		float: right;
@@ -1147,6 +1153,31 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		margin: 0;
 	}
 
+/* Comentarios feitos */
+#kendoUiMobileApp #muralListView #header-mural-comentario-list .lista-comentarios {
+	padding: 0.5em 0;
+}
+	#kendoUiMobileApp #muralListView #header-mural-comentario-list .item-comentario {
+		overflow: auto;
+		padding: 0.7em 0;
+	}
+	#kendoUiMobileApp #muralListView #header-mural-comentario-list .user-thumb,
+	#kendoUiMobileApp #muralListView #header-mural-comentario-list .comentario-feito {
+		float: left;
+		margin: 0;
+	}
+	#kendoUiMobileApp #muralListView #header-mural-comentario-list .comentario-feito {
+		margin-left: 0.5em;
+	}
+	#kendoUiMobileApp #muralListView #header-mural-comentario-list .comentario-feito p {
+		white-space: pre;
+	}
+	#kendoUiMobileApp #muralListView #header-mural-comentario-list .comentario-user-name {
+		font-size: 0.85em;
+		font-weight: bold;
+		color: #1486CC;
+	}
+
 
 /*** PERGUNTAS FREQUENTES ***/
 /****************************/
@@ -1277,7 +1308,7 @@ form.section-name-wrap {
 	}
 	#kendoUiMobileApp .km-scroll-wrapper .masterDetailView li {
 		position: relative;
-		padding: 1em;
+		padding: 0.5em 1em;
 		margin: 0;
 		border-left: 0;
 		border-radius: 0;
