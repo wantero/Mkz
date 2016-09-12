@@ -212,14 +212,153 @@ app.ranksView = kendo.observable({
 
         app.displayUser();
 
-        Everlive.$.businessLogic.invokeCloudFunction("GetRanking", {})
+        /*Everlive.$.businessLogic.invokeCloudFunction("GetRanking", {})
             .then(function (data) {
                 ranksViewModel.set('dataSource', data);
                 $('#rankingsData').show();
             },
             function (err) {
                 alert('Error loading rankings');
-            });
+            });*/
+
+
+        populate(function(data) {
+            ranksViewModel.set('dataSource', data);
+            $('#rankingsData').show();
+        });
     });
+
+
+    function populate(populateCb) {
+        function getUser(index, userId, cb) {
+            var queryCursos = new Everlive.Query();
+            queryCursos.where().eq('Id', userId);
+
+            var dataCursos = dataProvider.data('Users');
+            dataCursos.get(queryCursos)
+                .then(function(data) {
+                    if (cb) {
+                        try {
+                            cb(index, data.result);
+                        } catch(e) {
+                            alert('Error: '+e.message);
+                        }
+                    }
+                }, function(err) {
+                    alert('Error loading data (Users)');
+                });
+        };      
+        
+        function sumarize(cb) {            
+            var data = dataProvider.data('RespostasAvaliacao');
+
+            var query = new Everlive.AggregateQuery();
+            query.groupBy(['User']);
+            query.sum('Pontos', 'TotalPontos');
+            query.expand({"User": true});
+
+            data.aggregate(query)
+                .then(function(data) {
+                    try {
+                        if (cb) {
+                            cb(data.result);
+                        }                        
+                    } catch(err) {
+                        alert('Sumarize Error: '+err.message);
+                    }
+                },
+                function(error){
+                    alert(JSON.stringify(error));
+                });
+        } 
+
+        function getCursos(cb) {
+            var queryCursos = new Everlive.Query();
+            queryCursos.where().eq('Users', app.getUserData().Id);
+
+            var dataCursos = dataProvider.data('Cursos');
+            dataCursos.get(queryCursos)
+                .then(function(data) {
+                    if (data.result) {
+                        try {
+                            cb(data.result);
+                        } catch(err) {
+                            alert('GetCursos/Ranking Error: '+err.message);
+                        }
+                    }
+                }, function(err) {
+                    alert('Error loading data (Cursos)');
+                });
+        }
+
+        function finish(data) {
+
+            var ret = {
+                    Curso: undefined,
+                    suaPosicao: undefined,
+                    ranking: []
+                };
+            
+            var myId = app.getUserData().Id;
+            var myData;
+
+            getCursos(function(cursos) {
+                ret.Curso = cursos[0].Nome;
+            })
+
+            for (var i=0, pushed=0; true; i++) {
+                if (data.length <= i) {
+                    break;
+                }
+
+                if (data[i].User.Id != myId) {
+                    if (pushed < 5) {
+                        ret.ranking.push({
+                            text: (i+1)+'º',
+                            fotoUri: data[i].User.fotoUri,
+                            nome: data[i].User.DisplayName,
+                            pontos: data[i].TotalPontos
+                        });
+
+                        pushed++;
+                    }
+                } else {
+                    ret.suaPosicao = {
+                        text: (i+1)+'º',
+                        fotoUri: data[i].User.fotoUri,
+                        nome: data[i].User.DisplayName,
+                        pontos: data[i].TotalPontos
+                    };
+                }
+            }
+
+            try {
+                if (populateCb) {
+                    populateCb(ret);
+                }
+            } catch(err) {
+                alert('Sumarize/Rankings Error: '+err.message);
+            }
+        };
+
+        sumarize(function(data) {
+            if (data) {
+                for (var i=0; i < data.length; i++) {
+                    getUser(i, data[i].User, function(index, user) {
+                        data[index].User = user[0];
+
+                        if (index == data.length-1) {
+                            data.sort(function(a,b) {
+                                return b.Pontos - a.Pontos;
+                            });
+
+                            finish(data);
+                        }
+                    })
+                }
+            }
+        });
+    };
+
 
 })(app.ranksView);
