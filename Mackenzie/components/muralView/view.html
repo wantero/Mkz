@@ -167,7 +167,11 @@
             <li class="item-comentario">
                 <div class="user-thumb thumb-sm">
                     <span style="background-image: url( ../../styles/images/user-male.png )"></span>
-                    <img src=" ../../styles/images/user-male.png "/>
+                    # if (data[i].User.fotoUri) { #
+                        <img src="#: data[i].User.fotoUri #"/>
+                    # } else { #
+                        <img src=" ../../styles/images/user-male.png "/>
+                    # } #
                 </div>
                 <div class="comentario-feito">
                     <p>#: data[i].Comentario #</p>
