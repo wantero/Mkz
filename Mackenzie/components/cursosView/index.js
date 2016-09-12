@@ -304,7 +304,11 @@ app.cursosView = kendo.observable({
                             }
                         }
 
-                        done(publicacoes);
+                        try {
+                            done(publicacoes);    
+                        } catch(err) {
+                            alert('LoadPublicacoes Error: '+err.message);
+                        }                        
                     },
                     function(error){
                         alert('Error loading data (Questoes)');
@@ -383,7 +387,11 @@ app.cursosView = kendo.observable({
                             //$('#scheduler').show();
 
                                 if (cb) {
-                                    cb();
+                                    try {
+                                        cb();
+                                    } catch(err) {
+                                        alert('FilterScheduler Error: '+err.message);
+                                    }
                                 }
                             } catch(e) {
                                 alert(e.message);
@@ -544,68 +552,6 @@ app.cursosView = kendo.observable({
             }
         );
     });
-
-    parent.set('xonDetailAfterShow', function(e) {
-        if (e.view.params.from && e.view.params.from == 'menu') {
-            /*alert('agenda');
-            $('#btAgenda').addClass('km-state-active').siblings().removeClass('km-state-active');
-            $('#tabCursoAgenda').show().siblings().hide()
-*/
-            /*if (cursosViewModel.scheduler) {
-                cursosViewModel.scheduler.destroy();
-                $("#scheduler").html("");
-                cursosViewModel.scheduler = undefined;
-            }*/
-
-            function getCursos(cb) {
-                var queryCursos = new Everlive.Query();
-                queryCursos.where().eq('Users', app.getUserData().Id);
-
-                var dataCursos = dataProvider.data('Cursos');
-                dataCursos.get(queryCursos)
-                    .then(function(data) {
-                        var cursos = [];
-                        for (var i=0; i < data.result.length; i++) {
-                            cursos.push(data.result[i]);
-                        }
-
-                        cb(cursos);
-                    }, function(err) {
-                        alert('Error loading data (Cursos)');
-                    });
-            }
-
-            getCursos(function(cursos) {
-                cursosViewModel.setCurrentItemById(cursos[0]);  
-
-                /*if (cursosViewModel.scheduler) {
-                    cursosViewModel.scheduler.destroy();
-                    $("#scheduler").html("");
-                    cursosViewModel.scheduler = undefined;
-                }*/
-
-                cursosViewModel.filterScheduler(function() {
-                    /*$('#btAgenda').addClass('km-state-active').siblings().removeClass('km-state-active');
-                    $('#tabCursoAgenda').show().siblings().hide();*/
-                    cursosViewModel.selectDiaView();                    
-                });
-            });
-        } else {
-            /*if (cursosViewModel.scheduler) {
-                    cursosViewModel.scheduler.destroy();
-                    $("#scheduler").html("");
-                    cursosViewModel.scheduler = undefined;
-                }*/
-
-            cursosViewModel.filterScheduler(function() {
-                cursosViewModel.setCurrentItemByUid(e.view.params.uid);
-
-                $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active');
-                $('#tabCursoDisciplinas').show().siblings().hide();
-            });
-        }
-
-    });
     
     parent.set('onDetailShow', function(e) {
         app.displayUser();
@@ -629,7 +575,11 @@ app.cursosView = kendo.observable({
                             cursos.push(data.result[i]);
                         }
 
-                        cb(cursos);
+                        try {
+                            cb(cursos);    
+                        } catch(err) {
+                            alert('Crusor.onDetailShow/GetCursos Error: '+err.message);
+                        }                        
                     }, function(err) {
                         alert('Error loading data (Cursos)');
                     });

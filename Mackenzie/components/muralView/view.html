@@ -12,7 +12,7 @@
 
         <div id="header-mural-publicacoes" class="section-name-wrap mural-header">
             <form class="section-name-wrap">
-                <input id="tituloCompartilhar" placeholder="Compartilhe um artigo, foto ou ideia" type="text" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro">
+                <input id="tituloCompartilhar" placeholder="Compartilhe um artigo, foto ou ideia" type="text" class="faq-pesquisa bg-claro">
                 <div class="mural-header-icons">
                     <div class="section-icon-name flaticon-post">
                         <span class="km-icon" data-icon="" data-bind="{ events: {click: muralViewModel.mensagemClick} }"></span>
@@ -23,11 +23,8 @@
                 </div>
                 <!-- Combobox disciplinas -->
                 <div class="comboBox-wrap">
-                    <p class="combo-descricao">Selecione um componente:</p>
-                    <select id="comboBox" class="comboBox" name="componente-select">
-                        <option value="1" selected="selected">Opção 1</option>
-                        <option value="2">Opção 2</option>
-                        <option value="3">Opção 3</option>
+                    <!-- <p class="combo-descricao">Selecione um componente:</p> -->
+                    <select id="mural-disciplina-select" class="comboBox" placeholder="Selecione um componente">
                     </select>  
                 </div>
             </form>    
@@ -58,7 +55,6 @@
 
     <script type="text/x-kendo-template" id="muralTemplate">
         # data = app.muralView.muralViewModel.fixHierarchicalData(data); #
-        # console.log('data:', data) #
 
         <div class="mural-conteudo-wrap">
             <ul class="masterDetailView km-widget km-listview km-list" data-role="listview">

@@ -171,8 +171,7 @@ app.avaliacoesView = kendo.observable({
                 return result;
             },
             itemClick: function(e) {
-                var item = e.button.parents('li').attr('data-uid');
-                var dataItem = dataSource.getByUid(item); // || avaliacoesViewModel.originalItem;
+                var dataItem = dataSource.getByUid(e.data.uid); // || avaliacoesViewModel.originalItem;
 
                 avaliacoesViewModel.setCurrentItemByUid(dataItem.uid);
 
@@ -182,8 +181,7 @@ app.avaliacoesView = kendo.observable({
                 });
             },
             jaRealizadoClick: function(e) {
-                var item = e.button.parents('li').attr('data-uid');
-                var dataItem = dataSource.getByUid(item);
+                var dataItem = dataSource.getByUid(e.data.uid);
 
                 avaliacoesViewModel.setCurrentItemByUid(dataItem.uid);  
                 
@@ -198,9 +196,12 @@ app.avaliacoesView = kendo.observable({
                                 totalPontos ++;
                             }
                         }*/
+
                         var currentItem = avaliacoesViewModel.get('currentItem');
                         currentItem.TotalPontos = totalPontos;
-                        avaliacoesViewModel.set('currentItem', currentItem);
+                        avaliacoesViewModel.set('currentItem', avaliacoesViewModel.fixHierarchicalData(currentItem));
+
+                        console.log('currentItem', currentItem);
 
                         app.mobileApp.navigate('#components/avaliacoesView/result.html?uid=' + dataItem.uid);
                     });
@@ -210,26 +211,6 @@ app.avaliacoesView = kendo.observable({
                 $('#appDrawer').data('kendoMobileDrawer').show();
             },
             enviarRepostas: function(e) {
-                var form = $('#questionario');
-                var avaliacao = avaliacoesViewModel.get('currentItem');
-                var questoes = avaliacoesViewModel.get('currentItemQuestoes');
-                var pontos = 0;
-
-                for (var i=0; i < questoes.length; i++) {
-                    var questao = questoes[i];                    
-                    var resposta = form.find('[name='+questoes[i].PerguntaId+']:checked');
-
-                    questao.Resposta = resposta.val();
-
-                    if (questao.OpcaoCorreta == questao.Resposta) {
-                        pontos += questao.Pontos;
-                    }
-
-                    avaliacao.TotalPontos = pontos;
-                }
-
-                addResposta();
-
                 function addResposta() {
                     var dataRespostas = dataProvider.data('RespostasAvaliacao');
                     dataRespostas.create({
@@ -239,13 +220,16 @@ app.avaliacoesView = kendo.observable({
                         },
                         function(data){
                             addRespostaQuestao(0, data.result.Id, function() {
-                                app.mobileApp.navigate('#components/avaliacoesView/result.html');
+                                avaliacoesViewModel.set('currentItem', avaliacoesViewModel.fixHierarchicalData(avaliacao));
+                                avaliacoesViewModel.set('currentItemRespostas', questoes);
+                                
+                                app.mobileApp.navigate('#components/avaliacoesView/result.html?uid='+avaliacao.uid);
                             });
                         },
                         function(error){
                             alert('Error writing data (RespostasAvaliacao)');
                         });
-                }
+                };
 
                 function addRespostaQuestao(index, idRespostaAvaliacao, cb) {
                     if (questoes.length > index) {
@@ -267,10 +251,34 @@ app.avaliacoesView = kendo.observable({
                             });
                     } else {
                         if (cb) {
-                            cb();
+                            try {
+                                cb();
+                            } catch(err) {
+                                alert('AddRespostaQuestao Error: '+err.message);
+                            }
                         }
                     }
+                };
+
+                var form = $('#questionario');
+                var avaliacao = avaliacoesViewModel.get('currentItem');
+                var questoes = avaliacoesViewModel.get('currentItemQuestoes');
+                var pontos = 0;
+
+                for (var i=0; i < questoes.length; i++) {
+                    var questao = questoes[i];                    
+                    var resposta = form.find('[name='+questoes[i].PerguntaId+']:checked');
+
+                    questao.Resposta = resposta.val();
+
+                    if (questao.OpcaoCorreta == questao.Resposta) {
+                        pontos += questao.Pontos;
+                    }
+
+                    avaliacao.TotalPontos = pontos;
                 }
+
+                addResposta();
             },
             respostasOk: function(e) {
                 $('#avaliacoesDetailView').html('');
@@ -367,7 +375,11 @@ app.avaliacoesView = kendo.observable({
                             }
                         }
 
-                        done(data.result);
+                        try {
+                            done(data.result);    
+                        } catch(err) {
+                            alert('LoadQuestoesAvaliacao Error: '+err.message);
+                        }                        
                     },
                     function(error){
                         alert('Error loading data (Questoes)');
@@ -454,7 +466,11 @@ app.avaliacoesView = kendo.observable({
                             avaliacoesViewModel.set('currentItem', avaliacao);
 
                             if (cb) {
-                                cb(questoes);
+                                try {                                    
+                                    cb(questoes);
+                                } catch(err) {
+                                    alert('GetRespostaQuestaoAvaliacao Error: '+err.message);
+                                }
                             }
                         }, function(err) {
                             alert('Error loading data (Cursos)');
@@ -654,7 +670,11 @@ app.avaliacoesView = kendo.observable({
                         }                        
                     }
 
-                    done(responsebody);
+                    try {
+                        done(responsebody);    
+                    } catch(err) {
+                        alert('GetProfessores Error: '+err.message);
+                    }                    
                 }, function (err) {
                     alert('Error loading data (Professores)');
                 });

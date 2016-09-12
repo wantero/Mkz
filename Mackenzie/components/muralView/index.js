@@ -156,26 +156,27 @@ app.muralView = kendo.observable({
                 })(result, layout);
 
                 result.TempoPublicacao = this.getTempoDecorrido(data.CreatedAt);
-                result.AlreadyLike = findLike(data.Likes, app.getUserData().Id);
+                result.AlreadyLike = PublicacoesService.findLike(data.Likes, app.getUserData().Id);
 
                 return result;
             },
             muralLikeClick: function(e) {
                 var userId = app.getUserData().Id;
 
-                if (!findLike(e.data.Likes, userId)) {
+                if (!PublicacoesService.findLike(e.data.Likes, userId)) {
                     PublicacoesService.pushLikes(dataProvider, e.data.Id, app.getUserData().Id, function(data) {
                         var $likesCount = $(e.currentTarget).closest('div').find('#likesCount');
                         $likesCount.text(Number($likesCount.text())+data);
 
                         // Adidiona Like na lista.
                         e.data.Likes.push(userId);
-                        $(e.currentTarget).parent().attr('style', 'background-color: blue');
+                        $(e.currentTarget).parent().addClass('smiley-curtiu');
                     });        
                 }
             },
             mensagemClick: function(e) {
                 var $mensagem = $('#header-mural-mensagem');
+                
                 if ($mensagem.is(':visible')) {
                     $mensagem.hide();
                 } else {
@@ -185,14 +186,19 @@ app.muralView = kendo.observable({
             muralSendMsgClick: function(e) {
                 var $novaMensagem = $('#novaMensagem');
                 var $titulo = $('#tituloCompartilhar');
+                var $disciplina = $('#mural-disciplina-select');
 
                 if (!PublicacoesService.verificaTitulo($titulo, 'Favor informar o titulo da publicacao!')) {
                     return;
                 }
 
+                if (!PublicacoesService.verificaDisciplina($disciplina)) {
+                    return;
+                }
+
                 var texto = $novaMensagem.val().replace(/\n/g, '<br>');
 
-                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, null, function() {
+                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, $disciplina.val(), function() {
                     muralViewModel.muralCancelMsgClick(e);
                     //var listView = $("#muralListView").kendoMobileListView();
                     //listView.refresh();                        
@@ -201,10 +207,12 @@ app.muralView = kendo.observable({
             muralCancelMsgClick: function(e) {
                 $('#header-mural-mensagem').hide();
                 $('#novaMensagem').val('');
+                $('#tituloCompartilhar').val('');
+                $('#mural-disciplina-select').val('');
             },
             muralCommentClick: function(e) {
                 var $comments = $(e.currentTarget).closest('ul').parent().closest('ul').find('#header-mural-comentario');
-                
+
                 if ($comments.is(':visible')) {
                     $comments.hide();
                 } else {
@@ -320,7 +328,9 @@ app.muralView = kendo.observable({
                 }
             },
             muralShareClick: function(e) {
-            	alert('share');
+                var pub = e.data;
+
+                PublicacoesService.createPublicacao(dataProvider, pub.Tipo, pub.Texto, pub.Titulo, pub.FileName, pub.FileSize, pub.AnexoUri, pub.Disciplina);
             },
             muralPublicacoesCloseClick: function(e) {
                 $('#appDrawer').data('kendoMobileDrawer').show();
@@ -348,7 +358,7 @@ app.muralView = kendo.observable({
 			    var text = "agora";
 
 			    if (days > 0) {
-			    	text = hours+" hora(s) atrás";
+			    	text = days+" dia(s) atrás";
 			    } else if (hours > 0) {
 			    	text = hours+" hora(s) atrás";
 			    } else if (mins > 0) {
@@ -416,20 +426,65 @@ app.muralView = kendo.observable({
 
         app.displayUser();
 
+        /*function getCursos() {
+            var queryCursos = new Everlive.Query();
+            queryCursos.where().eq('Users', app.getUserData().Id);
+
+            var dataCursos = dataProvider.data('Cursos');
+            dataCursos.get(queryCursos)
+                .then(function(data) {
+                    var cursos = [];
+                    for (var i=0; i < data.result.length; i++) {
+                        cursos.push(data.result[i].Id);
+                    }
+
+                    getDisciplinas(cursos);
+                }, function(err) {
+                    alert('Error loading data (Cursos)');
+                });
+        }
+
+        function getDisciplinas(cursos) {
+            var queryDisciplinas = new Everlive.Query();
+            queryDisciplinas.where().isin('Cursos', cursos);
+
+            var dataDisciplinas = dataProvider.data('Disciplinas');
+            dataDisciplinas.get(queryDisciplinas)
+                .then(function(data){
+                    if (data.result) {
+                        var select = $('#mural-disciplina-select');
+                        var html = '';
+
+                        for (var i = 0; i < data.result.length; i++) {
+                            html += '<option value="'+data.result[i].Id+'">'+data.result[i].Nome+'</option>';
+                        }
+
+                        select.html(html);
+                    }
+                }, function(Err) {
+                    alert('Erro loading data (Disciplinas)');
+                });
+        }
+
+        // Popula a lista de componentes
+        getCursos();*/
+        PublicacoesService.populateDisciplinas($('#mural-disciplina-select'));
+
         // Armazena o parametro recebido pela VIEW
-        param = {
+        param = null;
+        /*param = {
             logic:"or",
             filters: [
                 {field: "Disciplina", operator: "eq", value: ''},
                 {field: "Disciplina", operator: "eq", value: null},
             ]
-        };
+        };*/
 
         if (e.view.params.tipo && e.view.params.tipo == 'minhaspub') {
         	param = {
 				logic: "and",
 				filters: [
-					param,
+					//param,
 					{ field:"User", operator:"eq", value: app.getUserData().Id }
 				]
 			}
@@ -439,96 +494,5 @@ app.muralView = kendo.observable({
 
         fetchFilteredData(viewParam);
     });
-
-    function findLike(likeList, userId) {
-        for (var i=0; i <= likeList.length; i++) {
-            if (likeList[i] == userId) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /*function verificaTitulo() {
-        var $titulo = $('#tituloCompartilhar');
-
-        if ($titulo && $titulo.val() == '') {
-            alert('Favor informar o titulo da publicacao!');
-            return;
-        }
-
-        return $titulo;
-    }
-
-    function createPublicacao(tipo, texto, titulo, fileName, fileSize, anexoUri, disciplina, cb) {
-        var dataPublicacoes = dataProvider.data('Publicacoes');
-
-        dataPublicacoes.create(
-            {
-                'FileName': fileName ? fileName : '',
-                'FileSize': fileSize ? fileSize : '',
-                'Disciplina': disciplina ? disciplina : '',
-                'Comentarios': '',
-                'Likes': '',
-                'AnexoUri': anexoUri ? anexoUri : '',
-                'Texto': texto ? texto : '',
-                'Tipo': tipo,
-                'Titulo': titulo ? titulo : '',
-                'User': app.getUserData().Id
-            },
-            function(data){
-                if (data.result) {
-                    console.log('Create publicacoes:', data.result);
-
-                    if (cb) {
-                        try {
-                            cb();
-                        } catch(e) {
-                            alert('Error on Create Publicacoes: '+e.message);
-                        }
-                    }
-                }
-            },
-            function(error){
-                alert('Erro ao gravar Publicacoes! '+error.message);
-            }
-        );
-    };     
-
-    function cameraPub() {
-        var $titulo;
-
-        function onPictureSuccess(imageData) {
-            var file = {
-                Filename: '\\mural\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
-                ContentType: "image/jpeg",
-                base64: imageData,
-            };
-
-            dataProvider.Files.create(file, function(response) {                        
-                createPublicacao('image', null, $titulo.val(), null, null, response.result.Uri, null, function() {
-                    $titulo.val('');
-                    //var listView = $("#muralListView").kendoMobileListView();
-                    //listView.refresh();                        
-                });
-            }, function(err) {
-                navigator.notification.alert("Unfortunately the upload failed: " + err.message);
-            });
-        };
-
-        function onPictureError() {
-            navigator.notification.alert("Falha no acesso à camera!");
-        };           
-
-        $titulo = $('#tituloCompartilhar');
-
-        if ($titulo && $titulo.val() == '') {
-            alert('Favor informar o titulo da publicacao!');
-            return;
-        }
-
-        app.RunCamera(400, 300, onPictureSuccess, onPictureError);  
-    }*/
 
 })(app.muralView);

@@ -228,7 +228,6 @@ app.disciplinasView = kendo.observable({
 
                     app.mobileApp.navigate('#components/avaliacoesView/details.html?uid=' + dataItem.uid);
                 });
-
             },
             jaRealizadoClick: function(e) {
                 var item = e.button.parents('li').attr('data-uid');
@@ -274,14 +273,14 @@ app.disciplinasView = kendo.observable({
             muralLikeClick: function(e) {
                 var userId = app.getUserData().Id;
 
-                if (!findLike(e.data.Likes, userId)) {
+                if (!PublicacoesService.findLike(e.data.Likes, userId)) {
                     PublicacoesService.pushLikes(dataProvider, e.data.Id, app.getUserData().Id, function(data) {
                         var $likesCount = $(e.currentTarget).closest('div').find('#likesCount');
                         $likesCount.text(Number($likesCount.text())+data);
 
                         // Adidiona Like na lista.
                         e.data.Likes.push(userId);
-                        $(e.currentTarget).parent().attr('style', 'background-color: blue');
+                        $(e.currentTarget).parent().addClass('smiley-curtiu');
                     });
                 }
             },
@@ -433,7 +432,9 @@ app.disciplinasView = kendo.observable({
                 }
             },
             muralShareClick: function(e) {
-                alert('share');
+                var pub = e.data;
+
+                PublicacoesService.createPublicacao(dataProvider, pub.Tipo, pub.Texto, pub.Titulo, pub.FileName, pub.FileSize, pub.AnexoUri, pub.Disciplina);
             },/*
             muralPublicacoesCloseClick: function(e) {
                 $('#appDrawer').data('kendoMobileDrawer').show();

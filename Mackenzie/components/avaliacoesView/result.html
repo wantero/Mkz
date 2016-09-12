@@ -27,8 +27,9 @@
         <span class="km-icon" data-icon="info"></span>
         <h2 data-bind="text: currentItem.Titulo"></h2>
     </div>
-    <!-- <p>(Total <span data-bind="text: currentItem.TotalPontos"></span> Pontos)</p> -->
-    <p>(Total <b><span data-bind="text: currentItem.Respostas.Pontos"></span></b> Pontos)</p>
+
+    <p>Total <span data-bind="text: currentItem.TotalPontos"></span> Ponto(s)</p>
+    <!-- <p>(Total <b><span data-bind="text: currentItem.Respostas.TotalPontos"></span></b> Pontos)</p> -->
 
     <div>
         <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="questoesResultadoTemplate" data-type="group"
