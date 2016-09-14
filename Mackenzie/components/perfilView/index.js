@@ -129,7 +129,8 @@ app.perfilView = kendo.observable({
         $('#nome').val(perfilViewModel.fields.nome);
         $('#email').val(perfilViewModel.fields.email);
         if (perfilViewModel.fields.fotoUri) {
-            $('#foto').attr('src', perfilViewModel.fields.fotoUri);
+            //$('#foto').attr('src', perfilViewModel.fields.fotoUri);
+            $('#foto').get(0).style.backgroundImage = "url("+perfilViewModel.fields.fotoUri+")";
         }
     });
 

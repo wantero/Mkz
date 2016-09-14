@@ -22,7 +22,7 @@
             <p>Pontos</p>
         </div>
 
-        <ul class="masterDetailView" data-role="listview" data-auto-bind="true" data-style="" data-template="ranksViewModelTemplate" 
+        <ul class="masterDetailView" data-role="listview" data-auto-bind="true" data-template="ranksViewModelTemplate" 
             data-bind="{ source: dataSource.ranking }" data-pull-to-refresh="false" data-endless-scroll="false">
         </ul>
 
@@ -30,25 +30,32 @@
             <h3>Sua posição atual</h3>
         </div>
 
-        <ul class="masterDetailView" data-role="listview">
-            <li data-uid="" class="bg-claro">
+        <ul class="masterDetailView" data-role="listview" data-auto-bind="true" data-template="ranksViewSuaPosicaoTemplate"
+            data-bind="{ source: dataSource.suaPosicao }" >
+            <!-- <li data-uid="" class="bg-claro">
                 <span data-bind="text: dataSource.suaPosicao.text"></span>
                 <div class="user-thumb rank-thumb">
                     <img class="km-thumbnail" data-bind="attr: { src: dataSource.suaPosicao.fotoUri }" alt="Your photo">
-                    <!-- <span class="km-thumbnail" data-bind="attr: { style: dataSource.suaPosicao.fotoUri}"></span> -->
+                    <!-- <span class="km-thumbnail" data-bind="attr: { style: dataSource.suaPosicao.fotoUri}"></span> ->
                 </div>
                 <span data-bind="text: dataSource.suaPosicao.nome"></span>
                 <span data-bind="text: dataSource.suaPosicao.pontos"></span>
-            </li>
+            </li> -->
         </ul>
     </div>
-    
+
+    <script type="text/x-kendo-template" id="ranksViewSuaPosicaoTemplate">            
+        # data = app.ranksView.ranksViewModel.fixHierarchicalData(data); #
+        <span> #: data['text'] # </span>
+        <div class="user-thumb rank-thumb">
+            <span class="km-thumbnail" style="background-image: url(#: data['fotoUri'] #);"></span>
+        </div>
+        <span> #: data['nome'] # </span>
+        <span> #: data['pontos'] # </span>
+    </script>
+
     <script type="text/x-kendo-template" id="ranksViewModelTemplate">            
-            # data = app.ranksView.ranksViewModel.fixHierarchicalData(data); #
-        <!--div>
-            # data = app.ranksView.ranksViewModel.fixHierarchicalData(data); #
-            <h3>#: data['Titulo'] #</h3>
-        </div-->
+        # data = app.ranksView.ranksViewModel.fixHierarchicalData(data); #
         <span> #: data['text'] # </span>
         <div class="user-thumb rank-thumb">
             <span class="km-thumbnail" style="background-image: url(#: data['fotoUri'] #);"></span>

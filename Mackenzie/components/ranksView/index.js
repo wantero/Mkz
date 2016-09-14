@@ -323,12 +323,13 @@ app.ranksView = kendo.observable({
                         pushed++;
                     }
                 } else {
-                    ret.suaPosicao = {
+                    ret.suaPosicao = [];                    
+                    ret.suaPosicao.push({
                         text: (i+1)+'º',
                         fotoUri: data[i].User.fotoUri,
                         nome: data[i].User.DisplayName,
                         pontos: data[i].TotalPontos
-                    };
+                    });
                 }
             }
 
