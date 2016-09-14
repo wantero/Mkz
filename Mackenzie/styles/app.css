@@ -1151,9 +1151,9 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	background-size: contain;
 	background-repeat: no-repeat;
 }
-#kendoUiMobileApp .user-thumb > img {
+/*#kendoUiMobileApp .user-thumb > img {
 	visibility: hidden;
-}
+}*/
 #kendoUiMobileApp #muralList #muralListView > li,
 #kendoUiMobileApp #muralList #muralListView .bg-branco {
 	padding: 0;

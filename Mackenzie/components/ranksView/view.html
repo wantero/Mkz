@@ -35,6 +35,7 @@
                 <span data-bind="text: dataSource.suaPosicao.text"></span>
                 <div class="user-thumb rank-thumb">
                     <img class="km-thumbnail" data-bind="attr: { src: dataSource.suaPosicao.fotoUri }" alt="Your photo">
+                    <!-- <span class="km-thumbnail" data-bind="attr: { style: dataSource.suaPosicao.fotoUri}"></span> -->
                 </div>
                 <span data-bind="text: dataSource.suaPosicao.nome"></span>
                 <span data-bind="text: dataSource.suaPosicao.pontos"></span>
@@ -50,7 +51,7 @@
         </div-->
         <span> #: data['text'] # </span>
         <div class="user-thumb rank-thumb">
-            <img class="km-thumbnail" src="#: data['fotoUri'] #" alt="Your photo">
+            <span class="km-thumbnail" style="background-image: url(#: data['fotoUri'] #);"></span>
         </div>
         <span> #: data['nome'] # </span>
         <span> #: data['pontos'] # </span>
