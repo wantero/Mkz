@@ -855,7 +855,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		color: green;
 	}
 	#kendoUiMobileApp #resultadoQuestionario li .k-i-close::after {
-		content: "\f108";
+		content: "\f109";
 		color: #EA2D2E;
 	}
 
@@ -1004,9 +1004,9 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user {
 	overflow: auto;
 	padding: 1em 1em 0.5em;
-	border-bottom: 1px solid #DDD;
 	margin-top: 0 !important;
-	box-shadow: inset 0 3px 3px 1px rgba(0, 0, 0, 0.1);
+	border-top: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
 }
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name {
 		float: right;
@@ -1031,7 +1031,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		height: 100%;
 		position: relative;
 		border-width: 1px 0;
-		border-color: rgba(0, 0, 0, 0.1);
+		border-color: rgba(0, 0, 0, 0.15);
 		border-style: solid;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem > p {
@@ -1141,35 +1141,53 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 
 /* Suas publicações */
-#kendoUiMobileApp/*#mackz-mural*/ #muralList #muralListView > li,
-#kendoUiMobileApp/*#mackz-mural*/ #muralList #muralListView .bg-branco {
+#kendoUiMobileApp .user-thumb {
+	position: relative;
+}
+#kendoUiMobileApp .user-thumb > span {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+#kendoUiMobileApp .user-thumb > img {
+	visibility: hidden;
+}
+#kendoUiMobileApp #muralList #muralListView > li,
+#kendoUiMobileApp #muralList #muralListView .bg-branco {
 	padding: 0;
 	border-bottom: 0;
 }
-	#kendoUiMobileApp/*#mackz-mural*/ #muralList #muralListView > li > .mural-conteudo-wrap {
+	#kendoUiMobileApp #muralList #muralListView .bg-branco,
+	#kendoUiMobileApp #tabPubImages .bg-branco {
+		border-bottom: 2em solid #DEDEDE;
+	}
+	#kendoUiMobileApp #muralList #muralListView > li > .mural-conteudo-wrap {
 		margin: 0;
 	}
 
 /* Comentarios feitos */
-/*#kendoUiMobileApp #muralListView*/ #header-mural-comentario-list .lista-comentarios {
+#header-mural-comentario-list .lista-comentarios {
 	padding: 0.5em 0;
 }
-	/*#kendoUiMobileApp #muralListView*/ #header-mural-comentario-list .item-comentario {
+	#header-mural-comentario-list .item-comentario {
 		overflow: auto;
 		padding: 0.7em 0;
 	}
-	/*#kendoUiMobileApp #muralListView*/ #header-mural-comentario-list .user-thumb,
-	/*#kendoUiMobileApp #muralListView*/ #header-mural-comentario-list .comentario-feito {
+	#header-mural-comentario-list .user-thumb,
+	#header-mural-comentario-list .comentario-feito {
 		float: left;
 		margin: 0;
 	}
-	/*#kendoUiMobileApp #muralListView*/ #header-mural-comentario-list .comentario-feito {
+	#header-mural-comentario-list .comentario-feito {
 		margin-left: 0.5em;
+		text-align: left;
 	}
-	/*#kendoUiMobileApp #muralListView*/ #header-mural-comentario-list .comentario-feito p {
+	#header-mural-comentario-list .comentario-feito p {
 		white-space: pre-line;
 	}
-	/*#kendoUiMobileApp #muralListView*/ #header-mural-comentario-list .comentario-user-name {
+	#header-mural-comentario-list .comentario-user-name {
 		font-size: 0.85em;
 		font-weight: bold;
 		color: #1486CC;

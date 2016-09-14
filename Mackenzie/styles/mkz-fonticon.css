@@ -42,35 +42,35 @@
   color: #444;
 }
 
-.flaticon-book .km-icon::after { content: "\f110"; }
+.flaticon-book .km-icon::after { content: "\f111"; }
 .flaticon-calendar .km-icon::after { content: "\f100"; }
 .flaticon-camera .km-icon::after { content: "\f118"; }
 .flaticon-check .km-icon::after { content: "\f102"; }
 .flaticon-clock .km-icon::after { content: "\f11b"; }
-.flaticon-comment .km-icon::after { content: "\f106"; }
-.flaticon-comment-ok .km-icon::after { content: "\f104"; }
-.flaticon-comment-cancel .km-icon::after { content: "\f105"; }
+.flaticon-comment .km-icon::after { content: "\f107"; }
+.flaticon-comment-ok .km-icon::after { content: "\f105"; }
+.flaticon-comment-cancel .km-icon::after { content: "\f106"; }
 .flaticon-docs .km-icon::after { content: "\f11a"; }
-.flaticon-email .km-icon::after { content: "\f10d"; }
-.flaticon-exit .km-icon::after { content: "\f109"; }
-.flaticon-faq .km-icon::after { content: "\f111"; }
+.flaticon-email .km-icon::after { content: "\f10e"; }
+.flaticon-exit .km-icon::after { content: "\f10a"; }
+.flaticon-faq .km-icon::after { content: "\f104"; }
 .flaticon-final-result .km-icon::after { content: "\f103"; }
 .flaticon-home .km-icon::after { content: "\f11c"; }
 .flaticon-movie .km-icon::after { content: "\f116"; }
-.flaticon-picture .km-icon::after { content: "\f10e"; }
-.flaticon-pin .km-icon::after { content: "\f10f"; }
-.flaticon-pin-search .km-icon::after { content: "\f10a"; }
+.flaticon-picture .km-icon::after { content: "\f10f"; }
+.flaticon-pin .km-icon::after { content: "\f110"; }
+.flaticon-pin-search .km-icon::after { content: "\f10b"; }
 .flaticon-post .km-icon::after { content: "\f11d"; }
 .flaticon-publication .km-icon::after { content: "\f114"; }
 .flaticon-qr-code .km-icon::after { content: "\f117"; }
-.flaticon-quiz .km-icon::after { content: "\f10b"; }
-.flaticon-ranking .km-icon::after { content: "\f107"; }
+.flaticon-quiz .km-icon::after { content: "\f10c"; }
+.flaticon-ranking .km-icon::after { content: "\f108"; }
 .flaticon-search .km-icon::after { content: "\f112"; }
 .flaticon-share .km-icon::after { content: "\f101"; }
 .flaticon-smiley .km-icon::after { content: "\f113"; }
-.flaticon-tests .km-icon::after { content: "\f10c"; }
+.flaticon-tests .km-icon::after { content: "\f10d"; }
 .flaticon-user .km-icon::after { content: "\f115"; }
-.flaticon-x .km-icon::after { content: "\f108"; }
+.flaticon-x .km-icon::after { content: "\f109"; }
 
 
 /*
