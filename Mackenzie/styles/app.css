@@ -551,12 +551,12 @@ div[style^="transform: translate3d"].km-widget.km-view {
     border-radius: 50%;
     background-color: #FFF;
 }
-	.user-thumb .km-thumbnail {
-		height: auto;
-		max-height: 100%;
+	.user-thumb img {
+		/*height: auto;
+		max-height: 100%;*/
 		background-color: #ccc;
 
-		height: 100%;
+		/*height: 100%;*/
 		width: 100%;
 		display: inline-block;
 		background-size: cover;
@@ -871,27 +871,25 @@ div[style^="transform: translate3d"].km-widget.km-view {
 }
 #rankings .masterDetailView li[data-uid] .user-thumb.rank-thumb {
 	display: inline-block;
-	height: 40px;
-	width: 40px;
 	margin: 0;
 }
 	#rankings .masterDetailView li[data-uid] span {
 		display: inline-block;
 		max-width: 140px;
 	}
-	#rankings .masterDetailView li[data-uid] span:first-of-type {
+	#rankings .masterDetailView li[data-uid] > span:first-of-type {
 		font-size: 1.2em;
 		margin: 0 0.5em 0 1em;
 		-webkit-transform: translateY(-0.8em);
 			-ms-transform: translateY(-0.8em);
 				transform: translateY(-0.8em);
 	}
-	#rankings .masterDetailView li[data-uid] span:nth-of-type(2) {
+	#rankings .masterDetailView li[data-uid] > span:nth-of-type(2) {
 		-webkit-transform: translateY(-1em);
 			-ms-transform: translateY(-1em);
 				transform: translateY(-1em);
 	}
-	#rankings .masterDetailView li[data-uid] span:last-of-type {
+	#rankings .masterDetailView li[data-uid] > span:last-of-type {
 		float: right;
 		-webkit-transform: translateY(0.8em);
 			-ms-transform: translateY(0.8em);
@@ -915,9 +913,10 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		padding: 0;
 		font-size: 1.1em;
 	}
-	#rankings .descricao-wrap .descricao-disc {
+	#rankings #rankingsData .descricao-wrap .descricao-disc {
 		padding: 0.7em 1em 0.9em;
 		text-align: center;
+		border-bottom: none;
 	}
 	#rankings .descricao-wrap .descricao-disc p,
 	#rankings .descricao-wrap h3 {
@@ -937,6 +936,9 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		border-bottom: 2px solid #FFF;
 	}
 
+#rankingsData .sua-posicao + .km-listview-wrapper > .masterDetailView > li {
+	background-color: #F0F0F0;
+}
 
 /*** MURAL DE PUBLICAÇÕES ***/
 /****************************/
@@ -1045,15 +1047,18 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		position: absolute;
 		top: 0;
 		display: inline-block;
+		height: 100%;
+		width: 100%;
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: 50% 50%;
-		height: 100%;
-		width: 100%;
 	}
 	#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .post-imagem img {
-		width: 100%;
-		visibility: hidden;
+		display: block;
+		height: auto;
+		max-height: 100%;
+		margin: 0 auto;
+		padding: 1em;
 	}
 	#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .km-icon {
 		width: auto;
@@ -1101,40 +1106,40 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		font-size: 0.9em;
 	}
 
-#kendoUiMobileApp #muralListView .masterDetailView .post-botoes + .novo-comentario-wrap {
+#kendoUiMobileApp .masterDetailView .masterDetailView .post-botoes + .novo-comentario-wrap {
 	margin: 0;
 }
 
-#kendoUiMobileApp #muralListView #header-mural-comentario form > textarea {
+#kendoUiMobileApp .masterDetailView #header-mural-comentario form > textarea {
 	height: 50px;
 	border: 1px solid;
 	resize: none;
 }
-	#kendoUiMobileApp #muralListView #header-mural-comentario form > textarea + .mural-header-icons {
+	#kendoUiMobileApp .masterDetailView #header-mural-comentario form > textarea + .mural-header-icons {
 		display: inline-block;
 	}
-	#kendoUiMobileApp #muralListView #header-mural-comentario form > textarea + .mural-header-icons .section-icon-name {
+	#kendoUiMobileApp .masterDetailView #header-mural-comentario form > textarea + .mural-header-icons .section-icon-name {
 		padding: 0.5em 0.5em 0 0;
 	}
-	#kendoUiMobileApp #muralListView #header-mural-comentario .flaticon-comment-ok .km-icon::after {
+	#kendoUiMobileApp .masterDetailView #header-mural-comentario .flaticon-comment-ok .km-icon::after {
 		color: green;
 	}
-	#kendoUiMobileApp #muralListView #header-mural-comentario .flaticon-comment-cancel .km-icon::after {
+	#kendoUiMobileApp .masterDetailView #header-mural-comentario .flaticon-comment-cancel .km-icon::after {
 		color: #EA2D2E;
 	}
-	#kendoUiMobileApp #muralListView #header-mural-comentario textarea + .mural-header-icons .km-icon {
+	#kendoUiMobileApp .masterDetailView #header-mural-comentario textarea + .mural-header-icons .km-icon {
 		margin: 0;
 		height: auto;
 		width: auto;
 	}
-	#kendoUiMobileApp #muralListView #header-mural-comentario textarea + .mural-header-icons .km-icon::after {
+	#kendoUiMobileApp .masterDetailView #header-mural-comentario textarea + .mural-header-icons .km-icon::after {
 		line-height: normal;
 		vertical-align: baseline;
 	}
-#kendoUiMobileApp #muralListView #header-mural-comentario-list ul {
+#kendoUiMobileApp .masterDetailView #header-mural-comentario-list ul {
 	padding: 0;
 }
-	#kendoUiMobileApp #muralListView #header-mural-comentario-list ul li {
+	#kendoUiMobileApp .masterDetailView #header-mural-comentario-list ul li {
 		padding: 0.5em 0;
 		text-align: left;
 	}
@@ -1146,14 +1151,15 @@ div[style^="transform: translate3d"].km-widget.km-view {
 }
 #kendoUiMobileApp .user-thumb > span {
 	position: absolute;
+	top: 0;
+	left: 0;
 	height: 100%;
 	width: 100%;
-	background-size: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-color: #CECECE;
 }
-/*#kendoUiMobileApp .user-thumb > img {
-	visibility: hidden;
-}*/
 #kendoUiMobileApp #muralList #muralListView > li,
 #kendoUiMobileApp #muralList #muralListView .bg-branco {
 	padding: 0;
@@ -1286,7 +1292,7 @@ form.section-name-wrap {
 	    display: inline-block;
 		height: 100%;
 		width: 100%;
-	    padding: 1em;
+	    padding: 0.8em;
 	    margin: 0;
 	    color: #fff;
 	    font-size: 1.1em; 
@@ -1465,8 +1471,6 @@ form.section-name-wrap {
 		width: 50%;
 		background: url(images/Smartphone.svg) no-repeat 50%; /* image, repeat e position */
 		background-size: 10em;
-		/*-webkit-animation: smartphone-demo 3s infinite;
-				animation: smartphone-demo 3s infinite;*/
 	}
 	#mackz-checkin .km-button-group .km-button {
 		margin: 0;
@@ -1592,6 +1596,9 @@ form.section-name-wrap {
 		margin-left: 0; 
 	}
 
+#disciplinasViewModelDetailsView #tabPublicacoes #header-disciplinas-publicacoes > form {
+	padding: 0.5em 0;
+}
 #disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .lista-arquivos,
 #disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView > li,
 #disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .bg-branco {
@@ -1606,7 +1613,6 @@ form.section-name-wrap {
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .mural-conteudo-wrap,
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user,
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-conteudo-wrap,
-	/*#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user h4,*/
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .km-icon {
 		margin: 0;
 	}

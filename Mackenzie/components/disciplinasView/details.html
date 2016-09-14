@@ -9,7 +9,8 @@
 
 		<div class="descricao-prof">
 			<div class="user-thumb prof-thumb thumb-md">
-				<img class="km-thumbnail" src="styles/images/user-male.png" alt="Professor photo">
+				<!-- <img class="km-thumbnail" src="styles/images/user-male.png" alt="Professor photo"> -->
+				<span class="km-thumbnail" style="background-image: url(../../styles/images/user-male.png)"></span>
 			</div>
 			<label class="km-label-above">
 			    <span data-bind="text: currentDisciplina['Professor']['Nome']"></span><br>
@@ -204,7 +205,7 @@
 	                        <div class="user-thumb mural-thumb thumb-sm">
 	                            # if (data.User.fotoUri && data.User.fotoUri != "") { #
 	                            <!-- <img class="km-thumbnail" data-bind="" src="#: data.User.fotoUri #"  alt="Your photo"> -->
-	                            <span class="km-thumbnail" data-bind="" style="background-image: url( #: data.User.fotoUri #\" )"></span>
+	                            <span class="km-thumbnail" data-bind="" style="background-image: url( #: data.User.fotoUri # )"></span>
 	                            # } else { #
 	                            <!-- <img class="km-thumbnail" data-bind="" src="../../styles/images/user-male.png" alt="Your photo"> -->
 	                            <span class="km-thumbnail" data-bind="" style="background-image: url(../../styles/images/user-male.png)"></span>
@@ -227,7 +228,7 @@
 	                        	# } #
 	                            <div class="post-imagem">
                                     # if (data.AnexoUri && data.AnexoUri != "") { #
-                                    	<span style="background-image: url( #: data.AnexoUri # )"></span>
+                                    	<!-- <span style="background-image: url( #: data.AnexoUri # )"></span> -->
                                     	<img src="#: data.AnexoUri #">
                                     # } #
 	                            </div>
@@ -265,7 +266,7 @@
 	                        </li>
 	                    </ul>
 
-	                    <div>
+	                    <div class="novo-comentario-wrap">
 		                    <div id="header-mural-comentario" class="section-name-wrap mural-header" style="display:none">
 		                        <form class="section-name-wrap">
 		                            <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro"></textarea>

@@ -86,8 +86,8 @@
                             <div class="post-imagem">
                                 # if (data.Tipo && data.Tipo == "image") { #
                                     # if (data.AnexoUri && data.AnexoUri != "") { #
-                                    <span class="km-thumbnail" style="background-image: url( #: data.AnexoUri # )"></span>
-                                    <img style="visibility: hidden;" src=" #: data.AnexoUri # "/>
+                                    <!-- <span class="km-thumbnail" style="background-image: url( #: data.AnexoUri # )"></span> -->
+                                    <img src=" #: data.AnexoUri # "/>
                                     # } #
                                 # } #
 
@@ -166,7 +166,7 @@
         # for (var i = 0; i < data.length; i++) { #
             <li class="item-comentario">
                 <div class="user-thumb thumb-sm">
-                    <span class="km-thumbnail" style="background-image: url( ../../styles/images/user-male.png )"></span>
+                    <!-- <span class="km-thumbnail" style="background-image: url( ../../styles/images/user-male.png )"></span> -->
                     # if (data[i].User.fotoUri) { #
                         <!-- <img src="#: data[i].User.fotoUri #"/> -->
                         <span class="km-thumbnail" style="background-image: url( #: data[i].User.fotoUri # )"></span>

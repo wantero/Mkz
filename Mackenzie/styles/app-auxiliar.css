@@ -61,7 +61,7 @@
 #tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-prev span,
 #tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:nth-child(2) .k-scheduler-navigation .k-nav-next span,
 #kendoUiMobileApp #header-disciplinas-publicacoes form > textarea,
-#kendoUiMobileApp #muralListView #header-mural-comentario form > textarea,
+#kendoUiMobileApp .masterDetailView #header-mural-comentario form > textarea,
 #kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap .comboBox {
 	border-color: #CCC;
 }
