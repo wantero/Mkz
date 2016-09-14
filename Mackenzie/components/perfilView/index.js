@@ -39,7 +39,8 @@ app.perfilView = kendo.observable({
                 alert('1b');
                 dataProvider.Files.create(file, function(response) {
                     perfilViewModel.fields.fotoUri = response.result.Uri;
-                    $('#foto').attr('src', perfilViewModel.fields.fotoUri);
+                    //$('#foto').attr('src', perfilViewModel.fields.fotoUri);
+                    $('#foto').get(0).style.backgroundImage = "url("+perfilViewModel.fields.fotoUri+")";
                     //$('#foto').attr('src', 'data:image/png;base64,'+perfilViewModel.fields.fotoUri);
                 }, function(err) {
                     navigator.notification.alert("Unfortunately the upload failed: " + err.message);

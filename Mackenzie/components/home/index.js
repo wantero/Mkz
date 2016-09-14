@@ -297,7 +297,8 @@ function onDrawerShow() {
     $('#drawerTIA').text(tia);
 
     if (fotoUri) {    
-        $('#drawerPicture').attr('src', fotoUri);
+        //$('#drawerPicture').attr('src', fotoUri);
+        $('#drawerPicture').get(0).style.backgroundImage = "url("+fotoUri+")";
     }
 }
 
