@@ -185,14 +185,17 @@ div[data-layout="main-loading"] .logo-mackenzie,
 	}
 	.loading-animate.a > span {
 		left: calc(50% - 200px);
+		left: -webkit-calc(50% - 200px);
 	}
 	.loading-animate.b > span {
 		left: calc(50% - 50px);
+		left: -webkit-calc(50% - 50px);
 		-webkit-animation-delay: 0.2s;
 				animation-delay: 0.2s;
 	}
 	.loading-animate.c > span {
 		right: calc(50% - 200px);
+		right: -webkit-calc(50% - 200px);
 		-webkit-animation-delay: 0.4s;
 				animation-delay: 0.4s;
 	}
@@ -552,11 +555,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
     background-color: #FFF;
 }
 	.user-thumb img {
-		/*height: auto;
-		max-height: 100%;*/
 		background-color: #ccc;
-
-		/*height: 100%;*/
 		width: 100%;
 		display: inline-block;
 		background-size: cover;
@@ -688,10 +687,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 
 #kendoUiMobileApp .prof-disciplina-wrap {
-	/*display: flex;
-	display: -webkit-flex;
-	-webkit-align-content: center;
-			align-content: center;*/
 	margin: 0.5em 0 1em;
 	overflow: auto;
 }
@@ -921,6 +916,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#rankings .descricao-wrap .descricao-disc p,
 	#rankings .descricao-wrap h3 {
 		float: none;
+	}
+	#rankings .descricao-wrap p + h3 {
 		margin-left: 0.3em;
 	}
 	#rankings .descricao-wrap .descricao-disc p {
@@ -944,23 +941,28 @@ div[style^="transform: translate3d"].km-widget.km-view {
 /****************************/
 #header-mural-comentario-list,
 #header-disciplinas-publicacoes {
-	display: flex;
-	display: -webkit-flex;
-	-webkit-align-items: center;
-			align-items: center;
-	-webkit-justify-content: space-between;
-			justify-content: space-between;
 	padding: 0 1em;
 	z-index: 1;
 }
+	#header-disciplinas-publicacoes {
+		display: flex;
+		display: -webkit-flex;
+		-webkit-align-items: center;
+				align-items: center;
+		-webkit-justify-content: space-between;
+				justify-content: space-between;
+	}
 	#header-mural-comentario-list {
 		background-color: #F0F0F0;
+	}
+	#kendoUiMobileApp #header-mural-publicacoes {
+		border-bottom: none;
 	}
 
 	#mackz-mural .mural-header form,
 	#header-disciplinas-publicacoes form {
 		width: 100%;
-		padding: 1em;
+		padding: 1em 1em 0.5em;
 		border-bottom: 0;
 	}
 	#mackz-mural .mural-header .mural-header-icons .section-icon-name,
@@ -1098,7 +1100,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap .comboBox {
 		width: 100%;
 		padding: 0.4em;
-		margin: 1em 0 1px;
+		margin: 0.5em 0 1px;
 		border-radius: 0.3em;
 	}
 	#kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap .comboBox option {
@@ -1187,7 +1189,9 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		margin: 0;
 	}
 	#header-mural-comentario-list .comentario-feito {
-		margin-left: 0.5em;
+		padding-left: 0.5em;
+		width: calc(100% - 30px);
+		width: -webkit-calc(100% - 30px);
 		text-align: left;
 	}
 	#header-mural-comentario-list .comentario-feito p {
@@ -1332,7 +1336,6 @@ form.section-name-wrap {
 	}
 	#kendoUiMobileApp .km-scroll-wrapper .masterDetailView li {
 		position: relative;
-		/*padding: 0.5em 1em;*/
 		margin: 0;
 		border-left: 0;
 		border-radius: 0;
@@ -1443,7 +1446,7 @@ form.section-name-wrap {
 #mackz-checkin .checkin-conteudo-wrap .checkin-demo {
 	position: relative;
 	min-height: 12em;
-	width: 60%;
+	width: 14em;
 	margin: 0 auto;
 	border: 1px solid #CCC;
 	border-radius: 3px;
@@ -1455,12 +1458,11 @@ form.section-name-wrap {
 	}
 	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .QR-code {
 		left: 1.5em;
-		/*-webkit-animation: QR-demo 3s infinite;
-				animation: QR-demo 3s infinite;*/
 		top: calc(50% - 22px);
 		top: -webkit-calc(50% - 22px);
 	}
 	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .QR-code::after {
+		content: "\f117";
 		font-size: 3em;
 	}
 	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .smartphone {
@@ -1489,7 +1491,7 @@ form.section-name-wrap {
 }
 	#mackz-checkin .camera-imagem-wrap {
 		height: 100%;
-		/*min-height: 300px;*/
+		padding: 2.5em 0;
 	}
 	#mackz-checkin .camera-imagem-wrap img {
 		width: 100%;
@@ -1500,8 +1502,6 @@ form.section-name-wrap {
 	display: -webkit-flex;
 	-webkit-justify-content: space-between;
 			justify-content: space-between;
-	/*-webkit-align-content: space-around;
-			align-content: space-around;*/
 	-webkit-flex-direction: column;
 			flex-direction: column;
 	height: 100%;
@@ -1873,6 +1873,7 @@ form.section-name-wrap {
 }
 	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap {
 		background-image: none;
+		padding: 0.4em 15%;
 	}
 
 	/* DROPDOWN DIA/MÊS/SEMANA */
@@ -1987,40 +1988,40 @@ form.section-name-wrap {
 
 
 /*** DISCIPLINAS DETAILS ***/
-.avaliacoes-wrap #tabPublicacoes /*.km-buttongroup:nth-child(2)*/ #first-period-2 {
+.avaliacoes-wrap #tabPublicacoes #first-period-2 {
 	width: 100%;
 	margin: 0.5em 0;
 	border-width: 1px 0;
 	border-style: solid;
 }
-	.avaliacoes-wrap #tabPublicacoes /*.km-buttongroup:nth-child(2)*/ #first-period-2 a {
+	.avaliacoes-wrap #tabPublicacoes #first-period-2 a {
 		border-radius: 0;
 		border-left: none;
 		border-right: none;
 		padding: 0em;
 	}
-	.avaliacoes-wrap #tabPublicacoes /*.km-buttongroup:nth-child(2)*/ #first-period-2 .km-button.km-state-active {
+	.avaliacoes-wrap #tabPublicacoes #first-period-2 .km-button.km-state-active {
 		background-color: transparent;
 		color: #4C5356;
 		border-bottom-width: 3px;
 	}
 
-	.avaliacoes-wrap #tabPublicacoes /*.km-buttongroup:nth-child(2)*/ #first-period-2 .km-button {
+	.avaliacoes-wrap #tabPublicacoes #first-period-2 .km-button {
 		padding: 0.8em 0.3em;
 		border: none;
 		font-size: 0.9em;
 	}
-	.avaliacoes-wrap #tabPublicacoes /*.km-buttongroup:nth-child(2)*/ #first-period-2 .km-button .km-icon {
+	.avaliacoes-wrap #tabPublicacoes #first-period-2 .km-button .km-icon {
 		width: auto;
 		margin: 0 0.3em 0 0;
 	}
-	.avaliacoes-wrap #tabPublicacoes /*.km-buttongroup:nth-child(2)*/ #first-period-2 .km-button .km-icon::after {
+	.avaliacoes-wrap #tabPublicacoes #first-period-2 .km-button .km-icon::after {
 		display: block;
 		font-size: 1.2em;
 		line-height: 0.5em;
 	}
 
-	.avaliacoes-wrap #tabPublicacoes /*.km-buttongroup:nth-child(2)*/ #first-period-2 .km-button .km-text {
+	.avaliacoes-wrap #tabPublicacoes #first-period-2 .km-button .km-text {
 		margin-left: 0.3em;
 	}
 

@@ -95,7 +95,8 @@
 #avaliacoes .km-scroll-header + .km-scroll-container,
 #rankings .km-scroll-header + .km-scroll-container,
 #perfilViewModel.form-view,
-#mackz-faq .km-scroll-header + .km-scroll-container {
+#mackz-faq .km-scroll-header + .km-scroll-container,
+[data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
 	padding-top: 47px;
 }
 
@@ -181,6 +182,10 @@
 
 	#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2 {
 		padding: 0 15%;
+	}
+
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap {
+		padding: 0.45em 6em;
 	}
 
 }
