@@ -29,13 +29,6 @@ app.perfilView = kendo.observable({
                     alert("index.html ["+res+"]");
                 });*/
 
-                fileChooser.open(
-                  function(a) {
-                    alert(a);
-                  }, function(b) {
-                    alert(b);
-                  });
-
                 var file = {
                     Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
                     ContentType: "image/jpeg",
@@ -71,11 +64,24 @@ app.perfilView = kendo.observable({
                 navigator.camera.getPicture(success, error, cameraConfig);
             };
 
+            /*fileChooser.open(
+              function(a) {
+                alert(a);
+              }, function(b) {
+                alert(b);
+              });
+                
             runCamera(400, 300, onPictureSuccess, onPictureError, {
                 //destination: navigator.camera.DestinationType.FILE_URI,
                 type: navigator.camera.PictureSourceType.PHOTOLIBRARY,
                 media: navigator.camera.MediaType.ALLMEDIA
-            });
+            });*/
+
+            var onFilePicked = function(path) {
+              alert("You picked this file: " + path);
+            }
+
+            FilePicker.pickFile(onFilePicked);
         },
         enviar: function() {
             dataProvider.Users.updateSingle(
