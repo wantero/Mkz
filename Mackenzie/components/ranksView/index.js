@@ -221,7 +221,6 @@ app.ranksView = kendo.observable({
                 alert('Error loading rankings');
             });*/
 
-
         populate(function(data) {
             ranksViewModel.set('dataSource', data);
             $('#rankingsData').show();

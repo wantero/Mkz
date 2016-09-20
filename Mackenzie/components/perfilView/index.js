@@ -29,6 +29,13 @@ app.perfilView = kendo.observable({
                     alert("index.html ["+res+"]");
                 });*/
 
+                fileChooser.open(
+                  function(a) {
+                    alert(a);
+                  , function(b) {
+                    alert(b);
+                  });
+
                 var file = {
                     Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
                     ContentType: "image/jpeg",
