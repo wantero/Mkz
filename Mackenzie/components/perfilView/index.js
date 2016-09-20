@@ -98,6 +98,7 @@ fileSelector.onCancel = function(e) // Fires on the back button
 fileSelector.onSuccess = function(path)
 {
   // If you click on a file, this function will be called with the name of the file
+    alert(path);
 };
 fileSelector.onPathChanged = function(path)
 {
