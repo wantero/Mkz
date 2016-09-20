@@ -3,9 +3,9 @@
   "ProjectGuid": "55a338bd-e94d-4c8b-b85e-e3f0bbe6fb9a",
   "projectVersion": 1,
   "AppIdentifier": "com.telerik.Mackenzie",
-  "DisplayName": "Mackenzie",
-  "Author": "",
-  "Description": "Mackenzie",
+  "DisplayName": "Mac Cloud",
+  "Author": "Progress Software",
+  "Description": "Mac Cloud",
   "BundleVersion": "1.0",
   "AndroidVersionCode": "1",
   "iOSDeviceFamily": [
@@ -17,7 +17,9 @@
   "FrameworkVersion": "4.0.0",
   "AndroidPermissions": [
     "android.permission.CAMERA",
-    "android.permission.INTERNET"
+    "android.permission.INTERNET",
+    "android.permission.MANAGE_DOCUMENTS",
+    "android.permission.READ_EXTERNAL_STORAGE"
   ],
   "DeviceOrientations": [
     "Portrait",
