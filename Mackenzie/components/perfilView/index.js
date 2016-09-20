@@ -77,11 +77,29 @@ app.perfilView = kendo.observable({
                 media: navigator.camera.MediaType.ALLMEDIA
             });*/
 
-            var onFilePicked = function(path) {
-              alert("You picked this file: " + path);
+            if (window.navigator.simulator === true) {
+              alert('This plugin is not available in the simulator.');
+                return true;
+              } else if (window.FilePicker === undefined) {
+                alert('Plugin not found. Maybe you are running in AppBuilder Companion app which currently does not support this plugin.');
+                return true;
+              } else {
+                return false;
+              }
             }
 
-            FilePicker.pickFile(onFilePicked);
+            FilePicker.isAvailable(function (avail) {
+              alert(avail ? "YES" : "NO");
+            });
+
+            FilePicker.pickFile(
+              function (result) {
+                alert("Success: " + JSON.stringify(result));
+              },
+              function (result) {
+                alert("Error: " + JSON.stringify(result));
+              }
+            );
         },
         enviar: function() {
             dataProvider.Users.updateSingle(
