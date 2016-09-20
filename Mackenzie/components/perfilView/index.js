@@ -32,7 +32,7 @@ app.perfilView = kendo.observable({
                 fileChooser.open(
                   function(a) {
                     alert(a);
-                  , function(b) {
+                  }, function(b) {
                     alert(b);
                   });
 
