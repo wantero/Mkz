@@ -74,7 +74,12 @@ app.muralView = kendo.observable({
                 dataProvider: dataProvider,
                 read: {
                     headers: {
-                        "X-Everlive-Expand": {"User": true, "Comentarios": true}
+                        "X-Everlive-Expand": {
+                            "User": true,
+                            "Comentarios": true,
+                            "CompartilhadoDe": true,
+                            "CompartilhadoDeUser": true
+                        }
                     }
                 }
             },
@@ -158,6 +163,10 @@ app.muralView = kendo.observable({
                 result.TempoPublicacao = this.getTempoDecorrido(data.CreatedAt);
                 result.AlreadyLike = PublicacoesService.findLike(data.Likes, app.getUserData().Id);
 
+                if (result.CompartilhadoDe) {
+                    result.CompartilhadoDe.TempoPublicacao = this.getTempoDecorrido(data.CompartilhadoDe.CreatedAt);
+                }
+
                 return result;
             },
             muralLikeClick: function(e) {
@@ -208,7 +217,7 @@ app.muralView = kendo.observable({
 
                 var texto = $novaMensagem.val().replace(/\n/g, '<br>');
 
-                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, $disciplina.val(), function() {
+                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, $disciplina.val(), null, function() {
                     muralViewModel.muralCancelMsgClick(e);
                     //var listView = $("#muralListView").kendoMobileListView();
                     //listView.refresh();                        
@@ -337,11 +346,33 @@ app.muralView = kendo.observable({
                     }
                 }
             },
+            muralEditMenuClick: function(e) {
+                var pub = e.data;
+                $("#publicacaoActions").data("kendoMobileActionSheet").open($(e.currentTarget), pub);
+            },
             muralShareClick: function(e) {
                 var pub = e.data;
                 $("#compartilharActions").data("kendoMobileActionSheet").open($(e.currentTarget), pub);
             },
-            muralUpdatePublicacaoClick: function(e) {
+            muralEditSharePublicacaoClick: function(e) {
+                var pub = e.data;
+                var updateMural = $(e.currentTarget).closest('#reply-mural-publicacoes');
+
+                var disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
+                var tituloPub = updateMural.find('#tituloCompartilharUpdate');
+
+                PublicacoesService.createPublicacao(dataProvider, pub.Tipo, pub.Texto, tituloPub.val(), pub.FileName, pub.FileSize, pub.AnexoUri, disciplinasSelect.val(), pub, function() {
+                    $(e.currentTarget).closest('li').find('#mural-titulo').text(tituloPub.val());
+
+                    updateMural.hide();
+                    disciplinasSelect.val('');
+                    tituloPub.val('');                
+                });
+            },
+            muralCancelEditSharePublicacaoClick: function(e){
+                $(e.currentTarget).closest('#reply-mural-publicacoes').hide();
+            },
+            muralEditPublicacaoClick: function(e) {
                 var pub = e.data;
                 var updateMural = $(e.currentTarget).closest('#update-mural-publicacoes');
 
@@ -353,12 +384,26 @@ app.muralView = kendo.observable({
 
                     updateMural.hide();
                     disciplinasSelect.val('');
+                    tituloPub.val('');                
+                });
+            },
+            muralCancelEditPublicacaoClick: function(e){
+                $(e.currentTarget).closest('#update-mural-publicacoes').hide();
+            },
+            muralUpdatePublicacaoClick: function(e) {
+                var pub = e.data;
+                var updateMural = $(e.currentTarget).closest('#reply-mural-publicacoes');
+
+                var disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
+                var tituloPub = updateMural.find('#tituloCompartilharUpdate');
+
+                PublicacoesService.updatePublicacao(dataProvider, pub.Id, tituloPub.val(), disciplinasSelect.val(), function() {
+                    $(e.currentTarget).closest('li').find('#mural-titulo').text(tituloPub.val());
+
+                    updateMural.hide();
+                    disciplinasSelect.val('');
                     tituloPub.val('');
                 });
-
-            },
-            muralCancelUpdatePublicacaoClick: function(e){
-                $(e.currentTarget).closest('#update-mural-publicacoes').hide();
             },
             muralPublicacoesCloseClick: function(e) {
                 $('#appDrawer').data('kendoMobileDrawer').show();

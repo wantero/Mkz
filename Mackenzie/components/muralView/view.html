@@ -55,7 +55,13 @@
     <ul id="compartilharActions" data-role="actionsheet" data-popup='{"direction": "left"}'
         data-cancel="Cancelar">
         <li><a href="#" data-action="onMuralPublicacaoReply">Compartilhar agora</a></li>
-        <li><a href="#" data-action="onMuralPublicacaoUpdate">Alterar publicação</a></li>
+        <li><a href="#" data-action="onMuralPublicacaoEditBeforeReply">Editar publicação</a></li>
+    </ul>
+
+    <ul id="publicacaoActions" data-role="actionsheet" data-popup='{"direction": "left"}'
+        data-cancel="Cancelar">
+        <li><a href="#" data-action="onMuralPublicacaoEdit">Editar</a></li>
+        <li><a href="#" data-action="onMuralPublicacaoDelete">Excluir</a></li>
     </ul>
 
     <script type="text/x-kendo-template" id="muralTemplate">
@@ -76,36 +82,118 @@
                         </div>
 
                         <h4>#: data['User']['DisplayName'] #</h4>
+                        
+                        # console.log('compart:', data); #
+                        # if (data.CompartilhadoDe) { #
+                            <span>Compartilhado</span>
+                        # } #
+
+                        # if (data.User.Id == data.Owner) { #
+                        <div class="section-icon-name">
+                            <a data-bind="{ events: {click: muralEditMenuClick} }">
+                                <span>  @@@</span>
+                            </a>                            
+                        </div>   
+                        # } #
 
                         <div class="section-icon-name flaticon-clock">
                             <span class="km-icon" data-icon=""></span>
                             #: data['TempoPublicacao'] #
-                        </div>
+                        </div>                     
                     </div>
+
+                    <!-- UPDATE PUBLICACAO -->
+                    <div id="update-mural-publicacoes" xclass="section-name-wrap mural-header" style="display:none">
+                        <form xclass="section-name-wrap" style="height: 70px;">
+                            <div style="height: 25x;">
+                                <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro"
+                                    style="top: 60px;margin-top: 0px;padding-top: 0px;padding-left: 0px;width: 6.4768px;padding-bottom: 0px;padding-right: 0px;left: 0px;">
+                                </input>
+                            </div>
+                            <div style="height: 25x;">
+                                <select id="mural-disciplina-update-select" xclass="comboBox"
+                                    style="top: 85px;margin-top: 0px;padding-top: 0px;padding-left: 0px;width: 6.4768px;padding-bottom: 0px;padding-right: 0px;left: 0px;">
+                                </select>  
+                            </div>
+                        </form>  
+                        <div class="mural-header-icons">
+                            <div class="section-icon-name flaticon-comment-ok">
+                                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralEditPublicacaoClick} }"></span>
+                            </div>
+                            <div class="section-icon-name flaticon-comment-cancel">
+                                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelEditPublicacaoClick} }"></span>
+                            </div>
+                        </div>
+                    </div>                
+                    <!-- UPDATE PUBLICACAO -->    
 
                     <!-- CONTEÚDO DO POST -->
                     <div class="post-conteudo-wrap">
                         <div class="post-conteudo">
                             <p id="mural-titulo">#: data['Titulo'] #</p>
                             <div class="post-imagem">
-                                # if (data.Tipo && data.Tipo == "image") { #
-                                    # if (data.AnexoUri && data.AnexoUri != "") { #
-                                    <!-- <span class="km-thumbnail" style="background-image: url( #: data.AnexoUri # )"></span> -->
-                                    <img src=" #: data.AnexoUri # "/>
+
+                                <!-- COMPARTILHADO -->
+                                # if (data.CompartilhadoDe) { #
+                                     <!-- NOME DO USUÁRIO QUE POSTOU -->
+                                    <div class="post-user">
+                                        <div class="user-thumb mural-thumb thumb-sm">
+                                            # if (data.CompartilhadoDeUser.fotoUri && data.CompartilhadoDeUser.fotoUri != "") { #
+                                            <span class="km-thumbnail" data-bind="" style="background-image: url( #: data.CompartilhadoDeUser.fotoUri # )"></span>
+                                            # } else { #
+                                            <span class="km-thumbnail" data-bind="" style="background-image: url(../../styles/images/user-male.png)"></span>
+                                            # } #
+                                        </div>
+
+                                        <h4>#: data.CompartilhadoDeUser['DisplayName'] #</h4>
+
+                                        <div class="section-icon-name flaticon-clock">
+                                            <span class="km-icon" data-icon=""></span>
+                                            #: data.CompartilhadoDe['TempoPublicacao'] #
+                                        </div>                     
+                                    </div>
+
+                                    # if (data.CompartilhadoDe.Tipo && data.CompartilhadoDe.Tipo == "image") { #
+                                        # if (data.CompartilhadoDe.AnexoUri && data.CompartilhadoDe.AnexoUri != "") { #
+                                        <!-- <span class="km-thumbnail" style="background-image: url( #: data.CompartilhadoDe.AnexoUri # )"></span> -->
+                                        <img src=" #: data.CompartilhadoDe.AnexoUri # "/>
+                                        # } #
                                     # } #
-                                # } #
 
-                                # if (data.Tipo && data.Tipo == "msg") { #
-                                    <p>#= data.Texto #</p>
-                                # } #
+                                    # if (data.CompartilhadoDe.Tipo && data.CompartilhadoDe.Tipo == "msg") { #
+                                        <p>#= data.CompartilhadoDe.Texto #</p>
+                                    # } #
 
-                                # if (data.Tipo && data.Tipo == "video") { #
-                                    <video controls> 
-                                      <source src="#: data.AnexoUri #" type="video/mp4">
-                                    </video>
-                                # } #
+                                    # if (data.CompartilhadoDe.Tipo && data.CompartilhadoDe.Tipo == "video") { #
+                                        <video controls> 
+                                          <source src="#: data.CompartilhadoDe.AnexoUri #" type="video/mp4">
+                                        </video>
+                                    # } #                                    
+                                    <!-- COMPARTILHADO -->
 
-                                <!-- ADICIONAR AQUI OS MODELOS PARA OS OUTROS TIPOS -->
+                                # } else {#
+
+                                    <!-- NAO COMPARTILHADO -->
+                                    # if (data.Tipo && data.Tipo == "image") { #
+                                        # if (data.AnexoUri && data.AnexoUri != "") { #
+                                        <!-- <span class="km-thumbnail" style="background-image: url( #: data.AnexoUri # )"></span> -->
+                                        <img src=" #: data.AnexoUri # "/>
+                                        # } #
+                                    # } #
+
+                                    # if (data.Tipo && data.Tipo == "msg") { #
+                                        <p>#= data.Texto #</p>
+                                    # } #
+
+                                    # if (data.Tipo && data.Tipo == "video") { #
+                                        <video controls> 
+                                          <source src="#: data.AnexoUri #" type="video/mp4">
+                                        </video>
+                                    # } #
+                                    <!-- NAO COMPARTILHADO -->
+
+                                    <!-- ADICIONAR AQUI OS MODELOS PARA OS OUTROS TIPOS -->
+                                # } #
                             </div>
                         </div>
                         
@@ -163,7 +251,7 @@
                     </div>
 
                     <!-- UPDATE PUBLICACAO -->
-                    <div id="update-mural-publicacoes" xclass="section-name-wrap mural-header" style="display:none">
+                    <div id="reply-mural-publicacoes" xclass="section-name-wrap mural-header" style="display:none">
                         <form xclass="section-name-wrap" style="height: 70px;">
                             <div style="height: 25x;">
                                 <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro"
@@ -178,10 +266,10 @@
                         </form>  
                         <div class="mural-header-icons">
                             <div class="section-icon-name flaticon-comment-ok">
-                                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralUpdatePublicacaoClick} }"></span>
+                                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralEditSharePublicacaoClick} }"></span>
                             </div>
                             <div class="section-icon-name flaticon-comment-cancel">
-                                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelUpdatePublicacaoClick} }"></span>
+                                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelEditSharePublicacaoClick} }"></span>
                             </div>
                         </div>
                     </div>                

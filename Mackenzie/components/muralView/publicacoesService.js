@@ -27,7 +27,7 @@ var PublicacoesService = {
         return true;
     },
 
-    createPublicacao: function(dataProvider, tipo, texto, titulo, fileName, fileSize, anexoUri, disciplinaId, cb) {
+    createPublicacao: function(dataProvider, tipo, texto, titulo, fileName, fileSize, anexoUri, disciplinaId, publicacao, cb) {
         var dataPublicacoes = dataProvider.data('Publicacoes');
 
         dataPublicacoes.create(
@@ -41,6 +41,8 @@ var PublicacoesService = {
                 'Texto': texto ? texto : '',
                 'Tipo': tipo,
                 'Titulo': titulo ? titulo : '',
+                'CompartilhadoDe': publicacao ? publicacao.Id: '',
+                'CompartilhadoDeUser': publicacao ? publicacao.User.Id: '',
                 'User': app.getUserData().Id
             },
             function(data){
@@ -80,6 +82,32 @@ var PublicacoesService = {
                             cb();
                         } catch(e) {
                             alert('Error on Update Publicacoes: '+e.message);
+                        }
+                    }
+                }
+            },
+            function(error){
+                alert('Erro ao gravar Publicacoes! '+error.message);
+            }
+        );
+    },
+
+    deletePublicacao: function(dataProvider, publicacaoId, cb) {
+        var dataPublicacoes = dataProvider.data('Publicacoes');
+
+        dataPublicacoes.destroySingle(
+            {
+                'Id': publicacaoId
+            },
+            function(data){
+                if (data.result) {
+                    console.log('Delete publicacoes:', data.result);
+
+                    if (cb) {
+                        try {
+                            cb();
+                        } catch(e) {
+                            alert('Error on Delete Publicacoes: '+e.message);
                         }
                     }
                 }
@@ -284,7 +312,7 @@ var PublicacoesService = {
             };
 
             dataProvider.Files.create(file, function(response) {                        
-                PublicacoesService.createPublicacao(dataProvider, 'image', null, $titulo.val(), null, null, response.result.Uri, disciplinaId, function() {
+                PublicacoesService.createPublicacao(dataProvider, 'image', null, $titulo.val(), null, null, response.result.Uri, disciplinaId, null, function() {
                     $titulo.val('');
                     //var listView = $("#muralListView").kendoMobileListView();
                     //listView.refresh();                        
@@ -338,10 +366,24 @@ function onMuralPublicacaoReply(e) {
     var pub = e.context;
     var dataProvider = app.data.mackenzie;
 
-    PublicacoesService.createPublicacao(dataProvider, pub.Tipo, pub.Texto, pub.Titulo, pub.FileName, pub.FileSize, pub.AnexoUri, pub.Disciplina);
+    PublicacoesService.createPublicacao(dataProvider, pub.Tipo, null, null, null, null, null, pub.Disciplina, pub);
 }
 
-function onMuralPublicacaoUpdate(e) {
+function onMuralPublicacaoEditBeforeReply(e) {
+    var pub = e.context;
+    var updateMural = e.target.closest('ul').parent().closest('ul').find('#reply-mural-publicacoes');
+
+    var disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
+    var tituloPub = updateMural.find('#tituloCompartilharUpdate');
+
+    PublicacoesService.populateDisciplinas(disciplinasSelect, function() {    
+        tituloPub.val(pub.Titulo);
+        disciplinasSelect.val(pub.Disciplina);    
+        updateMural.show();
+    });
+}
+
+function onMuralPublicacaoEdit(e) {
     var pub = e.context;
     var updateMural = e.target.closest('ul').parent().closest('ul').find('#update-mural-publicacoes');
 
@@ -352,5 +394,13 @@ function onMuralPublicacaoUpdate(e) {
         tituloPub.val(pub.Titulo);
         disciplinasSelect.val(pub.Disciplina);    
         updateMural.show();
+    });
+}
+
+function onMuralPublicacaoDelete(e) {
+    var pub = e.context;
+
+    PublicacoesService.deletePublicacao(app.data.mackenzie, pub.Id, function() {
+        // remover publicacao da lista
     });
 }
