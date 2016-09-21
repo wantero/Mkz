@@ -52,6 +52,11 @@
         </ul>
     </div>
 
+    <ul id="compartilharActions" data-role="actionsheet" data-popup='{"direction": "left"}'
+        data-cancel="Cancelar">
+        <li><a href="#" data-action="onMuralPublicacaoReply">Compartilhar agora</a></li>
+        <li><a href="#" data-action="onMuralPublicacaoUpdate">Alterar publicação</a></li>
+    </ul>
 
     <script type="text/x-kendo-template" id="muralTemplate">
         # data = app.muralView.muralViewModel.fixHierarchicalData(data); #
@@ -60,7 +65,6 @@
             <ul class="masterDetailView km-widget km-listview km-list" data-role="listview">
 
                 <li class="bg-branco">
-
                     <!-- NOME DO USUÁRIO QUE POSTOU -->
                     <div class="post-user">
                         <div class="user-thumb mural-thumb thumb-sm">
@@ -82,7 +86,7 @@
                     <!-- CONTEÚDO DO POST -->
                     <div class="post-conteudo-wrap">
                         <div class="post-conteudo">
-                            <p>#: data['Titulo'] #</p>
+                            <p id="mural-titulo">#: data['Titulo'] #</p>
                             <div class="post-imagem">
                                 # if (data.Tipo && data.Tipo == "image") { #
                                     # if (data.AnexoUri && data.AnexoUri != "") { #
@@ -132,7 +136,9 @@
                         </li>
 
                         <li class="section-icon-name flaticon-share">
-                            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralShareClick} }"></span>
+                            <span class="km-icon" data-icon="" 
+                            data-rel="actionsheet"
+                            data-bind="{ events: {click: muralShareClick} }"></span>
                         </li>
                     </ul>
 
@@ -155,6 +161,31 @@
                             Lista de comentários
                         </div>
                     </div>
+
+                    <!-- UPDATE PUBLICACAO -->
+                    <div id="update-mural-publicacoes" xclass="section-name-wrap mural-header" style="display:none">
+                        <form xclass="section-name-wrap" style="height: 70px;">
+                            <div style="height: 25x;">
+                                <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro"
+                                    style="top: 400px;margin-top: 0px;padding-top: 0px;padding-left: 0px;width: 6.4768px;padding-bottom: 0px;padding-right: 0px;left: 0px;">
+                                </input>
+                            </div>
+                            <div style="height: 25x;">
+                                <select id="mural-disciplina-update-select" xclass="comboBox"
+                                    style="top: 425px;margin-top: 0px;padding-top: 0px;padding-left: 0px;width: 6.4768px;padding-bottom: 0px;padding-right: 0px;left: 0px;">
+                                </select>  
+                            </div>
+                        </form>  
+                        <div class="mural-header-icons">
+                            <div class="section-icon-name flaticon-comment-ok">
+                                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralUpdatePublicacaoClick} }"></span>
+                            </div>
+                            <div class="section-icon-name flaticon-comment-cancel">
+                                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelUpdatePublicacaoClick} }"></span>
+                            </div>
+                        </div>
+                    </div>                
+                    <!-- UPDATE PUBLICACAO -->                    
                 </li>
             </ul>
         </div>

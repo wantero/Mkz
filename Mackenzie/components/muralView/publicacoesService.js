@@ -62,6 +62,34 @@ var PublicacoesService = {
         );
     },
 
+    updatePublicacao: function(dataProvider, publicacaoId, titulo, disciplinaId, cb) {
+        var dataPublicacoes = dataProvider.data('Publicacoes');
+
+        dataPublicacoes.updateSingle(
+            {
+                'Id': publicacaoId,
+                'Disciplina': disciplinaId,
+                'Titulo': titulo
+            },
+            function(data){
+                if (data.result) {
+                    console.log('Update publicacoes:', data.result);
+
+                    if (cb) {
+                        try {
+                            cb();
+                        } catch(e) {
+                            alert('Error on Update Publicacoes: '+e.message);
+                        }
+                    }
+                }
+            },
+            function(error){
+                alert('Erro ao gravar Publicacoes! '+error.message);
+            }
+        );
+    },
+
     createComentarios: function(dataProvider, textComment, userId, cb) {
     	var dataComentarios = dataProvider.data('PublicacoesComentarios');
 
@@ -150,6 +178,7 @@ var PublicacoesService = {
     popLikes: function(dataProvider, publicacoesId, userId, cb) {
         var dataPublicacoes = dataProvider.data('Publicacoes');
 
+
         // "$push" adds an item to an array.
         // "$addToSet" adds elements to an array only if they do not already exist in the set.
         var attributes = {
@@ -180,10 +209,11 @@ var PublicacoesService = {
         );
     },
 
-    populateDisciplinas: function($disciplinasSelect) {
+    populateDisciplinasHtml: undefined,
+    populateDisciplinas: function($disciplinasSelect, cb) {
         var dataProvider = app.data.mackenzie;
 
-        function getCursos($disciplinasSelect) {
+        function getCursos($disciplinasSelect, cb) {
             var queryCursos = new Everlive.Query();
             queryCursos.where().eq('Users', app.getUserData().Id);
 
@@ -195,13 +225,13 @@ var PublicacoesService = {
                         cursos.push(data.result[i].Id);
                     }
 
-                    getDisciplinas($disciplinasSelect, cursos);
+                    getDisciplinas($disciplinasSelect, cursos, cb);
                 }, function(err) {
                     alert('Error loading data (Cursos)');
                 });
-        }
+        };
 
-        function getDisciplinas($disciplinasSelect, cursos) {
+        function getDisciplinas($disciplinasSelect, cursos, cb) {
             var queryDisciplinas = new Everlive.Query();
             queryDisciplinas.where().isin('Cursos', cursos);
 
@@ -215,15 +245,32 @@ var PublicacoesService = {
                             html += '<option value="'+data.result[i].Id+'">'+data.result[i].Nome+'</option>';
                         }
 
-                        $disciplinasSelect.html(html);
+                        PublicacoesService.populateDisciplinasHtml = html;
+                        setHtml($disciplinasSelect, html, cb);
                     }
                 }, function(Err) {
                     alert('Erro loading data (Disciplinas)');
                 });
-        }
+        };
+
+        function setHtml($disciplinasSelect, html, cb) {
+            $disciplinasSelect.html(html);
+
+            if (cb) {
+                try {
+                    cb();
+                } catch(e) {
+                    alert('Error getDisciplinas/PublicacoesService: '+e.message);
+                } 
+            }
+        };
 
         // Popula a lista de componentes
-        getCursos($disciplinasSelect);
+        if (!PublicacoesService.populateDisciplinasHtml) {
+            getCursos($disciplinasSelect, cb);
+        } else {
+            setHtml($disciplinasSelect, PublicacoesService.populateDisciplinasHtml, cb);
+        }
     },
 
     cameraPub: function(dataProvider, tituloId, disciplinaId) {
@@ -285,4 +332,25 @@ var PublicacoesService = {
     runFile: function() {
 
     }
+};
+
+function onMuralPublicacaoReply(e) {
+    var pub = e.context;
+    var dataProvider = app.data.mackenzie;
+
+    PublicacoesService.createPublicacao(dataProvider, pub.Tipo, pub.Texto, pub.Titulo, pub.FileName, pub.FileSize, pub.AnexoUri, pub.Disciplina);
+}
+
+function onMuralPublicacaoUpdate(e) {
+    var pub = e.context;
+    var updateMural = e.target.closest('ul').parent().closest('ul').find('#update-mural-publicacoes');
+
+    var disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
+    var tituloPub = updateMural.find('#tituloCompartilharUpdate');
+
+    PublicacoesService.populateDisciplinas(disciplinasSelect, function() {    
+        tituloPub.val(pub.Titulo);
+        disciplinasSelect.val(pub.Disciplina);    
+        updateMural.show();
+    });
 }

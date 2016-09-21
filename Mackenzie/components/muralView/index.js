@@ -339,8 +339,26 @@ app.muralView = kendo.observable({
             },
             muralShareClick: function(e) {
                 var pub = e.data;
+                $("#compartilharActions").data("kendoMobileActionSheet").open($(e.currentTarget), pub);
+            },
+            muralUpdatePublicacaoClick: function(e) {
+                var pub = e.data;
+                var updateMural = $(e.currentTarget).closest('#update-mural-publicacoes');
 
-                PublicacoesService.createPublicacao(dataProvider, pub.Tipo, pub.Texto, pub.Titulo, pub.FileName, pub.FileSize, pub.AnexoUri, pub.Disciplina);
+                var disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
+                var tituloPub = updateMural.find('#tituloCompartilharUpdate');
+
+                PublicacoesService.updatePublicacao(dataProvider, pub.Id, tituloPub.val(), disciplinasSelect.val(), function() {
+                    $(e.currentTarget).closest('li').find('#mural-titulo').text(tituloPub.val());
+
+                    updateMural.hide();
+                    disciplinasSelect.val('');
+                    tituloPub.val('');
+                });
+
+            },
+            muralCancelUpdatePublicacaoClick: function(e){
+                $(e.currentTarget).closest('#update-mural-publicacoes').hide();
             },
             muralPublicacoesCloseClick: function(e) {
                 $('#appDrawer').data('kendoMobileDrawer').show();
