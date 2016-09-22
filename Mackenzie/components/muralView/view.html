@@ -89,9 +89,9 @@
                         # } #
 
                         # if (data.User.Id == data.Owner) { #
-                        <div class="section-icon-name">
+                        <div class="section-icon-name mural-editar-btn">
                             <a data-bind="{ events: {click: muralEditMenuClick} }">
-                                <span>  @@@</span>
+                                <span></span>
                             </a>                            
                         </div>   
                         # } #
@@ -104,15 +104,13 @@
 
                     <!-- UPDATE PUBLICACAO -->
                     <div id="update-mural-publicacoes" xclass="section-name-wrap mural-header" style="display:none">
-                        <form xclass="section-name-wrap" style="height: 70px;">
-                            <div style="height: 25x;">
-                                <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro"
-                                    style="top: 60px;margin-top: 0px;padding-top: 0px;padding-left: 0px;width: 6.4768px;padding-bottom: 0px;padding-right: 0px;left: 0px;">
+                        <form xclass="section-name-wrap">
+                            <div class="editar-comentario">
+                                <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro">
                                 </input>
                             </div>
-                            <div style="height: 25x;">
-                                <select id="mural-disciplina-update-select" xclass="comboBox"
-                                    style="top: 85px;margin-top: 0px;padding-top: 0px;padding-left: 0px;width: 6.4768px;padding-bottom: 0px;padding-right: 0px;left: 0px;">
+                            <div class="editar-componente">
+                                <select id="mural-disciplina-update-select" xclass="comboBox">
                                 </select>  
                             </div>
                         </form>  
@@ -136,39 +134,41 @@
                                 <!-- COMPARTILHADO -->
                                 # if (data.CompartilhadoDe) { #
                                      <!-- NOME DO USUÁRIO QUE POSTOU -->
-                                    <div class="post-user">
-                                        <div class="user-thumb mural-thumb thumb-sm">
-                                            # if (data.CompartilhadoDeUser.fotoUri && data.CompartilhadoDeUser.fotoUri != "") { #
-                                            <span class="km-thumbnail" data-bind="" style="background-image: url( #: data.CompartilhadoDeUser.fotoUri # )"></span>
-                                            # } else { #
-                                            <span class="km-thumbnail" data-bind="" style="background-image: url(../../styles/images/user-male.png)"></span>
-                                            # } #
+                                    <div class="post-compartilhado-wrap">
+                                        <div class="post-user head-post-compartilhado">
+                                            <div class="user-thumb mural-thumb thumb-sm">
+                                                # if (data.CompartilhadoDeUser.fotoUri && data.CompartilhadoDeUser.fotoUri != "") { #
+                                                <span class="km-thumbnail" data-bind="" style="background-image: url( #: data.CompartilhadoDeUser.fotoUri # )"></span>
+                                                # } else { #
+                                                <span class="km-thumbnail" data-bind="" style="background-image: url(../../styles/images/user-male.png)"></span>
+                                                # } #
+                                            </div>
+
+                                            <h4>#: data.CompartilhadoDeUser['DisplayName'] #</h4>
+
+                                            <div class="section-icon-name flaticon-clock">
+                                                <span class="km-icon" data-icon=""></span>
+                                                #: data.CompartilhadoDe['TempoPublicacao'] #
+                                            </div>                     
                                         </div>
 
-                                        <h4>#: data.CompartilhadoDeUser['DisplayName'] #</h4>
-
-                                        <div class="section-icon-name flaticon-clock">
-                                            <span class="km-icon" data-icon=""></span>
-                                            #: data.CompartilhadoDe['TempoPublicacao'] #
-                                        </div>                     
-                                    </div>
-
-                                    # if (data.CompartilhadoDe.Tipo && data.CompartilhadoDe.Tipo == "image") { #
-                                        # if (data.CompartilhadoDe.AnexoUri && data.CompartilhadoDe.AnexoUri != "") { #
-                                        <!-- <span class="km-thumbnail" style="background-image: url( #: data.CompartilhadoDe.AnexoUri # )"></span> -->
-                                        <img src=" #: data.CompartilhadoDe.AnexoUri # "/>
+                                        # if (data.CompartilhadoDe.Tipo && data.CompartilhadoDe.Tipo == "image") { #
+                                            # if (data.CompartilhadoDe.AnexoUri && data.CompartilhadoDe.AnexoUri != "") { #
+                                            <!-- <span class="km-thumbnail" style="background-image: url( #: data.CompartilhadoDe.AnexoUri # )"></span> -->
+                                            <img class="post-compartilhado" src=" #: data.CompartilhadoDe.AnexoUri # "/>
+                                            # } #
                                         # } #
-                                    # } #
 
-                                    # if (data.CompartilhadoDe.Tipo && data.CompartilhadoDe.Tipo == "msg") { #
-                                        <p>#= data.CompartilhadoDe.Texto #</p>
-                                    # } #
+                                        # if (data.CompartilhadoDe.Tipo && data.CompartilhadoDe.Tipo == "msg") { #
+                                            <p class="post-compartilhado">#= data.CompartilhadoDe.Texto #</p>
+                                        # } #
 
-                                    # if (data.CompartilhadoDe.Tipo && data.CompartilhadoDe.Tipo == "video") { #
-                                        <video controls> 
-                                          <source src="#: data.CompartilhadoDe.AnexoUri #" type="video/mp4">
-                                        </video>
-                                    # } #                                    
+                                        # if (data.CompartilhadoDe.Tipo && data.CompartilhadoDe.Tipo == "video") { #
+                                            <video class="post-compartilhado" controls> 
+                                              <source src="#: data.CompartilhadoDe.AnexoUri #" type="video/mp4">
+                                            </video>
+                                        # } #
+                                    </div>                              
                                     <!-- COMPARTILHADO -->
 
                                 # } else {#
@@ -252,15 +252,13 @@
 
                     <!-- UPDATE PUBLICACAO -->
                     <div id="reply-mural-publicacoes" xclass="section-name-wrap mural-header" style="display:none">
-                        <form xclass="section-name-wrap" style="height: 70px;">
-                            <div style="height: 25x;">
-                                <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro"
-                                    style="top: 400px;margin-top: 0px;padding-top: 0px;padding-left: 0px;width: 6.4768px;padding-bottom: 0px;padding-right: 0px;left: 0px;">
+                        <form xclass="section-name-wrap">
+                            <div class="editar-comentario">
+                                <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro">
                                 </input>
                             </div>
-                            <div style="height: 25x;">
-                                <select id="mural-disciplina-update-select" xclass="comboBox"
-                                    style="top: 425px;margin-top: 0px;padding-top: 0px;padding-left: 0px;width: 6.4768px;padding-bottom: 0px;padding-right: 0px;left: 0px;">
+                            <div class="editar-componente">
+                                <select id="mural-disciplina-update-select" xclass="comboBox">
                                 </select>  
                             </div>
                         </form>  

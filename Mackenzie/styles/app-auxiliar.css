@@ -1,5 +1,6 @@
 /* CORES
 	Vermelho: #EA2D2E;
+	Vermelho-claro: #EA6A6A;
 	Azul: #1486CC;
 	Cinza: #CCC;
 	Cinza1: rgba(0, 0, 0, 0.1);
@@ -100,6 +101,22 @@
 	padding-top: 47px;
 }
 
+/*****************************/
+/*** PADDING-BOTTOM FOOTER ***/
+/*****************************/
+#kendoUiMobileApp .disciplinas-wrap,
+#cursos .km-listview-wrapper .masterDetailView,
+#disciplinas .masterDetailView,
+.avaliacoes-wrap .prox-aula + .aval-praticas,
+#avaliacoesData .km-listview-wrapper,
+#rankings .km-scroll-header + .km-scroll-container,
+#mackz-faq .km-scroll-header + .km-scroll-container,
+#mackz-mural #muralListView.km-listview,
+.publicacoes-button-wrap,
+#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name + p + div:not(#questionario) > .km-listview-wrapper {
+	padding-bottom: 45px;
+}
+
 
 /**************************/
 /**** AUXILIAR CLASSES ****/
@@ -153,6 +170,14 @@
 
 }
 
+@media screen and (device-width: 480px) {
+
+	.avaliacoes-wrap .prox-aula .grupo-wrap .km-button {
+		padding-right: 0.3em;
+	}
+	
+}
+
 @media screen and (min-device-width: 480px) {
 
 	#kendoUiMobileApp .descricao-wrap > .descricao-prof {
@@ -173,6 +198,24 @@
 		    text-align: left;
 		    white-space: normal;
 		}
+
+	.avaliacoes-wrap .prox-aula .km-button + .grupo-wrap {
+		width: auto;
+	}
+
+	.avaliacoes-wrap .prox-aula p + .km-button {
+		height: 60px;
+	}
+		.avaliacoes-wrap .prox-aula p + .km-button span {
+			margin-top: 1em;
+		}
+
+	#kendoUiMobileApp #disciplinas .km-listview-wrapper li .prof-thumb + .image-with-text,
+	#kendoUiMobileApp #disciplinas .km-listview-wrapper li label,
+	#kendoUiMobileApp #tabCursoDisciplinas .km-listview-wrapper li .prof-thumb + .image-with-text,
+	#kendoUiMobileApp #tabCursoDisciplinas .km-listview-wrapper li label {
+		width: 88%;
+	}
 
 	#mackz-faq .km-scroll-wrapper .masterDetailView li .image-with-text::after {
 		height: 20px;
@@ -219,11 +262,22 @@
 		display: block;
 	}
 
+	.avaliacoes-wrap .prox-aula p + .km-button {
+		width: 120px;
+	}
+
 	#cursos .km-scroll-container > .km-listview-wrapper:only-of-type .masterDetailView li:nth-child(3)::after {
 		right: 10%;
 	}
-	#tabCursoDisciplinas .km-listview-wrapper .masterDetailView li::after {
-		right: 15%;
+	#cursos .km-scroll-wrapper .km-listview-wrapper li:not(.km-load-more) .image-with-text,
+	#kendoUiMobileApp #disciplinas .km-listview-wrapper li .prof-thumb + .image-with-text,
+	#kendoUiMobileApp #disciplinas .km-listview-wrapper li label {
+		padding-right: 0;
+	}
+	.km-scroll-container > .km-listview-wrapper:only-of-type .masterDetailView  >li::after,
+	#tabCursoDisciplinas .km-listview-wrapper .masterDetailView > li::after,
+	#mackz-faq .km-listview-wrapper .masterDetailView > li::after {
+		right: 13%;
 	}
 
 	#kendoUiMobileApp .km-scroll-wrapper .masterDetailView li,
@@ -276,12 +330,27 @@
 		padding: 1em 15%;
 	}
 
-	div.section-name-wrap {
+	.avaliacoes-wrap .prox-aula {
+		padding: 0 15% 1em;
+	}
+		.avaliacoes-wrap .prox-aula .grupo-wrap .km-button {
+			padding-right: 0.6em;
+		}
+
+	div.section-name-wrap:not(.mural-header) {
 		height: 60px;
 	}
 
 	form.section-name-wrap {
 		padding: 0.35em 1em;
+	}
+
+}
+
+@media screen and (min-device-width: 736px) {
+
+	.avaliacoes-wrap .prox-aula p + .km-button {
+		width: 180px;
 	}
 
 }
