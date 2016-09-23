@@ -879,12 +879,13 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#rankings .masterDetailView li[data-uid] > span:first-of-type {
 		font-size: 1.2em;
-		margin: 0 0.5em 0 1em;
+		margin: 0 0.3em 0 0.7em;
 		-webkit-transform: translateY(-0.8em);
 			-ms-transform: translateY(-0.8em);
 				transform: translateY(-0.8em);
 	}
 	#rankings .masterDetailView li[data-uid] > span:nth-of-type(2) {
+		text-indent: 0.5em;
 		-webkit-transform: translateY(-1em);
 			-ms-transform: translateY(-1em);
 				transform: translateY(-1em);
@@ -1124,6 +1125,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #kendoUiMobileApp #update-mural-publicacoes,
 #kendoUiMobileApp #reply-mural-publicacoes {
 	display: inline-block;
+	width: 100%;
 	padding: 0.8em 0.8em 0.3em;
 	margin: 0;
 	background-color: #F0F0F0;
@@ -1183,14 +1185,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		width: auto;
 		margin: 0;
 		font-size: 2em;
-	}
-	#update-mural-publicacoes .mural-header-icons .flaticon-comment-ok .km-icon::after,
-	#reply-mural-publicacoes .mural-header-icons .flaticon-comment-ok .km-icon::after  {
-		color: green;
-	}
-	#update-mural-publicacoes .mural-header-icons .flaticon-comment-cancel .km-icon::after,
-	#reply-mural-publicacoes .mural-header-icons .flaticon-comment-cancel .km-icon::after {
-		color: #EA2D2E;
 	}
 
 /* BOTÃO COMPARTILHAR PUBLICAÇÃO (CONTEÚDO) */
@@ -1768,8 +1762,7 @@ form.section-name-wrap {
 #disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .bg-branco {
 	padding: 0;
 }
-	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView > li::after,
-	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .km-icon::before {
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView > li::after {
 		content: none;
 	}
 
@@ -1786,7 +1779,6 @@ form.section-name-wrap {
 	}
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .section-icon-name {
 		display: block;
-		padding: 0.5em 0 1em 0;
 		font-size: 0.8em;
 	}
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .km-icon::after {

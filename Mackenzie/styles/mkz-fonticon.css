@@ -42,6 +42,13 @@
   color: #444;
 }
 
+.flaticon-comment-ok .km-icon::after {
+  color: green;
+}
+.flaticon-comment-cancel .km-icon::after {
+  color: #EA2D2E;
+}
+
 .flaticon-book .km-icon::after { content: "\f111"; }
 .flaticon-calendar .km-icon::after { content: "\f100"; }
 .flaticon-camera .km-icon::after { content: "\f118"; }
