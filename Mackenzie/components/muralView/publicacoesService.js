@@ -385,7 +385,7 @@ function onMuralPublicacaoEditBeforeReply(e) {
 
 function onMuralPublicacaoEdit(e) {
     var pub = e.context;
-    var updateMural = e.target.closest('ul').parent().closest('ul').find('#update-mural-publicacoes');
+    var updateMural = e.target.closest('ul').find('#update-mural-publicacoes');
 
     var disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
     var tituloPub = updateMural.find('#tituloCompartilharUpdate');
