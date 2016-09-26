@@ -37,6 +37,16 @@
 	background-color: transparent;
 }
 
+.km-flat div[data-model="app.perfilView"].km-view .km-content,
+#perfilViewModel.form-view,
+#rankings #rankingsData,
+#kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap,
+#kendoUiMobileApp #tabAvaliacoes,
+#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2,
+#kendoUiMobileApp [data-model*="app.avaliacoesView"] .km-scroll-container,
+#kendoUiMobileApp .k-nonwork-hour {
+	background-color: #FFF;
+}
 
 /**************************/
 /*** BORDER COLOR GERAL ***/
@@ -143,11 +153,14 @@
 /****** COLOR CLASSES ******/
 /***************************/
 #kendoUiMobileApp .bg-branco {
-	background-color: #fff;
+	background-color: #FFF;
 }
+#rankingsData .sua-posicao + .km-listview-wrapper > .masterDetailView > li,
+#kendoUiMobileApp #update-mural-publicacoes,
+#kendoUiMobileApp #reply-mural-publicacoes,
 #kendoUiMobileApp .km-flat .km-list .bg-claro,
 #kendoUiMobileApp .bg-claro {
-	background-color: #f0f0f0;
+	background-color: #F0F0F0;
 }
 #kendoUiMobileApp .bg-medio {
 	background-color: rgba(0, 0, 0, 0.1);
@@ -345,6 +358,65 @@
 		padding: 0.35em 1em;
 	}
 
+
+	/* CABEÇALHO DO MURAL */
+	#mackz-mural .mural-header form,
+	#header-disciplinas-publicacoes form {
+		padding-bottom: 1em;
+	}
+
+	.main-mural-wrap {
+			padding: 1em 4em 0.5em;
+	}
+	#muralList {
+		padding: 1em 4em 0;
+	}
+
+	/* PUBLIQUE NO MURAL */
+	#kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap .comboBox {
+		font-size: 1em;
+	}
+	#kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap .comboBox option {
+		font-size: 0.6em;
+	}
+
+	#kendoUiMobileApp #header-mural-publicacoes {
+		box-shadow: 2px 2px 2px 2px #CCC;
+	}
+
+
+	/* PUBLICAÇÕES DO MURAL */
+	#kendoUiMobileApp #muralList #muralListView > li[data-uid] {
+		margin-bottom: 1.5em;
+		box-shadow: 2px 2px 2px 2px #CCC;
+	}
+
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user:not(.head-post-compartilhado) {
+		border-top: 0;
+	}
+
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4,
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + span {
+		margin-top: 0.1em;
+	}
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock {
+		left: 3.8em;
+		bottom: 0.4em;
+	}
+		#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock .km-icon::before {
+			top: 3px;
+		}
+
+	/* POPUP MENIU DE OPÇÕES DO MURAL */
+	.km-popup-overlay.km-actionsheet-root .k-animation-container,
+	.km-popup-overlay.km-actionsheet-root .k-animation-container .km-popup-wrapper {
+		width: 16em !important;
+	}
+
+	.km-flat .km-actionsheet-wrapper.km-popup {
+		padding: 0;
+	}
+
 }
 
 @media screen and (min-device-width: 736px) {
@@ -369,5 +441,10 @@
 		.km-flat .km-view .km-footer .km-icon {
 			font-size: 40px;
 		}
+
+	/* AGENDA */
+	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agendaview tr:nth-child(2) .k-scheduler-table tr .k-scheduler-datecolumn {
+		padding: 0.3em 0.4em;
+	}
 
 }
