@@ -164,7 +164,9 @@ app.muralView = kendo.observable({
                 result.AlreadyLike = PublicacoesService.findLike(data.Likes, app.getUserData().Id);
 
                 if (result.CompartilhadoDe) {
-                    result.CompartilhadoDe.TempoPublicacao = this.getTempoDecorrido(data.CompartilhadoDe.CreatedAt);
+                    if (typeof result.CompartilhadoDe === 'object') {
+                        result.CompartilhadoDe.TempoPublicacao = this.getTempoDecorrido(data.CompartilhadoDe.CreatedAt);
+                    }
                 }
 
                 return result;
