@@ -3,9 +3,8 @@
      xdata-after-show="app.perfilView.afterShow">
     <div id="perfilViewModel" class="form-view">
 
-    <div id="containerxxx">
         <form>
-            <input type="file" id="fileinput" name="fileinput"/>
+            <input type="file" id="fileinput" name="fileinput" style="display:none;"/>
             <div class="user-thumb-wrap">
                 <div class="user-thumb">
                     <!-- <img id="foto" class="km-thumbnail" src="styles/images/user-male.png" alt="Your photo"> -->
@@ -24,21 +23,19 @@
                     <input id="email" data-bind="value: perfilViewModel.fields.email" placeholder="email@dominio.com" type="email">
                 </li>
 
-                <!-- <li class="form-content-item">
-                    <input id="senha" data-bind="value: perfilViewModel.fields.senha" placeholder="Sua senha" type="password">
-                </li>
-
-                <li class="form-content-item">
-                    <input id="senha" data-bind="value: perfilViewModel.fields.confirmarSenha" placeholder="Redigite sua senha" type="password">
-                </li> -->
-
             </ul>
 
             <div class="button-group">
                 <a class="primary" data-role="button" data-bind="events: { click: perfilViewModel.enviar }">Salvar</a>
             </div>
         </form>
-    </div>
+
     </div>
 
+    <ul id="imageActions" data-role="actionsheet" data-popup='{"direction": "left"}'
+        data-cancel="Cancelar">
+        <li><a href="#" data-action="editarPerfilOnCamera">Camera</a></li>
+        <li><a href="#" data-action="editarPerfilOnFilmadora">Filmadora</a></li>
+        <li><a href="#" data-action="editarPerfilOnDocumentos">Documentos</a></li>
+    </ul>
 </div>

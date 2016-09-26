@@ -344,14 +344,13 @@ var PublicacoesService = {
         PublicacoesService.runCamera(400, 300, onPictureSuccess, onPictureError);  
     },
 
-    runCamera: function(width, height, success, error) {
+    runCamera: function(width, height, success, error, options) {
         var cameraConfig = {
-            destinationType: navigator.camera.DestinationType.DATA_URL,
             targetWidth: width,
             targetHeight: height,
-            //sourceType: navigator.camera.PictureSourceType.CAMERA
-            sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
-            mediaType: navigator.camera.MediaType.ALLMEDIA
+            destinationType: options && options.destination != undefined  ? options.destination : navigator.camera.DestinationType.DATA_URL,
+            sourceType: options && options.type != undefined ? options.type : navigator.camera.PictureSourceType.PHOTOLIBRARY,
+            mediaType: options && options.media != undefined  ? options.media : navigator.camera.MediaType.ALLMEDIA
         };
 
         navigator.camera.getPicture(success, error, cameraConfig);

@@ -5,6 +5,12 @@ app.perfilView = kendo.observable({
     afterShow: function() {}
 });
 
+
+        function select(){
+            //$("#file").click();
+            $("#imageActions").data("kendoMobileActionSheet").open();
+        }
+
 (function(parent) {
     var dataProvider = app.data.mackenzie;
 
@@ -21,35 +27,7 @@ app.perfilView = kendo.observable({
             $('#appDrawer').data('kendoMobileDrawer').show();
         },
         editarFoto: function() {
-            function onPictureSuccess(imageData) {
-                /*teste(imageData);
-                alert(imageData);
-                
-                $.get(imageData, function(res) {
-                    alert("index.html ["+res+"]");
-                });*/
 
-                var file = {
-                    Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
-                    ContentType: "image/jpeg",
-                    base64: imageData
-                    //base64: kendo.util.encodeBase64(res)
-                };
-
-                alert('1b');
-                dataProvider.Files.create(file, function(response) {
-                    perfilViewModel.fields.fotoUri = response.result.Uri;
-                    //$('#foto').attr('src', perfilViewModel.fields.fotoUri);
-                    $('#foto').get(0).style.backgroundImage = "url("+perfilViewModel.fields.fotoUri+")";
-                    //$('#foto').attr('src', 'data:image/png;base64,'+perfilViewModel.fields.fotoUri);
-                }, function(err) {
-                    navigator.notification.alert("Unfortunately the upload failed: " + err.message);
-                });  
-            };
-
-            function onPictureError() {
-                navigator.notification.alert("Unfortunately we were not able to retrieve the image");
-            };
 
             function runCamera(width, height, success, error, options) {
                 var cameraConfig = {
@@ -64,82 +42,21 @@ app.perfilView = kendo.observable({
                 navigator.camera.getPicture(success, error, cameraConfig);
             };
 
-            /*fileChooser.open(
-              function(a) {
-                alert(a);
-              }, function(b) {
-                alert(b);
-              });
-                
-            runCamera(400, 300, onPictureSuccess, onPictureError, {
+            /*runCamera(400, 300, onPictureSuccess, onPictureError, {
                 //destination: navigator.camera.DestinationType.FILE_URI,
                 type: navigator.camera.PictureSourceType.PHOTOLIBRARY,
                 media: navigator.camera.MediaType.ALLMEDIA
             });*/
 
-
-
-
-
-
-
-var path = localStorage['lastPath'] || 'file:///storage/';
-// Constructor takes FileSelector(elem, path, masks, success, fail, cancel, menu, pathChanged, openFile)
-// Only elem is really required, but you'll have to provide the path sooner or later anyway.
-// If you don't provide a mask *.* will be used
-var fileSelector = new FileSelector($('#containerxxx'), path, 'Documents (html, txt)|*.htm;*.html;*.txt|All files|*.*');
-// Mask can be changed later using setMasks method.
-fileSelector.onCancel = function(e) // Fires on the back button
-{
-    // Add code for closing the file selector, going one folder back (like below) or something else
-    $(fileSelector.elem).find('.file-container .item.back').click();
-    e.stop(); // prevent other backbutton event listners from firing
-};
-fileSelector.onSuccess = function(path)
-{
-  // If you click on a file, this function will be called with the name of the file
-    alert(path);
-};
-fileSelector.onPathChanged = function(path)
-{
-    // Each time you change directory this callback will be launched (here we're saving lastpath in local storage)
-    localStorage['lastPath'] = path;
-};
-fileSelector.onFail = function(error)
-{
-    // If something goes wrong this code will be executed
-    alert(error.message);
-};
-// There are also onMenu() and onOpenFile(fileEntry, path) callbacks.
-// First is called when you press menu button, the other when path leads to a file and not a directory.
-
-// Make the selector load file\directory list from a path (if no path is provided, component will try using previous path)
-fileSelector.open(path);
-// Directories and files will be alphabetically ordered and directories will be listed before the files.
-
-
-
-
-            if (window.navigator.simulator === true) {
+            /*if (window.navigator.simulator === true) {
               alert('This plugin is not available in the simulator.');
               return true;
             } else if (window.FilePicker === undefined) {
               alert('Plugin not found. Maybe you are running in AppBuilder Companion app which currently does not support this plugin.');
               return true;
-            }
+            }*/
 
-            FilePicker.isAvailable(function (avail) {
-              alert(avail ? "YES" : "NO");
-            });
-
-            FilePicker.pickFile(
-              function (result) {
-                alert("Success: " + JSON.stringify(result));
-              },
-              function (result) {
-                alert("Error: " + JSON.stringify(result));
-              }
-            );
+            $("#imageActions").data("kendoMobileActionSheet").open();
         },
         enviar: function() {
             dataProvider.Users.updateSingle(
@@ -295,3 +212,41 @@ fileSelector.open(path);
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
     }*/
 })(app.perfilView);
+
+function editarPerfilOnCamera() {
+  function onPictureSuccess(imageData) {
+    var file = {
+      Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
+      ContentType: "image/jpeg",
+      base64: imageData
+      //base64: kendo.util.encodeBase64(res)
+    };
+
+    dataProvider.Files.create(file, function(response) {
+      perfilViewModel.fields.fotoUri = response.result.Uri;
+      //$('#foto').attr('src', perfilViewModel.fields.fotoUri);
+      $('#foto').get(0).style.backgroundImage = "url("+perfilViewModel.fields.fotoUri+")";
+      //$('#foto').attr('src', 'data:image/png;base64,'+perfilViewModel.fields.fotoUri);
+    }, function(err) {
+      navigator.notification.alert("Unfortunately the upload failed: " + err.message);
+    });  
+  };
+
+  function onPictureError() {
+    navigator.notification.alert("Falha no acesso à camera!");
+  }; 
+
+  PublicacoesService.runCamera(400, 300, onPictureSuccess, onPictureError, {
+    destination: navigator.camera.DestinationType.DATA_URL,
+    type: navigator.camera.PictureSourceType.CAMERA,
+    media: navigator.camera.MediaType.PICTURE
+  });
+};
+
+function editarPerfilOnFilmadora() {
+  alert('editarPerfilOnFilmadora');
+};
+
+function editarPerfilOnDocumentos() {
+  alert('editarPerfilOnDocumentos');
+};
