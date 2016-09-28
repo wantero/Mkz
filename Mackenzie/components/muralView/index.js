@@ -265,16 +265,16 @@ app.muralView = kendo.observable({
                         });
                 };
 
-            	var element = e;
-            	var $comment = $(element.currentTarget).closest('ul').find('#novoComentario');
+                var element = e;
+                var $comment = $(element.currentTarget).closest('ul').find('#novoComentario');
 
                 if (!PublicacoesService.verificaTitulo($comment, 'Favor informar o comentário!')) {
                     return;
                 }
 
-            	PublicacoesService.createComentarios(dataProvider, $comment.val(), app.getUserData().Id, function(comentario) {
-			        if (comentario) {
-				        PublicacoesService.pushComentarios(dataProvider, element.data.Id, comentario.Id, function(data) {
+                PublicacoesService.createComentarios(dataProvider, $comment.val(), app.getUserData().Id, function(comentario) {
+                    if (comentario) {
+                        PublicacoesService.pushComentarios(dataProvider, element.data.Id, comentario.Id, function(data) {
                             var $commentsCount = $(element.currentTarget).closest('ul').find('#commentsCount');
                             $commentsCount.text(Number($commentsCount.text())+data);
 
@@ -286,9 +286,9 @@ app.muralView = kendo.observable({
                             getComentario(comentario.Id, function(data) {
                                 e.data.Comentarios.push(data[0]);
                             })
-				        });
-			        }
-            	});
+                        });
+                    }
+                });
             },
             muralCommentsListClick: function(e) {
                 var allLoaded;
@@ -411,37 +411,49 @@ app.muralView = kendo.observable({
                 $('#appDrawer').data('kendoMobileDrawer').show();
             },
             cameraClick: function(e) {
-                PublicacoesService.cameraPub(dataProvider, '#tituloCompartilhar');
+                //PublicacoesService.cameraPub(dataProvider, '#tituloCompartilhar');
+
+                var $titulo = $(e.target).closest('form').find('.js-titulo');  //$(tituloId);
+                if (!PublicacoesService.verificaTitulo($titulo, 'Favor informar o titulo da publicacao!')) {
+                    return;
+                }
+
+                var $disciplina = $(e.target).closest('form').find('.js-disciplina-sel');  //$('#mural-disciplina-select');
+                if (!PublicacoesService.verificaDisciplina($disciplina)) {
+                    return;
+                }
+
+                $("#muralImageActions").data("kendoMobileActionSheet").open($(e.currentTarget));
             },
             uploadFileClick: function(e) {
-				PublicacoesService.runFile(dataProvider);
+                PublicacoesService.runFile(dataProvider);
             },
             getTempoDecorrido: function(datetime) {
-			    var now = new Date().getTime();
-			    var datetime = typeof datetime !== 'undefined' ? new Date(datetime).getTime() : new Date();
+                var now = new Date().getTime();
+                var datetime = typeof datetime !== 'undefined' ? new Date(datetime).getTime() : new Date();
 
-			    if (isNaN(datetime)) {
-			        return "";
-			    }
+                if (isNaN(datetime)) {
+                    return "";
+                }
 
-			    var msDiff = (datetime < now) ? now - datetime : datetime - now;
+                var msDiff = (datetime < now) ? now - datetime : datetime - now;
 
-			    var days = Math.floor(msDiff / 1000 / 60 / (60 * 24));
-			    var hours = Math.floor(msDiff / 1000 / 60 / 60);
-			    var mins = Math.floor(msDiff / 1000 / 60);
+                var days = Math.floor(msDiff / 1000 / 60 / (60 * 24));
+                var hours = Math.floor(msDiff / 1000 / 60 / 60);
+                var mins = Math.floor(msDiff / 1000 / 60);
 
-			    var text = "agora";
+                var text = "agora";
 
-			    if (days > 0) {
-			    	text = days+" dia(s) atrás";
-			    } else if (hours > 0) {
-			    	text = hours+" hora(s) atrás";
-			    } else if (mins > 0) {
-			    	text = mins+" minuto(s) atrás";
-			    }
+                if (days > 0) {
+                    text = days+" dia(s) atrás";
+                } else if (hours > 0) {
+                    text = hours+" hora(s) atrás";
+                } else if (mins > 0) {
+                    text = mins+" minuto(s) atrás";
+                }
 
-			    return text;
-			},
+                return text;
+            },
             linkBind: function(linkString) {
                 var linkChunks = linkString.split('|');
                 if (linkChunks[0].length === 0) {
@@ -478,11 +490,11 @@ app.muralView = kendo.observable({
 
     
     parent.set('onShow', function(e) {
-    	if (e.view.params.tipo && e.view.params.tipo == 'minhaspub') {
-	        e.view.element.find('#header-minhas-publicacoes').show(); //.siblings().hide(); 
-    	} else {
-	        e.view.element.find('#header-mural-publicacoes').show().siblings().hide();        
-    	}
+        if (e.view.params.tipo && e.view.params.tipo == 'minhaspub') {
+            e.view.element.find('#header-minhas-publicacoes').show(); //.siblings().hide(); 
+        } else {
+            e.view.element.find('#header-mural-publicacoes').show().siblings().hide();        
+        }
 
         var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
             isListmenu = false,
@@ -556,13 +568,13 @@ app.muralView = kendo.observable({
         };*/
 
         if (e.view.params.tipo && e.view.params.tipo == 'minhaspub') {
-        	param = {
-				logic: "and",
-				filters: [
-					//param,
-					{ field:"User", operator:"eq", value: app.getUserData().Id }
-				]
-			}
+            param = {
+                logic: "and",
+                filters: [
+                    //param,
+                    { field:"User", operator:"eq", value: app.getUserData().Id }
+                ]
+            }
         }
 
         viewParam = param;

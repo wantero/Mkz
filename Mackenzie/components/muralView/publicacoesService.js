@@ -9,7 +9,7 @@ var PublicacoesService = {
         return false;
     },
 
-	verificaTitulo: function($element, msg) {
+    verificaTitulo: function($element, msg) {
         if ($element && $element.val() == '') {
             alert(msg);
             return false;
@@ -119,89 +119,89 @@ var PublicacoesService = {
     },
 
     createComentarios: function(dataProvider, textComment, userId, cb) {
-    	var dataComentarios = dataProvider.data('PublicacoesComentarios');
+        var dataComentarios = dataProvider.data('PublicacoesComentarios');
 
-		dataComentarios.create({
+        dataComentarios.create({
                 'Comentario': textComment,
                 'User': app.getUserData().Id
             },
-		    function(data){
-		    	if (cb) {
-		    		try {
-		    			cb(data.result);
-	          		} catch(e) {
-	          			alert('CreateComentarios Error: '+e.message);
-					}
-		    	}
-		    },
-		    function(error){
-		        alert('CreateComentarios Error: '+error.message);
-		    });
+            function(data){
+                if (cb) {
+                    try {
+                        cb(data.result);
+                    } catch(e) {
+                        alert('CreateComentarios Error: '+e.message);
+                    }
+                }
+            },
+            function(error){
+                alert('CreateComentarios Error: '+error.message);
+            });
     },
 
-	pushComentarios: function(dataProvider, publicacoesId, comentarioId, cb) {
-	    var dataPublicacoes = dataProvider.data('Publicacoes');
+    pushComentarios: function(dataProvider, publicacoesId, comentarioId, cb) {
+        var dataPublicacoes = dataProvider.data('Publicacoes');
 
-		var attributes = {
-		    "$push": {
-		        "Comentarios": comentarioId
-		    }
-		};
+        var attributes = {
+            "$push": {
+                "Comentarios": comentarioId
+            }
+        };
 
-		var filter = {
-		    'Id': publicacoesId
-		};
+        var filter = {
+            'Id': publicacoesId
+        };
 
-		dataPublicacoes.rawUpdate(attributes, filter,
-			function (data) {
-				if (data.result) {
-					if (cb) {
-						try {
-							cb(data.result);
-						} catch(e) {
-							alert('PushLikes Error: '+e.message);
-						}
-					}
-				}
-			},
-			function (error) {
-		    	alert('PushLikes Error: '+error.message);
-			}
-		);
-	},
+        dataPublicacoes.rawUpdate(attributes, filter,
+            function (data) {
+                if (data.result) {
+                    if (cb) {
+                        try {
+                            cb(data.result);
+                        } catch(e) {
+                            alert('PushLikes Error: '+e.message);
+                        }
+                    }
+                }
+            },
+            function (error) {
+                alert('PushLikes Error: '+error.message);
+            }
+        );
+    },
 
-	pushLikes: function(dataProvider, publicacoesId, userId, cb) {
-		var dataPublicacoes = dataProvider.data('Publicacoes');
+    pushLikes: function(dataProvider, publicacoesId, userId, cb) {
+        var dataPublicacoes = dataProvider.data('Publicacoes');
 
-		// "$push" adds an item to an array.
-		// "$addToSet" adds elements to an array only if they do not already exist in the set.
-		var attributes = {
-		    "$push": {
-		        "Likes": userId
-		    }
-		};
+        // "$push" adds an item to an array.
+        // "$addToSet" adds elements to an array only if they do not already exist in the set.
+        var attributes = {
+            "$push": {
+                "Likes": userId
+            }
+        };
 
-		var filter = {
-		    'Id': publicacoesId
-		};
+        var filter = {
+            'Id': publicacoesId
+        };
 
-		dataPublicacoes.rawUpdate(attributes, filter,
-			function (data) {
-				if (data.result) {
-					if (cb) {
-						try {
-							cb(data.result);
-						} catch(e) {
-							alert('PushLikes Error: '+e.message);
-						}
-					}
-				}
-			},
-			function (error) {
-		    	alert('PushLikes Error: '+error.message);
-			}
-		);
-	},
+        dataPublicacoes.rawUpdate(attributes, filter,
+            function (data) {
+                if (data.result) {
+                    if (cb) {
+                        try {
+                            cb(data.result);
+                        } catch(e) {
+                            alert('PushLikes Error: '+e.message);
+                        }
+                    }
+                }
+            },
+            function (error) {
+                alert('PushLikes Error: '+error.message);
+            }
+        );
+    },
 
     popLikes: function(dataProvider, publicacoesId, userId, cb) {
         var dataPublicacoes = dataProvider.data('Publicacoes');
@@ -326,7 +326,7 @@ var PublicacoesService = {
             navigator.notification.alert("Falha no acesso à camera!");
         };           
 
-		$titulo = $(tituloId);
+        $titulo = $(tituloId);
         if (!PublicacoesService.verificaTitulo($titulo, 'Favor informar o titulo da publicacao!')) {
             return;
         }
@@ -417,91 +417,244 @@ function onMuralPublicacaoDelete(e) {
 };
 
 function onMuralCamera(e) {
-  function onPictureSuccess(data) {
-    var file = {
-      Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
-      ContentType: "image/jpeg",
-      base64: data
+    var $titulo, $disciplina, disciplinaId
+        dataProvider = app.data.mackenzie;
+
+    function onPictureSuccess(data) {
+        var file = {
+            Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
+            ContentType: "image/jpeg",
+            base64: data
+        };
+
+        $titulo = $(e.target).closest('form').find('.js-titulo');
+
+        if (e.context && e.context.disciplinaId) {
+            disciplinaId = e.context.disciplinaId;
+        } else {
+            $disciplina = $(e.target).closest('form').find('.js-disciplina-sel');
+            disciplinaId = $disciplina.val();
+        }
+
+        dataProvider.Files.create(file, function(response) {
+            PublicacoesService.createPublicacao(dataProvider, 'image', null, $titulo.val(), null, null, response.result.Uri, disciplinaId, null, function() {
+                $titulo.val('');
+
+                if ($disciplina) {
+                    $disciplina.val('');
+                }
+                
+                // REFRESH
+                //var listView = $("#muralListView").kendoMobileListView();
+                //listView.refresh();
+            });
+        }, function(err) {
+            navigator.notification.alert("Falha no upload do arquivo: " + err.message);
+        });  
     };
 
-    app.data.mackenzie.Files.create(file, function(response) {
-      app.perfilView.perfilViewModel.fields.fotoUri = response.result.Uri;
-      $('#foto').get(0).style.backgroundImage = "url("+app.perfilView.perfilViewModel.fields.fotoUri+")";
-    }, function(err) {
-      navigator.notification.alert("Unfortunately the upload failed: " + err.message);
-    });  
-  };
+    function onPictureError(err) {
+        if (!err.toLowerCase().startsWith("camera cancelled")) {
+            navigator.notification.alert("Falha no acesso à camera!");
+        }
+    };
 
-  function onPictureError(e) {
-    if (!e.toLowerCase().startsWith("camera cancelled")) {
-        navigator.notification.alert("Falha no acesso à camera!");
-    }
-  };
-
-  PublicacoesService.runCamera(400, 300, onPictureSuccess, onPictureError, {
-    destination: navigator.camera.DestinationType.DATA_URL,
-    type: navigator.camera.PictureSourceType.CAMERA,
-    media: navigator.camera.MediaType.PICTURE
-  });
+    PublicacoesService.runCamera(400, 300, onPictureSuccess, onPictureError, {
+        destination: navigator.camera.DestinationType.DATA_URL,
+        type: navigator.camera.PictureSourceType.CAMERA,
+        media: navigator.camera.MediaType.PICTURE
+    });
 };
 
-function onMuralFilmadora() {
-  function onVideoSuccess(data) {
-    var file = {
-      Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
-      ContentType: "image/jpeg",
-      base64: data
-      //base64: kendo.util.encodeBase64(res)
+function onMuralFilmadora(e) {
+    var $titulo, $disciplina, disciplinaId
+        dataProvider = app.data.mackenzie;
+
+    function onVideoSuccess(data) {
+        try {
+            if (data.length > 1) {
+                alert("Favor selecionar apenas um arquivo!");
+            }
+
+            data = data[0];
+
+            window.resolveLocalFileSystemURL(data.localURL, function(entry) {
+                saveFile(entry.toURL());
+            });
+
+            function saveFile(data) {
+                var options = {
+                    fileName: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".mp4",
+                    mimeType: 'video/mp4'
+                };
+
+                $titulo = $(e.target).closest('form').find('.js-titulo');
+
+                if (e.context && e.context.disciplinaId) {
+                    disciplinaId = e.context.disciplinaId;
+                } else {
+                    $disciplina = $(e.target).closest('form').find('.js-disciplina-sel');
+                    disciplinaId = $disciplina.val();
+                }
+
+                dataProvider.Files.upload(data, options)
+                    .then(function(data) {
+                        data = JSON.parse(data.response);
+
+                        if (data.Result.length > 1) {
+                            alert("Favor selecionar apenas um arquivo!");
+                            return;
+                        }
+
+                        data = data.Result[0];
+
+                        PublicacoesService.createPublicacao(dataProvider, 'video', null, $titulo.val(), null, null, data.Uri, disciplinaId, null, function() {
+                            $titulo.val('');
+
+                            if ($disciplina) {
+                                $disciplina.val('');
+                            }
+                            
+                            // REFRESH
+                            //var listView = $("#muralListView").kendoMobileListView();
+                            //listView.refresh();
+                        });
+                }, function(err) {
+                    navigator.notification.alert("Falha no upload do arquivo: " + err.message);
+                });   
+            };
+
+        } catch(e) {
+          alert(JSON.stringify(e));  
+        };
     };
 
-    app.data.mackenzie.Files.create(file, function(response) {
-      perfilViewModel.fields.fotoUri = response.result.Uri;
-      //$('#foto').attr('src', perfilViewModel.fields.fotoUri);
-      $('#foto').get(0).style.backgroundImage = "url("+perfilViewModel.fields.fotoUri+")";
-      //$('#foto').attr('src', 'data:image/png;base64,'+perfilViewModel.fields.fotoUri);
-    }, function(err) {
-      navigator.notification.alert("Unfortunately the upload failed: " + err.message);
-    });  
-  };
+    function onVideoError(err) {
+        if (!err.code == 3) {
+            navigator.notification.alert("Falha no acesso à camera!"+JSON.stringify(err));
+        }
+    }; 
 
-  function onVideoError(e) {
-    if (!e.toLowerCase().startsWith("selection cancelled")) {
-        navigator.notification.alert("Falha no acesso à camera!"+e);
-    }
-  }; 
-
-  PublicacoesService.runVideo(400, 300, onVideoSuccess, onVideoError, {
-    destination: navigator.camera.DestinationType.DATA_URL,
-    type: navigator.camera.PictureSourceType.CAMERA,
-    media: navigator.camera.MediaType.VIDEO
-  });
+    PublicacoesService.runVideo(400, 300, onVideoSuccess, onVideoError, {
+        destination: navigator.camera.DestinationType.DATA_URL,
+        type: navigator.camera.PictureSourceType.CAMERA,
+        media: navigator.camera.MediaType.VIDEO
+    });
 };
 
-function onMuralDocumentos() {
-  function onVideoSuccess(data) {
-    var file = {
-      Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
-      ContentType: "image/jpeg",
-      base64: data
+function onMuralFilePicture(e) {
+    var $titulo, $disciplina, disciplinaId
+        dataProvider = app.data.mackenzie;
+
+    function onPictureSuccess(data) {
+        var file = {
+            Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
+            ContentType: "image/jpeg",
+            base64: data
+        };
+
+        $titulo = $(e.target).closest('form').find('.js-titulo');
+
+        if (e.context && e.context.disciplinaId) {
+            disciplinaId = e.context.disciplinaId;
+        } else {
+            $disciplina = $(e.target).closest('form').find('.js-disciplina-sel');
+            disciplinaId = $disciplina.val();
+        }
+
+        dataProvider.Files.create(file, function(response) {
+            PublicacoesService.createPublicacao(dataProvider, 'image', null, $titulo.val(), null, null, response.result.Uri, disciplinaId, null, function() {
+                $titulo.val('');
+
+                if ($disciplina) {
+                    $disciplina.val('');
+                }
+                
+                // REFRESH
+                //var listView = $("#muralListView").kendoMobileListView();
+                //listView.refresh();
+            });
+        }, function(err) {
+            navigator.notification.alert("Falha no upload do arquivo: " + err.message);
+        });  
     };
 
-    app.data.mackenzie.Files.create(file, function(response) {
-      app.perfilView.perfilViewModel.fields.fotoUri = response.result.Uri;
-      $('#foto').get(0).style.backgroundImage = "url("+app.perfilView.perfilViewModel.fields.fotoUri+")";
-    }, function(err) {
-      navigator.notification.alert("Unfortunately the upload failed: " + err.message);
-    });  
-  };
+    function onPictureError(err) {
+        if (!err.toLowerCase().startsWith("selection cancelled")) {
+            navigator.notification.alert("Falha ao carregar imagem!");
+        }
+    }; 
 
-  function onVideoError(e) {
-    if (e.toLowerCase().startsWith("selection cancelled")) {
-      navigator.notification.alert("Falha ao carregar imagem!");
-    }
-  }; 
+    PublicacoesService.runCamera(400, 300, onPictureSuccess, onPictureError, {
+        destination: navigator.camera.DestinationType.DATA_URL,
+        type: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
+        media: navigator.camera.MediaType.PICTURE
+    });
+};
 
-  PublicacoesService.runCamera(400, 300, onVideoSuccess, onVideoError, {
-    destination: navigator.camera.DestinationType.DATA_URL,
-    type: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
-    media: navigator.camera.MediaType.PICTURE
-  });
+function onMuralFileVideo(e) {
+    var $titulo, $disciplina, disciplinaId
+        dataProvider = app.data.mackenzie;
+
+    function onVideoSuccess(data) {
+        try {
+            saveFile(data);
+
+            function saveFile(data) {
+                var options = {
+                    fileName: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".mp4",
+                    mimeType: 'video/mp4'
+                };
+
+                $titulo = $(e.target).closest('form').find('.js-titulo');
+
+                if (e.context && e.context.disciplinaId) {
+                    disciplinaId = e.context.disciplinaId;
+                } else {
+                    $disciplina = $(e.target).closest('form').find('.js-disciplina-sel');
+                    disciplinaId = $disciplina.val();
+                }
+
+                dataProvider.Files.upload(data, options)
+                    .then(function(data) {
+                        data = JSON.parse(data.response);
+
+                        if (data.Result.length > 1) {
+                            alert("Favor selecionar apenas um arquivo!");
+                            return;
+                        }
+
+                        data = data.Result[0];
+
+                        PublicacoesService.createPublicacao(dataProvider, 'video', null, $titulo.val(), null, null, data.Uri, disciplinaId, null, function() {
+                            $titulo.val('');
+
+                            if ($disciplina) {
+                                $disciplina.val('');
+                            }
+                            
+                            // REFRESH
+                            //var listView = $("#muralListView").kendoMobileListView();
+                            //listView.refresh();
+                        });
+                }, function(err) {
+                    navigator.notification.alert("Falha no upload do arquivo: " + err.message);
+                });   
+            };
+        } catch(e) {
+          alert('Error on upload file: '+JSON.stringify(e));  
+        };
+    };
+
+    function onVideoError(err) {
+        if (!err.toLowerCase().startsWith("selection cancelled")) {
+            navigator.notification.alert("Falha ao carregar imagem!");
+        }
+    }; 
+
+    PublicacoesService.runCamera(400, 300, onVideoSuccess, onVideoError, {
+        destination: navigator.camera.DestinationType.NATIVE_URI,
+        type: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
+        media: navigator.camera.MediaType.VIDEO
+    });
 };

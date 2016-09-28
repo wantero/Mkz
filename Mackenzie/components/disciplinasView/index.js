@@ -519,7 +519,20 @@ app.disciplinasView = kendo.observable({
                 $('#appDrawer').data('kendoMobileDrawer').show();
             },
             cameraClick: function(e) {
-                PublicacoesService.cameraPub(dataProvider, '#tituloCompartilhar');
+                var current = disciplinasViewModel.get('currentDisciplina');
+                //PublicacoesService.cameraPub(dataProvider, '#disciplinaTituloCompartilhar', current.Id);
+
+                var $titulo = $(e.target).closest('form').find('.js-titulo');  //$(tituloId);
+                if (!PublicacoesService.verificaTitulo($titulo, 'Favor informar o titulo da publicacao!')) {
+                    return;
+                }
+
+                /*var $disciplina = $(e.target).closest('form').find('.js-disciplina-sel');  //$('#mural-disciplina-select');
+                if (!PublicacoesService.verificaDisciplina($disciplina)) {
+                    return;
+                }*/
+
+                $("#componenteImageActions").data("kendoMobileActionSheet").open($(e.currentTarget), {disciplinaId: current.Id});
             },
             uploadFileClick: function(e) {
                 PublicacoesService.runFile(dataProvider);

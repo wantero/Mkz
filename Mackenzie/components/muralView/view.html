@@ -12,7 +12,7 @@
 
         <div id="header-mural-publicacoes" class="section-name-wrap mural-header">
             <form class="section-name-wrap">
-                <input id="tituloCompartilhar" placeholder="Compartilhe um artigo, foto ou ideia" type="text" class="faq-pesquisa bg-claro">
+                <input id="tituloCompartilhar" placeholder="Compartilhe um artigo, foto ou ideia" type="text" class="faq-pesquisa bg-claro js-titulo">
                 <div class="mural-header-icons">
                     <div class="section-icon-name flaticon-post">
                         <span class="km-icon" data-icon="" data-bind="{ events: {click: muralViewModel.mensagemClick} }"></span>
@@ -24,7 +24,7 @@
                 <!-- Combobox disciplinas -->
                 <div class="comboBox-wrap">
                     <!-- <p class="combo-descricao">Selecione um componente:</p> -->
-                    <select id="mural-disciplina-select" class="comboBox" placeholder="Selecione um componente">
+                    <select id="mural-disciplina-select" class="comboBox js-disciplina-sel" placeholder="Selecione um componente">
                     </select>  
                 </div>
             </form>    
@@ -68,7 +68,8 @@
         data-cancel="Cancelar">
         <li><a href="#" data-action="onMuralCamera">Camera</a></li>
         <li><a href="#" data-action="onMuralFilmadora">Filmadora</a></li>
-        <li><a href="#" data-action="onMuralDocumentos">Fotos e videos</a></li>
+        <li><a href="#" data-action="onMuralFilePicture">Foto</a></li>
+        <li><a href="#" data-action="onMuralFileVideo">Video</a></li>
     </ul>
 
     <script type="text/x-kendo-template" id="muralTemplate">
