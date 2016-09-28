@@ -37,6 +37,7 @@
 	background-color: transparent;
 }
 
+div[data-layout="main-aceite"] .km-content .privac-texto,
 .km-flat div[data-model="app.perfilView"].km-view .km-content,
 #perfilViewModel.form-view,
 #rankings #rankingsData,
@@ -117,14 +118,15 @@
 #kendoUiMobileApp .disciplinas-wrap,
 #cursos .km-listview-wrapper .masterDetailView,
 #disciplinas .masterDetailView,
-.avaliacoes-wrap .prox-aula + .aval-praticas,
-#avaliacoesData .km-listview-wrapper,
 #rankings .km-scroll-header + .km-scroll-container,
-#mackz-faq .km-scroll-header + .km-scroll-container,
 #mackz-mural #muralListView.km-listview,
-.publicacoes-button-wrap,
-#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name + p + div:not(#questionario) > .km-listview-wrapper {
+.publicacoes-button-wrap {
 	padding-bottom: 45px;
+}
+
+.km-scroll-header + .km-scroll-container,
+#kendoUiMobileApp #muralList #muralListView > li:last-child {
+	margin-bottom: 45px;
 }
 
 

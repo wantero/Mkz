@@ -5,14 +5,18 @@
 
 .km-flat .km-scroller-pull {
 	-webkit-transform: translateY(0.1em);
-			transform: translateY(0.1em);
+					transform: translateY(0.1em);
 	z-index: 1;
 }
 	.km-flat #mackz-mural .km-scroller-pull {
 		-webkit-transform: translateY(-3em);
-				transform: translateY(-3em);
+						transform: translateY(-3em);
 		z-index: 0;
 	}
+
+#kendoUiMobileApp.km-widget textarea {
+	font-family: Arial;
+}
 
 
 /*** INÍCIO - LOGO MACKENZIE ***/
@@ -695,6 +699,10 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		padding-bottom: 0;
 	}
 
+[data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
+	margin-bottom: 45px;
+}
+
 #kendoUiMobileApp .prof-disciplina-wrap {
 	margin: 0.5em 0 1em;
 	overflow: auto;
@@ -705,9 +713,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#kendoUiMobileApp .km-content > .km-scroll-container > h3 + .prof-disciplina-wrap {
 		padding: 0 1em;
-	}
-	#kendoUiMobileApp .km-content > .km-scroll-container > h3 + .prof-disciplina-wrap p {
-		line-height: 2.05em;
 	}
 	#kendoUiMobileApp .prof-disciplina-wrap p {
 		padding: 0.5em 0.5em 0;
@@ -772,7 +777,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	padding: 0 1em 1em;
 }
 #kendoUiMobileApp #aval-praticas .button-group {
-	padding: 0 1em 45px;
+	padding: 0 1em;
 }
 	#kendoUiMobileApp #aval-praticas .button-group .km-button {
 	margin-bottom: 1em;
@@ -1029,12 +1034,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		padding: 0;
 		font-size: 0.8em;
 	}
-	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name.mural-editar-btn {
-		float: right;
-		position: relative;
-		height: 30px;
-		width: 50px;
-	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock {
     position: absolute;
     left: 4.4em;
@@ -1109,10 +1108,17 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 
 /* BOTÃO EDITAR DO MURAL (LATERAL DIREITA) */
-#muralListView .mural-editar-btn {
+#kendoUiMobileApp .masterDetailView .post-user .section-icon-name.mural-editar-btn {
+	float: right;
+	position: relative;
+	height: 30px;
+	width: 50px;
+}	
+
+/*#muralListView*/#kendoUiMobileApp .masterDetailView .post-user .mural-editar-btn {
 	margin: 0;
 }
-	#muralListView .mural-editar-btn a {
+	/*#muralListView*/#kendoUiMobileApp .masterDetailView .post-user .mural-editar-btn a {
 		position: absolute;
 		top: -1em;
 		left: 1em;
@@ -1120,7 +1126,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		width: 50px;
 		display: inline-block;
 	}
-	#muralListView .mural-editar-btn span {
+	/*#muralListView*/#kendoUiMobileApp .masterDetailView .post-user .mural-editar-btn span {
 		position: absolute;
 		right: 1em;
 		top: 1.5em;
