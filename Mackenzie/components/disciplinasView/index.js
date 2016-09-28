@@ -441,18 +441,92 @@ app.disciplinasView = kendo.observable({
                     }
                 }
             },
-            muralShareClick: function(e) {
+            /*muralShareClick: function(e) {
                 var pub = e.data;
 
                 PublicacoesService.createPublicacao(dataProvider, pub.Tipo, pub.Texto, pub.Titulo, pub.FileName, pub.FileSize, pub.AnexoUri, pub.Disciplina);
-            },/*
+            },
             muralPublicacoesCloseClick: function(e) {
                 $('#appDrawer').data('kendoMobileDrawer').show();
-            },*/
+            },
             cameraClick: function(e) {
                 var current = disciplinasViewModel.get('currentDisciplina');
                 PublicacoesService.cameraPub(dataProvider, '#disciplinaTituloCompartilhar', current.Id);
+            },*/
+
+
+
+            muralEditMenuClick: function(e) {
+                var pub = e.data;
+                $("#componentePublicacaoActions").data("kendoMobileActionSheet").open($(e.currentTarget), pub);
             },
+            muralShareClick: function(e) {
+                var pub = e.data;
+                $("#componenteCompartilharActions").data("kendoMobileActionSheet").open($(e.currentTarget), pub);
+            },
+            muralEditSharePublicacaoClick: function(e) {
+                var pub = e.data;
+                var updateMural = $(e.currentTarget).closest('#reply-mural-publicacoes');
+
+                var disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
+                var tituloPub = updateMural.find('#tituloCompartilharUpdate');
+
+                PublicacoesService.createPublicacao(dataProvider, pub.Tipo, pub.Texto, tituloPub.val(), pub.FileName, pub.FileSize, pub.AnexoUri, disciplinasSelect.val(), pub, function() {
+                    $(e.currentTarget).closest('li').find('#mural-titulo').text(tituloPub.val());
+
+                    updateMural.hide();
+                    disciplinasSelect.val('');
+                    tituloPub.val('');                
+                });
+            },
+            muralCancelEditSharePublicacaoClick: function(e){
+                $(e.currentTarget).closest('#reply-mural-publicacoes').hide();
+            },
+            muralEditPublicacaoClick: function(e) {
+                var pub = e.data;
+                var updateMural = $(e.currentTarget).closest('#update-mural-publicacoes');
+
+                var disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
+                var tituloPub = updateMural.find('#tituloCompartilharUpdate');
+
+                PublicacoesService.updatePublicacao(dataProvider, pub.Id, tituloPub.val(), disciplinasSelect.val(), function() {
+                    $(e.currentTarget).closest('li').find('#mural-titulo').text(tituloPub.val());
+
+                    updateMural.hide();
+                    disciplinasSelect.val('');
+                    tituloPub.val('');                
+                });
+            },
+            muralCancelEditPublicacaoClick: function(e){
+                $(e.currentTarget).closest('#update-mural-publicacoes').hide();
+            },
+            muralUpdatePublicacaoClick: function(e) {
+                var pub = e.data;
+                var updateMural = $(e.currentTarget).closest('#reply-mural-publicacoes');
+
+                var disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
+                var tituloPub = updateMural.find('#tituloCompartilharUpdate');
+
+                PublicacoesService.updatePublicacao(dataProvider, pub.Id, tituloPub.val(), disciplinasSelect.val(), function() {
+                    $(e.currentTarget).closest('li').find('#mural-titulo').text(tituloPub.val());
+
+                    updateMural.hide();
+                    disciplinasSelect.val('');
+                    tituloPub.val('');
+                });
+            },
+            muralPublicacoesCloseClick: function(e) {
+                $('#appDrawer').data('kendoMobileDrawer').show();
+            },
+            cameraClick: function(e) {
+                PublicacoesService.cameraPub(dataProvider, '#tituloCompartilhar');
+            },
+            uploadFileClick: function(e) {
+                PublicacoesService.runFile(dataProvider);
+            },
+
+
+            
             linkBind: function(linkString) {
                 var linkChunks = linkString.split('|');
                 if (linkChunks[0].length === 0) {

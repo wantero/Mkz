@@ -356,6 +356,18 @@ var PublicacoesService = {
         navigator.camera.getPicture(success, error, cameraConfig);
     },
 
+    runVideo: function(width, height, success, error, options) {
+        var cameraConfig = {
+            targetWidth: width,
+            targetHeight: height,
+            destinationType: options && options.destination != undefined  ? options.destination : navigator.camera.DestinationType.DATA_URL,
+            sourceType: options && options.type != undefined ? options.type : navigator.camera.PictureSourceType.PHOTOLIBRARY,
+            mediaType: options && options.media != undefined  ? options.media : navigator.camera.MediaType.ALLMEDIA
+        };
+
+        navigator.device.capture.captureVideo(success, error, cameraConfig);
+    },
+
     runFile: function() {
 
     }
@@ -366,7 +378,7 @@ function onMuralPublicacaoReply(e) {
     var dataProvider = app.data.mackenzie;
 
     PublicacoesService.createPublicacao(dataProvider, pub.Tipo, null, null, null, null, null, pub.Disciplina, pub);
-}
+};
 
 function onMuralPublicacaoEditBeforeReply(e) {
     var pub = e.context;
@@ -380,7 +392,7 @@ function onMuralPublicacaoEditBeforeReply(e) {
         disciplinasSelect.val(pub.Disciplina);    
         updateMural.show();
     });
-}
+};
 
 function onMuralPublicacaoEdit(e) {
     var pub = e.context;
@@ -394,7 +406,7 @@ function onMuralPublicacaoEdit(e) {
         disciplinasSelect.val(pub.Disciplina);    
         updateMural.show();
     });
-}
+};
 
 function onMuralPublicacaoDelete(e) {
     var pub = e.context;
@@ -402,4 +414,94 @@ function onMuralPublicacaoDelete(e) {
     PublicacoesService.deletePublicacao(app.data.mackenzie, pub.Id, function() {
         // remover publicacao da lista
     });
-}
+};
+
+function onMuralCamera(e) {
+  function onPictureSuccess(data) {
+    var file = {
+      Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
+      ContentType: "image/jpeg",
+      base64: data
+    };
+
+    app.data.mackenzie.Files.create(file, function(response) {
+      app.perfilView.perfilViewModel.fields.fotoUri = response.result.Uri;
+      $('#foto').get(0).style.backgroundImage = "url("+app.perfilView.perfilViewModel.fields.fotoUri+")";
+    }, function(err) {
+      navigator.notification.alert("Unfortunately the upload failed: " + err.message);
+    });  
+  };
+
+  function onPictureError(e) {
+    if (!e.toLowerCase().startsWith("camera cancelled")) {
+        navigator.notification.alert("Falha no acesso à camera!");
+    }
+  };
+
+  PublicacoesService.runCamera(400, 300, onPictureSuccess, onPictureError, {
+    destination: navigator.camera.DestinationType.DATA_URL,
+    type: navigator.camera.PictureSourceType.CAMERA,
+    media: navigator.camera.MediaType.PICTURE
+  });
+};
+
+function onMuralFilmadora() {
+  function onVideoSuccess(data) {
+    var file = {
+      Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
+      ContentType: "image/jpeg",
+      base64: data
+      //base64: kendo.util.encodeBase64(res)
+    };
+
+    app.data.mackenzie.Files.create(file, function(response) {
+      perfilViewModel.fields.fotoUri = response.result.Uri;
+      //$('#foto').attr('src', perfilViewModel.fields.fotoUri);
+      $('#foto').get(0).style.backgroundImage = "url("+perfilViewModel.fields.fotoUri+")";
+      //$('#foto').attr('src', 'data:image/png;base64,'+perfilViewModel.fields.fotoUri);
+    }, function(err) {
+      navigator.notification.alert("Unfortunately the upload failed: " + err.message);
+    });  
+  };
+
+  function onVideoError(e) {
+    if (!e.toLowerCase().startsWith("selection cancelled")) {
+        navigator.notification.alert("Falha no acesso à camera!"+e);
+    }
+  }; 
+
+  PublicacoesService.runVideo(400, 300, onVideoSuccess, onVideoError, {
+    destination: navigator.camera.DestinationType.DATA_URL,
+    type: navigator.camera.PictureSourceType.CAMERA,
+    media: navigator.camera.MediaType.VIDEO
+  });
+};
+
+function onMuralDocumentos() {
+  function onVideoSuccess(data) {
+    var file = {
+      Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
+      ContentType: "image/jpeg",
+      base64: data
+    };
+
+    app.data.mackenzie.Files.create(file, function(response) {
+      app.perfilView.perfilViewModel.fields.fotoUri = response.result.Uri;
+      $('#foto').get(0).style.backgroundImage = "url("+app.perfilView.perfilViewModel.fields.fotoUri+")";
+    }, function(err) {
+      navigator.notification.alert("Unfortunately the upload failed: " + err.message);
+    });  
+  };
+
+  function onVideoError(e) {
+    if (e.toLowerCase().startsWith("selection cancelled")) {
+      navigator.notification.alert("Falha ao carregar imagem!");
+    }
+  }; 
+
+  PublicacoesService.runCamera(400, 300, onVideoSuccess, onVideoError, {
+    destination: navigator.camera.DestinationType.DATA_URL,
+    type: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
+    media: navigator.camera.MediaType.PICTURE
+  });
+};

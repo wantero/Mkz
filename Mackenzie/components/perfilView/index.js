@@ -5,18 +5,11 @@ app.perfilView = kendo.observable({
     afterShow: function() {}
 });
 
-
-        function select(){
-            //$("#file").click();
-            $("#imageActions").data("kendoMobileActionSheet").open();
-        }
-
 (function(parent) {
     var dataProvider = app.data.mackenzie;
 
     var perfilViewModel = kendo.observable({
         fields: {
-            //senha: '',
             email: '',
             nome: '',
             tia: '',
@@ -27,35 +20,6 @@ app.perfilView = kendo.observable({
             $('#appDrawer').data('kendoMobileDrawer').show();
         },
         editarFoto: function() {
-
-
-            function runCamera(width, height, success, error, options) {
-                var cameraConfig = {
-                    targetWidth: width,
-                    targetHeight: height,
-                    destinationType: options.destination != undefined  ? options.destination : navigator.camera.DestinationType.DATA_URL,
-                    sourceType: options.type != undefined ? options.type : navigator.camera.PictureSourceType.CAMERA,
-                    mediaType: options.media != undefined  ? options.media : navigator.camera.MediaType.PICTURE
-                };
-                
-                //alert(JSON.stringify(cameraConfig));
-                navigator.camera.getPicture(success, error, cameraConfig);
-            };
-
-            /*runCamera(400, 300, onPictureSuccess, onPictureError, {
-                //destination: navigator.camera.DestinationType.FILE_URI,
-                type: navigator.camera.PictureSourceType.PHOTOLIBRARY,
-                media: navigator.camera.MediaType.ALLMEDIA
-            });*/
-
-            /*if (window.navigator.simulator === true) {
-              alert('This plugin is not available in the simulator.');
-              return true;
-            } else if (window.FilePicker === undefined) {
-              alert('Plugin not found. Maybe you are running in AppBuilder Companion app which currently does not support this plugin.');
-              return true;
-            }*/
-
             $("#imageActions").data("kendoMobileActionSheet").open();
         },
         enviar: function() {
@@ -118,123 +82,33 @@ app.perfilView = kendo.observable({
         $('#nome').val(perfilViewModel.fields.nome);
         $('#email').val(perfilViewModel.fields.email);
         if (perfilViewModel.fields.fotoUri) {
-            //$('#foto').attr('src', perfilViewModel.fields.fotoUri);
             $('#foto').get(0).style.backgroundImage = "url("+perfilViewModel.fields.fotoUri+")";
         }
     });
 
-    /*function teste(fileURI) {
-        
-          function gotFS(fileSystem) {
-              alert('file fullpath: ' + fileURI);
-              alert('filesystem URL: ' + fileSystem.root.toURL());
-              window.resolveLocalFileSystemURL(fileURI, function(fileEntry) {
-                    fileEntry.file(function(fileObj) {
-
-                        alert(JSON.stringify(fileObj));
-                        newimageURI = fileObj.localURL;
-                        alert(newimageURI);
-
-                          fileSystem.root.getFile(fileURI, {create: false}, gotFileEntry, fail);
-
-                    },
-                    function(error) {
-                      alert('get fileEntry error: ' + error.message);  
-                    });
-                  },
-                  function(error) {
-                    alert('resolve error: ' + error.message);
-                  });
-          }
-
-          function gotFileEntry(fileEntry) {
-            alert('got fileentry');
-            fileEntry.file(gotFile, fail);
-          }
-
-          function gotFile(file){
-            alert('got file');
-            resizeFile(file);
-          }
-
-          function readDataUrl(file) {
-              var reader = new FileReader();
-              reader.onloadend = function(evt) {
-                  console.log("Read as data URL");
-                  console.log(evt.target.result);
-              };
-              reader.readAsDataURL(file);
-          }
-
-          function fail(error) {
-              alert(error.code + ': ' + error.message);
-          }
-
-          function resizeFile(file) {
-            alert('resize initiated');
-            var reader = new FileReader();
-            reader.onloadend = function(evt) {         
-              alert('read data: ' + evt.target.result);
-              var tempImg = new Image();
-              tempImg.src = file;
-              tempImg.onload = function() {
-
-                  var MAX_WIDTH = 250;
-                  var MAX_HEIGHT = 250;
-                  var tempW = tempImg.width;
-                  var tempH = tempImg.height;
-                  if (tempW > tempH) {
-                      if (tempW > MAX_WIDTH) {
-                         tempH *= MAX_WIDTH / tempW;
-                         tempW = MAX_WIDTH;
-                      }
-                  } else {
-                      if (tempH > MAX_HEIGHT) {
-                         tempW *= MAX_HEIGHT / tempH;
-                         tempH = MAX_HEIGHT;
-                      }
-                  }
-
-                  var canvas = document.createElement('canvas');
-                  canvas.width = tempW;
-                  canvas.height = tempH;
-                  var ctx = canvas.getContext("2d");
-                  ctx.drawImage(this, 0, 0, tempW, tempH);
-                  var dataURL = canvas.toDataURL("image/jpeg");
-
-                  alert('image: ' + JSON.stringify(dataURL));
-                }
-              }
-              reader.readAsDataURL(file);
-          }
-
-        alert('teste');
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-    }*/
 })(app.perfilView);
 
 function editarPerfilOnCamera() {
-  function onPictureSuccess(imageData) {
+  function onPictureSuccess(data) {
     var file = {
       Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
       ContentType: "image/jpeg",
-      base64: imageData
-      //base64: kendo.util.encodeBase64(res)
+      base64: data
     };
 
-    dataProvider.Files.create(file, function(response) {
-      perfilViewModel.fields.fotoUri = response.result.Uri;
-      //$('#foto').attr('src', perfilViewModel.fields.fotoUri);
-      $('#foto').get(0).style.backgroundImage = "url("+perfilViewModel.fields.fotoUri+")";
-      //$('#foto').attr('src', 'data:image/png;base64,'+perfilViewModel.fields.fotoUri);
+    app.data.mackenzie.Files.create(file, function(response) {
+      app.perfilView.perfilViewModel.fields.fotoUri = response.result.Uri;
+      $('#foto').get(0).style.backgroundImage = "url("+app.perfilView.perfilViewModel.fields.fotoUri+")";
     }, function(err) {
       navigator.notification.alert("Unfortunately the upload failed: " + err.message);
     });  
   };
 
-  function onPictureError() {
-    navigator.notification.alert("Falha no acesso à camera!");
-  }; 
+  function onPictureError(e) {
+    if (!e.toLowerCase().startsWith("camera cancelled")) {
+        navigator.notification.alert("Falha no acesso à camera!");
+    }
+  };
 
   PublicacoesService.runCamera(400, 300, onPictureSuccess, onPictureError, {
     destination: navigator.camera.DestinationType.DATA_URL,
@@ -243,10 +117,35 @@ function editarPerfilOnCamera() {
   });
 };
 
-function editarPerfilOnFilmadora() {
-  alert('editarPerfilOnFilmadora');
+function editarPerfilOnDocumentos() {
+  function onVideoSuccess(data) {
+    var file = {
+      Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
+      ContentType: "image/jpeg",
+      base64: data
+    };
+
+    app.data.mackenzie.Files.create(file, function(response) {
+      app.perfilView.perfilViewModel.fields.fotoUri = response.result.Uri;
+      $('#foto').get(0).style.backgroundImage = "url("+app.perfilView.perfilViewModel.fields.fotoUri+")";
+    }, function(err) {
+      navigator.notification.alert("Unfortunately the upload failed: " + err.message);
+    });  
+  };
+
+  function onVideoError(e) {
+    if (e.toLowerCase().startsWith("selection cancelled")) {
+      navigator.notification.alert("Falha ao carregar imagem!");
+    }
+  }; 
+
+  PublicacoesService.runCamera(400, 300, onVideoSuccess, onVideoError, {
+    destination: navigator.camera.DestinationType.DATA_URL,
+    type: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
+    media: navigator.camera.MediaType.PICTURE
+  });
 };
 
-function editarPerfilOnDocumentos() {
-  alert('editarPerfilOnDocumentos');
-};
+
+// Imagem original do usuario '1'
+// https://bs2.cdn.telerik.com/v1/kb8omb79mcfcupp9/34dbe970-7ba0-11e6-a44f-01775a8a3bf5?1473983875167
