@@ -627,6 +627,11 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		font-weight: normal;
 	}
 
+#modalview-message .km-scroll-header + .km-scroll-container + .km-touch-scrollbar,
+#modalview-message .km-scroll-header + .km-scroll-container + .km-touch-scrollbar + .km-touch-scrollbar {
+	height: 0;
+}
+
 #modalview-message .km-footer {
 	position: relative;
 	height: auto;
@@ -694,12 +699,12 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li {
 	padding: 1em;
 }
-	#kendoUiMobileApp #avaliacoes  .masterDetailView li > div,
+	#kendoUiMobileApp #avaliacoes .masterDetailView li > div,
 	#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li > div > h3,
 	#kendoUiMobileApp .masterDetailView li > div p {
 		margin: 0;
 	}
-	#kendoUiMobileApp #avaliacoes  .masterDetailView li > div {
+	#kendoUiMobileApp #avaliacoes .masterDetailView li > div {
 		display: inline-block;
 		width: 100%;
 	}
@@ -716,7 +721,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 }
 
 #kendoUiMobileApp .prof-disciplina-wrap {
-	/*margin: 0.5em 0 1em;*/
 	overflow: auto;
 }
 	#kendoUiMobileApp .prof-disciplina-wrap > .user-thumb,
@@ -967,6 +971,9 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 /*** MURAL DE PUBLICAÇÕES ***/
 /****************************/
+.km-scroll-container .main-mural-wrap + .aval-wrap.aval-praticas {
+	margin-top: 1em;
+}
 #header-mural-comentario-list {
 	padding: 0 1em;
 	z-index: 1;
@@ -980,14 +987,11 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		-webkit-justify-content: space-between;
 						justify-content: space-between;
 	}
-	#kendoUiMobileApp #header-mural-publicacoes {
-		margin-bottom: 1em;
-	}
 
 	#mackz-mural .mural-header form,
 	#header-disciplinas-publicacoes form {
 		width: 100%;
-		padding: 1em;
+		padding: 1em 1em 0.5em;
 		border-bottom: 0;
 	}
 	#mackz-mural .mural-header input + .mural-header-icons,
@@ -1544,9 +1548,14 @@ form.section-name-wrap {
 	}
 
 /*** CURSOS VIEW ***/
-#cursos .km-scroll-wrapper .km-listview-wrapper li:not(.km-load-more) {
+#cursos .km-scroll-wrapper .km-listview-wrapper li:not(.km-load-more):not(:last-child) {
 	padding-top: 4em;
 }
+	#cursos .km-scroll-wrapper .km-listview-wrapper li:last-child {
+		-webkit-transform: none !important;
+				-ms-transform: none !important;
+						transform: none !important;
+	}
 	#cursos .km-scroll-wrapper .km-listview-wrapper li:not(.km-load-more) .image-with-text {
 		position: relative;
 		padding-right: 2.5em;

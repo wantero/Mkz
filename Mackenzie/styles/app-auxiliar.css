@@ -137,12 +137,20 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 /************************************/
 /*** PADDING/MARGIN-BOTTOM FOOTER ***/
 /************************************/
+#kendoUiMobileApp .masterDetailView li[data-uid]:last-child,
 .km-scroll-header + .km-scroll-container,
 [data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
+	margin-bottom: 45px;
+}
+
+#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap + table:last-child,
+#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-footer,
+#kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap {
 	padding-bottom: 45px;
 }
+
 #tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agenda {
-	padding-bottom: 48px;
+	padding-bottom: 3em;
 }
 
 /**************************/
@@ -337,7 +345,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 		}
 
 	#perfilViewModel form {
-		padding: 1em 20% 2em;
+		padding: 1em 20% 4em;
 	}
 
 }
