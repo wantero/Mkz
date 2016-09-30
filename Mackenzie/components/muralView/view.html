@@ -12,7 +12,7 @@
 
         <div id="header-mural-publicacoes" class="section-name-wrap mural-header">
             <form class="section-name-wrap">
-                <input id="tituloCompartilhar" placeholder="Compartilhe um artigo, foto ou ideia" type="text" class="faq-pesquisa bg-claro js-titulo">
+                <input id="tituloCompartilhar" placeholder="Compartilhe um artigo, foto ou ideia" type="text" class="faq-pesquisa js-titulo">
                 <div class="mural-header-icons">
                     <div class="section-icon-name flaticon-post">
                         <span class="km-icon" data-icon="" data-bind="{ events: {click: muralViewModel.mensagemClick} }"></span>
@@ -32,7 +32,7 @@
             
         <div id="header-mural-mensagem" class="section-name-wrap mural-header" style="display:none">
             <form class="section-name-wrap">
-                <textarea id="novaMensagem" placeholder="Digite aqui sua publicação" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro"></textarea>
+                <textarea id="novaMensagem" placeholder="Digite aqui sua publicação" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa"></textarea>
                 <div class="mural-header-icons">
                     <div class="section-icon-name flaticon-comment-ok">
                         <span class="km-icon" data-icon="" data-bind="{ events: {click: muralViewModel.muralSendMsgClick} }"></span>
@@ -241,7 +241,7 @@
                     <div class="novo-comentario-wrap">
                         <div id="header-mural-comentario" class="section-name-wrap mural-header" style="display:none">
                             <form class="section-name-wrap">
-                                <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa bg-claro"></textarea>
+                                <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa"></textarea>
                                 <div class="mural-header-icons">
                                     <div class="section-icon-name flaticon-comment-ok">
                                         <span class="km-icon" data-icon="" data-bind="{ events: {click: muralSendCommentClick} }"></span>

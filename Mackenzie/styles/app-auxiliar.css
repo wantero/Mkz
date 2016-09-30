@@ -54,13 +54,14 @@
 #modalview-message .km-footer .km-leftitem,
 #modalview-message .km-footer #modalview-message-ok,
 #appDrawer .km-content,
+#kendoUiMobileApp .masterDetailView #header-mural-comentario form > textarea,
 div[data-layout="main-aceite"] .km-content .privac-texto,
 .km-flat div[data-model="app.perfilView"].km-view .km-content,
 #perfilViewModel.form-view,
 #rankings #rankingsData,
 #kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap,
 #kendoUiMobileApp #tabAvaliacoes,
-#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2,
+/*#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2,*/
 #kendoUiMobileApp [data-model*="app.avaliacoesView"] .km-scroll-container,
 #kendoUiMobileApp .k-nonwork-hour {
 	background-color: #FFF;
@@ -338,9 +339,13 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 
 }
 
-@media screen and (min-device-width: 667px) {
-
+@media screen and (min-device-width: 375px) {
+	
 	html.km-root { font-size: 16px; }
+
+}
+
+@media screen and (min-device-width: 667px) {
 
 	#appDrawer { width: 50%; }
 

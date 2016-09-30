@@ -977,7 +977,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 						justify-content: space-between;
 	}
 	#kendoUiMobileApp #header-mural-publicacoes {
-		border-bottom: none;
+		margin-bottom: 1em;
 	}
 
 	#mackz-mural .mural-header form,
@@ -1020,7 +1020,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4,
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + span {
-		margin: 0.4em 0 0;
+		margin: 0.2em 0 0;
 		text-indent: 0.5em;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + span {
@@ -1053,16 +1053,16 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock {
     position: absolute;
-    left: 4.4em;
-    height: auto;
+    left: 4.2em;
     bottom: 0.6em;
+    height: auto;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock .km-icon::before {
 		top: 1px;
 	}
 
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .km-icon {
-		margin: 3px 0 0;
+		margin: 5px 0 0;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .km-icon::after {
 		content: none;
@@ -1215,7 +1215,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#update-mural-publicacoes .mural-header-icons .section-icon-name,
 	#reply-mural-publicacoes .mural-header-icons .section-icon-name {
-		padding: 0.2em 0;
+		padding: 0.2em;
 	}
 	#update-mural-publicacoes .mural-header-icons .km-icon,
 	#reply-mural-publicacoes .mural-header-icons .km-icon {
@@ -1252,12 +1252,12 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .post-compartilhado-wrap .flaticon-clock {
 		position: relative;
 		left: 0;
-		padding: 0.5em 0 0;
+		padding: 0.6em 0 0;
 		margin: 0;
-		text-indent: 1.4em;
+		text-indent: 1.15em;
 	}
 	#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .post-compartilhado-wrap .flaticon-clock .km-icon {
-		top: 0.3em;
+		top: 0.25em;
 		left: 0;
 	}
 	#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .post-compartilhado-wrap .flaticon-clock .km-icon::before {
@@ -1309,8 +1309,10 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 #kendoUiMobileApp .masterDetailView #header-mural-comentario form {
 	padding: 1em 1em 0.5em;
+	background-color: #F0F0F0;
 }
 	#kendoUiMobileApp .masterDetailView #header-mural-comentario form > textarea {
+		float: left;
 		height: 3.1em;
 		border: 1px solid;
 	}
@@ -1318,7 +1320,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		display: inline-block;
 	}
 	#kendoUiMobileApp .masterDetailView #header-mural-comentario form > textarea + .mural-header-icons [class*=" flaticon-"] {
-		padding: 0.2em 0.5em 0 0;
+		padding: 0.2em 0.35em 0 0;
 	}
 	#kendoUiMobileApp .masterDetailView #header-mural-comentario .flaticon-comment-ok .km-icon::after {
 		color: green;
@@ -1362,10 +1364,12 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #kendoUiMobileApp #muralList #muralListView > li,
 #kendoUiMobileApp #muralList #muralListView .bg-branco {
 	padding: 0;
-	border-bottom: 0;
 }
+	#kendoUiMobileApp #muralList #muralListView > li {
+		border-bottom: 0;
+	}
 	#kendoUiMobileApp #muralList #muralListView > li:not(:last-child) {
-		margin-bottom: 2em;	
+		margin-bottom: 1.5em;	
 	}
 	#kendoUiMobileApp #muralList #muralListView .bg-branco,
 	#kendoUiMobileApp #tabPubImages .bg-branco {
@@ -1411,8 +1415,8 @@ form.section-name-wrap {
 }
 .faq-pesquisa {
 	float: left;
-	width: calc(100% - 66px);
-	width: -webkit-calc(100% - 66px);
+	width: calc(100% - 4.6em);
+	width: -webkit-calc(100% - 4.6em);
   padding: 0.5em;
   border: 1px solid #CCC;
   border-radius: 3px;
