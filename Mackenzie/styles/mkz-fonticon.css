@@ -79,7 +79,6 @@
 .flaticon-user .km-icon::after { content: "\f115"; }
 .flaticon-x .km-icon::after { content: "\f109"; }
 
-
 /*
 .flaticon-agenda --calendar
 .flaticon-arrows --share
@@ -109,5 +108,66 @@
 .flaticon-three --docs
 .flaticon-time --clock
 .flaticon-web --home
+.flaticon-write --post
+*/
+
+
+/*
+.flaticon-share .km-icon::after { content: "\f100"; }
+.flaticon-qr-code .km-icon::after { content: "\f101"; }
+.flaticon-check .km-icon::after { content: "\f102"; }
+.flaticon-final-result .km-icon::after { content: "\f103"; }
+.flaticon-faq .km-icon::after { content: "\f104"; }
+.flaticon-comment-btn .km-icon::after { content: "\f105"; }
+.flaticon-comment .km-icon::after { content: "\f106"; }
+.flaticon-ranking .km-icon::after { content: "\f107"; }
+.flaticon-x .km-icon::after { content: "\f108"; }
+.flaticon-exit .km-icon::after { content: "\f109"; }
+.flaticon-pin-search .km-icon::after { content: "\f10a"; }
+.flaticon-quiz .km-icon::after { content: "\f10c"; }
+.flaticon-home .km-icon::after { content: "\f10d"; }
+.flaticon-tests .km-icon::after { content: "\f10e"; }
+.flaticon-email .km-icon::after { content: "\f10f"; }
+.flaticon-picture .km-icon::after { content: "\f110"; }
+.flaticon-pin .km-icon::after { content: "\f111"; }
+.flaticon-book .km-icon::after { content: "\f112"; }
+.flaticon-search .km-icon::after { content: "\f113"; }
+.flaticon-smiley .km-icon::after { content: "\f114"; }
+.flaticon-publication .km-icon::after { content: "\f115"; }
+.flaticon-user .km-icon::after { content: "\f116"; }
+.flaticon-movie .km-icon::after { content: "\f117"; }
+.flaticon-camera .km-icon::after { content: "\f118"; }
+.flaticon-docs .km-icon::after { content: "\f11a"; }
+.flaticon-clock .km-icon::before { content: "\f11b"; }
+.flaticon-calendar .km-icon::after { content: "\f11c"; }
+.flaticon-post .km-icon::after { content: "\f11d"; }
+
+.flaticon-arrows --share
+.flaticon-blackberry-qr-code-variant --qr-code
+.flaticon-check
+.flaticon-check-1 --final-result
+.flaticon-circle --faq
+.flaticon-communication --comment-btn
+.flaticon-communication-1 --comment
+.flaticon-cup --ranking
+.flaticon-delete --x
+.flaticon-exit
+.flaticon-gps --pin-search
+.flaticon-interface-1 --quiz
+.flaticon-internet --home
+.flaticon-multimedia --tests
+.flaticon-note --email
+.flaticon-picture
+.flaticon-pin
+.flaticon-reading --book
+.flaticon-search
+.flaticon-smiley
+.flaticon-social --publication
+.flaticon-social-1 --user
+.flaticon-technology --movie
+.flaticon-technology-1 --camera
+.flaticon-three --docs
+.flaticon-time --clock
+.flaticon-tool --calendar
 .flaticon-write --post
 */
