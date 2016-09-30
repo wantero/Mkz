@@ -1439,6 +1439,9 @@ div[style^="transform: translate3d"].km-widget.km-view {
   color: #555;
 }
 
+#kendoUiMobileApp #mackz-faq .km-scroller-pull + form {
+	padding: 0.8em;
+}
 #kendoUiMobileApp #mackz-faq .km-scroll-wrapper .masterDetailView li {
 	-webkit-transform: none !important;
 			-ms-transform: none !important;

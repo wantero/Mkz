@@ -454,6 +454,19 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 		width: 180px;
 	}
 
+	#kendoUiMobileApp .masterDetailView li[data-uid]:last-child,
+	#kendoUiMobileApp #muralList #muralListView > li[data-uid]:last-child,
+	.km-scroll-header + .km-scroll-container,
+	[data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
+		margin-bottom: 3.5em;
+	}
+
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap + table:last-child,
+	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-footer,
+	#kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap {
+		padding-bottom: 3.5em;
+	}
+
 }
 
 @media screen and (min-device-width: 768px) {
