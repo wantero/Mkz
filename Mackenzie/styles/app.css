@@ -711,20 +711,27 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		padding-bottom: 0;
 	}
 
-[data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
+/*[data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
 	margin-bottom: 45px;
+}*/
+[data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
+	background-color: #DDD;
 }
 
 #kendoUiMobileApp .prof-disciplina-wrap {
-	margin: 0.5em 0 1em;
+	/*margin: 0.5em 0 1em;*/
 	overflow: auto;
 }
 	#kendoUiMobileApp .prof-disciplina-wrap > .user-thumb,
 	#kendoUiMobileApp .prof-disciplina-wrap p {
 		float: left;
 	}
+	#kendoUiMobileApp .km-content > .km-scroll-container > h3 {
+		padding: 1em;
+		margin: 0;
+	}
 	#kendoUiMobileApp .km-content > .km-scroll-container > h3 + .prof-disciplina-wrap {
-		padding: 0 1em;
+		padding: 0.5em 1em 1em;
 	}
 	#kendoUiMobileApp .prof-disciplina-wrap p {
 		padding: 0.5em 0.5em 0;
@@ -1058,7 +1065,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
     height: auto;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock .km-icon::before {
-		top: 1px;
+		top: 3px;
 		left: 0;
 	}
 
@@ -1444,7 +1451,7 @@ form.section-name-wrap {
 	}
 
 #kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap {
-	padding: 1.5em 1.5em 3.5em;
+	padding: 1.5em;
 }
 	#kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap h1 {
 		margin: 0 0 1em;
@@ -1478,10 +1485,9 @@ form.section-name-wrap {
 	}
 
 #perfilViewModel .user-thumb-wrap,
-#perfilViewModel .user-thumb,
 #perfilViewModel .user-thumb + a {
 	display: block;
-	width: 70px;
+	width: 80px;
 }
 #perfilViewModel .user-thumb-wrap {
 	position: relative;
@@ -1490,6 +1496,7 @@ form.section-name-wrap {
 	#perfilViewModel .user-thumb {
     float: none;
     height: 70px;
+    width: 70px;
     margin: 0 auto;
     border: 1px solid #CCC;
 	}
@@ -1610,9 +1617,9 @@ form.section-name-wrap {
 		display: inline-block;
 		margin: 0;
   	font-size: 0.9em;
-  	-webkit-transform: translate(-0.5em, 1.15em);
-    		-ms-transform: translate(-0.5em, 1.15em);
-	    			transform: translate(-0.5em, 1.15em);
+  	-webkit-transform: translate(-0.5em, 1.2em);
+    		-ms-transform: translate(-0.5em, 1.2em);
+	    			transform: translate(-0.5em, 1.2em);
 	}
 	.descricao-wrap h3 {
     display: inline-block;
@@ -1673,22 +1680,22 @@ form.section-name-wrap {
 		position: absolute;
 	}
 	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .QR-code {
-		left: 1.5em;
-		top: calc(50% - 22px);
-		top: -webkit-calc(50% - 22px);
+		left: 4.3em;
+		top: calc(50% - 36px);
+		top: -webkit-calc(50% - 36px);
 	}
 	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .QR-code::after {
 		content: "\f117";
-		font-size: 3em;
+		font-size: 5em;
 	}
 	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .smartphone {
-		right: 1.5em;
+		/*right: 1.5em;
 		top: 1em;
 		display: inline-block;
 		height: 10em;
 		width: 50%;
-		background: url(images/Smartphone.svg) no-repeat 50%; /* image, repeat e position */
-		background-size: 10em;
+		background: url(images/Smartphone.svg) no-repeat 50%; /* image, repeat e position 
+		background-size: 10em;*/
 	}
 	#mackz-checkin .km-button-group .km-button {
 		margin: 0;
@@ -1706,7 +1713,7 @@ form.section-name-wrap {
 	position: relative;
 }
 	#mackz-checkin .camera-imagem-wrap {
-		height: 100%;
+		min-height: 27em;
 		padding: 2.5em 0;
 	}
 	#mackz-checkin .camera-imagem-wrap img {
@@ -1840,6 +1847,7 @@ form.section-name-wrap {
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .section-icon-name {
 		display: block;
 		font-size: 0.8em;
+		padding: 0;
 	}
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .km-icon::after {
 		line-height: 0.7em;
@@ -2071,7 +2079,7 @@ form.section-name-wrap {
   display: inline-block;
   float: right;
   width: 83%;
-  padding-right: 32px;
+  padding-right: 2.5em;
 }
 	#kendoUiMobileApp .unid-turma-sala {
 		font-size: 0.8em;
@@ -2088,7 +2096,7 @@ form.section-name-wrap {
 
 /*** AGENDA VIEW ***/
 #tabCursoAgenda #tabAgenda .km-stretched-view {
-	margin-bottom: 45px;
+	background-color: #F0F0F0;
 }
 #tabCursoAgenda #tabAgenda .km-pane-wrapper {
 	position: relative;
@@ -2104,10 +2112,18 @@ form.section-name-wrap {
 
 #tabCursoAgenda #tabAgenda #scheduler {
 	border-top-color: #CCC;
+	border-bottom: 0;
 }
 	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap {
 		background-image: none;
 		padding: 0.4em 12%;
+	}
+
+#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agenda {
+	background-color: #DDD;
+}
+	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agenda tbody {
+		background-color: #FFF;
 	}
 
 	/* DROPDOWN DIA/MÊS/SEMANA */

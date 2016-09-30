@@ -61,9 +61,13 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 #rankings #rankingsData,
 #kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap,
 #kendoUiMobileApp #tabAvaliacoes,
-/*#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2,*/
-#kendoUiMobileApp [data-model*="app.avaliacoesView"] .km-scroll-container,
-#kendoUiMobileApp .k-nonwork-hour {
+/*#kendoUiMobileApp [data-model*="app.avaliacoesView"] .km-scroll-container,*/
+#kendoUiMobileApp .k-nonwork-hour,
+#kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap .comboBox,
+#kendoUiMobileApp .km-content > .km-scroll-container > h3[data-bind*=".Disciplina"],
+#kendoUiMobileApp .km-content > .km-scroll-container > h3 + .prof-disciplina-wrap,
+#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name,
+#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name + p {
 	background-color: #FFF;
 }
 
@@ -133,12 +137,11 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 /************************************/
 /*** PADDING/MARGIN-BOTTOM FOOTER ***/
 /************************************/
-#mackz-mural #muralListView.km-listview {
+.km-scroll-header + .km-scroll-container,
+/*#mackz-mural #muralListView.km-listview,*/
+#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agenda,
+[data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
 	padding-bottom: 45px;
-}
-
-.km-scroll-header + .km-scroll-container {
-	margin-bottom: 45px;
 }
 
 
