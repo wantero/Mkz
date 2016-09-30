@@ -140,13 +140,13 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 #kendoUiMobileApp .masterDetailView li[data-uid]:last-child,
 .km-scroll-header + .km-scroll-container,
 [data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
-	margin-bottom: 45px;
+	margin-bottom: 3.15em;
 }
 
 #tabCursoAgenda #tabAgenda #scheduler .k-floatwrap + table:last-child,
 #tabCursoAgenda #tabAgenda #scheduler .k-scheduler-footer,
 #kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap {
-	padding-bottom: 45px;
+	padding-bottom: 3.5em;
 }
 
 #tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agenda {
@@ -395,10 +395,10 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 	}
 
 	.main-mural-wrap {
-			padding: 1em 4em 0.5em;
+			padding: 1em 4em 0;
 	}
 	#muralList {
-		padding: 1em 4em 0;
+		padding: 0 4em;
 	}
 
 	/* PUBLIQUE NO MURAL */

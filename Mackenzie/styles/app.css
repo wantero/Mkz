@@ -258,7 +258,7 @@ div[data-layout="main-aceite"] .km-content .km-scroll-container {
 	padding: 0;
 }
 	div[data-layout="main-aceite"] .km-content .privac-texto {
-		padding: 1.5em 1.5em 45px;
+		padding: 1.5em 1.5em 3.15em;
 	}
 	div[data-layout="main-aceite"] .km-content .privac-texto section {
 		margin-bottom: 1em;
@@ -1419,8 +1419,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 /*** PERGUNTAS FREQUENTES ***/
 /****************************/
-form.section-name-wrap {
-	padding: 1em;
+#header-mural-mensagem form.section-name-wrap {
+	background-color: #F0F0F0;
 }
 .faq-pesquisa {
 	float: left;
@@ -1718,7 +1718,7 @@ form.section-name-wrap {
 	position: relative;
 }
 	#mackz-checkin .camera-imagem-wrap {
-		min-height: 27em;
+		min-height: 20em;
 		padding: 2.5em 0;
 	}
 	#mackz-checkin .camera-imagem-wrap img {
