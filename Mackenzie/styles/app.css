@@ -711,9 +711,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		padding-bottom: 0;
 	}
 
-/*[data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
-	margin-bottom: 45px;
-}*/
 [data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
 	background-color: #DDD;
 }

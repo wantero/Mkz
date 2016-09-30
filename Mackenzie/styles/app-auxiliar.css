@@ -138,12 +138,12 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 /*** PADDING/MARGIN-BOTTOM FOOTER ***/
 /************************************/
 .km-scroll-header + .km-scroll-container,
-/*#mackz-mural #muralListView.km-listview,*/
-#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agenda,
 [data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
 	padding-bottom: 45px;
 }
-
+#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agenda {
+	padding-bottom: 48px;
+}
 
 /**************************/
 /**** AUXILIAR CLASSES ****/
