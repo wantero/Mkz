@@ -67,7 +67,8 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 #kendoUiMobileApp .km-content > .km-scroll-container > h3[data-bind*=".Disciplina"],
 #kendoUiMobileApp .km-content > .km-scroll-container > h3 + .prof-disciplina-wrap,
 #kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name,
-#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name + p {
+#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name + p,
+#kendoUiMobileApp #mackz-faq .km-scroll-wrapper .masterDetailView > li {
 	background-color: #FFF;
 }
 

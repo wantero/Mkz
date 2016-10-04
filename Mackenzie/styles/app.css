@@ -395,7 +395,7 @@ div[data-layout="main-aceite"] .km-content .km-scroll-container {
 .section-icon-name {
 	display: inline-block;
 	height: 100%;
-	padding: 0.7em 0;
+	padding: 0.3em 0 0;
 }
 
 /*** MENU HAMBURGUER ***/
@@ -974,6 +974,10 @@ div[style^="transform: translate3d"].km-widget.km-view {
 .km-scroll-container .main-mural-wrap + .aval-wrap.aval-praticas {
 	margin-top: 1em;
 }
+
+#header-disciplinas-mensagem form {
+	padding: 1em;
+}
 #header-mural-comentario-list {
 	padding: 0 1em;
 	z-index: 1;
@@ -1083,7 +1087,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 #kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .section-icon-name {
 	position: relative;
-	padding: 0.6em 1em 0.2em;
+	padding: 0.6em 1em 0.2em 0;
 }
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .flaticon-comment a {
     position: absolute;
@@ -1094,14 +1098,14 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem {
 		height: 100%;
-		min-height: 30px;
+		/*min-height: 30px;*/
 		position: relative;
 		border-width: 0 0 1px 0;
 		border-color: rgba(0, 0, 0, 0.15);
 		border-style: solid;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem > p {
-		margin: 1em;
+		margin: 0.5em 1em 1em;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem > video {
 		width: 100%;
@@ -1122,7 +1126,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		height: auto;
 		max-height: 100%;
 		margin: 0 auto;
-		padding: 0 1em 1em;
+		padding: 1em;
 	}
 	#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .km-icon {
 		width: auto;
@@ -1224,13 +1228,15 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#update-mural-publicacoes .mural-header-icons .section-icon-name,
 	#reply-mural-publicacoes .mural-header-icons .section-icon-name {
-		padding: 0.2em;
+		margin: 0.4em 0.13em 0;
+		padding: 0;
 	}
 	#update-mural-publicacoes .mural-header-icons .km-icon,
 	#reply-mural-publicacoes .mural-header-icons .km-icon {
 		width: auto;
 		margin: 0;
-		font-size: 2em;
+		font-size: 2.1em;
+		line-height: 1em;
 	}
 
 /* BOTÃO COMPARTILHAR PUBLICAÇÃO (CONTEÚDO) */
@@ -1245,7 +1251,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 }
 
 /* CONTEÚDO COMPARTILHADO */
-#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .post-compartilhado-wrap {
+#kendoUiMobileApp .masterDetailView /*.post-conteudo-wrap*/ .post-compartilhado-wrap {
   margin: 0 1em 1em;
   border: 1px solid #CCC;
   border-top: 0;
@@ -1253,23 +1259,26 @@ div[style^="transform: translate3d"].km-widget.km-view {
   background-color: #FFF;
   border-radius: 3px;
 }
-	#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .head-post-compartilhado {
+	#kendoUiMobileApp .masterDetailView /*.post-conteudo-wrap*/ .head-post-compartilhado {
 		padding: 0.5em 1em 1em;
 		overflow: hidden;
 	}
+	#kendoUiMobileApp .masterDetailView /*.post-conteudo-wrap*/ .head-post-compartilhado + p {
+		margin: 1em;
+	}
 
-	#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .post-compartilhado-wrap .flaticon-clock {
+	#kendoUiMobileApp .masterDetailView /*.post-conteudo-wrap*/ .post-compartilhado-wrap .flaticon-clock {
 		position: relative;
 		left: 0;
 		padding: 0.6em 0 0;
 		margin: 0;
 		text-indent: 1.15em;
 	}
-	#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .post-compartilhado-wrap .flaticon-clock .km-icon {
+	#kendoUiMobileApp .masterDetailView /*.post-conteudo-wrap*/ .post-compartilhado-wrap .flaticon-clock .km-icon {
 		top: 0.25em;
 		left: 0;
 	}
-	#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .post-compartilhado-wrap .flaticon-clock .km-icon::before {
+	#kendoUiMobileApp .masterDetailView /*.post-conteudo-wrap*/ .post-compartilhado-wrap .flaticon-clock .km-icon::before {
 		text-indent: 0;
 	}
 
@@ -1293,6 +1302,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		font-size: 1.7em;
 	}
 	#kendoUiMobileApp .masterDetailView .post-botoes .smiley-curtiu .km-icon::after {
+		content: "\f113";
 		color: #1486CC;
 	}
 
@@ -1437,6 +1447,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
   font-size: 1em;
   border: none;
   color: #555;
+  background-color: transparent;
 }
 
 #kendoUiMobileApp #mackz-faq .km-scroller-pull + form {
