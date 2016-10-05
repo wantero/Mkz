@@ -180,7 +180,8 @@
         <div data-role="footer">
             <div data-role="tabstrip" data-selected-index="1" data-select="onSelect">
                 <a xdata-icon="home" class="flaticon-home" href="components/muralView/view.html"></a>
-                <a xdata-icon="search" class="flaticon-search" href="components/cursosView/view.html"></a>
+                <!--<a xdata-icon="search" class="flaticon-search" href="components/cursosView/view.html"></a>-->
+                <a xdata-icon="search" class="flaticon-search" onclick="alert('x'); app.mobileApp.navigate('#components/cursosView/view.html')"></a>
                 <a xdata-icon="search" class="flaticon-calendar" data-bind="{events: {click: app.cursosView.cursosModelView.selectSchedulerFromMenu }}" x-href="components/cursosView/details.html"></a>
                 <a xdata-icon="search" class="flaticon-pin" href="components/checkinView/view.html"></a>
                 <a xdata-icon="search" class="flaticon-check" href="components/avaliacoesView/view.html"></a>
