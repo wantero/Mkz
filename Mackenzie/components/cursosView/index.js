@@ -2,8 +2,11 @@
 
 app.cursosView = kendo.observable({
     onShow: function() {},
+    beforeShow: function() {},
     afterShow: function() {}
 });
+
+alert('loading...');
 
 (function(parent) {    
     var state = "";
@@ -524,7 +527,13 @@ app.cursosView = kendo.observable({
         parent.set('cursosViewModel', cursosViewModel);
     }
 
+    parent.set('onBeforeShow', function(e) {
+        alert('before show');
+    });
+
     parent.set('onShow', function(e) {
+        alert('on show');
+        
         var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
             isListmenu = false,
             backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');
