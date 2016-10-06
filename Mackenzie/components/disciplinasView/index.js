@@ -67,7 +67,7 @@ app.disciplinasView = kendo.observable({
             }
         },
         dataSourceOptions = {
-            type: 'everlive',
+            /*type: 'everlive',
             transport: {
                 typeName: 'Disciplinas',
                 dataProvider: dataProvider,
@@ -76,7 +76,7 @@ app.disciplinasView = kendo.observable({
                         "X-Everlive-Expand": {"Professor": true}
                     }
                 }
-            },
+            },*/
             change: function(e) {
                 var data = this.data();
                 for (var i = 0; i < data.length; i++) {
@@ -202,8 +202,7 @@ app.disciplinasView = kendo.observable({
                 }
 
                 disciplinasViewModel.set('originalItem', itemModel);
-                disciplinasViewModel.set('currentItem',
-                    disciplinasViewModel.fixHierarchicalData(itemModel));
+                disciplinasViewModel.set('currentItem', disciplinasViewModel.fixHierarchicalData(itemModel));
 
                 return itemModel;
             },
@@ -532,7 +531,9 @@ app.disciplinasView = kendo.observable({
                     return;
                 }*/
 
+            // INTEGRACAO DADOS MACKENZIE
                 $("#componenteImageActions").data("kendoMobileActionSheet").open($(e.currentTarget), {disciplinaId: current.Id});
+            // INTEGRACAO DADOS MACKENZIE
             },
             uploadFileClick: function(e) {
                 PublicacoesService.runFile(dataProvider);
@@ -597,7 +598,8 @@ app.disciplinasView = kendo.observable({
 
         app.displayUser();
 
-        function getCursos() {
+        // INTEGRACAO DADOS MACKENZIE
+        /*function getCursos() {
             var queryCursos = new Everlive.Query();
             queryCursos.where().eq('Users', app.getUserData().Id);
 
@@ -609,7 +611,7 @@ app.disciplinasView = kendo.observable({
                         cursos.push(data.result[i].Id);
                     }
                     
-                    // Fixa o filtro do usuário logado
+                    // Fixa o filtro dos cursos do usuário logado
                     param = [{ field: "Cursos", operator: "eq", value: cursos }];
 
                     // Armazena o parametro recebido pela VIEW
@@ -621,7 +623,25 @@ app.disciplinasView = kendo.observable({
                 });
         }
 
-        getCursos();
+        getCursos();*/
+        // INTEGRACAO DADOS MACKENZIE
+
+        // INTEGRACAO DADOS MACKENZIE
+        populate(MkzDataService.getDisciplinas());
+
+        function populate(disciplinas) {
+            // Fixa o filtro dos cursos do usuário logado
+            param = {};
+
+            // Armazena o parametro recebido pela VIEW
+            viewParam = param;
+
+            dataSource.data(disciplinas);
+            console.log('disciplinas:', disciplinas);
+
+            //fetchFilteredData();
+        };
+        // INTEGRACAO DADOS MACKENZIE
     });
 
     parent.set('onDetailShow', function(e) {
@@ -636,88 +656,5 @@ app.disciplinasView = kendo.observable({
 
         disciplinasViewModel.selectAvaliacoes();
     });
-
-
-
-    /*function verificaTitulo() {
-        var $titulo = $('#disciplinaTituloCompartilhar');
-
-        if ($titulo && $titulo.val() == '') {
-            alert('Favor informar o titulo da publicacao!');
-            return;
-        }
-
-        return $titulo;
-    }
-
-    function createPublicacao(tipo, texto, titulo, fileName, fileSize, anexoUri, disciplina, cb) {
-        var dataPublicacoes = dataProvider.data('Publicacoes');
-
-        dataPublicacoes.create(
-            {
-                'FileName': fileName ? fileName : '',
-                'FileSize': fileSize ? fileSize : '',
-                'Disciplina': disciplina ? disciplina : '',
-                'Comentarios': '',
-                'Likes': '',
-                'AnexoUri': anexoUri ? anexoUri : '',
-                'Texto': texto ? texto : '',
-                'Tipo': tipo,
-                'Titulo': titulo ? titulo : '',
-                'User': app.getUserData().Id
-            },
-            function(data){
-                if (data.result) {
-                    console.log('Create publicacoes:', data.result);
-
-                    if (cb) {
-                        try {
-                            cb();
-                        } catch(e) {
-                            alert('Error on Create Publicacoes: '+e.message);
-                        }
-                    }
-                }
-            },
-            function(error){
-                alert('Erro ao gravar Publicacoes! '+error.message);
-            }
-        );
-    };     
-
-    function cameraPub(disciplinaId) {
-        var $titulo;
-
-        function onPictureSuccess(imageData) {
-            var file = {
-                Filename: '\\mural\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
-                ContentType: "image/jpeg",
-                base64: imageData,
-            };
-
-            dataProvider.Files.create(file, function(response) {                        
-                createPublicacao('image', null, $titulo.val(), null, null, response.result.Uri, disciplinaId, function() {
-                    $titulo.val('');
-                    //var listView = $("#muralListView").kendoMobileListView();
-                    //listView.refresh();                        
-                });
-            }, function(err) {
-                navigator.notification.alert("Unfortunately the upload failed: " + err.message);
-            });
-        };
-
-        function onPictureError() {
-            navigator.notification.alert("Falha no acesso à camera!");
-        };           
-
-        $titulo = $('#disciplinaTituloCompartilhar');
-
-        if ($titulo && $titulo.val() == '') {
-            alert('Favor informar o titulo da publicacao!');
-            return;
-        }
-
-        app.RunCamera(400, 300, onPictureSuccess, onPictureError);  
-    }*/
 
 })(app.disciplinasView);

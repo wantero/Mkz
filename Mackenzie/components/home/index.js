@@ -6,10 +6,6 @@ app.home = kendo.observable({
 });
 
 
-// START_CUSTOM_CODE_home
-// Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
-
-// END_CUSTOM_CODE_home
 (function(parent) {
     var provider = app.data.mackenzie,
         mode = 'signin',
@@ -32,9 +28,6 @@ app.home = kendo.observable({
                 $('.offline').show().siblings().hide();
             } else {
                 $(activeView).show().siblings().hide();
-                /*if (mode === 'register') {
-                    $('input').val('');
-                }*/
             }
 
             if (model && model.set) {
@@ -89,7 +82,13 @@ app.home = kendo.observable({
                         if (!data.result.Id) {
                             provider.Users.currentUser().then(
                                 function(user) {
-                                    app.user.data = user.result;
+                                    // INTEGRACAO DADOS MACKENZIE
+                                    //app.user.data = user.result;
+                                    // INTEGRACAO DADOS MACKENZIE
+
+                                    // INTEGRACAO DADOS MACKENZIE
+                                    app.user.data = MkzDataService.getUser();
+                                    // INTEGRACAO DADOS MACKENZIE
 
                                     //user.result.IsVerified = false;
                                     if (!user.result.IsVerified) {
@@ -99,7 +98,9 @@ app.home = kendo.observable({
                                         if (!user.result.TermoAceite) {
                                             app.mobileApp.navigate('components/home/termoAceite.html');
                                         } else {
-                                            app.mobileApp.navigate('components/' + redirect + '/view.html');
+                                            MkzDataService.loadAllData(function() {
+                                                app.mobileApp.navigate('components/' + redirect + '/view.html');
+                                            });
                                         }
                                     }
                                 },
@@ -148,8 +149,9 @@ app.home = kendo.observable({
 
         homeModel = kendo.observable({
             displayName: '',
-            tia: '',
-            password: '',
+            unidade: '001',
+            tia: '41326652',
+            password: 'GERTI#m1c2',
             validateData: function(data) {
                 if (!data.tia) {
                     alert('Missing TIA');
@@ -189,6 +191,7 @@ app.home = kendo.observable({
             },
             signin: function() {
                 var model = homeModel,
+                    unidade = model.unidade,
                     tia = model.tia.toLowerCase(),
                     password = model.password;
 
@@ -196,8 +199,24 @@ app.home = kendo.observable({
                     return false;
                 }
 
-                provider.Users.login(tia, password, successHandler, init);
-                //navbar.show();
+                MkzDataService.unidade(unidade);
+                MkzDataService.tia(tia);
+                MkzDataService.password(password);
+
+                MkzDataService.loadUser(unidade, tia, password, function(mkzUser) {
+                    // ??? users.changePassword('1', password, newPassword, keepTokens)
+                    if (mkzUser) {
+
+                        provider.Users.login('1', '321', function(data) {
+                            provider.Users.currentUser().then(function(user) {
+                                MkzDataService.setTelerikUser(user.result);
+                                successHandler(data);
+                            });
+                        }, init);
+                    } else {
+                        navigator.notification.alert('Login inválido!');
+                    }
+                });
             },
             register: function() {
                 var model = homeModel,
@@ -259,6 +278,10 @@ app.home = kendo.observable({
 
     parent.set('homeModel', homeModel);
     
+    parent.set('onShow', function(e) {
+        populateUnidades();
+    });
+
     parent.set('afterShow', function(e) {
         if (e && e.view && e.view.params && e.view.params.logout) {
             if (localStorage) {
@@ -274,6 +297,19 @@ app.home = kendo.observable({
 
         provider.Users.currentUser().then(successHandler, init);
     });
+
+    function populateUnidades() {
+        var unidades = MkzDataService.getUnidades();
+        var options = '<option value="" disabled selected>Unidade</option>';
+
+        for (var index in unidades) {
+            var unidade = unidades[index];
+            options += '<option value="'+unidade.unidade+'">'+unidade.nome_unidade+'</option>';
+        }
+
+        $('#unidadesLogin').html(options);
+        $('#unidadesSignup').html(options);
+    }
 })(app.home);
 
 
@@ -296,14 +332,7 @@ function onDrawerShow() {
     $('#drawerUser').text(name);
     $('#drawerTIA').text(tia);
 
-    if (fotoUri) {    
-        //$('#drawerPicture').attr('src', fotoUri);
+    if (fotoUri) {
         $('#drawerPicture').get(0).style.backgroundImage = "url("+fotoUri+")";
     }
 }
-
-
-// START_CUSTOM_CODE_homeModel
-// Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
-
-// END_CUSTOM_CODE_homeModel

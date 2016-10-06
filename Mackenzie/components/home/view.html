@@ -9,6 +9,9 @@
         <form>
             <ul data-role="listview" data-style="inset">
                 <li>
+                    <select id="unidadesLogin" type="select" data-bind="value: homeModel.unidade" placeholder="Unidade" required autofocus></select>
+                </li>
+                <li>
                     <input type="text" data-bind="value: homeModel.tia" placeholder="TIA" required autofocus>
                 </li>
                 <li>
@@ -48,6 +51,9 @@
 
         <form>
             <ul data-role="listview" data-style="inset">
+                <li>
+                    <select id="unidadesSignup" type="select" data-bind="value: homeModel.unidade" placeholder="Unidade" required autofocus></select>
+                </li>
                 <li>
                     <input type="text" data-bind="value: homeModel.tia" placeholder="TIA" required>
                 </li>

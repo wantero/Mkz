@@ -102,10 +102,10 @@ app.ranksView = kendo.observable({
                         },
                     }
                 }
-            },*/
+            },
             serverFiltering: true,
             serverSorting: true,
-            serverPaging: true,
+            serverPaging: true,*/
             pageSize: 50
         },
         dataSource = new kendo.data.DataSource(dataSourceOptions),
@@ -230,7 +230,8 @@ app.ranksView = kendo.observable({
 
     function populate(populateCb) {
         function getUser(index, userId, cb) {
-            var queryCursos = new Everlive.Query();
+            // INTEGRACAO DADOS MACKENZIE
+            /*var queryCursos = new Everlive.Query();
             queryCursos.where().eq('Id', userId);
 
             var dataCursos = dataProvider.data('Users');
@@ -245,7 +246,18 @@ app.ranksView = kendo.observable({
                     }
                 }, function(err) {
                     alert('Error loading data (Users)');
-                });
+                });*/
+            // INTEGRACAO DADOS MACKENZIE
+
+            // INTEGRACAO DADOS MACKENZIE
+            try {
+                if (cb) {
+                    cb(index, MkzDataService.getUser());
+                }
+            } catch(e) {
+                alert('Error: '+e.message);
+            }
+            // INTEGRACAO DADOS MACKENZIE
         };      
         
         function sumarize(cb) {            
@@ -272,7 +284,8 @@ app.ranksView = kendo.observable({
         } 
 
         function getCursos(cb) {
-            var queryCursos = new Everlive.Query();
+            // INTEGRACAO DADOS MACKENZIE
+            /*var queryCursos = new Everlive.Query();
             queryCursos.where().eq('Users', app.getUserData().Id);
 
             var dataCursos = dataProvider.data('Cursos');
@@ -287,7 +300,16 @@ app.ranksView = kendo.observable({
                     }
                 }, function(err) {
                     alert('Error loading data (Cursos)');
-                });
+                });*/
+            // INTEGRACAO DADOS MACKENZIE
+
+            // INTEGRACAO DADOS MACKENZIE
+            try {
+                cb(MkzDataService.getCursos());
+            } catch(err) {
+                alert('GetCursos/Ranking Error: '+err.message);
+            }
+            // INTEGRACAO DADOS MACKENZIE
         }
 
         function finish(data) {
@@ -345,7 +367,13 @@ app.ranksView = kendo.observable({
             if (data) {
                 for (var i=0; i < data.length; i++) {
                     getUser(i, data[i].User, function(index, user) {
-                        data[index].User = user[0];
+                        // INTEGRACAO DADOS MACKENZIE
+                        //data[index].User = user[0];
+                        // INTEGRACAO DADOS MACKENZIE
+
+                        // INTEGRACAO DADOS MACKENZIE
+                        data[index].User = user;
+                        // INTEGRACAO DADOS MACKENZIE
 
                         if (index == data.length-1) {
                             data.sort(function(a,b) {

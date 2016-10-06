@@ -512,7 +512,8 @@ app.avaliacoesView = kendo.observable({
         }
 
         function getCursos() {
-            var queryCursos = new Everlive.Query();
+            // INTEGRACAO DADOS MACKENZIE
+            /*var queryCursos = new Everlive.Query();
             queryCursos.where().eq('Users', app.getUserData().Id);
 
             var dataCursos = dataProvider.data('Cursos');
@@ -526,11 +527,17 @@ app.avaliacoesView = kendo.observable({
                     getDisciplinas(cursos);
                 }, function(err) {
                     alert('Error loading data (Cursos)');
-                });
+                });*/
+            // INTEGRACAO DADOS MACKENZIE
+
+            // INTEGRACAO DADOS MACKENZIE
+            getDisciplinas(MkzDataService.getListCursosId());
+            // INTEGRACAO DADOS MACKENZIE
         }
 
         function getDisciplinas(cursos) {
-            var queryDisciplinas = new Everlive.Query();
+            // INTEGRACAO DADOS MACKENZIE
+            /*var queryDisciplinas = new Everlive.Query();
             queryDisciplinas.where().isin('Cursos', cursos);
 
             var dataDisciplinas = dataProvider.data('Disciplinas');
@@ -547,7 +554,12 @@ app.avaliacoesView = kendo.observable({
                     }
                 }, function(Err) {
                     alert('Erro loading data (Disciplinas)');
-                });
+                });*/
+            // INTEGRACAO DADOS MACKENZIE
+
+            // INTEGRACAO DADOS MACKENZIE
+            getRespostasAvaliacao(MkzDataService.getListDisciplinasId());
+            // INTEGRACAO DADOS MACKENZIE
         }
 
         function getRespostasAvaliacao(disciplinas) {
@@ -578,14 +590,17 @@ app.avaliacoesView = kendo.observable({
 
         function getAvaliacoes(disciplinas, respostas) {
             var queryAvaliacoes = new Everlive.Query();
+            // INTEGRACAO DADOS MACKENZIE
             queryAvaliacoes.where().isin('Disciplina', disciplinas);
-            queryAvaliacoes.expand({"Disciplina": true});
+            // INTEGRACAO DADOS MACKENZIE
+            //queryAvaliacoes.expand({"Disciplina": true});
 
             var dataAvaliacoes = dataProvider.data('Avaliacoes');
             dataAvaliacoes.get(queryAvaliacoes)
                 .then(function(data) {
                     var professores = [];
                     var today = new Date();
+                    var disciplinas = MkzDataService.getDisciplinas();
                     
                     today.setHours(0);
                     today.setMinutes(0);
@@ -593,6 +608,17 @@ app.avaliacoesView = kendo.observable({
                     
                     for (var i = 0; i < data.result.length; i++) {
                         var item = data.result[i];
+
+                        disciplinas.find(function(ele) {
+            // INTEGRACAO DADOS MACKENZIE
+                            if (ele.Id === item.Disciplina) {
+            // INTEGRACAO DADOS MACKENZIE
+                                item.Disciplina = ele;
+                                return true;
+                            }
+
+                            return false;
+                        });
 
                         for (var k=0; k < respostas.length; k++) {
                             if (item.Id == respostas[k].Avaliacao) {
@@ -631,7 +657,7 @@ app.avaliacoesView = kendo.observable({
                             item.ExpiracaoText = 'Expirado';
                             item.Situacao = 'expirado';
                         } else if (item.Expiracao > today) {
-                            var dias = (((Date.parse(item.Expiracao)) - (Date.parse(today))) / (24 * 60 * 60 * 1000));
+                            var dias = Math.round((((Date.parse(item.Expiracao)) - (Date.parse(today))) / (24 * 60 * 60 * 1000)));
                             item.ExpiracaoText = 'Expira em '+dias+' dia(s)';
                             item.Situacao = 'valido';
                         }
@@ -644,13 +670,24 @@ app.avaliacoesView = kendo.observable({
 
                     responsebody = data.result;
 
-                    getProfessores(professores);
+                    // INTEGRACAO DADOS MACKENZIE
+                    //getProfessores(professores);
+                    // INTEGRACAO DADOS MACKENZIE
+
+                    // INTEGRACAO DADOS MACKENZIE
+                    try {
+                        done(responsebody);    
+                    } catch(err) {
+                        alert('GetProfessores Error: '+err.message);
+                    }                     
+                    // INTEGRACAO DADOS MACKENZIE
                 }, function (err) {
                     alert('Error loading data (Avaliacoes)');
                 });
         }
 
-        function getProfessores(professores) {
+        // INTEGRACAO DADOS MACKENZIE
+        /*function getProfessores(professores) {
             var queryProfessores = new Everlive.Query();
             queryProfessores.where().isin('Id', professores);
             queryProfessores.expand({"User": true});
@@ -678,7 +715,8 @@ app.avaliacoesView = kendo.observable({
                 }, function (err) {
                     alert('Error loading data (Professores)');
                 });
-        }
+        }*/
+        // INTEGRACAO DADOS MACKENZIE
     }
 
 

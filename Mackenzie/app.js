@@ -6,13 +6,15 @@
     };
 
     var bootstrap = function() {
-        $(function() {
-            app.mobileApp = new kendo.mobile.Application(document.body, {
-                skin: 'flat',
-                initial: 'components/home/view.html'
-            });
+        MkzDataService.waitForReady(function() {
+            $(function() {
+                app.mobileApp = new kendo.mobile.Application(document.body, {
+                    skin: 'flat',
+                    initial: 'components/home/view.html'
+                });
 
-            kendo.culture("pt-BR");
+                kendo.culture("pt-BR");
+            });
         });
     };
 
@@ -152,13 +154,19 @@
     app.getUserData = function() {
         var data;
 
-        if (app && app.user) {
+        // INTEGRACAO DADOS MACKENZIE
+        /*if (app && app.user) {
             if (app.user.data) {
                 data = app.user.data;
             } else {
                 data = app.user;
             }
-        }
+        }*/
+        // INTEGRACAO DADOS MACKENZIE
+
+        // INTEGRACAO DADOS MACKENZIE
+        data = MkzDataService.getUser();
+        // INTEGRACAO DADOS MACKENZIE
 
         return data;
     }

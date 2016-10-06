@@ -42,7 +42,11 @@ var PublicacoesService = {
                 'Tipo': tipo,
                 'Titulo': titulo ? titulo : '',
                 'CompartilhadoDe': publicacao ? publicacao.Id: '',
+                // INTEGRACAO DADOS MACKENZIE
                 'CompartilhadoDeUser': publicacao ? publicacao.User.Id: '',
+                // INTEGRACAO DADOS MACKENZIE
+                //'CompartilhadoDeUser': publicacao ? publicacao.User: '',
+                // INTEGRACAO DADOS MACKENZIE
                 'User': app.getUserData().Id
             },
             function(data){
@@ -242,7 +246,8 @@ var PublicacoesService = {
         var dataProvider = app.data.mackenzie;
 
         function getCursos($disciplinasSelect, cb) {
-            var queryCursos = new Everlive.Query();
+            // INTEGRACAO DADOS MACKENZIE
+            /*var queryCursos = new Everlive.Query();
             queryCursos.where().eq('Users', app.getUserData().Id);
 
             var dataCursos = dataProvider.data('Cursos');
@@ -256,11 +261,17 @@ var PublicacoesService = {
                     getDisciplinas($disciplinasSelect, cursos, cb);
                 }, function(err) {
                     alert('Error loading data (Cursos)');
-                });
+                });*/
+            // INTEGRACAO DADOS MACKENZIE
+
+            // INTEGRACAO DADOS MACKENZIE
+            getDisciplinas($disciplinasSelect, MkzDataService.getListCursosId(), cb);
+            // INTEGRACAO DADOS MACKENZIE
         };
 
         function getDisciplinas($disciplinasSelect, cursos, cb) {
-            var queryDisciplinas = new Everlive.Query();
+            // INTEGRACAO DADOS MACKENZIE
+            /*var queryDisciplinas = new Everlive.Query();
             queryDisciplinas.where().isin('Cursos', cursos);
 
             var dataDisciplinas = dataProvider.data('Disciplinas');
@@ -278,7 +289,20 @@ var PublicacoesService = {
                     }
                 }, function(Err) {
                     alert('Erro loading data (Disciplinas)');
-                });
+                });*/
+            // INTEGRACAO DADOS MACKENZIE
+
+            // INTEGRACAO DADOS MACKENZIE
+            var disciplinas = MkzDataService.getDisciplinas();
+            var html = '<option value="" disabled selected>Selecione um componente</option>';
+
+            for (var i = 0; i < disciplinas.length; i++) {
+                html += '<option value="'+disciplinas[i].Id+'">'+disciplinas[i].Nome+'</option>';
+            }
+
+            PublicacoesService.populateDisciplinasHtml = html;
+            setHtml($disciplinasSelect, html, cb);
+            // INTEGRACAO DADOS MACKENZIE
         };
 
         function setHtml($disciplinasSelect, html, cb) {

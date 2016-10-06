@@ -68,7 +68,8 @@ app.cursosView = kendo.observable({
             }
         },
         dataSourceOptions = {
-            type: 'everlive',
+            // INTEGRACAO DADOS MACKENZIE
+            /*type: 'everlive',
             transport: {
                 typeName: 'Cursos',
                 dataProvider: dataProvider,
@@ -77,7 +78,9 @@ app.cursosView = kendo.observable({
                         "X-Everlive-Expand": {"Disciplinas": true}
                     }
                 }
-            },
+            },*/
+            // INTEGRACAO DADOS MACKENZIE
+            filter: {field: 'Id', operator: 'eq', value: '@#$'},
             change: function(e) {
                 var data = this.data();
                 for (var i = 0; i < data.length; i++) {
@@ -87,7 +90,6 @@ app.cursosView = kendo.observable({
                 }
             },
             error: function(e) {
-
                 if (e.xhr) {
                     alert(JSON.stringify(e.xhr));
                 }
@@ -98,13 +100,13 @@ app.cursosView = kendo.observable({
                         'Curso': {
                             field: 'Curso',
                             defaultValue: ''
-                        },
+                        }
                     }
                 }
             },
-            serverFiltering: true,
+            /*serverFiltering: true,
             serverSorting: true,
-            serverPaging: true,
+            serverPaging: true,*/
             pageSize: 50
         },
         dataSource = new kendo.data.DataSource(dataSourceOptions),
@@ -167,6 +169,12 @@ app.cursosView = kendo.observable({
                 }
 
                 cursosViewModel.filterScheduler();*/
+
+                // INTEGRACAO DADOS MACKENZIE
+                cursosViewModel.set('currentItem', dataItem);
+                cursosViewModel.set('currentItemDisciplinas', dataItem.Disciplinas);
+                // INTEGRACAO DADOS MACKENZIE
+
                 app.mobileApp.navigate('#components/cursosView/details.html?uid=' + dataItem.uid);
             },
             viewBackClick: function(e) {
@@ -198,7 +206,8 @@ app.cursosView = kendo.observable({
                 cursosViewModel.set('currentItem',
                     cursosViewModel.fixHierarchicalData(itemModel));
 
-                var query = new Everlive.Query();
+                // INTEGRACAO DADOS MACKENZIE
+                /*var query = new Everlive.Query();
                 query.where().eq('Cursos', itemModel.Id);
                 query.expand({"Professor": true});
 
@@ -211,7 +220,14 @@ app.cursosView = kendo.observable({
                         alert('error loading disciplinas');
                     });        
 
+                return itemModel;*/
+                // INTEGRACAO DADOS MACKENZIE
+
+                // INTEGRACAO DADOS MACKENZIE
+                cursosViewModel.set('currentItemDisciplinas', itemModel.Disciplinas);
+
                 return itemModel;
+                // INTEGRACAO DADOS MACKENZIE
             },
             disciplinaClick: function(e) {
                 var data = e.dataItem;
@@ -273,11 +289,14 @@ app.cursosView = kendo.observable({
                 }
             },
             selectSchedulerFromMenu: function() {
+                $('.flaticon-calendar').addClass('km-state-active').siblings().removeClass('km-state-active');
                 app.mobileApp.navigate('#components/cursosView/details.html?from=menu');
             },
             loadPublicacoes: function(disciplinaId, done) {
                 var query = new Everlive.Query();
+            // INTEGRACAO DADOS MACKENZIE
                 query.where().eq('Disciplina', disciplinaId);
+            // INTEGRACAO DADOS MACKENZIE
                 query.expand({
                     "User": true,
                     "Comentarios": true,
@@ -338,13 +357,20 @@ app.cursosView = kendo.observable({
                     //var cursoId = app.cursosView.cursosViewModel.dataSource.data()[0].Id;
                     var query = new Everlive.Query();
 
-                    query.where().eq('Curso', cursoId);
-                    //query.where().eq('Dia', dayOfWeek);
+                    // INTEGRACAO DADOS MACKENZIE
+                    //query.where().eq('Curso', cursoId);
+                    // INTEGRACAO DADOS MACKENZIE
                     query.expand({"Disciplina": true});
+
 
                     var data = dataProvider.data('GradeHorario');
                     data.get(query)
                         .then(function(data){
+                            // INTEGRACAO DADOS MACKENZIE
+                            //data.result = JSON.parse('[{"Disciplina":{"Professor":"39b92be0-528a-11e6-bcc1-5b5edbc21f50","Nome":"Fundamentos de Computação e Sistemas","color":"#005ce6","Id":"88d74580-528b-11e6-9146-d957c67c4429"},"dia":"segunda","HorarioFim":"2016-08-08T19:00:00.000Z","HorarioInicio":"2016-08-08T20:00:00.000Z","Curso":"18c5a7b0-528a-11e6-b1e0-77d175454ffc","Id":"03a1cd20-5d6e-11e6-a313-09481e7227c0"},{"Disciplina":{"Professor":"39b92be0-528a-11e6-bcc1-5b5edbc21f50","Nome":"Estratégias em Tecnologia da Informação","color":"#ff1a1a","Id":"fda9b9d0-59aa-11e6-8a96-9f79bf395ef3"},"Curso":"18c5a7b0-528a-11e6-b1e0-77d175454ffc","dia":"quinta","HorarioInicio":"2016-08-08T16:00:00.000Z","HorarioFim":"2016-08-08T04:30:00.000Z","Id":"a111eed0-6086-11e6-84f5-6325cc0ac086"}]');
+                            data.result = MkzDataService.getHorarios();
+                            // INTEGRACAO DADOS MACKENZIE
+
                             try {
                                 var today = new Date();
                                 var lastDayOfMonth = new Date(today.getFullYear(), today.getMonth()+1, 0).getDate();
@@ -419,15 +445,18 @@ app.cursosView = kendo.observable({
 
                 var resourceList = []; //{field: "colorId", title: "Disciplina", dataSource: []};
 
-                var currentItem = cursosViewModel.get('currentItem');
+                // INTEGRACAO DADOS MACKENZIE
+                /*var currentItem = cursosViewModel.get('currentItem');
                 var cursoId = currentItem.Id;
                 //var cursoId = app.cursosView.cursosViewModel.dataSource.data()[0].Id;
 
                 var query = new Everlive.Query();
-                query.where().eq('Cursos', cursoId);
+                query.where().eq('Cursos', cursoId);*/
+                // INTEGRACAO DADOS MACKENZIE
 
                 try {
-                    var data = dataProvider.data('Disciplinas');
+                    // INTEGRACAO DADOS MACKENZIE
+                    /*var data = dataProvider.data('Disciplinas');
                     data.get(query)
                         .then(function(data) {
                             data.result.forEach(function(cur, index, arr) {
@@ -470,7 +499,50 @@ app.cursosView = kendo.observable({
                         },
                         function(error){
                             alert('error loading disciplinas');
-                        }); 
+                        }); */
+                    // INTEGRACAO DADOS MACKENZIE
+
+                    // INTEGRACAO DADOS MACKENZIE
+                    var disciplinas = MkzDataService.getDisciplinas();
+
+                    disciplinas.forEach(function(cur, index, arr) {
+                        resourceList.push({
+                            text: cur.Nome,
+                            value: cur.Id,
+                            color: cur.color
+                        });
+                    });
+
+                    $("#scheduler").kendoScheduler({
+                        date: today,
+                        startTime: startTime,
+                        height: 400,
+                        mobile: true,
+                        timezone: "Etc/UTC",
+                        messages: {
+                            today: "Hoje",
+                            time: "Horário",
+                            event: "Disciplina",
+                            date: "Dia"
+                        },
+                        views: [
+                            {type: "day", allDaySlot: false, editable: false, selected: true, title: "Dia"},
+                            {type: "week", allDaySlot: false, editable: false, title: "Semana"},
+                            {type: "month", allDaySlot: false, editable: false, title: "Mes"},
+                            {type: "agenda", title: "Agenda"}
+                        ],
+                        resources: [
+                            {
+                                field: "colorId",
+                                dataSource: resourceList,
+                                title: "Disciplina"
+                            }
+                        ]
+                    });
+
+                    cursosViewModel.scheduler = $("#scheduler").data("kendoScheduler");
+                    cursosViewModel.filterScheduler(cb);
+                    // INTEGRACAO DADOS MACKENZIE
                 } catch(e) {
                     alert(e.message);
                 }
@@ -524,6 +596,8 @@ app.cursosView = kendo.observable({
         parent.set('cursosViewModel', cursosViewModel);
     }
 
+
+
     parent.set('onShow', function(e) {
         var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
             isListmenu = false,
@@ -542,20 +616,42 @@ app.cursosView = kendo.observable({
 
         app.displayUser();
 
-        dataProvider.Users.currentUser().then(
+        // INTEGRACAO DADOS MACKENZIE
+        /*dataProvider.Users.currentUser().then(
             function(user) {
                 // Fixa o filtro do usuário logado
                 param = [{ field: "Users", operator: "eq", value: user.result.Id }];
 
                 // Armazena o parametro recebido pela VIEW
-                viewParam = param;     
+                viewParam = param;
 
                 fetchFilteredData(viewParam);
             },
             function() {
                 console.log('erro ao carregar usuario corrente')
             }
-        );
+        );*/
+        // INTEGRACAO DADOS MACKENZIE
+
+
+        // INTEGRACAO DADOS MACKENZIE
+        populate(MkzDataService.getUser());
+
+        function populate(user) {
+            // Fixa o filtro do usuário logado
+            param = {};
+
+            // Armazena o parametro recebido pela VIEW
+            viewParam = param;
+
+            // TESTE
+            //[{"Disciplinas":[{"Professor":"39b92be0-528a-11e6-bcc1-5b5edbc21f50","Nome":"Fundamentos de Computação e Sistemas","CreatedAt":"2016-07-25T17:16:33.112Z","ModifiedAt":"2016-09-16T10:45:41.467Z","CreatedBy":"00000000-0000-0000-0000-000000000000","ModifiedBy":"00000000-0000-0000-0000-000000000000","Owner":"00000000-0000-0000-0000-000000000000","Cursos":["18c5a7b0-528a-11e6-b1e0-77d175454ffc"],"color":"#005ce6","Id":"88d74580-528b-11e6-9146-d957c67c4429","Meta":{"Permissions":{"CanRead":true,"CanUpdate":true,"CanDelete":true}}},{"Nome":"Computação Aplicada","Professor":"4d1d0210-528a-11e6-bcc1-5b5edbc21f50","CreatedAt":"2016-07-25T17:16:47.249Z","ModifiedAt":"2016-07-25T17:29:20.077Z","CreatedBy":"00000000-0000-0000-0000-000000000000","ModifiedBy":"00000000-0000-0000-0000-000000000000","Owner":"00000000-0000-0000-0000-000000000000","Cursos":["18c5a7b0-528a-11e6-b1e0-77d175454ffc"],"Id":"91446810-528b-11e6-9146-d957c67c4429","Meta":{"Permissions":{"CanRead":true,"CanUpdate":true,"CanDelete":true}}}],"Duracao":8,"Curso":"Tecnologia em Análise e Desenvolvimento de Sistemas","Professores":["39b92be0-528a-11e6-bcc1-5b5edbc21f50","4d1d0210-528a-11e6-bcc1-5b5edbc21f50"],"CreatedAt":"2016-07-25T17:06:15.595Z","ModifiedAt":"2016-09-16T00:06:04.835Z","CreatedBy":"00000000-0000-0000-0000-000000000000","ModifiedBy":"00000000-0000-0000-0000-000000000000","Owner":"00000000-0000-0000-0000-000000000000","Users":["aa011da0-5b2b-11e6-8e46-f3062ef62b2a"],"Id":"18c5a7b0-528a-11e6-b1e0-77d175454ffc","Meta":{"Permissions":{"CanRead":true,"CanUpdate":true,"CanDelete":true}}},{"Disciplinas":[{"Professor":"4d1d0210-528a-11e6-bcc1-5b5edbc21f50","Nome":"Teoria Básica da Administração","Cursos":["60d879c0-542d-11e6-a837-d5631e875d68"],"CreatedAt":"2016-07-27T19:08:09.267Z","ModifiedAt":"2016-09-02T15:28:43.369Z","CreatedBy":"00000000-0000-0000-0000-000000000000","ModifiedBy":"00000000-0000-0000-0000-000000000000","Owner":"00000000-0000-0000-0000-000000000000","color":"#4dff4d","Id":"74e2f030-542d-11e6-a837-d5631e875d68","Meta":{"Permissions":{"CanRead":true,"CanUpdate":true,"CanDelete":true}}},{"Professor":"4d1d0210-528a-11e6-bcc1-5b5edbc21f50","Nome":"Gestão Financeira","Cursos":["60d879c0-542d-11e6-a837-d5631e875d68"],"CreatedAt":"2016-07-27T19:10:54.264Z","ModifiedAt":"2016-08-12T23:08:30.840Z","CreatedBy":"00000000-0000-0000-0000-000000000000","ModifiedBy":"00000000-0000-0000-0000-000000000000","Owner":"00000000-0000-0000-0000-000000000000","color":"#005ce6","Id":"d73b5470-542d-11e6-8b46-71c7852ac6e7","Meta":{"Permissions":{"CanRead":true,"CanUpdate":true,"CanDelete":true}}}],"Duracao":8,"Curso":"Administração","CreatedAt":"2016-07-27T19:07:35.644Z","ModifiedAt":"2016-09-16T00:06:14.104Z","CreatedBy":"00000000-0000-0000-0000-000000000000","ModifiedBy":"00000000-0000-0000-0000-000000000000","Owner":"00000000-0000-0000-0000-000000000000","Users":["fbbf44c0-52a0-11e6-9146-d957c67c4429"],"Id":"60d879c0-542d-11e6-a837-d5631e875d68","Meta":{"Permissions":{"CanRead":true,"CanUpdate":true,"CanDelete":true}}}]
+            //console.log('cursos: ', MkzDataService.getCursos());
+            dataSource.data(MkzDataService.getCursos());
+            fetchFilteredData();
+            // TESTE
+        };
+        // INTEGRACAO DADOS MACKENZIE
     });
     
     parent.set('onDetailShow', function(e) {
@@ -563,13 +659,14 @@ app.cursosView = kendo.observable({
         cursosViewModel.state = 'loading';
 
         if (e.view.params.from && e.view.params.from == 'menu') {
-                    cursosViewModel.selectDiaView();                    
+            cursosViewModel.selectDiaView();                    
             $('#btAgenda').addClass('km-state-active').siblings().removeClass('km-state-active');
             $('#tabCursoAgenda').show().siblings().hide();
 
 
             function getCursos(cb) {
-                var queryCursos = new Everlive.Query();
+                // INTEGRACAO DADOS MACKENZIE
+                /*var queryCursos = new Everlive.Query();
                 queryCursos.where().eq('Users', app.getUserData().Id);
 
                 var dataCursos = dataProvider.data('Cursos');
@@ -587,7 +684,16 @@ app.cursosView = kendo.observable({
                         }                        
                     }, function(err) {
                         alert('Error loading data (Cursos)');
-                    });
+                    });*/
+                // INTEGRACAO DADOS MACKENZIE
+                try {
+                    if (cb) {
+                        cb(MkzDataService.getCursos());    
+                    }
+                } catch(err) {
+                    alert('Cursos.onDetailShow/GetCursos Error: '+err.message);
+                }  
+                // INTEGRACAO DADOS MACKENZIE
             }
 
             getCursos(function(cursos) {

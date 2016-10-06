@@ -1,0 +1,17 @@
+horario de duracao no componente
+cod aluno = unidade+tia
+
+problemas:
+	os cursos são diferentes para cada horario: manha, tarde e noite
+
+
+
+dados para teste:
+
+	unidade: 001
+	tia: 41326652
+	pass: GERTI#m1c2
+
+	unidade: 001
+	tia: 41246462
+	pass: GERTI#m1c2
