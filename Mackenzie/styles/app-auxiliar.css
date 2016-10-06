@@ -67,7 +67,8 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 #kendoUiMobileApp .km-content > .km-scroll-container > h3[data-bind*=".Disciplina"],
 #kendoUiMobileApp .km-content > .km-scroll-container > h3 + .prof-disciplina-wrap,
 #kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name,
-#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name + p {
+#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name + p,
+#kendoUiMobileApp #mackz-faq .km-scroll-wrapper .masterDetailView > li {
 	background-color: #FFF;
 }
 
@@ -137,12 +138,20 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 /************************************/
 /*** PADDING/MARGIN-BOTTOM FOOTER ***/
 /************************************/
+#kendoUiMobileApp .masterDetailView li[data-uid]:last-child,
 .km-scroll-header + .km-scroll-container,
 [data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
-	padding-bottom: 45px;
+	margin-bottom: 3.15em;
 }
+
+#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap + table:last-child,
+#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-footer,
+#kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap {
+	padding-bottom: 3.5em;
+}
+
 #tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agenda {
-	padding-bottom: 48px;
+	padding-bottom: 3em;
 }
 
 /**************************/
@@ -337,7 +346,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 		}
 
 	#perfilViewModel form {
-		padding: 1em 20% 2em;
+		padding: 1em 20% 4em;
 	}
 
 }
@@ -387,10 +396,10 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 	}
 
 	.main-mural-wrap {
-			padding: 1em 4em 0.5em;
+			padding: 1em 4em 0;
 	}
 	#muralList {
-		padding: 1em 4em 0;
+		padding: 0 4em;
 	}
 
 	/* PUBLIQUE NO MURAL */
@@ -444,6 +453,19 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 
 	.avaliacoes-wrap .prox-aula p + .km-button {
 		width: 180px;
+	}
+
+	#kendoUiMobileApp .masterDetailView li[data-uid]:last-child,
+	#kendoUiMobileApp #muralList #muralListView > li[data-uid]:last-child,
+	.km-scroll-header + .km-scroll-container,
+	[data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
+		margin-bottom: 3.5em;
+	}
+
+	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap + table:last-child,
+	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-footer,
+	#kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap {
+		padding-bottom: 3.5em;
 	}
 
 }
