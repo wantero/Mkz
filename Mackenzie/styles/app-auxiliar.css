@@ -132,16 +132,24 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 #perfilViewModel.form-view,
 #mackz-faq .km-scroll-header + .km-scroll-container,
 [data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
-	padding-top: 47px;
+	padding-top: 44px;
 }
 
 /************************************/
 /*** PADDING/MARGIN-BOTTOM FOOTER ***/
 /************************************/
-#kendoUiMobileApp .masterDetailView li[data-uid]:last-child,
-.km-scroll-header + .km-scroll-container,
-[data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
-	margin-bottom: 3.15em;
+#kendoUiMobileApp #mackz-mural .masterDetailView li[data-uid]:last-child,
+.km-scroll-header + .km-scroll-container {
+	margin-bottom: 3rem;
+}
+#tabDisciplinas #tabCursoDisciplinas .masterDetailView > li:last-child,
+.avaliacoes-wrap .aval-praticas,
+#kendoUiMobileApp #resultadoQuestionario > li:last-child,
+#avaliacoes #avaliacoesDetailView > li:last-child,
+#rankingsData .sua-posicao + .km-listview-wrapper > .masterDetailView > li,
+[data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container,
+#kendoUiMobileApp #mackz-faq .km-scroll-wrapper .masterDetailView > li:last-child {
+	margin-bottom: 2.85rem;
 }
 
 #tabCursoAgenda #tabAgenda #scheduler .k-floatwrap + table:last-child,
@@ -150,9 +158,9 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 	padding-bottom: 3.5em;
 }
 
-#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agenda {
+/*#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agenda {
 	padding-bottom: 3em;
-}
+}*/
 
 /**************************/
 /**** AUXILIAR CLASSES ****/
@@ -272,7 +280,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 
 }
 
-@media screen and (min-device-width: 568px) {
+@media screen and (min-device-width: 568px) and (min-device-height: 301px) {
 
 	div[data-url="components/home/view.html"] .km-content .km-scroll-container,
 	.masterDetailView:not(.km-virtual-list) li .image-with-text,
@@ -281,7 +289,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 		width: 70%;
 	}
 
-	.km-flat .km-view .descricao-wrap + .km-buttongroup,
+	/*.km-flat .km-view .descricao-wrap + .km-buttongroup,*/
 	.km-flat .km-view .disciplinas-wrap .details-content,
 	#kendoUiMobileApp .avaliacoes-wrap .aval-praticas .km-listview-wrapper li,
 	.avaliacoes-wrap #tabPublicacoes .km-buttongroup:first-of-type,
@@ -305,7 +313,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 		width: 120px;
 	}
 
-	#cursos .km-scroll-container > .km-listview-wrapper:only-of-type .masterDetailView li:nth-child(3)::after {
+	#cursos .km-scroll-container > .km-listview-wrapper:only-of-type .masterDetailView li::after {
 		right: 10%;
 	}
 	#cursos .km-scroll-wrapper .km-listview-wrapper li:not(.km-load-more) .image-with-text,
@@ -313,7 +321,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 	#kendoUiMobileApp #disciplinas .km-listview-wrapper li label {
 		padding-right: 0;
 	}
-	.km-scroll-container > .km-listview-wrapper:only-of-type .masterDetailView  >li::after,
+	.km-scroll-container > .km-listview-wrapper:only-of-type .masterDetailView > li::after,
 	#tabCursoDisciplinas .km-listview-wrapper .masterDetailView > li::after,
 	#mackz-faq .km-listview-wrapper .masterDetailView > li::after {
 		right: 13%;
@@ -351,7 +359,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 
 }
 
-@media screen and (min-device-width: 375px) {
+@media screen and (min-device-width: 375px) and (min-device-height: 647px) {
 	
 	html.km-root { font-size: 16px; }
 
@@ -359,11 +367,17 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 
 @media screen and (min-device-width: 667px) {
 
+	html.km-root { font-size: 16px; }
+
 	#appDrawer { width: 50%; }
 
 	div[data-url="components/home/termoAceite.html"] .km-content .privac-texto {
 		width: 80%;
 		margin: 0 auto
+	}
+
+	.km-flat .km-view .descricao-wrap + .km-buttongroup {
+		padding: 1em 6em;
 	}
 
 	#kendoUiMobileApp .km-scroll-wrapper .masterDetailView li,
@@ -387,7 +401,6 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 	form.section-name-wrap {
 		padding: 0.35em 1em;
 	}
-
 
 	/* CABEÇALHO DO MURAL */
 	#mackz-mural .mural-header form,
@@ -417,7 +430,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 
 	/* PUBLICAÇÕES DO MURAL */
 	#kendoUiMobileApp #muralList #muralListView > li[data-uid] {
-		margin-bottom: 1.5em;
+		/*margin-bottom: 1.5em;*/
 		box-shadow: 2px 2px 2px 2px #CCC;
 	}
 
