@@ -593,7 +593,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 .user-thumb {
   overflow: hidden;
-  border-radius: 50%;
+  /*border-radius: 50%;*/
 }
 	.user-thumb img {
 		width: 100%;
@@ -1426,6 +1426,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 /* Suas publicações */
 #kendoUiMobileApp .user-thumb {
 	position: relative;
+	border-radius: 50%;
 }
 #kendoUiMobileApp .user-thumb > span {
 	position: absolute;
