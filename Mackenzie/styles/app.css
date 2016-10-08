@@ -1161,9 +1161,15 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem > p {
 		margin: 0.5em 1em 1em;
 	}
-	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem > video {
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem > video,
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-compartilhado-wrap > video {
 		width: 100%;
+	}
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem > video {
 		padding: 0 1em;
+	}
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-compartilhado-wrap > video {
+		padding: 0.5em;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem span {
 		position: absolute;
