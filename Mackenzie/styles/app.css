@@ -22,6 +22,10 @@
 	resize: none;
 }
 
+#kendoUiMobileApp .km-content .image-with-text h3 {
+	font-size: 1em;
+}
+
 
 /*** INÍCIO - LOGO MACKENZIE ***/
 div[data-role="header"] .km-widget {
@@ -1172,6 +1176,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem > video,
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-compartilhado-wrap > video {
 		width: 100%;
+		padding-top: 1em;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-compartilhado-wrap > video {
 		padding: 0.8em;
@@ -1719,7 +1724,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
     display: inline-block;
     margin: 0;
     font-size: 1em;
-    padding: 0.95em 0;
+    padding: 0.95em 0.5em 0.95em 0;
 	}
 
 	.descricao-wrap > .descricao-prof {
@@ -2337,6 +2342,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agendaview tr:nth-child(2) .k-scheduler-table .k-task {
 		padding-left: 1.5em;
 		text-indent: -1.5em;
+		word-break: break-word;
 	}
 	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agendaview tr:nth-child(2) .k-scheduler-table .k-task span {
 		margin-top: -0.15em;
