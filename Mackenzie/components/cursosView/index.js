@@ -653,6 +653,41 @@ app.cursosView = kendo.observable({
         };
         // INTEGRACAO DADOS MACKENZIE
     });
+
+
+
+    function getCursos(cb) {
+        // INTEGRACAO DADOS MACKENZIE
+        /*var queryCursos = new Everlive.Query();
+        queryCursos.where().eq('Users', app.getUserData().Id);
+
+        var dataCursos = dataProvider.data('Cursos');
+        dataCursos.get(queryCursos)
+            .then(function(data) {
+                var cursos = [];
+                for (var i=0; i < data.result.length; i++) {
+                    cursos.push(data.result[i]);
+                }
+
+                try {
+                    cb(cursos);    
+                } catch(err) {
+                    alert('Crusor.onDetailShow/GetCursos Error: '+err.message);
+                }                        
+            }, function(err) {
+                alert('Error loading data (Cursos)');
+            });*/
+        // INTEGRACAO DADOS MACKENZIE
+        try {
+            if (cb) {
+                cb(MkzDataService.getCursos());    
+            }
+        } catch(err) {
+            alert('Cursos.onDetailShow/GetCursos Error: '+err.message);
+        }  
+        // INTEGRACAO DADOS MACKENZIE
+    };
+
     
     parent.set('onDetailShow', function(e) {
         app.displayUser();
@@ -662,39 +697,6 @@ app.cursosView = kendo.observable({
             cursosViewModel.selectDiaView();                    
             $('#btAgenda').addClass('km-state-active').siblings().removeClass('km-state-active');
             $('#tabCursoAgenda').show().siblings().hide();
-
-
-            function getCursos(cb) {
-                // INTEGRACAO DADOS MACKENZIE
-                /*var queryCursos = new Everlive.Query();
-                queryCursos.where().eq('Users', app.getUserData().Id);
-
-                var dataCursos = dataProvider.data('Cursos');
-                dataCursos.get(queryCursos)
-                    .then(function(data) {
-                        var cursos = [];
-                        for (var i=0; i < data.result.length; i++) {
-                            cursos.push(data.result[i]);
-                        }
-
-                        try {
-                            cb(cursos);    
-                        } catch(err) {
-                            alert('Crusor.onDetailShow/GetCursos Error: '+err.message);
-                        }                        
-                    }, function(err) {
-                        alert('Error loading data (Cursos)');
-                    });*/
-                // INTEGRACAO DADOS MACKENZIE
-                try {
-                    if (cb) {
-                        cb(MkzDataService.getCursos());    
-                    }
-                } catch(err) {
-                    alert('Cursos.onDetailShow/GetCursos Error: '+err.message);
-                }  
-                // INTEGRACAO DADOS MACKENZIE
-            }
 
             getCursos(function(cursos) {
                 cursosViewModel.setCurrentItemById(cursos[0]);  

@@ -172,6 +172,7 @@ app.muralView = kendo.observable({
                 return result;
             },
             muralLikeClick: function(e) {
+                e = getMuralDataItem(e);
                 var userId = app.getUserData().Id;
 
                 if (!PublicacoesService.findLike(e.data.Likes, userId)) {
@@ -219,8 +220,12 @@ app.muralView = kendo.observable({
 
                 var texto = $novaMensagem.val().replace(/\n/g, '<br>');
 
-                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, $disciplina.val(), null, function() {
+                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, $disciplina.val(), null, function(pub) {
                     muralViewModel.muralCancelMsgClick(e);
+
+                    $("#muralListView").data("kendoMobileListView").prepend([pub]);
+
+
                     //var listView = $("#muralListView").kendoMobileListView();
                     //listView.refresh();                        
                 });
@@ -232,6 +237,7 @@ app.muralView = kendo.observable({
                 $('#mural-disciplina-select').val('');
             },
             muralCommentClick: function(e) {
+                e = getMuralDataItem(e);
                 var $comments = $(e.currentTarget).closest('ul').parent().closest('ul').find('#header-mural-comentario');
 
                 if ($comments.is(':visible')) {
@@ -241,7 +247,9 @@ app.muralView = kendo.observable({
                 }
             },
             muralCancelCommentClick: function(e) {
+                e = getMuralDataItem(e);
                 var $comment = $(e.currentTarget).closest('ul').find('#novoComentario');
+
                 $comment.val('');
                 $(e.currentTarget).closest('ul').find('#header-mural-comentario').hide();
             },
@@ -265,6 +273,7 @@ app.muralView = kendo.observable({
                         });
                 };
 
+                e = getMuralDataItem(e);
                 var element = e;
                 var $comment = $(element.currentTarget).closest('ul').find('#novoComentario');
 
@@ -319,6 +328,7 @@ app.muralView = kendo.observable({
                     $commentList.show().siblings().hide();
                 };
 
+                e = getMuralDataItem(e);
                 if (e.data.Comentarios.length) {
                     var $commentList = $(e.currentTarget).closest('ul').find('#header-mural-comentario-list');
 
@@ -349,32 +359,49 @@ app.muralView = kendo.observable({
                 }
             },
             muralEditMenuClick: function(e) {
-                var pub = e.data;
+                e = getMuralDataItem(e);
+                var pub = {pub: e.data, view: $('#muralListView'), dataSource: dataSource};
+
                 $("#publicacaoActions").data("kendoMobileActionSheet").open($(e.currentTarget), pub);
             },
             muralShareClick: function(e) {
-                var pub = e.data;
-                $("#compartilharActions").data("kendoMobileActionSheet").open($(e.currentTarget), pub);
+                e = getMuralDataItem(e);
+
+                /*var ele = $(e).closest('[data-uid]');
+                var data = muralViewModel.get('dataSource').getByUid(ele.attr('data-uid'));
+
+                var data = {pub: data, view: $('#muralListView'), dataSource: dataSource};
+                $("#compartilharActions").data("kendoMobileActionSheet").open($(e), data);*/
+
+
+                var data = {pub: e.data, view: $('#muralListView'), dataSource: dataSource};
+                $("#compartilharActions").data("kendoMobileActionSheet").open($(e.currentTarget), data);
             },
             muralEditSharePublicacaoClick: function(e) {
+                e = getMuralDataItem(e);
                 var pub = e.data;
                 var updateMural = $(e.currentTarget).closest('#reply-mural-publicacoes');
 
                 var disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
                 var tituloPub = updateMural.find('#tituloCompartilharUpdate');
 
-                PublicacoesService.createPublicacao(dataProvider, pub.Tipo, pub.Texto, tituloPub.val(), pub.FileName, pub.FileSize, pub.AnexoUri, disciplinasSelect.val(), pub, function() {
+                PublicacoesService.createPublicacao(dataProvider, pub.Tipo, pub.Texto, tituloPub.val(), pub.FileName, pub.FileSize, pub.AnexoUri, disciplinasSelect.val(), pub, function(pubAdd) {
                     $(e.currentTarget).closest('li').find('#mural-titulo').text(tituloPub.val());
 
                     updateMural.hide();
                     disciplinasSelect.val('');
-                    tituloPub.val('');                
+                    tituloPub.val('');  
+
+                    dataSource.add(pubAdd);
+                    $('#muralListView').data("kendoMobileListView").prepend([pubAdd]);                                 
                 });
             },
             muralCancelEditSharePublicacaoClick: function(e){
+                e = getMuralDataItem(e);
                 $(e.currentTarget).closest('#reply-mural-publicacoes').hide();
             },
             muralEditPublicacaoClick: function(e) {
+                e = getMuralDataItem(e);
                 var pub = e.data;
                 var updateMural = $(e.currentTarget).closest('#update-mural-publicacoes');
 
@@ -390,6 +417,8 @@ app.muralView = kendo.observable({
                 });
             },
             muralCancelEditPublicacaoClick: function(e){
+                e = getMuralDataItem(e);
+
                 $(e.currentTarget).closest('#update-mural-publicacoes').hide();
             },
             muralUpdatePublicacaoClick: function(e) {

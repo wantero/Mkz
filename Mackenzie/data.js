@@ -197,11 +197,12 @@ var MkzDataService = (function() {
 	service.loadUnidades = function(cb) {
 		var url = "https://www3.mackenzie.com.br/tia/tia_mobile/progress/EXT_unidades.php"
 			data = {};
-		
+
 		$.post(url, data)
         	.done(
         		function(data) {
             		console.log('load unidades:', data.resposta);
+
             		_unidades = transformUnidades(data.resposta);
 
         			try {

@@ -30,32 +30,41 @@ var PublicacoesService = {
     createPublicacao: function(dataProvider, tipo, texto, titulo, fileName, fileSize, anexoUri, disciplinaId, publicacao, cb) {
         var dataPublicacoes = dataProvider.data('Publicacoes');
 
-        dataPublicacoes.create(
-            {
-                'FileName': fileName ? fileName : '',
-                'FileSize': fileSize ? fileSize : '',
-                'Disciplina': disciplinaId ? disciplinaId : '',
-                'Comentarios': [],
-                'Likes': [],
-                'AnexoUri': anexoUri ? anexoUri : '',
-                'Texto': texto ? texto : '',
-                'Tipo': tipo,
-                'Titulo': titulo ? titulo : '',
-                'CompartilhadoDe': publicacao ? publicacao.Id: '',
-                // INTEGRACAO DADOS MACKENZIE
-                'CompartilhadoDeUser': publicacao ? publicacao.User.Id: '',
-                // INTEGRACAO DADOS MACKENZIE
-                //'CompartilhadoDeUser': publicacao ? publicacao.User: '',
-                // INTEGRACAO DADOS MACKENZIE
-                'User': app.getUserData().Id
-            },
+        var novaPublicacao = {
+            'FileName': fileName ? fileName : '',
+            'FileSize': fileSize ? fileSize : '',
+            'Disciplina': disciplinaId ? disciplinaId : '',
+            'Comentarios': [],
+            'Likes': [],
+            'AnexoUri': anexoUri ? anexoUri : '',
+            'Texto': texto ? texto : '',
+            'Tipo': tipo,
+            'Titulo': titulo ? titulo : '',
+            'CompartilhadoDe': publicacao ? publicacao.Id: '',
+            // INTEGRACAO DADOS MACKENZIE
+            'CompartilhadoDeUser': publicacao ? publicacao.User.Id: '',
+            // INTEGRACAO DADOS MACKENZIE
+            //'CompartilhadoDeUser': publicacao ? publicacao.User: '',
+            // INTEGRACAO DADOS MACKENZIE
+            'User': app.getUserData().Id
+        };
+
+        dataPublicacoes.create(novaPublicacao,
             function(data){
                 if (data.result) {
                     console.log('Create publicacoes:', data.result);
 
                     if (cb) {
                         try {
-                            cb();
+                            novaPublicacao.CompartilhadoDe = publicacao ? publicacao: '';
+                            novaPublicacao.CompartilhadoDeUser = publicacao ? publicacao.User: '';
+                            novaPublicacao.User = app.getUserData();
+                            novaPublicacao.Owner = novaPublicacao.User.Id;
+
+                            novaPublicacao = new kendo.data.Model(novaPublicacao);
+                            app.muralView.muralViewModel.fixHierarchicalData(novaPublicacao);
+
+                            cb(novaPublicacao);
                         } catch(e) {
                             alert('Error on Create Publicacoes: '+e.message);
                         }
@@ -109,7 +118,7 @@ var PublicacoesService = {
 
                     if (cb) {
                         try {
-                            cb();
+                            cb({Id: publicacaoId});
                         } catch(e) {
                             alert('Error on Delete Publicacoes: '+e.message);
                         }
@@ -398,10 +407,16 @@ var PublicacoesService = {
 };
 
 function onMuralPublicacaoReply(e) {
-    var pub = e.context;
+    var pub = e.context.pub;
+    var ele = e.context.view;
     var dataProvider = app.data.mackenzie;
+    var dataSource = e.context.dataSource;
 
-    PublicacoesService.createPublicacao(dataProvider, pub.Tipo, null, null, null, null, null, pub.Disciplina, pub);
+    PublicacoesService.createPublicacao(dataProvider, pub.Tipo, null, null, null, null, null, pub.Disciplina, pub, function(pubAdd) {
+        //var first = ele.find('li').eq(0);
+        dataSource.add(pubAdd);
+        ele.data("kendoMobileListView").prepend([pubAdd]);
+    });
 };
 
 function onMuralPublicacaoEditBeforeReply(e) {
@@ -419,7 +434,7 @@ function onMuralPublicacaoEditBeforeReply(e) {
 };
 
 function onMuralPublicacaoEdit(e) {
-    var pub = e.context;
+    var pub = e.context.pub;
     var updateMural = e.target.closest('ul').find('#update-mural-publicacoes');
 
     var disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
@@ -433,10 +448,12 @@ function onMuralPublicacaoEdit(e) {
 };
 
 function onMuralPublicacaoDelete(e) {
-    var pub = e.context;
+    var pub = e.context.pub;
+    var ele = e.context.view;
 
-    PublicacoesService.deletePublicacao(app.data.mackenzie, pub.Id, function() {
+    PublicacoesService.deletePublicacao(app.data.mackenzie, pub.Id, function(pubDel) {
         // remover publicacao da lista
+        ele.data("kendoMobileListView").remove([pub]);
     });
 };
 
@@ -682,3 +699,12 @@ function onMuralFileVideo(e) {
         media: navigator.camera.MediaType.VIDEO
     });
 };
+
+function getMuralDataItem(el) {
+    e = {};
+    e.currentTarget = el;
+    e.li = $(el).closest('[data-uid]');  //$(e).closest('li').parents('li');
+    e.data = app.muralView.muralViewModel.get('dataSource').getByUid(e.li.attr('data-uid'));
+
+    return e;
+}
