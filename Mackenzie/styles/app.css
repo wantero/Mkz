@@ -593,7 +593,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 .user-thumb {
   overflow: hidden;
-  /*border-radius: 50%;*/
 }
 	.user-thumb img {
 		width: 100%;
@@ -1097,9 +1096,12 @@ div[style^="transform: translate3d"].km-widget.km-view {
 }
 
 #kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .bg-branco > .post-conteudo-wrap {
+	position: relative;
 	margin-top: 0;
 }
-#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user {
+
+#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user,
+#kendoUiMobileApp .masterDetailView li > div > .post-user {
 	position: relative;
 	overflow: auto;
 	margin: 0;
@@ -1107,6 +1109,11 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	border-top: 1px solid #CCC;
 	border-bottom: 1px solid #CCC;
 }
+	#kendoUiMobileApp .masterDetailView li[data-uid]:nth-child(2) li.bg-branco > .post-user,
+	#kendoUiMobileApp .masterDetailView > li[data-uid]:nth-child(3) > div > .post-user,
+	#kendoUiMobileApp .masterDetailView > li[data-uid]:first-child > div > .post-user {
+		padding: 0.9em 1em;
+	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user:not(.head-post-compartilhado) {
 		margin: 0;
 	}
@@ -1118,7 +1125,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		padding: 0;
 		font-size: 0.8em;
 	}
-	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock {
+	#kendoUiMobileApp /*.mural-conteudo-wrap*/ .masterDetailView .post-user .section-icon-name.flaticon-clock {
     position: absolute;
     left: 4.2em;
     bottom: 0.6em;
@@ -1136,14 +1143,16 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		content: none;
 	}
 
-#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo > p {
-	padding: 0.5em 1em 0;
+#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-conteudo {
+	padding: 1em;
 }
 
 #kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap [class*=" flaticon-"] {
-	position: relative;
 	padding: 0.6em 1em 0.2em;
 }
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap [class*=" flaticon-"]:not(.flaticon-clock) {
+		position: relative;
+	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .flaticon-comment a {
     position: absolute;
     top: 0.6em;
@@ -1154,22 +1163,18 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem {
 		height: 100%;
 		position: relative;
-		border-width: 0 0 1px 0;
-		border-color: rgba(0, 0, 0, 0.15);
+		border: 0;
 		border-style: solid;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem > p {
-		margin: 0.5em 1em 1em;
+		margin: 0.5em 0 0;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem > video,
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-compartilhado-wrap > video {
 		width: 100%;
 	}
-	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem > video {
-		padding: 0 1em;
-	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-compartilhado-wrap > video {
-		padding: 0.5em;
+		padding: 0.8em;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem span {
 		position: absolute;
@@ -1186,6 +1191,9 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		height: auto;
 		max-height: 100%;
 		margin: 0 auto;
+		padding: 1em 0 0.5em;
+	}
+	#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .post-imagem img.post-compartilhado {
 		padding: 1em;
 	}
 	#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .km-icon {
@@ -1310,7 +1318,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 /* CONTEÚDO COMPARTILHADO */
 #kendoUiMobileApp .masterDetailView .post-compartilhado-wrap {
-  margin: 1em;
+  margin: 1em 0 0.5em;
   border: 1px solid #CCC;
   border-top: 0;
   box-shadow: 2px 2px 2px 1px #DDD;
@@ -1342,6 +1350,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 
 #kendoUiMobileApp .masterDetailView .post-botoes {
+	position: relative;
 	display: flex;
 	display: -webkit-flex;
 	-webkit-justify-content: space-between;
@@ -1351,6 +1360,16 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	border-style: solid;
 	border-color: #CCC;
 }
+	#kendoUiMobileApp .masterDetailView .post-botoes::before {
+		content: "";
+		position: absolute;
+		top: -2.6em;
+		left: 0;
+		display: inline-block;;
+		width: 100%;
+		border-bottom: 1px solid #CCC;
+	}
+
 	#kendoUiMobileApp .masterDetailView .post-botoes .km-icon {
 		height: auto;
 		width: auto;
@@ -1424,7 +1443,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 
 /* Suas publicações */
-#kendoUiMobileApp .user-thumb {
+#kendoUiMobileApp .user-thumb,
+#kendoUiMobileApp .post-compartilhado .user-thumb {
 	position: relative;
 	border-radius: 50%;
 }
@@ -1657,9 +1677,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
     		-ms-transform: rotate(45deg);
     				transform: rotate(45deg);
 	}
-		/*#cursos .km-scroll-container > .km-listview-wrapper:only-of-type .masterDetailView li:nth-child(3)::after {
-			top: 50%;
-		}*/
 
 	#cursos .km-scroll-wrapper .km-listview-wrapper li .km-label-above {
 		font-size: 0.8em;
@@ -1767,15 +1784,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .QR-code::after {
 		content: "\f101";
 		font-size: 5em;
-	}
-	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .smartphone {
-		/*right: 1.5em;
-		top: 1em;
-		display: inline-block;
-		height: 10em;
-		width: 50%;
-		background: url(images/Smartphone.svg) no-repeat 50%; /* image, repeat e position 
-		background-size: 10em;*/
 	}
 	#mackz-checkin .km-button-group .km-button {
 		margin: 0;
@@ -1934,7 +1942,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		font-size: 0.8em;
 		padding: 0;
 	}
-	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock {
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView li > div :not(.post-compartilhado-wrap) .post-user .section-icon-name.flaticon-clock {
 		bottom: 1em;
 	}
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .head-post-compartilhado .section-icon-name {
@@ -1942,9 +1950,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .km-icon::after {
 		line-height: 0.7em;
-	}
-	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-conteudo {
-		margin: 0.5em 0 0;
 	}
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-conteudo + .section-icon-name {
 		padding: 0 1em 0.8em; 
@@ -2032,7 +2037,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	.avaliacoes-wrap .prox-aula p {
 		display: inline-block;
 		width: 100%;
-		margin: 1em 0 0.4em;
+		margin: 1em 0 0.2em;
 	}
 	.avaliacoes-wrap .prox-aula p + .km-button {
 		position: absolute;
@@ -2059,6 +2064,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 	.avaliacoes-wrap .prox-aula .grupo-wrap {
 		display: inline-block;
+		opacity: 0.65;
 	}
 		.avaliacoes-wrap .prox-aula .grupo-wrap.um {
 			width: 44%;
@@ -2071,7 +2077,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		display: inline-block;
 	}
 	.avaliacoes-wrap .prox-aula .grupo-wrap .km-button {
-		padding: 0.5em 0.8em 0 0;
+		padding: 0 0.8em 0 0;
 		margin: 0;
 		border: none;
 		font-size: 0.95em;
@@ -2377,7 +2383,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 
 .publicacoes-button-wrap #tabPubMsgs li[data-uid] > div:first-child {
-	padding: 0.5em 0;
+	position: relative;
+	padding: 0 0 0.7em;
 	margin: 0;
 	background-color: #FFF;
 }
@@ -2387,6 +2394,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	.publicacoes-button-wrap #tabPubMsgs li > div .post-compartilhado-wrap .post-user {
 		position: relative;
 		padding-top: 1em;
+		border-bottom: 1px solid #CCC;
 	}
 	.publicacoes-button-wrap #tabPubMsgs li > div .post-compartilhado-wrap .post-user h4 {
 		vertical-align: top;
@@ -2402,27 +2410,39 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	.publicacoes-button-wrap #tabPubMsgs li > div .docs-wrap {
 		width: 100%;
 	  max-width: 100%;
-	  padding: 0 1em 1em;
+	  padding: 1em;
 	}
 	.publicacoes-button-wrap #tabPubMsgs li > div .docs-wrap h4 {
-		margin: 0.5em 0;
+		margin: 0;
 	}
 	.publicacoes-button-wrap #tabPubMsgs li > div .docs-wrap p:first-of-type {
 		font-size: 1em;
-		margin: 0 0 1em;
 	}
 	.publicacoes-button-wrap #tabPubMsgs li > div .docs-wrap p b {
 		font-size: 0.85em;
 	}
 
 	.publicacoes-button-wrap #tabPubMsgs li > div > .docs-wrap {
-		padding-bottom: 0;
+		padding: 1em 1em 0;
+		display: block;
 	}
 	.publicacoes-button-wrap #tabPubMsgs li > div > .docs-wrap p:last-child {
 		margin: 1em 0 0.5em;
 	}
-	.publicacoes-button-wrap #tabPubMsgs h4 {
-		margin-top: 0.5em;
+
+	.publicacoes-button-wrap #tabPubMsgs #update-mural-publicacoes + .post-compartilhado-wrap	{
+		margin: 1em;
+	}
+	.publicacoes-button-wrap #tabPubMsgs .post-user:not(.head-post-compartilhado) h4 {
+		margin: 0 0 0.95em;
+		vertical-align: bottom;
+		text-indent: 0.2em;
+	}
+	.publicacoes-button-wrap #tabPubMsgs .post-user:not(.head-post-compartilhado) .mural-editar-btn + .flaticon-clock {
+		bottom: 1.1em;
+	}
+	.publicacoes-button-wrap #tabPubMsgs .post-user:not(.head-post-compartilhado) .mural-editar-btn + .flaticon-clock .km-icon {
+		vertical-align: middle;
 	}
 	.publicacoes-button-wrap #tabPubMsgs li > div > .section-icon-name {
 		padding-left: 1em;
