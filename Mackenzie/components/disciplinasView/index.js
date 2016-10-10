@@ -274,7 +274,7 @@ app.disciplinasView = kendo.observable({
 
                 if (!PublicacoesService.findLike(e.data.Likes, userId)) {
                     PublicacoesService.pushLikes(dataProvider, e.data.Id, app.getUserData().Id, function(data) {
-                        var $likesCount = $(e.currentTarget).closest('div').find('#likesCount');
+                        var $likesCount = $(e.currentTarget).closest('li').parents('li').find('#likesCount');
                         $likesCount.text(Number($likesCount.text())+data);
 
                         // Adidiona Like na lista.
@@ -283,7 +283,7 @@ app.disciplinasView = kendo.observable({
                     });
                 } else {
                     PublicacoesService.popLikes(dataProvider, e.data.Id, app.getUserData().Id, function(data) {
-                        var $likesCount = $(e.currentTarget).closest('div').find('#likesCount');
+                        var $likesCount = $(e.currentTarget).closest('li').parents('li').find('#likesCount');
                         $likesCount.text(Number($likesCount.text())-data);
 
                         // Remove Like na lista.

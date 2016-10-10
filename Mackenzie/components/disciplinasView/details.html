@@ -406,50 +406,103 @@
         # console.log('msgs', data); #
     	
         # if (data.Tipo && data.Tipo == 'msg') { #
-	    	<div>
-          <!-- COMPARTILHADO -->
-          # if (data.CompartilhadoDe) { #
-            <!-- NOME DO USUÁRIO QUE POSTOU -->
-            <div class="post-compartilhado-wrap">
-	              <div class="post-user head-post-compartilhado">
-	                <div class="user-thumb mural-thumb thumb-sm">
-	                  # if (data.CompartilhadoDeUser.fotoUri && data.CompartilhadoDeUser.fotoUri != "") { #
-	                  <span class="km-thumbnail" data-bind="" style="background-image: url( #: data.CompartilhadoDeUser.fotoUri # )"></span>
-	                  # } else { #
-	                  <span class="km-thumbnail" data-bind="" style="background-image: url(../../styles/images/user-male.png)"></span>
-	                  # } #
-	                </div>
+		<div>
+			<!-- COMPARTILHADO -->
+			# if (data.CompartilhadoDe) { #
 
-	                <h4>#: data.CompartilhadoDeUser['DisplayName'] #</h4>
+                <!-- NOME DO USUÁRIO QUE POSTOU -->
+                <div class="post-user">
+                    <div class="user-thumb mural-thumb thumb-sm">
+                        # if (data.User.fotoUri && data.User.fotoUri != "") { #
+                        <!-- <img class="km-thumbnail" data-bind="" src="#: data.User.fotoUri #"  alt="Your photo"> -->
+                        <span class="km-thumbnail" data-bind="" style="background-image: url( #: data.User.fotoUri # )"></span>
+                        # } else { #
+                        <!-- <img class="km-thumbnail" data-bind="" src="../../styles/images/user-male.png" alt="Your photo"> -->
+                        <span class="km-thumbnail" data-bind="" style="background-image: url(../../styles/images/user-male.png)"></span>
+                        # } #
+                    </div>
 
-	                <div class="section-icon-name flaticon-clock">
-	                  <span class="km-icon" data-icon=""></span>
-	                  #: data.CompartilhadoDe['TempoPublicacao'] #
-	                </div>                     
-	              </div>
+                    <h4>#: data['User']['DisplayName'] #</h4>
 
-				  			<div class="docs-wrap">
-		                # if (data.Titulo && data.Titulo != '') { #
-	                    <h4>#: data['Titulo'] #</h4>
-			            	# } #
-					      	<p>#= data.Texto #<p>
-					      	<b>Enviado por: #: data.User.DisplayName #</b>
-				  			</div>
+                    # if (data.User.Id == data.Owner) { #
+                    <div class="section-icon-name mural-editar-btn">
+                        <a data-bind="{ events: {click: muralEditMenuClick} }">
+                            <span></span>
+                        </a>                            
+                    </div>   
+                    # } #
 
-            </div>
+                    <div class="section-icon-name flaticon-clock">
+                        <span class="km-icon" data-icon=""></span>
+                        #: data['TempoPublicacao'] #
+                    </div>                        
+                </div>
 
-            <!-- COMPARTILHADO -->
+				<div class="docs-wrap">
+					# if (data.Titulo && data.Titulo != '') { #
+						<h4>#: data['Titulo'] #</h4>
+					# } #
+				</div>	            
+
+                <!-- UPDATE PUBLICACAO -->
+                <div id="update-mural-publicacoes" xclass="section-name-wrap mural-header" style="display:none">
+                    <form xclass="section-name-wrap">
+                        <div class="editar-comentario">
+                            <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro">
+                            </input>
+                        </div>
+                        <div class="editar-componente">
+                            <select id="mural-disciplina-update-select" xclass="comboBox">
+                            </select>  
+                        </div>
+                    </form>  
+                    <div class="mural-header-icons">
+                        <div class="section-icon-name flaticon-comment-ok">
+                            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralEditPublicacaoClick} }"></span>
+                        </div>
+                        <div class="section-icon-name flaticon-comment-cancel">
+                            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelEditPublicacaoClick} }"></span>
+                        </div>
+                    </div>
+                </div>                
+                <!-- UPDATE PUBLICACAO -->
+
+	            <!-- NOME DO USUÁRIO ORIGINAL QUE POSTOU -->
+	            <div class="post-compartilhado-wrap">
+					<div class="post-user head-post-compartilhado">
+						<div class="user-thumb mural-thumb thumb-sm">
+							# if (data.CompartilhadoDeUser.fotoUri && data.CompartilhadoDeUser.fotoUri != "") { #
+								<span class="km-thumbnail" data-bind="" style="background-image: url( #: data.CompartilhadoDeUser.fotoUri # )"></span>
+							# } else { #
+								<span class="km-thumbnail" data-bind="" style="background-image: url(../../styles/images/user-male.png)"></span>
+							# } #
+						</div>
+
+		                <h4>#: data.CompartilhadoDeUser['DisplayName'] #</h4>
+
+		                <div class="section-icon-name flaticon-clock">
+							<span class="km-icon" data-icon=""></span>
+							#: data.CompartilhadoDe['TempoPublicacao'] #
+		                </div>                     
+					</div>
+
+					<div class="docs-wrap">
+						<p>#= data.CompartilhadoDe.Texto #<p>
+					</div>
+	            </div>	            
+	            <!-- COMPARTILHADO -->
+
             # } else {#
 
-              <!-- NAO COMPARTILHADO -->
-			  			<div class="docs-wrap">
-	                # if (data.Titulo && data.Titulo != '') { #
-	                  <h4>#: data['Titulo'] #</h4>
-		            	# } #
-				      	<p>#= data.Texto #<p>
-				      	<b>Enviado por: #: data.User.DisplayName #</b>
-			  			</div>
-            	<!-- NAO COMPARTILHADO -->
+			<!-- NAO COMPARTILHADO -->
+			<div class="docs-wrap">
+				# if (data.Titulo && data.Titulo != '') { #
+					<h4>#: data['Titulo'] #</h4>
+				# } #
+
+				<p>#= data.Texto #<p>
+			</div>
+			<!-- NAO COMPARTILHADO -->
 
             # } #
 
@@ -500,91 +553,94 @@
 
         # if (data.Tipo && data.Tipo == 'video') { #	
 
-          #console.log('tipo', data.Tipo, 'anexo', data.AenxoUri); #
+          	#console.log('tipo', data.Tipo, 'anexo', data.AenxoUri); #
 
 	        <div class="mural-conteudo-wrap">
-            <ul class="masterDetailView km-widget km-listview km-list" data-role="listview">
-              <li class="bg-branco">
+            	<ul class="masterDetailView km-widget km-listview km-list" data-role="listview">
+              		<li class="bg-branco">
 
-                <!-- NOME DO USUÁRIO QUE POSTOU -->
-                <div class="post-user">
-                  <div class="user-thumb mural-thumb thumb-sm">
-                      # if (data.User.fotoUri && data.User.fotoUri != "") { #
-                      <!-- <img class="km-thumbnail" data-bind="" src="#: data.User.fotoUri #"  alt="Your photo"> -->
-                      <span class="km-thumbnail" data-bind="" style="background-image: url( #: data.User.fotoUri # )"></span>
-                      # } else { #
-                      <!-- <img class="km-thumbnail" data-bind="" src="../../styles/images/user-male.png" alt="Your photo"> -->
-                      <span class="km-thumbnail" data-bind="" style="background-image: url( ../../styles/images/user-male.png )" alt="Your photo"></span>
-                      # } #
-                  </div>
+	                	<!-- NOME DO USUÁRIO QUE POSTOU -->
+	                	<div class="post-user">
+	                  		<div class="user-thumb mural-thumb thumb-sm">
+	                      		# if (data.User.fotoUri && data.User.fotoUri != "") { #
+	                      			<!-- <img class="km-thumbnail" data-bind="" src="#: data.User.fotoUri #"  alt="Your photo"> -->
+	                      			<span class="km-thumbnail" data-bind="" style="background-image: url( #: data.User.fotoUri # )"></span>
+	                      		# } else { #
+	                      			<!-- <img class="km-thumbnail" data-bind="" src="../../styles/images/user-male.png" alt="Your photo"> -->
+	                      			<span class="km-thumbnail" data-bind="" style="background-image: url( ../../styles/images/user-male.png )" alt="Your photo"></span>
+	                      		# } #
+	                  		</div>
 
-                  <h4>#: data['User']['DisplayName'] #</h4>
+	                  		<h4>#: data['User']['DisplayName'] #</h4>
 
-                  <div class="section-icon-name flaticon-clock">
-                      <span class="km-icon" data-icon=""></span>
-                      #: data['TempoPublicacao'] #
-                  </div>
-                </div>
+	                  		<div class="section-icon-name flaticon-clock">
+	                      		<span class="km-icon" data-icon=""></span>
+	                      		#: data['TempoPublicacao'] #
+	                 		</div>
+	                	</div>
 
-                <!-- CONTEÚDO DO POST -->
-                <div class="post-conteudo-wrap">
-                  <div class="post-conteudo">
-                    # if (data.Titulo && data.Titulo != '') { #
-                      <p>#: data['Titulo'] #</p>
-                  	# } #
-                    <div class="post-imagem">
-                      <!-- COMPARTILHADO -->
-                      # if (data.CompartilhadoDe) { #
-                        <!-- NOME DO USUÁRIO QUE POSTOU -->
-                        <div class="post-compartilhado-wrap">
-                          <div class="post-user head-post-compartilhado">
-                            <div class="user-thumb mural-thumb thumb-sm">
-                              # if (data.CompartilhadoDeUser.fotoUri && data.CompartilhadoDeUser.fotoUri != "") { #
-                              <span class="km-thumbnail" data-bind="" style="background-image: url( #: data.CompartilhadoDeUser.fotoUri # )"></span>
-                              # } else { #
-                              <span class="km-thumbnail" data-bind="" style="background-image: url(../../styles/images/user-male.png)"></span>
-                              # } #
-                            </div>
+	                	<!-- CONTEÚDO DO POST -->
+	                	<div class="post-conteudo-wrap">
+							<div class="post-conteudo">
+		                    	# if (data.Titulo && data.Titulo != '') { #
+		                      		<p>#: data['Titulo'] #</p>
+		                  		# } #
 
-                            <h4>#: data.CompartilhadoDeUser['DisplayName'] #</h4>
+	                    		<div class="post-imagem">
 
-                            <div class="section-icon-name flaticon-clock">
-                                <span class="km-icon" data-icon=""></span>
-                                #: data.CompartilhadoDe['TempoPublicacao'] #
-                            </div>                     
-                          </div>
+	                      			<!-- COMPARTILHADO -->
+	                      			# if (data.CompartilhadoDe) { #
 
-                          # if (data.AnexoUri && data.AnexoUri != "") { #
-                          	<video controls> 
-														  <source src="#: data.AnexoUri #" type="video/mp4">
-														</video>
-                          # } #
-                        </div>
-                        <!-- COMPARTILHADO -->
+	                        			<!-- NOME DO USUÁRIO QUE POSTOU -->
+	                        			<div class="post-compartilhado-wrap">
+	                          				<div class="post-user head-post-compartilhado">
+												<div class="user-thumb mural-thumb thumb-sm">
+													# if (data.CompartilhadoDeUser.fotoUri && data.CompartilhadoDeUser.fotoUri != "") { #
+														<span class="km-thumbnail" data-bind="" style="background-image: url( #: data.CompartilhadoDeUser.fotoUri # )"></span>
+													# } else { #
+														<span class="km-thumbnail" data-bind="" style="background-image: url(../../styles/images/user-male.png)"></span>
+													# } #
+												</div>
 
-                        # } else {#
+	                            				<h4>#: data.CompartilhadoDeUser['DisplayName'] #</h4>
 
-                          <!-- NAO COMPARTILHADO -->
-                          # if (data.AnexoUri && data.AnexoUri != "") { #
-                        	<video controls> 
-													  <source src="#: data.AnexoUri #" type="video/mp4">
-													</video>
-                          # } #
-                          <!-- NAO COMPARTILHADO -->
-                              
-                        # } #
-                      </div>
-                  </div>
+					                            <div class="section-icon-name flaticon-clock">
+					                                <span class="km-icon" data-icon=""></span>
+					                                #: data.CompartilhadoDe['TempoPublicacao'] #
+					                            </div>                     
+	                          				</div>
 
-	                <div class="section-icon-name flaticon-smiley">
-	                    <span class="km-icon" data-icon=""></span>
-	                    <span id="likesCount">#: data.Likes.length #</span>
-	                </div>
-	                <div class="section-icon-name flaticon-comment">
-	                    <span class="km-icon" data-icon=""></span>
-	                    <span id="commentsCount">#: data.Comentarios.length #</span> comentário(s)
-	                </div>
-                </div>
+	                          				# if (data.CompartilhadoDe.AnexoUri && data.CompartilhadoDe.AnexoUri != "") { #
+	                          					<video controls> 
+													<source src="#: data.CompartilhadoDe.AnexoUri #" type="video/mp4">
+												</video>
+	                          				# } #
+	                        			</div>
+	                    			<!-- COMPARTILHADO -->
+
+	                        		# } else {#
+
+										<!-- NAO COMPARTILHADO -->
+										# if (data.AnexoUri && data.AnexoUri != "") { #
+											<video controls> 
+												<source src="#: data.AnexoUri #" type="video/mp4">
+											</video>
+										# } #
+										<!-- NAO COMPARTILHADO -->
+	                              
+	                        		# } #
+	                      		</div>
+	                  		</div>
+
+			                <div class="section-icon-name flaticon-smiley">
+			                    <span class="km-icon" data-icon=""></span>
+			                    <span id="likesCount">#: data.Likes.length #</span>
+			                </div>
+			                <div class="section-icon-name flaticon-comment">
+			                    <span class="km-icon" data-icon=""></span>
+			                    <span id="commentsCount">#: data.Comentarios.length #</span> comentário(s)
+			                </div>
+	                	</div>
 
 				        <!-- BOTÕES AÇÕES LIKE/COMENTAR/COMPARTILHAR -->
 				        <ul class="post-botoes">
@@ -602,20 +658,20 @@
 				        </ul>
 
 			        	<div id="header-mural-comentario" class="section-name-wrap mural-header" style="display:none">
-			            <form class="section-name-wrap">
-			                <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa"></textarea>
-			                <div class="mural-header-icons">
-			                    <div class="xsection-icon-name flaticon-comment-ok">
-			                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralSendCommentClick} }"></span>
-			                    </div>
-			                    <div class="xsection-icon-name flaticon-comment-cancel">
-			                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelCommentClick} }"></span>
-			                    </div>
-			                </div>
-			            </form>
+				            <form class="section-name-wrap">
+				                <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa"></textarea>
+				                <div class="mural-header-icons">
+				                    <div class="xsection-icon-name flaticon-comment-ok">
+				                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralSendCommentClick} }"></span>
+				                    </div>
+				                    <div class="xsection-icon-name flaticon-comment-cancel">
+				                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelCommentClick} }"></span>
+				                    </div>
+				                </div>
+				            </form>
 			        	</div>
-              </li>
-            </ul>
+              		</li>
+            	</ul>
 	        </div>
         # } #       
     </script>
