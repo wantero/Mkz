@@ -351,23 +351,27 @@ app.cursosView = kendo.observable({
 
                 var dayOfWeek = dayOfWeek(new Date());
 
-                try {
-                    var currentItem = cursosViewModel.get('currentItem');
-                    var cursoId = currentItem.Id;
+                    // INTEGRACAO DADOS MACKENZIE
+                //try {
+                    //var currentItem = cursosViewModel.get('currentItem');
+                    //var cursoId = currentItem.Id;
                     //var cursoId = app.cursosView.cursosViewModel.dataSource.data()[0].Id;
-                    var query = new Everlive.Query();
 
-                    // INTEGRACAO DADOS MACKENZIE
+                    //var query = new Everlive.Query();
                     //query.where().eq('Curso', cursoId);
+                    //query.expand({"Disciplina": true});
                     // INTEGRACAO DADOS MACKENZIE
-                    query.expand({"Disciplina": true});
 
 
-                    var data = dataProvider.data('GradeHorario');
+                    // INTEGRACAO DADOS MACKENZIE
+                    /*var data = dataProvider.data('GradeHorario');
                     data.get(query)
-                        .then(function(data){
+                        .then(function(data){*/
+                    // INTEGRACAO DADOS MACKENZIE
+
                             // INTEGRACAO DADOS MACKENZIE
                             //data.result = JSON.parse('[{"Disciplina":{"Professor":"39b92be0-528a-11e6-bcc1-5b5edbc21f50","Nome":"Fundamentos de Computação e Sistemas","color":"#005ce6","Id":"88d74580-528b-11e6-9146-d957c67c4429"},"dia":"segunda","HorarioFim":"2016-08-08T19:00:00.000Z","HorarioInicio":"2016-08-08T20:00:00.000Z","Curso":"18c5a7b0-528a-11e6-b1e0-77d175454ffc","Id":"03a1cd20-5d6e-11e6-a313-09481e7227c0"},{"Disciplina":{"Professor":"39b92be0-528a-11e6-bcc1-5b5edbc21f50","Nome":"Estratégias em Tecnologia da Informação","color":"#ff1a1a","Id":"fda9b9d0-59aa-11e6-8a96-9f79bf395ef3"},"Curso":"18c5a7b0-528a-11e6-b1e0-77d175454ffc","dia":"quinta","HorarioInicio":"2016-08-08T16:00:00.000Z","HorarioFim":"2016-08-08T04:30:00.000Z","Id":"a111eed0-6086-11e6-84f5-6325cc0ac086"}]');
+                            var data = {};
                             data.result = MkzDataService.getHorarios();
                             // INTEGRACAO DADOS MACKENZIE
 
@@ -427,13 +431,17 @@ app.cursosView = kendo.observable({
                             } catch(e) {
                                 alert(e.message);
                             }
-                        },
+
+                // INTEGRACAO DADOS MACKENZIE
+                        /*},
                         function(error){
                             alert('error loading disciplinas');
                         });    
                 } catch(e) {
                     alert("Falha ao carregar grade de horário.");
-                }
+                }*/
+                // INTEGRACAO DADOS MACKENZIE
+
             },
             initScheduler: function(cb) {
                 var today = new Date();

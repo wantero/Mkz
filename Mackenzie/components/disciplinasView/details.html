@@ -117,28 +117,28 @@
 
 			<div class="publicacoes-button-wrap">
 		     	<div id="tabPubDocs" data-role="scroller" class="lista-arquivos">
-					<ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="tabPubDocsTemplate"
+					<ul id="listPubDocs" class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="tabPubDocsTemplate"
 					    data-bind="{ source: publicacoes }" data-pull-to-refresh="false" 
 					    data-endless-scroll="false"> <!-- , events: { click: algoClick } -->
 					</ul>
 				</div>
 
 				<div id="tabPubImages" data-role="scroller" class="lista-arquivos" style="display:none">
-		            <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="tabPubImagesTemplate"
+		            <ul id="listPubImages" class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="tabPubImagesTemplate"
 		                data-bind="{ source: publicacoes }" data-pull-to-refresh="false" 
 		                data-endless-scroll="false"> <!-- , events: { click: algoClick } -->
 		            </ul>
 		      	</div>
 
 		      	<div id="tabPubMsgs" data-role="scroller" class="lista-arquivos" style="display:none">
-		            <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="tabPubMsgsTemplate"
+		            <ul id="listPubMsgs" class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="tabPubMsgsTemplate"
 		                data-bind="{ source: publicacoes }" data-pull-to-refresh="false" 
 		                data-endless-scroll="false"> <!-- , events: { click: algoClick } -->
 		            </ul>
 		      	</div>
 
 		      	<div id="tabPubVideos" data-role="scroller" class="lista-arquivos" style="display:none">
-		            <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="tabPubVideosTemplate"
+		            <ul id="listPubVideos" class="masterDetailView" data-role="listview" data-auto-bind="false" data-template="tabPubVideosTemplate"
 		                data-bind="{ source: publicacoes }" data-pull-to-refresh="false" 
 		                data-endless-scroll="false"> <!-- , events: { click: algoClick } -->
 		            </ul>
@@ -150,8 +150,8 @@
 
 
     <ul id="componenteCompartilharActions" data-role="actionsheet" data-popup='{"direction": "left"}' data-cancel="Cancelar">
-        <li><a href="#" data-action="onMuralPublicacaoReply">Compartilhar agora</a></li>
-        <li><a href="#" data-action="onMuralPublicacaoEditBeforeReply">Editar publicação</a></li>
+        <li><a href="#" data-action="app.disciplinasView.disciplinasViewModel.muralPublicacaoReply">Compartilhar agora</a></li>
+        <li><a href="#" data-action="app.disciplinasView.disciplinasViewModel.muralPublicacaoEditBeforeReply">Editar publicação</a></li>
     </ul>
 
     <ul id="componentePublicacaoActions" data-role="actionsheet" data-popup='{"direction": "left"}' data-cancel="Cancelar">
@@ -238,7 +238,8 @@
 
 	                        # if (data.User.Id == data.Owner) { #
 	                        <div class="section-icon-name mural-editar-btn">
-	                            <a data-bind="{ events: {click: muralEditMenuClick} }">
+	                            <a  id="mural-edit-menu"
+	                            	data-bind="{ events: {click: muralEditMenuClick} }" >
 	                                <span></span>
 	                            </a>                            
 	                        </div>   
@@ -264,10 +265,12 @@
 	                        </form>  
 	                        <div class="mural-header-icons">
 	                            <div class="section-icon-name flaticon-comment-ok">
-	                                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralEditPublicacaoClick} }"></span>
+	                                <span id="mural-edit-publicacao" class="km-icon" data-icon="" 
+	                                	  data-bind="{ events: {click: muralEditPublicacaoClick} }"></span>
 	                            </div>
 	                            <div class="section-icon-name flaticon-comment-cancel">
-	                                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelEditPublicacaoClick} }"></span>
+	                                <span id="mural-cancel-edit-publicacao" class="km-icon" data-icon=""
+	                                	  data-bind="{ events: {click: muralCancelEditPublicacaoClick} }"></span>
 	                            </div>
 	                        </div>
 	                    </div>                
@@ -277,7 +280,7 @@
 	                    <div class="post-conteudo-wrap">
 	                        <div class="post-conteudo">
 		                        # if (data.Titulo && data.Titulo != '') { #
-		                            <p>#: data['Titulo'] #</p>
+		                            <p id="mural-titulo">#: data['Titulo'] #</p>
 	                        	# } #
 
 	                            <div class="post-imagem">
@@ -329,7 +332,9 @@
 	                        </div>
 	                        <div class="section-icon-name flaticon-comment">
 	                            <span class="km-icon" data-icon=""></span>
-	                            <a data-bind="{ events: {click: muralCommentsListClick} }"><span id="commentsCount">#: data.Comentarios.length #</span> comentário(s)</a>
+	                            <a id="mural-comment-list" data-bind="{ events: {click: muralCommentsListClick} }">
+	                            	<span id="commentsCount">#: data.Comentarios.length #</span> comentário(s)
+	                            </a>
 	                        </div>
 	                    </div>
 
@@ -338,20 +343,24 @@
 	                        #console.log('liked: ',data.AlreadyLike);#
 	                        # if (data.AlreadyLike) { #
 	                            <li class="section-icon-name flaticon-smiley smiley-curtiu"> <!-- style="background-color: blue" -->
-	                                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralLikeClick} }"></span>
+	                                <span id="mural-like" class="km-icon" data-icon=""
+	                                	  data-bind="{ events: {click: muralLikeClick} }"></span>
 	                            </li>
 	                        # } else { #
 	                            <li class="section-icon-name flaticon-smiley">
-	                                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralLikeClick} }"></span>
+	                                <span id="mural-like" class="km-icon" data-icon=""
+	                                	  data-bind="{ events: {click: muralLikeClick} }"></span>
 	                            </li>
 	                        # } #
 
 	                        <li class="xsection-icon-name flaticon-comment">
-	                            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCommentClick} }"></span>
+	                            <span id="mural-comment" class="km-icon" data-icon=""
+	                            	  data-bind="{ events: {click: muralCommentClick} }"></span>
 	                        </li>
 
 	                        <li class="xsection-icon-name flaticon-share">
-	                            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralShareClick} }"></span>
+	                            <span id="mural-share" class="km-icon" data-icon=""
+	                            	  data-bind="{ events: {click: muralShareClick} }"></span>
 	                        </li>
 	                    </ul>
 
@@ -361,10 +370,12 @@
 		                            <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa"></textarea>
 		                            <div class="mural-header-icons">
 		                                <div class="xsection-icon-name flaticon-comment-ok">
-		                                    <span class="km-icon" data-icon="" data-bind="{ events: {click: muralSendCommentClick} }"></span>
+		                                    <span id="mural-send-comment" class="km-icon" data-icon=""
+		                                    	  data-bind="{ events: {click: muralSendCommentClick} }"></span>
 		                                </div>
 		                                <div class="xsection-icon-name flaticon-comment-cancel">
-		                                    <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelCommentClick} }"></span>
+		                                    <span id="mural-cancel-comment" class="km-icon" data-icon=""
+		                                    	  data-bind="{ events: {click: muralCancelCommentClick} }"></span>
 		                                </div>
 		                            </div>
 		                        </form>
@@ -387,10 +398,12 @@
                      	    </form>  
                      	    <div class="mural-header-icons">
                      	        <div class="section-icon-name flaticon-comment-ok">
-                     	            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralEditSharePublicacaoClick} }"></span>
+                     	            <span id="mural-edit-share-publicacao" class="km-icon" data-icon=""
+                     	            	  data-bind="{ events: {click: muralEditSharePublicacaoClick} }"></span>
                      	        </div>
                      	        <div class="section-icon-name flaticon-comment-cancel">
-                     	            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelEditSharePublicacaoClick} }"></span>
+                     	            <span id="mural-cancel-edit-share-publicacao" class="km-icon" data-icon=""
+                     	            	  data-bind="{ events: {click: muralCancelEditSharePublicacaoClick} }"></span>
                      	        </div>
                      	    </div>
                      	</div>                
@@ -426,7 +439,8 @@
 
                     # if (data.User.Id == data.Owner) { #
                     <div class="section-icon-name mural-editar-btn">
-                        <a data-bind="{ events: {click: muralEditMenuClick} }">
+                        <a  id="mural-edit-menu"
+                        	data-bind="{ events: {click: muralEditMenuClick} }">
                             <span></span>
                         </a>                            
                     </div>   
@@ -458,10 +472,12 @@
                     </form>  
                     <div class="mural-header-icons">
                         <div class="section-icon-name flaticon-comment-ok">
-                            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralEditPublicacaoClick} }"></span>
+                            <span id="mural-edit-publicacao" class="km-icon" data-icon=""
+                            	  data-bind="{ events: {click: muralEditPublicacaoClick} }"></span>
                         </div>
                         <div class="section-icon-name flaticon-comment-cancel">
-                            <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelEditPublicacaoClick} }"></span>
+                            <span id="mural-cancel-edit-publicacao" class="km-icon" data-icon=""
+                            	  data-bind="{ events: {click: muralCancelEditPublicacaoClick} }"></span>
                         </div>
                     </div>
                 </div>                
@@ -519,15 +535,18 @@
 	        <!-- BOTÕES AÇÕES LIKE/COMENTAR/COMPARTILHAR -->
 	        <ul class="post-botoes">
 	            <li class="xsection-icon-name flaticon-smiley">
-	                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralLikeClick} }"></span>
+	                <span id="mural-like" class="km-icon" data-icon=""
+	                	  data-bind="{ events: {click: muralLikeClick} }"></span>
 	            </li>
 
 	            <li class="xsection-icon-name flaticon-comment">
-	                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCommentClick} }"></span>
+	                <span id="mural-comment" class="km-icon" data-icon=""
+	                	  data-bind="{ events: {click: muralCommentClick} }"></span>
 	            </li>
 
 	            <li class="xsection-icon-name flaticon-share">
-	                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralShareClick} }"></span>
+	                <span id="mural-share" class="km-icon" data-icon=""
+	                	  data-bind="{ events: {click: muralShareClick} }"></span>
 	            </li>
 	        </ul>
 
@@ -536,10 +555,12 @@
 	                <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa"></textarea>
 	                <div class="mural-header-icons">
 	                    <div class="xsection-icon-name flaticon-comment-ok">
-	                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralSendCommentClick} }"></span>
+	                        <span id="mural-send-comment" class="km-icon" data-icon=""
+	                        	  data-bind="{ events: {click: muralSendCommentClick} }"></span>
 	                    </div>
 	                    <div class="xsection-icon-name flaticon-comment-cancel">
-	                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelCommentClick} }"></span>
+	                        <span id="mural-cancel-comment" class="km-icon" data-icon=""
+	                        	  data-bind="{ events: {click: muralCancelCommentClick} }"></span>
 	                    </div>
 	                </div>
 	            </form>
@@ -645,15 +666,18 @@
 				        <!-- BOTÕES AÇÕES LIKE/COMENTAR/COMPARTILHAR -->
 				        <ul class="post-botoes">
 				            <li class="xsection-icon-name flaticon-smiley">
-				                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralLikeClick} }"></span>
+				                <span id="mural-like" class="km-icon" data-icon=""
+				                	  data-bind="{ events: {click: muralLikeClick} }"></span>
 				            </li>
 
 				            <li class="xsection-icon-name flaticon-comment">
-				                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCommentClick} }"></span>
+				                <span id="mural-comment" class="km-icon" data-icon=""
+				                	  data-bind="{ events: {click: muralCommentClick} }"></span>
 				            </li>
 
 				            <li class="xsection-icon-name flaticon-share">
-				                <span class="km-icon" data-icon="" data-bind="{ events: {click: muralShareClick} }"></span>
+				                <span id="mural-share" class="km-icon" data-icon=""
+				                	  data-bind="{ events: {click: muralShareClick} }"></span>
 				            </li>
 				        </ul>
 
@@ -662,10 +686,12 @@
 				                <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa"></textarea>
 				                <div class="mural-header-icons">
 				                    <div class="xsection-icon-name flaticon-comment-ok">
-				                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralSendCommentClick} }"></span>
+				                        <span id="mural-send-comment" class="km-icon" data-icon=""
+				                        	  data-bind="{ events: {click: muralSendCommentClick} }"></span>
 				                    </div>
 				                    <div class="xsection-icon-name flaticon-comment-cancel">
-				                        <span class="km-icon" data-icon="" data-bind="{ events: {click: muralCancelCommentClick} }"></span>
+				                        <span id="mural-cancel-comment" class="km-icon" data-icon=""
+				                        	  data-bind="{ events: {click: muralCancelCommentClick} }"></span>
 				                    </div>
 				                </div>
 				            </form>

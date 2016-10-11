@@ -22,10 +22,8 @@ var MkzDataService = (function() {
 	// Private Methods
     function init() {
     	service.status('loading');
-    	console.log(new Date());
 
     	service.loadUnidades(function() {
-	    	console.log(new Date());
 	    	service.status('ready');
     	});
     };

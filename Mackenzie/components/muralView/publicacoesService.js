@@ -77,7 +77,7 @@ var PublicacoesService = {
         );
     },
 
-    updatePublicacao: function(dataProvider, publicacaoId, titulo, disciplinaId, cb) {
+    updatePublicacao: function(dataProvider, publicacaoId, titulo, disciplinaId, publicacao, cb) {
         var dataPublicacoes = dataProvider.data('Publicacoes');
 
         dataPublicacoes.updateSingle(
@@ -92,7 +92,10 @@ var PublicacoesService = {
 
                     if (cb) {
                         try {
-                            cb();
+                            publicacao.Titulo = titulo;
+                            publicacao.Disciplina = disciplinaId;
+                            
+                            cb(publicacao);
                         } catch(e) {
                             alert('Error on Update Publicacoes: '+e.message);
                         }
@@ -415,7 +418,13 @@ function onMuralPublicacaoReply(e) {
     PublicacoesService.createPublicacao(dataProvider, pub.Tipo, null, null, null, null, null, pub.Disciplina, pub, function(pubAdd) {
         //var first = ele.find('li').eq(0);
         dataSource.add(pubAdd);
-        ele.data("kendoMobileListView").prepend([pubAdd]);
+        var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
+        console.log(newEl);
+
+        newEl.find('#mural-edit-menu').click(function(e) {
+            console.log(e);
+            app.muralView.muralViewModel.muralEditMenuClick(this)
+        })
     });
 };
 
@@ -452,7 +461,6 @@ function onMuralPublicacaoDelete(e) {
     var ele = e.context.view;
 
     PublicacoesService.deletePublicacao(app.data.mackenzie, pub.Id, function(pubDel) {
-        // remover publicacao da lista
         ele.data("kendoMobileListView").remove([pub]);
     });
 };
@@ -700,11 +708,24 @@ function onMuralFileVideo(e) {
     });
 };
 
-function getMuralDataItem(el) {
+/*function getMuralDataItem(el) {
     e = {};
     e.currentTarget = el;
     e.li = $(el).closest('[data-uid]');  //$(e).closest('li').parents('li');
     e.data = app.muralView.muralViewModel.get('dataSource').getByUid(e.li.attr('data-uid'));
 
     return e;
-}
+};
+
+function getMuralDisciplinaDataItem(el) {
+    e = {};
+    e.currentTarget = el;
+    e.li = $(el).closest('[data-uid]');
+
+    var uid = e.li.attr('data-uid');
+    e.data = app.disciplinasView.disciplinasViewModel.get('publicacoes').find(function(item) {
+        return item.uid === uid;
+    });
+
+    return e;
+}*/
