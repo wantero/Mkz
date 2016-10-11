@@ -189,12 +189,12 @@ app.muralView = kendo.observable({
 
                 var disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
                 var tituloPub = updateMural.find('#tituloCompartilharUpdate');
-                tituloPub.focus();
 
                 PublicacoesService.populateDisciplinas(disciplinasSelect, function() {    
                     tituloPub.val(pub.Titulo);
                     disciplinasSelect.val(pub.Disciplina);    
                     updateMural.show();
+                    tituloPub.focus();
                 });
             },
             muralLikeClick: function(e) {

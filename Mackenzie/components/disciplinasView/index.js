@@ -284,16 +284,16 @@ app.disciplinasView = kendo.observable({
             },
             muralPublicacaoEditBeforeReply: function(e) {
                 var pub = e.context;
-                var updateMural = e.target.closest('ul').parent().closest('ul').find('#reply-mural-publicacoes');
+                var updateMural = $(e.target).closest('[data-uid]').find('#reply-mural-publicacoes'); // e.target.closest('ul').parent().closest('ul').find('#reply-mural-publicacoes');
 
                 var disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
                 var tituloPub = updateMural.find('#tituloCompartilharUpdate');
-                tituloPub.focus();
 
                 PublicacoesService.populateDisciplinas(disciplinasSelect, function() {    
                     tituloPub.val(pub.Titulo);
                     disciplinasSelect.val(pub.Disciplina);    
                     updateMural.show();
+                    tituloPub.focus();
                 });
             },
             muralLikeClick: function(e) {
@@ -357,7 +357,7 @@ app.disciplinasView = kendo.observable({
                 $('#novaMensagemDisciplina').val('');
             },
             muralCommentClick: function(e) {
-                var $comments = $(e.currentTarget).closest('ul').parent().closest('ul').find('#header-mural-comentario');
+                var $comments = $(e.currentTarget).closest('[data-uid]').find('#header-mural-comentario');  //$(e.currentTarget).closest('ul').parent().closest('ul').find('#header-mural-comentario');
                 
                 if ($comments.is(':visible')) {
                     $comments.hide();
@@ -445,7 +445,7 @@ app.disciplinasView = kendo.observable({
                 };
 
                 if (e.data.Comentarios.length) {
-                    var $commentList = $(e.currentTarget).closest('ul').find('#header-mural-comentario-list');
+                    var $commentList = $(e.currentTarget).closest('[data-uid]').find('#header-mural-comentario-list');  // $(e.currentTarget).closest('ul').find('#header-mural-comentario-list');
 
                     if ($commentList.is(':visible')) {
                         $commentList.hide();
