@@ -60,7 +60,7 @@
     <ul id="compartilharActions" data-role="actionsheet" data-popup='{"direction": "left"}'
         data-cancel="Cancelar">
         <li><a href="#" data-action="app.muralView.muralViewModel.muralPublicacaoReply">Compartilhar agora</a></li>
-        <li><a href="#" data-action="onMuralPublicacaoEditBeforeReply">Editar publicação</a></li>
+        <li><a href="#" data-action="app.muralView.muralViewModel.muralPublicacaoEditBeforeReply">Editar publicação</a></li>
     </ul>
 
     <ul id="publicacaoActions" data-role="actionsheet" data-popup='{"direction": "left"}'
@@ -95,12 +95,10 @@
                         </div>
 
                         <h4>#: data['User']['DisplayName'] #</h4>
-                        
-                        # if (data.CompartilhadoDe) { #
-                            <span>Compartilhado</span>
-                        # } #
 
-                        # if (data.User.Id == data.Owner) { #
+                        # console.log("user:", data.User.Id, data.LoggedUser); #
+
+                        # if (data.User.Id == data.LoggedUser) { #
                         <div class="section-icon-name mural-editar-btn">
                             <a id="mural-edit-menu"
                                 data-bind="{ events: {click: muralEditMenuClick} }"

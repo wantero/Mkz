@@ -162,6 +162,7 @@ app.muralView = kendo.observable({
 
                 result.TempoPublicacao = this.getTempoDecorrido(data.CreatedAt);
                 result.AlreadyLike = PublicacoesService.findLike(data.Likes, app.getUserData().Id);
+                result.LoggedUser = app.getUserData().Id;
 
                 if (result.CompartilhadoDe) {
                     if (typeof result.CompartilhadoDe === 'object') {
@@ -394,6 +395,14 @@ app.muralView = kendo.observable({
 
                 var disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
                 var tituloPub = updateMural.find('#tituloCompartilharUpdate');
+
+                if (!PublicacoesService.verificaTitulo(tituloPub, 'Favor informar o titulo da publicacao!')) {
+                    return;
+                }
+
+                if (!PublicacoesService.verificaDisciplina(disciplinasSelect)) {
+                    return;
+                }
 
                 PublicacoesService.createPublicacao(dataProvider, pub.Tipo, pub.Texto, tituloPub.val(), pub.FileName, pub.FileSize, pub.AnexoUri, disciplinasSelect.val(), pub, function(pubAdd) {
                     //$(e.currentTarget).closest('li').find('#mural-titulo').text(tituloPub.val());

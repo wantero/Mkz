@@ -27,7 +27,7 @@ app.perfilView = kendo.observable({
                 {
                     'Id': perfilViewModel.fields.id,
                     'Email': perfilViewModel.fields.email,
-                    'DisplayName': perfilViewModel.fields.nome,
+                    //'DisplayName': perfilViewModel.fields.nome,
                     'fotoUri': perfilViewModel.fields.fotoUri
                 },
                 function(data){

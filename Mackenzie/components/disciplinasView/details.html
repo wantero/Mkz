@@ -236,7 +236,9 @@
 	                            <span>Compartilhado</span>
 	                        # } #
 
-	                        # if (data.User.Id == data.Owner) { #
+                        	# console.log("user:", data.User.Id, data.LoggedUser); #
+
+	                        # if (data.User.Id == data.LoggedUser) { #
 	                        <div class="section-icon-name mural-editar-btn">
 	                            <a  id="mural-edit-menu"
 	                            	data-bind="{ events: {click: muralEditMenuClick} }" >
@@ -258,10 +260,10 @@
 	                                <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro">
 	                                </input>
 	                            </div>
-	                            <div class="editar-componente">
+	                            <!-- div class="editar-componente">
 	                                <select id="mural-disciplina-update-select" xclass="comboBox">
 	                                </select>  
-	                            </div>
+	                            </div -->
 	                        </form>  
 	                        <div class="mural-header-icons">
 	                            <div class="section-icon-name flaticon-comment-ok">
@@ -391,10 +393,10 @@
                      	            <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro">
                      	            </input>
                      	        </div>
-                     	        <div class="editar-componente">
+                     	        <!-- div class="editar-componente">
                      	            <select id="mural-disciplina-update-select" xclass="comboBox">
                      	            </select>  
-                     	        </div>
+                     	        </div -->
                      	    </form>  
                      	    <div class="mural-header-icons">
                      	        <div class="section-icon-name flaticon-comment-ok">
@@ -437,7 +439,10 @@
 
                     <h4>#: data['User']['DisplayName'] #</h4>
 
-                    # if (data.User.Id == data.Owner) { #
+
+                	# console.log("user:", data.User.Id, data.LoggedUser); #
+
+                    # if (data.User.Id == data.LoggedUser) { #
                     <div class="section-icon-name mural-editar-btn">
                         <a  id="mural-edit-menu"
                         	data-bind="{ events: {click: muralEditMenuClick} }">
@@ -452,11 +457,12 @@
                     </div>                        
                 </div>
 
+                <!-- CONTEÚDO DO POST -->
 				<div class="docs-wrap">
                     # if (data.Titulo && data.Titulo != '') { #
-                        <h4 id="mural-titulo">#: data['Titulo'] #</h4>
+                        <p id="mural-titulo">#: data['Titulo'] #</p>
                 	# } #
-				</div>	            
+				</div>
 
                 <!-- UPDATE PUBLICACAO -->
                 <div id="update-mural-publicacoes" xclass="section-name-wrap mural-header" style="display:none">
@@ -465,10 +471,10 @@
                             <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro">
                             </input>
                         </div>
-                        <div class="editar-componente">
+                        <!-- div class="editar-componente">
                             <select id="mural-disciplina-update-select" xclass="comboBox">
                             </select>  
-                        </div>
+                        </div -->
                     </form>  
                     <div class="mural-header-icons">
                         <div class="section-icon-name flaticon-comment-ok">
@@ -510,15 +516,15 @@
 
             # } else {#
 
-			<!-- NAO COMPARTILHADO -->
-			<div class="docs-wrap">
-				# if (data.Titulo && data.Titulo != '') { #
-					<h4>#: data['Titulo'] #</h4>
-				# } #
+				<!-- NAO COMPARTILHADO -->
+				<div class="docs-wrap">
+					# if (data.Titulo && data.Titulo != '') { #
+						<h4>#: data['Titulo'] #</h4>
+					# } #
 
-				<p>#= data.Texto #<p>
-			</div>
-			<!-- NAO COMPARTILHADO -->
+					<p>#= data.Texto #<p>
+				</div>
+				<!-- NAO COMPARTILHADO -->
 
             # } #
 
@@ -579,10 +585,10 @@
          	            <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro">
          	            </input>
          	        </div>
-         	        <div class="editar-componente">
+         	        <!-- div class="editar-componente">
          	            <select id="mural-disciplina-update-select" xclass="comboBox">
          	            </select>  
-         	        </div>
+         	        </div -->
          	    </form>  
          	    <div class="mural-header-icons">
          	        <div class="section-icon-name flaticon-comment-ok">
@@ -625,16 +631,9 @@
 
 	                  		<h4>#: data['User']['DisplayName'] #</h4>
 
-		                    # if (data.User.Id == data.Owner) { #
-		                    <div class="section-icon-name mural-editar-btn">
-		                        <a  id="mural-edit-menu"
-		                        	data-bind="{ events: {click: muralEditMenuClick} }">
-		                            <span></span>
-		                        </a>                            
-		                    </div>   
-		                    # } #
+                        	# console.log("user:", data.User.Id, data.LoggedUser); #
 
-		                    # if (data.User.Id == data.Owner) { #
+	                        # if (data.User.Id == data.LoggedUser) { #
 		                    <div class="section-icon-name mural-editar-btn">
 		                        <a  id="mural-edit-menu"
 		                        	data-bind="{ events: {click: muralEditMenuClick} }">
@@ -656,10 +655,10 @@
 		                            <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro">
 		                            </input>
 		                        </div>
-		                        <div class="editar-componente">
+		                        <!-- div class="editar-componente">
 		                            <select id="mural-disciplina-update-select" xclass="comboBox">
 		                            </select>  
-		                        </div>
+		                        </div -->
 		                    </form>  
 		                    <div class="mural-header-icons">
 		                        <div class="section-icon-name flaticon-comment-ok">
@@ -784,10 +783,10 @@
                      	            <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro">
                      	            </input>
                      	        </div>
-                     	        <div class="editar-componente">
+                     	        <!-- div class="editar-componente">
                      	            <select id="mural-disciplina-update-select" xclass="comboBox">
                      	            </select>  
-                     	        </div>
+                     	        </div -->
                      	    </form>  
                      	    <div class="mural-header-icons">
                      	        <div class="section-icon-name flaticon-comment-ok">

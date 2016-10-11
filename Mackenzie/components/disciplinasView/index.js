@@ -170,6 +170,8 @@ app.disciplinasView = kendo.observable({
                     data.Professor.Sala = '?';
                 }
 
+                result.LoggedUser = app.getUserData().Id;
+
                 return result;
             },
             itemClick: function(e) {
@@ -501,16 +503,21 @@ app.disciplinasView = kendo.observable({
                 var pub = e.data;
                 var dataSource = disciplinasViewModel.get('publicacoes');
 
+                var current = disciplinasViewModel.get('currentDisciplina');
                 var updateMural = $(e.currentTarget).closest('#reply-mural-publicacoes');
 
-                var disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
+                //ar disciplinasSelect = updateMural.find('#mural-disciplina-update-select');
                 var tituloPub = updateMural.find('#tituloCompartilharUpdate');
 
-                PublicacoesService.createPublicacao(dataProvider, pub.Tipo, pub.Texto, tituloPub.val(), pub.FileName, pub.FileSize, pub.AnexoUri, disciplinasSelect.val(), pub, function(pubAdd) {
+                if (!PublicacoesService.verificaTitulo(tituloPub, 'Favor informar o titulo da publicacao!')) {
+                    return;
+                }
+
+                PublicacoesService.createPublicacao(dataProvider, pub.Tipo, pub.Texto, tituloPub.val(), pub.FileName, pub.FileSize, pub.AnexoUri, current.Id, pub, function(pubAdd) {
                     $(e.currentTarget).closest('li').find('#mural-titulo').text(tituloPub.val());
 
                     updateMural.hide();
-                    disciplinasSelect.val('');
+                    //disciplinasSelect.val('');
                     tituloPub.val('');  
 
                     dataSource.push(pubAdd);
@@ -521,7 +528,7 @@ app.disciplinasView = kendo.observable({
             muralCancelEditSharePublicacaoClick: function(e){
                 $(e.currentTarget).closest('#reply-mural-publicacoes').hide();
             },
-            muralEditPublicacaoClick: function(e, listView) {
+            muralEditPublicacaoClick: function(e) {
                 var pub = e.data;
                 var updateMural = $(e.currentTarget).closest('#update-mural-publicacoes');
 

@@ -34,12 +34,12 @@ app.home = kendo.observable({
                 model.set('logout', null);
             }
 
-            var rememberedData = localStorage ? JSON.parse(localStorage.getItem(rememberKey)) : app[rememberKey];
+            /*var rememberedData = localStorage ? JSON.parse(localStorage.getItem(rememberKey)) : app[rememberKey];
             if (rememberedData && rememberedData.tia && rememberedData.password) {
                 parent.homeModel.set('tia', rememberedData.tia);
                 parent.homeModel.set('password', rememberedData.password);
                 parent.homeModel.signin();
-            }
+            }*/
         },
         successHandler = function(data) {
             var redirect = mode === 'signin' ? signinRedirect : registerRedirect,
@@ -76,7 +76,7 @@ app.home = kendo.observable({
                     if (mode === 'register') {
                         mode = 'signin';
                         app.showMessage('<b>Cadastro realizado com sucesso.</b>'+
-                                        '<br><br>O acesso ao sistema necessita da aprovação de seu professor.'+
+                                        //'<br><br>O acesso ao sistema necessita da aprovação de seu professor.'+
                                         '<br><br>Em breve você receberá um e-mail coma confirmação de seu acesso.', cadastroOk);
                     } else {
                         if (!data.result.Id) {
@@ -153,29 +153,35 @@ app.home = kendo.observable({
             tia: '41326652',
             password: 'GERTI#m1c2',
             validateData: function(data) {
+                if (!data.unidade) {
+                    alert('Favor informar a unidade');
+                    return false;
+                }
+
                 if (!data.tia) {
-                    alert('Missing TIA');
+                    alert('Favor informar o TIA');
                     return false;
                 }
 
                 if (mode === 'register') {
-                    if (!data.displayName) {
-                        alert('Missing Name');
+                    /*if (!data.displayName) {
+                        alert('Favor informar o nome');
                         return false;
-                    }
+                    }*/
 
                     if (!data.email) {
-                        alert('Missing email');
+                        alert('Favor informar o email');
                         return false;
                     }
                 }
 
                 if (!data.password) {
-                    alert('Missing password');
+                    alert('Favor informar a senha');
                     return false;
                 }
 
-                if (mode === 'register') {
+                // INTEGRACAO DADOS MACKENZIE
+                /*if (mode === 'register') {
                     if (!data.confirmPassword) {
                         alert('Missing confirmation password');
                         return false;
@@ -185,7 +191,8 @@ app.home = kendo.observable({
                         alert('Senha de confirmação deve ser a mesma!');
                         return false;
                     }
-                }
+                }*/
+                // INTEGRACAO DADOS MACKENZIE
 
                 return true;
             },
@@ -206,8 +213,8 @@ app.home = kendo.observable({
                 MkzDataService.loadUser(unidade, tia, password, function(mkzUser) {
                     // ??? users.changePassword('1', password, newPassword, keepTokens)
                     if (mkzUser) {
-
-                        provider.Users.login('1', '321', function(data) {
+                        //provider.Users.login('1', '321', function(data) {
+                        provider.Users.login(tia, '!'+unidade+'#'+tia+'@', function(data) {
                             provider.Users.currentUser().then(function(user) {
                                 MkzDataService.setTelerikUser(user.result);
                                 successHandler(data);
@@ -220,6 +227,7 @@ app.home = kendo.observable({
             },
             register: function() {
                 var model = homeModel,
+                    unidade = model.unidade,
                     tia = model.tia.toLowerCase(),
                     password = model.password,
                     displayName = model.displayName,
@@ -233,7 +241,10 @@ app.home = kendo.observable({
                     return false;
                 }
 
-                provider.Users.register(tia, password, attrs, successHandler, init);
+                MkzDataService.loadUser(unidade, tia, password, function(mkzUser) {
+                    attrs.DisplayName = mkzUser.DisplayName;
+                    provider.Users.register(tia, '!'+unidade+'#'+tia+'@', attrs, successHandler, init);
+                });
             },
             forgotPassword: function() {
                 if (!homeModel.tia) {
