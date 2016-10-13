@@ -536,7 +536,13 @@ app.disciplinasView = kendo.observable({
                 var tituloPub = updateMural.find('#tituloCompartilharUpdate');
 
                 PublicacoesService.updatePublicacao(dataProvider, pub.Id, tituloPub.val(), disciplinasSelect.val(), pub, function(pubEdit) {
-                    $(e.currentTarget).closest('li').find('#mural-titulo').text(tituloPub.val());
+                    var $titulo = $(e.currentTarget).closest('li').find('#mural-titulo');
+
+                    if (tituloPub.val() != '') {
+                        $titulo.text(tituloPub.val()).show();
+                    } else {
+                        $titulo.text(tituloPub.val()).hide();
+                    }
 
                     updateMural.hide();
                     disciplinasSelect.val('');

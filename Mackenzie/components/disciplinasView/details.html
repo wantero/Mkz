@@ -283,6 +283,8 @@
 	                        <div class="post-conteudo">
 		                        # if (data.Titulo && data.Titulo != '') { #
 		                            <p id="mural-titulo">#: data['Titulo'] #</p>
+			                    # } else { #
+			                        <p id="mural-titulo" style="display:none">#: data['Titulo'] #</p>
 	                        	# } #
 
 	                            <div class="post-imagem">
@@ -461,6 +463,8 @@
 				<div class="docs-wrap">
                     # if (data.Titulo && data.Titulo != '') { #
                         <p id="mural-titulo">#: data['Titulo'] #</p>
+                    # } else { #
+                        <p id="mural-titulo" style="display:none">#: data['Titulo'] #</p>
                 	# } #
 				</div>
 
@@ -518,9 +522,11 @@
 
 				<!-- NAO COMPARTILHADO -->
 				<div class="docs-wrap">
-					# if (data.Titulo && data.Titulo != '') { #
-						<h4>#: data['Titulo'] #</h4>
-					# } #
+                    # if (data.Titulo && data.Titulo != '') { #
+                        <h4 id="mural-titulo">#: data['Titulo'] #</h4>
+                    # } else { #
+                        <h4 id="mural-titulo" style="display:none">#: data['Titulo'] #</h4>
+                	# } #
 
 					<p>#= data.Texto #<p>
 				</div>
@@ -676,9 +682,11 @@
 	                	<!-- CONTEÚDO DO POST -->
 	                	<div class="post-conteudo-wrap">
 							<div class="post-conteudo">
-		                    	# if (data.Titulo && data.Titulo != '') { #
-		                      		<p>#: data['Titulo'] #</p>
-		                  		# } #
+		                        # if (data.Titulo && data.Titulo != '') { #
+		                            <p id="mural-titulo">#: data['Titulo'] #</p>
+			                    # } else { #
+			                        <p id="mural-titulo" style="display:none">#: data['Titulo'] #</p>
+	                        	# } #
 
 	                    		<div class="post-imagem">
 
