@@ -46,14 +46,21 @@
   top: 0;
   left: 0;
 }
-  
+
+.flaticon-comment-ok .km-icon,
+.flaticon-comment-cancel .km-icon {
+  display: inline-block;
+}  
 .flaticon-comment-ok .km-icon::before,
 .flaticon-comment-cancel .km-icon::before {
+  position: absolute;
+  top: 0.15em;
+  left: 0.15em;
   display: inline-block;
   z-index: 1;
-  height: 1.3rem;
-  width: 1.3rem;
-  margin: 0.25rem 0 0 0.2rem;
+  height: 1.4rem;
+  width: 1.4rem;
+  margin: 0;
   font-size: 1rem;
   line-height: 1.2rem;
   text-align: center;
