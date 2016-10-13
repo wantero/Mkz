@@ -137,7 +137,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 /************************************/
 /*** PADDING/MARGIN-BOTTOM FOOTER ***/
 /************************************/
-#kendoUiMobileApp #disciplinas .km-listview-wrapper > .masterDetailView > li[data-uid]:last-child,
+/*#kendoUiMobileApp #disciplinas .km-listview-wrapper > .masterDetailView > li[data-uid]:last-child,
 #kendoUiMobileApp #mackz-mural .masterDetailView li[data-uid]:last-child,
 .km-scroll-header + .km-scroll-container {
 	margin-bottom: 3rem;
@@ -156,7 +156,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 #tabCursoAgenda #tabAgenda #scheduler .k-scheduler-footer,
 #kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap {
 	padding-bottom: 3.5em;
-}
+}*/
 
 /**************************/
 /**** AUXILIAR CLASSES ****/
