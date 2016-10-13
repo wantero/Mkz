@@ -1103,7 +1103,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 }
 
 #kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user,
-#kendoUiMobileApp .masterDetailView li > div > .post-user {
+#kendoUiMobileApp .masterDetailView li > .mural-conteudo-wrap > div > .post-user {
 	position: relative;
 	overflow: auto;
 	height: 4em;
@@ -1114,8 +1114,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 }
 	#kendoUiMobileApp .masterDetailView li[data-uid]:first-child li.bg-branco > .post-user,
 	#kendoUiMobileApp .masterDetailView li[data-uid]:nth-child(2) li.bg-branco > .post-user,
-	#kendoUiMobileApp .masterDetailView > li[data-uid]:nth-child(3) > div > .post-user,
-	#kendoUiMobileApp .masterDetailView > li[data-uid]:first-child > div > .post-user {
+	#kendoUiMobileApp .masterDetailView > li[data-uid]:nth-child(3) > .mural-conteudo-wrap > div > .post-user,
+	#kendoUiMobileApp .masterDetailView > li[data-uid]:first-child > .mural-conteudo-wrap > div > .post-user {
 		padding: 0.9em 1em;
 		height: 4em;
 	}
@@ -1260,8 +1260,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		font-size: 1em;
 		background-color: #FFF;
 	}
-	#kendoUiMobileApp .editar-comentario input {
-		margin-bottom: 0.5em;
+	#kendoUiMobileApp .editar-comentario + .editar-componente select {
+		margin-top: 0.5em;
 	}
 	#kendoUiMobileApp .editar-componente select {
 		padding-right: 1.3em;
@@ -1276,7 +1276,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		content: "";
 		display: inline-block;
 		position: absolute;
-		top: 0.9em;
+		top: 1.4em;
 		right: 0.6em;
 		z-index: 1;
 		border-top: 7px solid #333;
@@ -1409,6 +1409,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #kendoUiMobileApp .masterDetailView #header-mural-comentario form {
 	padding: 1em 1em 0.5em;
 	background-color: #F0F0F0;
+	border-bottom: 0;
 }
 	#kendoUiMobileApp .masterDetailView #header-mural-comentario form > textarea {
 		float: left;
@@ -2381,75 +2382,73 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		margin-left: 0.3em;
 	}
 
-.publicacoes-button-wrap #tabPubMsgs li[data-uid] > div:first-child {
+/* PUBLICACOES MSGS - MURAL DISCIPLINAS */
+.publicacoes-button-wrap #tabPubMsgs li[data-uid] .mural-conteudo-wrap > div:first-child {
 	position: relative;
 	padding: 0 0 0.7em;
 	margin: 0;
 	background-color: #FFF;
 }
-	.publicacoes-button-wrap #tabPubMsgs li > div .post-compartilhado-wrap {
+	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .post-compartilhado-wrap {
 		border-top: 1px solid #CCC;
 	}
-	.publicacoes-button-wrap #tabPubMsgs li > div .post-compartilhado-wrap .post-user {
+	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .post-compartilhado-wrap .post-user {
 		position: relative;
 		padding-top: 1em;
 		border-bottom: 1px solid #CCC;
 	}
-	.publicacoes-button-wrap #tabPubMsgs li > div .post-compartilhado-wrap .post-user h4 {
+	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .post-compartilhado-wrap .post-user h4 {
 		vertical-align: top;
 		margin: 0.1em 0 0;
 		text-indent: 0.2em;
 	}
-	#tabPubDocs + #tabPubImages + #tabPubMsgs li > div .post-compartilhado-wrap .post-user .section-icon-name.flaticon-clock {
+	#tabPubDocs + #tabPubImages + #tabPubMsgs li > .mural-conteudo-wrap > div .post-compartilhado-wrap .post-user .section-icon-name.flaticon-clock {
 		display: inline-block;
 		position: absolute;
 		bottom: 1.4em;
 		/*left: 4.1em;*/
 		height: auto;
 	}
-	.publicacoes-button-wrap #tabPubMsgs li > div .docs-wrap {
+	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .docs-wrap {
 		width: 100%;
 	  max-width: 100%;
 	  padding: 1em;
 	}
-	.publicacoes-button-wrap #tabPubMsgs li > div .docs-wrap h4 {
+	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .docs-wrap h4 {
 		margin: 0;
 	}
-	.publicacoes-button-wrap #tabPubMsgs li > div .docs-wrap p:first-of-type {
+	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .docs-wrap p:first-of-type {
 		font-size: 1em;
 	}
-	.publicacoes-button-wrap #tabPubMsgs li > div .docs-wrap p b {
+	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .docs-wrap p b {
 		font-size: 0.85em;
 	}
 
-	.publicacoes-button-wrap #tabPubMsgs li > div > .docs-wrap {
+	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div > .docs-wrap {
 		padding: 1em 1em 0;
 		display: block;
 	}
-	.publicacoes-button-wrap #tabPubMsgs li > div > .docs-wrap p:last-child {
+	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div > .docs-wrap p:not(:only-child):last-child {
 		margin: 1em 0 0.5em;
 	}
 
-	.publicacoes-button-wrap #tabPubMsgs #update-mural-publicacoes + .post-compartilhado-wrap	{
+	.publicacoes-button-wrap #tabPubMsgs #update-mural-publicacoes + .docs-wrap + .post-compartilhado-wrap	{
 		margin: 1em;
+	}
+	.publicacoes-button-wrap #tabPubMsgs .post-user {
+
 	}
 	.publicacoes-button-wrap #tabPubMsgs .post-user:not(.head-post-compartilhado) h4 {
 		margin: 0;
 		vertical-align: top;
 		text-indent: 0.2em;
 	}
-	.publicacoes-button-wrap #tabPubMsgs .post-user:not(.head-post-compartilhado) .mural-editar-btn + .flaticon-clock {
-		bottom: 1.2em;
-	}
-	.publicacoes-button-wrap #tabPubMsgs li > div > .section-icon-name {
+	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .section-icon-name:not([class*="flaticon-comment-"]) {
 		padding-left: 1em;
 	}
-	.publicacoes-button-wrap #tabPubMsgs li > div > .section-icon-name .km-icon {
+	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .section-icon-name .km-icon {
 		margin: 0;
 	}
-#tabPublicacoes #tabPubMsgs .masterDetailView li .post-botoes {
-	margin-bottom: 1.5em;
-}
 
 #tabPublicacoes .masterDetailView li .post-botoes {
 	background-color: #FFF;

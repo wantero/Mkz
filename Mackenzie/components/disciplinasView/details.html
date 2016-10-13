@@ -419,54 +419,47 @@
     </script>
 
     <script type="text/x-kendo-template" id="tabPubMsgsTemplate">
+
         # data = app.muralView.muralViewModel.fixHierarchicalData(data); #
         # console.log('msgs', data); #
     	
         # if (data.Tipo && data.Tipo == 'msg') { #
-		<div>
-			<!-- COMPARTILHADO -->
-			# if (data.CompartilhadoDe) { #
+
+	    		<div class="mural-conteudo-wrap">
+						<div>
+							<!-- COMPARTILHADO -->
+							# if (data.CompartilhadoDe) { #
 
                 <!-- NOME DO USUÁRIO QUE POSTOU -->
                 <div class="post-user">
-                    <div class="user-thumb mural-thumb thumb-sm">
-                        # if (data.User.fotoUri && data.User.fotoUri != "") { #
-                        <!-- <img class="km-thumbnail" data-bind="" src="#: data.User.fotoUri #"  alt="Your photo"> -->
-                        <span class="km-thumbnail" data-bind="" style="background-image: url( #: data.User.fotoUri # )"></span>
-                        # } else { #
-                        <!-- <img class="km-thumbnail" data-bind="" src="../../styles/images/user-male.png" alt="Your photo"> -->
-                        <span class="km-thumbnail" data-bind="" style="background-image: url(../../styles/images/user-male.png)"></span>
-                        # } #
-                    </div>
+                  <div class="user-thumb mural-thumb thumb-sm">
+                      # if (data.User.fotoUri && data.User.fotoUri != "") { #
+                      <!-- <img class="km-thumbnail" data-bind="" src="#: data.User.fotoUri #"  alt="Your photo"> -->
+                      <span class="km-thumbnail" data-bind="" style="background-image: url( #: data.User.fotoUri # )"></span>
+                      # } else { #
+                      <!-- <img class="km-thumbnail" data-bind="" src="../../styles/images/user-male.png" alt="Your photo"> -->
+                      <span class="km-thumbnail" data-bind="" style="background-image: url(../../styles/images/user-male.png)"></span>
+                      # } #
+                  </div>
 
-                    <h4>#: data['User']['DisplayName'] #</h4>
-
+                  <h4>#: data['User']['DisplayName'] #</h4>
 
                 	# console.log("user:", data.User.Id, data.LoggedUser); #
 
-                    # if (data.User.Id == data.LoggedUser) { #
-                    <div class="section-icon-name mural-editar-btn">
-                        <a  id="mural-edit-menu"
-                        	data-bind="{ events: {click: muralEditMenuClick} }">
-                            <span></span>
-                        </a>                            
-                    </div>   
-                    # } #
+                  # if (data.User.Id == data.LoggedUser) { #
+                  <div class="section-icon-name mural-editar-btn">
+                      <a  id="mural-edit-menu"
+                      	data-bind="{ events: {click: muralEditMenuClick} }">
+                          <span></span>
+                      </a>                            
+                  </div>   
+                  # } #
 
-                    <div class="section-icon-name flaticon-clock">
-                        <span class="km-icon" data-icon=""></span>
-                        #: data['TempoPublicacao'] #
-                    </div>                        
+                  <div class="section-icon-name flaticon-clock">
+                      <span class="km-icon" data-icon=""></span>
+                      #: data['TempoPublicacao'] #
+                  </div>
                 </div>
-
-                <!-- CONTEÚDO DO POST -->
-				<div class="docs-wrap">
-                    # if (data.Titulo && data.Titulo != '') { #
-                        <p id="mural-titulo">#: data['Titulo'] #</p>
-                    # } else { #
-                        <p id="mural-titulo" style="display:none">#: data['Titulo'] #</p>
-                	# } #
-				</div>
 
                 <!-- UPDATE PUBLICACAO -->
                 <div id="update-mural-publicacoes" xclass="section-name-wrap mural-header" style="display:none">
@@ -493,61 +486,70 @@
                 </div>                
                 <!-- UPDATE PUBLICACAO -->
 
-	            <!-- NOME DO USUÁRIO ORIGINAL QUE POSTOU -->
-	            <div class="post-compartilhado-wrap">
-					<div class="post-user head-post-compartilhado">
-						<div class="user-thumb mural-thumb thumb-sm">
-							# if (data.CompartilhadoDeUser.fotoUri && data.CompartilhadoDeUser.fotoUri != "") { #
-								<span class="km-thumbnail" data-bind="" style="background-image: url( #: data.CompartilhadoDeUser.fotoUri # )"></span>
-							# } else { #
-								<span class="km-thumbnail" data-bind="" style="background-image: url(../../styles/images/user-male.png)"></span>
-							# } #
-						</div>
+                <!-- CONTEÚDO DO POST -->
+								<div class="docs-wrap">
+                  # if (data.Titulo && data.Titulo != '') { #
+                    <p id="mural-titulo">#: data['Titulo'] #</p>
+                  # } else { #
+                    <p id="mural-titulo" style="display:none">#: data['Titulo'] #</p>
+                	# } #
+								</div>
+
+	            	<!-- NOME DO USUÁRIO ORIGINAL QUE POSTOU -->
+	            	<div class="post-compartilhado-wrap">
+									<div class="post-user head-post-compartilhado">
+										<div class="user-thumb mural-thumb thumb-sm">
+											# if (data.CompartilhadoDeUser.fotoUri && data.CompartilhadoDeUser.fotoUri != "") { #
+												<span class="km-thumbnail" data-bind="" style="background-image: url( #: data.CompartilhadoDeUser.fotoUri # )"></span>
+											# } else { #
+												<span class="km-thumbnail" data-bind="" style="background-image: url(../../styles/images/user-male.png)"></span>
+											# } #
+										</div>
 
 		                <h4>#: data.CompartilhadoDeUser['DisplayName'] #</h4>
 
 		                <div class="section-icon-name flaticon-clock">
-							<span class="km-icon" data-icon=""></span>
-							#: data.CompartilhadoDe['TempoPublicacao'] #
+												<span class="km-icon" data-icon=""></span>
+												#: data.CompartilhadoDe['TempoPublicacao'] #
 		                </div>                     
-					</div>
+									</div>
 
-					<div class="docs-wrap">
-						<p>#= data.CompartilhadoDe.Texto #<p>
-					</div>
-	            </div>	            
+									<div class="docs-wrap">
+										<p>#= data.CompartilhadoDe.Texto #<p>
+									</div>
+	            </div>
 	            <!-- COMPARTILHADO -->
 
-            # } else {#
+	            # } else {#
 
-				<!-- NAO COMPARTILHADO -->
-				<div class="docs-wrap">
-                    # if (data.Titulo && data.Titulo != '') { #
-                        <h4 id="mural-titulo">#: data['Titulo'] #</h4>
-                    # } else { #
-                        <h4 id="mural-titulo" style="display:none">#: data['Titulo'] #</h4>
-                	# } #
+								<!-- NAO COMPARTILHADO -->
+								<div class="docs-wrap">
+	                   # if (data.Titulo && data.Titulo != '') { #
+	                      <h4 id="mural-titulo">#: data['Titulo'] #</h4>
+	                    # } else { #
+	                      <h4 id="mural-titulo" style="display:none">#: data['Titulo'] #</h4>
+	                	# } #
 
-					<p>#= data.Texto #<p>
-				</div>
-				<!-- NAO COMPARTILHADO -->
+										<p>#= data.Texto #<p>
+								</div>
+								<!-- NAO COMPARTILHADO -->
 
-            # } #
+	            # } #
 
-            <div class="section-icon-name flaticon-smiley">
-                <span class="km-icon" data-icon=""></span>
-                <span id="likesCount">#: data.Likes.length #</span>
-            </div>
-            <div class="section-icon-name flaticon-comment">
-                <span class="km-icon" data-icon=""></span>
-                <a id="mural-comment-list" data-bind="{ events: {click: muralCommentsListClick} }">
-                	<span id="commentsCount">#: data.Comentarios.length #</span> comentário(s)
-                </a>                
-            </div>
-    	  	</div>
+	            <div class="section-icon-name flaticon-smiley">
+	                <span class="km-icon" data-icon=""></span>
+	                <span id="likesCount">#: data.Likes.length #</span>
+	            </div>
+	            <div class="section-icon-name flaticon-comment">
+	                <span class="km-icon" data-icon=""></span>
+	                <a id="mural-comment-list" data-bind="{ events: {click: muralCommentsListClick} }">
+	                	<span id="commentsCount">#: data.Comentarios.length #</span> comentário(s)
+	                </a>                
+	            </div>
+	    	  	</div>
 
-	        <!-- BOTÕES AÇÕES LIKE/COMENTAR/COMPARTILHAR -->
-	        <ul class="post-botoes">
+		        <!-- BOTÕES AÇÕES LIKE/COMENTAR/COMPARTILHAR -->
+		        <ul class="post-botoes">
 	            <li class="xsection-icon-name flaticon-smiley">
 	                <span id="mural-like" class="km-icon" data-icon=""
 	                	  data-bind="{ events: {click: muralLikeClick} }"></span>
@@ -562,53 +564,54 @@
 	                <span id="mural-share" class="km-icon" data-icon=""
 	                	  data-bind="{ events: {click: muralShareClick} }"></span>
 	            </li>
-	        </ul>
+		        </ul>
 
             <div class="novo-comentario-wrap">
-		        <div id="header-mural-comentario" class="section-name-wrap mural-header" style="display:none">
-		            <form class="section-name-wrap">
-		                <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa"></textarea>
-		                <div class="mural-header-icons">
-		                    <div class="xsection-icon-name flaticon-comment-ok">
-		                        <span id="mural-send-comment" class="km-icon" data-icon=""
-		                        	  data-bind="{ events: {click: muralSendCommentClick} }"></span>
-		                    </div>
-		                    <div class="xsection-icon-name flaticon-comment-cancel">
-		                        <span id="mural-cancel-comment" class="km-icon" data-icon=""
-		                        	  data-bind="{ events: {click: muralCancelCommentClick} }"></span>
-		                    </div>
-		                </div>
-		            </form>
-		        </div>
+			        <div id="header-mural-comentario" class="section-name-wrap mural-header" style="display:none">
+			            <form class="section-name-wrap">
+			                <textarea id="novoComentario" placeholder="Digite aqui seu comentário" type="text" rows="2" x-onKeyUp="app.faqsView.faqsViewModel.filtraPesquisa(this.value)" class="faq-pesquisa"></textarea>
+			                <div class="mural-header-icons">
+			                    <div class="xsection-icon-name flaticon-comment-ok">
+			                        <span id="mural-send-comment" class="km-icon" data-icon=""
+			                        	  data-bind="{ events: {click: muralSendCommentClick} }"></span>
+			                    </div>
+			                    <div class="xsection-icon-name flaticon-comment-cancel">
+			                        <span id="mural-cancel-comment" class="km-icon" data-icon=""
+			                        	  data-bind="{ events: {click: muralCancelCommentClick} }"></span>
+			                    </div>
+			                </div>
+			            </form>
+			        </div>
 
             	<div id="header-mural-comentario-list" class="section-name-wrap mural-header" style="display:none"></div>
-         	</div>
+	         	</div>
 
-         	<!-- UPDATE PUBLICACAO -->
-         	<div id="reply-mural-publicacoes" xclass="section-name-wrap mural-header" style="display:none">
-         	    <form xclass="section-name-wrap">
-         	        <div class="editar-comentario">
-         	            <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro">
-         	            </input>
-         	        </div>
-         	        <!-- div class="editar-componente">
-         	            <select id="mural-disciplina-update-select" xclass="comboBox">
-         	            </select>  
-         	        </div -->
-         	    </form>  
-         	    <div class="mural-header-icons">
-         	        <div class="section-icon-name flaticon-comment-ok">
-         	            <span id="mural-edit-share-publicacao" class="km-icon" data-icon=""
-         	            	  data-bind="{ events: {click: muralEditSharePublicacaoClick} }"></span>
-         	        </div>
-         	        <div class="section-icon-name flaticon-comment-cancel">
-         	            <span id="mural-cancel-edit-share-publicacao" class="km-icon" data-icon=""
-         	            	  data-bind="{ events: {click: muralCancelEditSharePublicacaoClick} }"></span>
-         	        </div>
-         	    </div>
-         	</div>                
-         	<!-- UPDATE PUBLICACAO -->
-        # } #       
+	         	<!-- UPDATE PUBLICACAO -->
+	         	<div id="reply-mural-publicacoes" xclass="section-name-wrap mural-header" style="display:none">
+	         	    <form xclass="section-name-wrap">
+	         	        <div class="editar-comentario">
+	         	            <input id="tituloCompartilharUpdate" type="text" xclass="faq-pesquisa bg-claro">
+	         	            </input>
+	         	        </div>
+	         	        <!-- div class="editar-componente">
+	         	            <select id="mural-disciplina-update-select" xclass="comboBox">
+	         	            </select>  
+	         	        </div -->
+	         	    </form>  
+	         	    <div class="mural-header-icons">
+	         	        <div class="section-icon-name flaticon-comment-ok">
+	         	            <span id="mural-edit-share-publicacao" class="km-icon" data-icon=""
+	         	            	  data-bind="{ events: {click: muralEditSharePublicacaoClick} }"></span>
+	         	        </div>
+	         	        <div class="section-icon-name flaticon-comment-cancel">
+	         	            <span id="mural-cancel-edit-share-publicacao" class="km-icon" data-icon=""
+	         	            	  data-bind="{ events: {click: muralCancelEditSharePublicacaoClick} }"></span>
+	         	        </div>
+	         	    </div>
+	         	</div>                
+	         	<!-- UPDATE PUBLICACAO -->
+	      	</div>
+        # } #
     </script>
 
     <script type="text/x-kendo-template" id="tabPubVideosTemplate">
@@ -617,7 +620,7 @@
 
         # if (data.Tipo && data.Tipo == 'video') { #	
 
-          	#console.log('tipo', data.Tipo, 'anexo', data.AenxoUri); #
+        	#console.log('tipo', data.Tipo, 'anexo', data.AenxoUri); #
 
 	        <div class="mural-conteudo-wrap">
             	<ul class="masterDetailView km-widget km-listview km-list" data-role="listview">
