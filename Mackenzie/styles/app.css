@@ -1715,32 +1715,41 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		float: left;
 	}
 	.descricao-wrap > .descricao-disc .km-button.km-back {
-    height: 28px;
-    width: 28px;
     padding: 0;
-    margin: 1em 0 1em 1em;
+    margin: 0;
     border-radius: 0;
     border-width: 5px 0 0 5px;
-    -webkit-transform: rotate(-45deg);
-	    	-ms-transform: rotate(-45deg);
-	    			transform: rotate(-45deg);
+	}
+	#tabDisciplinas .descricao-wrap > .descricao-disc {
+		padding-bottom: 1em;
+	}
+	#tabDisciplinas .descricao-wrap > .descricao-disc .km-button.km-back {
+		height: 2em;
+		width: 2em;
+		-webkit-transform: rotate(-45deg) translate(0, 1.5em);
+	    	-ms-transform: rotate(-45deg) translate(0, 1.5em);
+	    			transform: rotate(-45deg) translate(0, 1.5em);
 	}
 	#disciplinasViewModelDetailsView .descricao-wrap > .descricao-disc .km-button.km-back {
-		padding: 0 0.8em;
+    height: 1.75em;
+    width: 2.15em;
+    -webkit-transform: rotate(-45deg) translate(0.1em, 1.5em);
+	    	-ms-transform: rotate(-45deg) translate(0.1em, 1.5em);
+	    			transform: rotate(-45deg) translate(0.1em, 1.5em);
 	}
 	.descricao-wrap p {
 		display: inline-block;
 		margin: 0;
   	font-size: 0.9em;
-  	-webkit-transform: translate(-0.5em, 1.2em);
-    		-ms-transform: translate(-0.5em, 1.2em);
-	    			transform: translate(-0.5em, 1.2em);
+  	-webkit-transform: translate(0.3em, 1.2em);
+    		-ms-transform: translate(0.3em, 1.2em);
+	    			transform: translate(0.3em, 1.2em);
 	}
 	.descricao-wrap h3 {
     display: inline-block;
     margin: 0;
     font-size: 1em;
-    padding: 0.95em 0.5em 0.95em 0;
+    padding: 0.95em 0.5em 0.95em 1em;
 	}
 
 	.descricao-wrap > .descricao-prof {
@@ -1762,7 +1771,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		font-size: 0.8em;
 	}
 	#disciplinasViewModelDetailsView .descricao-wrap h3 {
-    float: right;
+    float: none;
 	}
 	#disciplinasViewModelDetailsView .descricao-wrap .km-label-above {
 		display: inline-block;

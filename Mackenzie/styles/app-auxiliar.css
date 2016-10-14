@@ -134,30 +134,6 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 	padding-top: 44px;
 }
 
-/************************************/
-/*** PADDING/MARGIN-BOTTOM FOOTER ***/
-/************************************/
-/*#kendoUiMobileApp #disciplinas .km-listview-wrapper > .masterDetailView > li[data-uid]:last-child,
-#kendoUiMobileApp #mackz-mural .masterDetailView li[data-uid]:last-child,
-.km-scroll-header + .km-scroll-container {
-	margin-bottom: 3rem;
-}
-#tabDisciplinas #tabCursoDisciplinas .masterDetailView > li:last-child,
-.avaliacoes-wrap .aval-praticas,
-#kendoUiMobileApp #resultadoQuestionario > li:last-child,
-#avaliacoes #avaliacoesDetailView > li:last-child,
-#rankingsData .sua-posicao + .km-listview-wrapper > .masterDetailView > li,
-[data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container,
-#kendoUiMobileApp #mackz-faq .km-scroll-wrapper .masterDetailView > li:last-child {
-	margin-bottom: 2.85rem;
-}
-
-#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap + table:last-child,
-#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-footer,
-#kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap {
-	padding-bottom: 3.5em;
-}*/
-
 /**************************/
 /**** AUXILIAR CLASSES ****/
 /**************************/
