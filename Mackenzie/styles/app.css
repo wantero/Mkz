@@ -102,6 +102,7 @@ div[data-url="components/home/view.html"] .km-content .km-scroll-container {
 }
 .km-content .km-scroll-container .km-listview-wrapper .km-widget li > select {
 	margin: 0;
+	line-height: 1.2em;
 }
 	[data-model="app.home"] .km-content .km-scroll-container .km-listview-wrapper .km-widget li:first-child::after {
 		content: "";
@@ -721,9 +722,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 /*********** QUIZ ***********/
 /****************************/
-#main-header-quiz-detail .section-icon-name {
-	margin-left: -2em;
-}
 #avaliacoes .flaticon-tests .km-icon:after {
 	text-indent: 0.3em;
 }
@@ -736,18 +734,18 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	.section-icon-name.flaticon-tests .km-icon + span {
 		margin: 0;
 	}
-	.km-back + .section-icon-name.flaticon-tests .km-icon + span {
-		vertical-align: text-bottom;
-	}
 	.flaticon-tests .km-icon:after {
 		line-height: 1.8em;
 	}
-
+#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li > div > h3,
+#kendoUiMobileApp .km-content > .km-scroll-container > h3 {
+	font-size: 1.1em;
+	line-height: 1.1em;
+}
 #kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li {
 	padding: 1em;
 }
 	#kendoUiMobileApp #avaliacoes .masterDetailView li > div,
-	#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li > div > h3,
 	#kendoUiMobileApp .masterDetailView li > div p {
 		margin: 0;
 	}
@@ -755,16 +753,13 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		display: inline-block;
 		width: 100%;
 	}
-
-	#kendoUiMobileApp #aval-praticas .prof-disciplina-wrap {
-		padding: 0 1em 0.5em;
-	}
 	#kendoUiMobileApp #aval-praticas form .masterDetailView {
 		padding-bottom: 0;
 	}
 
 [data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
 	background-color: #DDD;
+	padding-top: 49px;
 }
 
 #kendoUiMobileApp .prof-disciplina-wrap {
@@ -779,11 +774,12 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		float: left;
 	}
 	#kendoUiMobileApp .km-content > .km-scroll-container > h3 {
-		padding: 1em 1em 0.5em;
+		padding: 0.9em 0.9em 0;
 		margin: 0;
 	}
+	#kendoUiMobileApp #aval-praticas .prof-disciplina-wrap,
 	#kendoUiMobileApp .km-content > .km-scroll-container > h3 + .prof-disciplina-wrap {
-		padding: 0.5em 1em 1em;
+		padding: 0.5em 1em 0.5em;
 	}
 	#kendoUiMobileApp .prof-disciplina-wrap p {
 		padding: 0 0 0 0.5em;
@@ -796,8 +792,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	max-width: none;
 }
 	#kendoUiMobileApp .aval-praticas .aval-wrap p {
-		/*display: inline-block;
-		width: 100%;*/
 		text-indent: 0;
 	}
 
@@ -836,8 +830,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name + p {
 		padding: 0 0 1em;
 		margin: 0;
-		text-indent: 2.7em;
-		line-height: 1.5em;
+		text-indent: 2.8em;
+		line-height: 1em;
 	}
 	#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name .km-icon::after {
 		display: inline;
@@ -855,9 +849,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	margin-bottom: 3em;
 	background-color: #FFF;
 }
-	/*#kendoUiMobileApp #aval-praticas .button-group .km-button {
-	margin-bottom: 1em;
-}*/
 
 #kendoUiMobileApp #aval-praticas .section-name-wrap > .km-back,
 #kendoUiMobileApp .section-name-wrap #resultBackButton {
@@ -868,19 +859,16 @@ div[style^="transform: translate3d"].km-widget.km-view {
 }
 
 /*** QUESTIONÁRIOS e RESPOSTAS ***/
-#kendoUiMobileApp div[data-show^="app.avaliacoesView."] li h3 {
-	margin-bottom: 1em;
-}
-
-#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .km-nova .km-radio-label {
+	#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .km-nova .km-radio-label {
 	font-size: 1em;
 	color: #999;
 }
 	#kendoUiMobileApp div[data-show^="app.avaliacoesView."] #formQuestionario .km-nova {
 		margin: 0 0 0.3em;
 	}
+	#main-header-quiz-detail .section-icon-name,
 	#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .section-name-wrap #resultBackButton + .section-icon-name {
-		margin-left: -3em;
+		margin-left: -2.65em;
 	}
 	#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .section-name-wrap + h3 {
 		text-align: center;
@@ -901,17 +889,15 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .resultado .section-icon-name span:nth-child(2) {
 		display: inline-block;
   	margin: 0;
-  	line-height: 1.2em;
-		-webkit-transform: translateY(0.3em);
-				-ms-transform: translateY(0.3em);
-						transform: translateY(0.3em);
 	}
 
 #kendoUiMobileApp #resultadoQuestionario li {
 	padding: 1em;
 }
-	#kendoUiMobileApp #resultadoQuestionario li > h3 {
+	#kendoUiMobileApp #resultadoQuestionario li > h3,
+	#kendoUiMobileApp #questionario li > h3 {
 		display: inline-block;
+		margin-bottom: 0.5em;
 	}
 	#kendoUiMobileApp #resultadoQuestionario li .km-nova {
 		margin: 0 0 0.3em 0;
@@ -1265,17 +1251,14 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		position: relative;
 		top: 0;
 		width: 100%;
-		margin: 0;
+		margin: 0 0 0.5em;
 		border-radius: 3px;
 		border: 1px solid #CCC;
 		font-size: 1em;
 		background-color: #FFF;
 	}
-	#kendoUiMobileApp .editar-comentario input {
-		margin-bottom: 0.5em;
-	}
 	#kendoUiMobileApp .editar-comentario + .editar-componente select {
-		margin: 0.5em 0;
+		margin: 0 0 0.5em;
 	}
 	#kendoUiMobileApp .editar-componente select {
 		padding-right: 1.3em;
@@ -1728,9 +1711,9 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		display: inline-block;
 		margin: 0;
   	font-size: 0.9em;
-  	-webkit-transform: translate(0.3em, 1.2em);
-    		-ms-transform: translate(0.3em, 1.2em);
-	    			transform: translate(0.3em, 1.2em);
+  	-webkit-transform: translate(0.5em, 1.2em);
+    		-ms-transform: translate(0.5em, 1.2em);
+	    			transform: translate(0.5em, 1.2em);
 	}
 	.descricao-wrap h3 {
     display: inline-block;
@@ -2039,11 +2022,11 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	position: relative;
 	padding: 0 1.2em 1em;
 }
-	.avaliacoes-wrap .prox-aula p {
+	/*.avaliacoes-wrap .prox-aula p {
 		display: inline-block;
 		width: 100%;
 		margin: 1em 0 0.2em;
-	}
+	}*/
 	.avaliacoes-wrap .prox-aula p + .km-button {
 		position: absolute;
 		top: 0.5em;
@@ -2059,7 +2042,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		display: inline-block;
 		height: 35px;
 		width: 35px;
-		margin-top: 1.8em;
+		/*margin-top: 1.8em;*/
 		margin-left: -0.5em;
 		border-width: 5px 5px 0 0;
     border-style: solid;
@@ -2113,18 +2096,18 @@ div[style^="transform: translate3d"].km-widget.km-view {
 }
 	.aval-praticas .km-listview-wrapper li p > .km-icon::after {
 		content: "\e09c";
+		text-indent: 0.1em;
 	}
 
 .aval-praticas .tipo-avaliacao-wrap {
 	float: left;
-	/*margin-top: 0.3em;*/
 	max-width: 58%;
 }
 	.aval-praticas .tipo-avaliacao-wrap p {
 		margin: 0;
 	}
 	.aval-praticas .tipo-avaliacao-wrap p:nth-child(2) {
-		text-indent: 14px;
+		text-indent: 1em;
 	}
 	.aval-praticas .tipo-avaliacao-wrap p b {
 		color: #EA2D2E;
