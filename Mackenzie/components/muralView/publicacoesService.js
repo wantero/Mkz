@@ -40,7 +40,7 @@ var PublicacoesService = {
             'Texto': texto ? texto : '',
             'Tipo': tipo,
             'Titulo': titulo ? titulo : '',
-            'CompartilhadoDe': publicacao ? publicacao.Id: '',
+            'CompartilhadoDe': publicacao ? (publicacao.CompartilhadoDe ? publicacao.CompartilhadoDe.Id : publicacao.Id) : '',
             // INTEGRACAO DADOS MACKENZIE
             'CompartilhadoDeUser': publicacao ? publicacao.User.Id: '',
             // INTEGRACAO DADOS MACKENZIE
@@ -56,7 +56,7 @@ var PublicacoesService = {
 
                     if (cb) {
                         try {
-                            novaPublicacao.CompartilhadoDe = publicacao ? publicacao: '';
+                            novaPublicacao.CompartilhadoDe = publicacao ? (publicacao.CompartilhadoDe ? publicacao.CompartilhadoDe : publicacao) : '';
                             novaPublicacao.CompartilhadoDeUser = publicacao ? publicacao.User: '';
                             novaPublicacao.User = app.getUserData();
                             novaPublicacao.Owner = novaPublicacao.User.Id;
