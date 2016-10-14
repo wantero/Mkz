@@ -29,6 +29,12 @@ var MkzDataService = (function() {
     };
 
     function transformUnidades(unidades) {
+    	// Verificar o envio dos dados (Charset do serviço do mackenzie)
+    	for (var index in unidades) {
+    		var unidade = unidades[index];
+    		unidade.nome_unidade = unidade.nome_unidade.replace('�', 'a');
+    	}
+
     	return unidades;
     };
 
