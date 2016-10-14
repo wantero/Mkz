@@ -795,7 +795,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	max-width: none;
 }
 	#kendoUiMobileApp .aval-praticas .aval-wrap p {
-		display: inline-block;
+		/*display: inline-block;
+		width: 100%;*/
 		text-indent: 0;
 	}
 
