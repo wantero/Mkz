@@ -181,6 +181,7 @@ app.checkinView = kendo.observable({
                                 if (result.text) {
                                     //app.alert('QR Code: '+result.text+'/'+result.format);
                                     app.alert('Leitura realizada com sucesso!');
+                                    $('#okButton').hide();
                                 }
                             }
                         },
