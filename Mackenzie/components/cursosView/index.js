@@ -91,7 +91,7 @@ app.cursosView = kendo.observable({
             },
             error: function(e) {
                 if (e.xhr) {
-                    alert(JSON.stringify(e.xhr));
+                    app.alert(JSON.stringify(e.xhr));
                 }
             },
             schema: {
@@ -194,7 +194,7 @@ app.cursosView = kendo.observable({
             },
             setCurrentItemById: function(itemModel) {
                 if (!itemModel) {
-                    alert('error loading disciplinas');
+                    app.alert('error loading disciplinas');
                     return;
                 }
 
@@ -217,7 +217,7 @@ app.cursosView = kendo.observable({
                         cursosViewModel.set('currentItemDisciplinas', data.result);
                     },
                     function(error){
-                        alert('error loading disciplinas');
+                        app.alert('error loading disciplinas');
                     });        
 
                 return itemModel;*/
@@ -331,11 +331,11 @@ app.cursosView = kendo.observable({
                         try {
                             done(publicacoes);    
                         } catch(err) {
-                            alert('LoadPublicacoes Error: '+err.message);
+                            app.alert('LoadPublicacoes Error: '+err.message);
                         }                        
                     },
                     function(error){
-                        alert('Error loading data (Questoes)');
+                        app.alert('Error loading data (Questoes)');
                     });
             },
             filterScheduler: function(cb) {
@@ -425,20 +425,20 @@ app.cursosView = kendo.observable({
                                     try {
                                         cb();
                                     } catch(err) {
-                                        alert('FilterScheduler Error: '+err.message);
+                                        app.alert('FilterScheduler Error: '+err.message);
                                     }
                                 }
                             } catch(e) {
-                                alert(e.message);
+                                app.alert(e.message);
                             }
 
                 // INTEGRACAO DADOS MACKENZIE
                         /*},
                         function(error){
-                            alert('error loading disciplinas');
+                            app.alert('error loading disciplinas');
                         });    
                 } catch(e) {
-                    alert("Falha ao carregar grade de horário.");
+                    app.alert("Falha ao carregar grade de horário.");
                 }*/
                 // INTEGRACAO DADOS MACKENZIE
 
@@ -506,7 +506,7 @@ app.cursosView = kendo.observable({
                             cursosViewModel.filterScheduler(cb);
                         },
                         function(error){
-                            alert('error loading disciplinas');
+                            app.alert('error loading disciplinas');
                         }); */
                     // INTEGRACAO DADOS MACKENZIE
 
@@ -552,7 +552,7 @@ app.cursosView = kendo.observable({
                     cursosViewModel.filterScheduler(cb);
                     // INTEGRACAO DADOS MACKENZIE
                 } catch(e) {
-                    alert(e.message);
+                    app.alert(e.message);
                 }
             },
             selectDiaView: function() {
@@ -680,10 +680,10 @@ app.cursosView = kendo.observable({
                 try {
                     cb(cursos);    
                 } catch(err) {
-                    alert('Crusor.onDetailShow/GetCursos Error: '+err.message);
+                    app.alert('Crusor.onDetailShow/GetCursos Error: '+err.message);
                 }                        
             }, function(err) {
-                alert('Error loading data (Cursos)');
+                app.alert('Error loading data (Cursos)');
             });*/
         // INTEGRACAO DADOS MACKENZIE
         try {
@@ -691,7 +691,7 @@ app.cursosView = kendo.observable({
                 cb(MkzDataService.getCursos());    
             }
         } catch(err) {
-            alert('Cursos.onDetailShow/GetCursos Error: '+err.message);
+            app.alert('Cursos.onDetailShow/GetCursos Error: '+err.message);
         }  
         // INTEGRACAO DADOS MACKENZIE
     };

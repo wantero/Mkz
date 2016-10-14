@@ -90,7 +90,7 @@ app.ranksView = kendo.observable({
             error: function(e) {
 
                 if (e.xhr) {
-                    alert(JSON.stringify(e.xhr));
+                    app.alert(JSON.stringify(e.xhr));
                 }
             },
             /*schema: {
@@ -218,7 +218,7 @@ app.ranksView = kendo.observable({
                 $('#rankingsData').show();
             },
             function (err) {
-                alert('Error loading rankings');
+                app.alert('Error loading rankings');
             });*/
 
         populate(function(data) {
@@ -241,11 +241,11 @@ app.ranksView = kendo.observable({
                         try {
                             cb(index, data.result);
                         } catch(e) {
-                            alert('Error: '+e.message);
+                            app.alert('Error: '+e.message);
                         }
                     }
                 }, function(err) {
-                    alert('Error loading data (Users)');
+                    app.alert('Error loading data (Users)');
                 });*/
             // INTEGRACAO DADOS MACKENZIE
 
@@ -255,7 +255,7 @@ app.ranksView = kendo.observable({
                     cb(index, MkzDataService.getUser());
                 }
             } catch(e) {
-                alert('Error: '+e.message);
+                app.alert('Error: '+e.message);
             }
             // INTEGRACAO DADOS MACKENZIE
         };      
@@ -275,11 +275,11 @@ app.ranksView = kendo.observable({
                             cb(data.result);
                         }                        
                     } catch(err) {
-                        alert('Sumarize Error: '+err.message);
+                        app.alert('Sumarize Error: '+err.message);
                     }
                 },
                 function(error){
-                    alert(JSON.stringify(error));
+                    app.alert(JSON.stringify(error));
                 });
         } 
 
@@ -295,11 +295,11 @@ app.ranksView = kendo.observable({
                         try {
                             cb(data.result);
                         } catch(err) {
-                            alert('GetCursos/Ranking Error: '+err.message);
+                            app.alert('GetCursos/Ranking Error: '+err.message);
                         }
                     }
                 }, function(err) {
-                    alert('Error loading data (Cursos)');
+                    app.alert('Error loading data (Cursos)');
                 });*/
             // INTEGRACAO DADOS MACKENZIE
 
@@ -307,7 +307,7 @@ app.ranksView = kendo.observable({
             try {
                 cb(MkzDataService.getCursos());
             } catch(err) {
-                alert('GetCursos/Ranking Error: '+err.message);
+                app.alert('GetCursos/Ranking Error: '+err.message);
             }
             // INTEGRACAO DADOS MACKENZIE
         }
@@ -359,7 +359,7 @@ app.ranksView = kendo.observable({
                     populateCb(ret);
                 }
             } catch(err) {
-                alert('Sumarize/Rankings Error: '+err.message);
+                app.alert('Sumarize/Rankings Error: '+err.message);
             }
         };
 

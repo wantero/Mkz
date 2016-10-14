@@ -87,7 +87,7 @@ app.disciplinasView = kendo.observable({
             },
             error: function(e) {
                 if (e.xhr) {
-                    alert(JSON.stringify(e.xhr));
+                    app.alert(JSON.stringify(e.xhr));
                 }
             },
             schema: {
@@ -195,7 +195,7 @@ app.disciplinasView = kendo.observable({
                     itemModel = dataSource.getByUid(item);
 
                 if (!itemModel) {
-                    alert('error loading disciplinas');
+                    app.alert('error loading disciplinas');
                     return;
                 }
                 
@@ -384,11 +384,11 @@ app.disciplinasView = kendo.observable({
                                 try {
                                     cb(data.result);
                                 } catch(e) {
-                                    alert('Error: '+e.message);
+                                    app.alert('Error: '+e.message);
                                 }
                             }
                         }, function(err) {
-                            alert('Error loading data (Users)');
+                            app.alert('Error loading data (Users)');
                         });
                 };
 
@@ -431,11 +431,11 @@ app.disciplinasView = kendo.observable({
                                 try {
                                     cb(index, data.result);
                                 } catch(e) {
-                                    alert('Error: '+e.message);
+                                    app.alert('Error: '+e.message);
                                 }
                             }
                         }, function(err) {
-                            alert('Error loading data (Users)');
+                            app.alert('Error loading data (Users)');
                         });
                 };
 
@@ -672,7 +672,7 @@ app.disciplinasView = kendo.observable({
 
                     fetchFilteredData(viewParam);
                 }, function(err) {
-                    alert('Error loading data (Cursos)');
+                    app.alert('Error loading data (Cursos)');
                 });
         }
 

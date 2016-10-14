@@ -93,7 +93,7 @@ app.muralView = kendo.observable({
             },
             error: function(e) {
                 if (e.xhr) {
-                    alert(JSON.stringify(e.xhr));
+                    app.alert(JSON.stringify(e.xhr));
                 }
             },
             schema: {
@@ -289,11 +289,11 @@ app.muralView = kendo.observable({
                                 try {
                                     cb(data.result);
                                 } catch(e) {
-                                    alert('Error: '+e.message);
+                                    app.alert('Error: '+e.message);
                                 }
                             }
                         }, function(err) {
-                            alert('Error loading data (Users)');
+                            app.alert('Error loading data (Users)');
                         });
                 };
 
@@ -336,11 +336,11 @@ app.muralView = kendo.observable({
                                 try {
                                     cb(index, data.result);
                                 } catch(e) {
-                                    alert('Error: '+e.message);
+                                    app.alert('Error: '+e.message);
                                 }
                             }
                         }, function(err) {
-                            alert('Error loading data (Users)');
+                            app.alert('Error loading data (Users)');
                         });
                 };
 
@@ -572,7 +572,7 @@ app.muralView = kendo.observable({
 
                     getDisciplinas(cursos);
                 }, function(err) {
-                    alert('Error loading data (Cursos)');
+                    app.alert('Error loading data (Cursos)');
                 });
         }
 
@@ -594,7 +594,7 @@ app.muralView = kendo.observable({
                         select.html(html);
                     }
                 }, function(Err) {
-                    alert('Erro loading data (Disciplinas)');
+                    app.alert('Erro loading data (Disciplinas)');
                 });
         }
 

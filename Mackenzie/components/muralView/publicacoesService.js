@@ -11,7 +11,7 @@ var PublicacoesService = {
 
     verificaTitulo: function($element, msg) {
         if ($element && $element.val() == '') {
-            alert(msg);
+            app.alert(msg);
             return false;
         }
 
@@ -20,7 +20,7 @@ var PublicacoesService = {
 
     verificaDisciplina: function($element) {
         if ($element && (!$element.val() || $element.val() == '')) {
-            alert('Favor informar o componente para a publicação!');
+            app.alert('Favor informar o componente para a publicação!');
             return false;
         }
 
@@ -66,13 +66,13 @@ var PublicacoesService = {
 
                             cb(novaPublicacao);
                         } catch(e) {
-                            alert('Error on Create Publicacoes: '+e.message);
+                            app.alert('Error on Create Publicacoes: '+e.message);
                         }
                     }
                 }
             },
             function(error){
-                alert('Erro ao gravar Publicacoes! '+error.message);
+                app.alert('Erro ao gravar Publicacoes! '+error.message);
             }
         );
     },
@@ -97,13 +97,13 @@ var PublicacoesService = {
                             
                             cb(publicacao);
                         } catch(e) {
-                            alert('Error on Update Publicacoes: '+e.message);
+                            app.alert('Error on Update Publicacoes: '+e.message);
                         }
                     }
                 }
             },
             function(error){
-                alert('Erro ao gravar Publicacoes! '+error.message);
+                app.alert('Erro ao gravar Publicacoes! '+error.message);
             }
         );
     },
@@ -123,13 +123,13 @@ var PublicacoesService = {
                         try {
                             cb({Id: publicacaoId});
                         } catch(e) {
-                            alert('Error on Delete Publicacoes: '+e.message);
+                            app.alert('Error on Delete Publicacoes: '+e.message);
                         }
                     }
                 }
             },
             function(error){
-                alert('Erro ao gravar Publicacoes! '+error.message);
+                app.alert('Erro ao gravar Publicacoes! '+error.message);
             }
         );
     },
@@ -146,12 +146,12 @@ var PublicacoesService = {
                     try {
                         cb(data.result);
                     } catch(e) {
-                        alert('CreateComentarios Error: '+e.message);
+                        app.alert('CreateComentarios Error: '+e.message);
                     }
                 }
             },
             function(error){
-                alert('CreateComentarios Error: '+error.message);
+                app.alert('CreateComentarios Error: '+error.message);
             });
     },
 
@@ -175,13 +175,13 @@ var PublicacoesService = {
                         try {
                             cb(data.result);
                         } catch(e) {
-                            alert('PushLikes Error: '+e.message);
+                            app.alert('PushLikes Error: '+e.message);
                         }
                     }
                 }
             },
             function (error) {
-                alert('PushLikes Error: '+error.message);
+                app.alert('PushLikes Error: '+error.message);
             }
         );
     },
@@ -208,13 +208,13 @@ var PublicacoesService = {
                         try {
                             cb(data.result);
                         } catch(e) {
-                            alert('PushLikes Error: '+e.message);
+                            app.alert('PushLikes Error: '+e.message);
                         }
                     }
                 }
             },
             function (error) {
-                alert('PushLikes Error: '+error.message);
+                app.alert('PushLikes Error: '+error.message);
             }
         );
     },
@@ -242,13 +242,13 @@ var PublicacoesService = {
                         try {
                             cb(data.result);
                         } catch(e) {
-                            alert('PopLikes Error: '+e.message);
+                            app.alert('PopLikes Error: '+e.message);
                         }
                     }
                 }
             },
             function (error) {
-                alert('PopLikes Error: '+error.message);
+                app.alert('PopLikes Error: '+error.message);
             }
         );
     },
@@ -272,7 +272,7 @@ var PublicacoesService = {
 
                     getDisciplinas($disciplinasSelect, cursos, cb);
                 }, function(err) {
-                    alert('Error loading data (Cursos)');
+                    app.alert('Error loading data (Cursos)');
                 });*/
             // INTEGRACAO DADOS MACKENZIE
 
@@ -300,7 +300,7 @@ var PublicacoesService = {
                         setHtml($disciplinasSelect, html, cb);
                     }
                 }, function(Err) {
-                    alert('Erro loading data (Disciplinas)');
+                    app.alert('Erro loading data (Disciplinas)');
                 });*/
             // INTEGRACAO DADOS MACKENZIE
 
@@ -324,7 +324,7 @@ var PublicacoesService = {
                 try {
                     cb();
                 } catch(e) {
-                    alert('Error getDisciplinas/PublicacoesService: '+e.message);
+                    app.alert('Error getDisciplinas/PublicacoesService: '+e.message);
                 } 
             }
         };
@@ -354,12 +354,12 @@ var PublicacoesService = {
                     //listView.refresh();                        
                 });
             }, function(err) {
-                navigator.notification.alert("Unfortunately the upload failed: " + err.message);
+                app.alert("Unfortunately the upload failed: " + err.message);
             });
         };
 
         function onPictureError() {
-            navigator.notification.alert("Falha no acesso à camera!");
+            app.alert("Falha no acesso à camera!");
         };           
 
         $titulo = $(tituloId);
@@ -498,13 +498,13 @@ function onMuralCamera(e) {
                 //listView.refresh();
             });
         }, function(err) {
-            navigator.notification.alert("Falha no upload do arquivo: " + err.message);
+            app.alert("Falha no upload do arquivo: " + err.message);
         });  
     };
 
     function onPictureError(err) {
         if (!err.toLowerCase().startsWith("camera cancelled")) {
-            navigator.notification.alert("Falha no acesso à camera!");
+            app.alert("Falha no acesso à camera!");
         }
     };
 
@@ -522,7 +522,7 @@ function onMuralFilmadora(e) {
     function onVideoSuccess(data) {
         try {
             if (data.length > 1) {
-                alert("Favor selecionar apenas um arquivo!");
+                app.alert("Favor selecionar apenas um arquivo!");
             }
 
             data = data[0];
@@ -551,7 +551,7 @@ function onMuralFilmadora(e) {
                         data = JSON.parse(data.response);
 
                         if (data.Result.length > 1) {
-                            alert("Favor selecionar apenas um arquivo!");
+                            app.alert("Favor selecionar apenas um arquivo!");
                             return;
                         }
 
@@ -569,18 +569,18 @@ function onMuralFilmadora(e) {
                             //listView.refresh();
                         });
                 }, function(err) {
-                    navigator.notification.alert("Falha no upload do arquivo: " + err.message);
+                    app.alert("Falha no upload do arquivo: " + err.message);
                 });   
             };
 
         } catch(e) {
-          alert(JSON.stringify(e));  
+          app.alert(JSON.stringify(e));  
         };
     };
 
     function onVideoError(err) {
         if (!err.code == 3) {
-            navigator.notification.alert("Falha no acesso à camera!"+JSON.stringify(err));
+            app.alert("Falha no acesso à camera!"+JSON.stringify(err));
         }
     }; 
 
@@ -624,13 +624,13 @@ function onMuralFilePicture(e) {
                 //listView.refresh();
             });
         }, function(err) {
-            navigator.notification.alert("Falha no upload do arquivo: " + err.message);
+            app.alert("Falha no upload do arquivo: " + err.message);
         });  
     };
 
     function onPictureError(err) {
         if (!err.toLowerCase().startsWith("selection cancelled")) {
-            navigator.notification.alert("Falha ao carregar imagem!");
+            app.alert("Falha ao carregar imagem!");
         }
     }; 
 
@@ -669,7 +669,7 @@ function onMuralFileVideo(e) {
                         data = JSON.parse(data.response);
 
                         if (data.Result.length > 1) {
-                            alert("Favor selecionar apenas um arquivo!");
+                            app.alert("Favor selecionar apenas um arquivo!");
                             return;
                         }
 
@@ -687,17 +687,17 @@ function onMuralFileVideo(e) {
                             //listView.refresh();
                         });
                 }, function(err) {
-                    navigator.notification.alert("Falha no upload do arquivo: " + err.message);
+                    app.alert("Falha no upload do arquivo: " + err.message);
                 });   
             };
         } catch(e) {
-          alert('Error on upload file: '+JSON.stringify(e));  
+            app.alert('Error on upload file: '+JSON.stringify(e));  
         };
     };
 
     function onVideoError(err) {
         if (!err.toLowerCase().startsWith("selection cancelled")) {
-            navigator.notification.alert("Falha ao carregar imagem!");
+            app.alert("Falha ao carregar imagem!");
         }
     }; 
 

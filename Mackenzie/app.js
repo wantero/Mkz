@@ -181,7 +181,11 @@
         $('[id=displayTIA]').each(function(index, item) {
             $(item).text(user.tia);
         });
-    }
+    };
+
+    app.alert = function(msg) {
+        navigator.notification.alert(msg, null, ' ');
+    };
 
 function onDrawerShow() {
     alert('s');

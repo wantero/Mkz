@@ -83,7 +83,7 @@ app.faqsView = kendo.observable({
             error: function(e) {
 
                 if (e.xhr) {
-                    alert(JSON.stringify(e.xhr));
+                    app.alert(JSON.stringify(e.xhr));
                 }
             },
             schema: {
@@ -167,7 +167,7 @@ app.faqsView = kendo.observable({
                     itemModel = dataSource.getByUid(item);
 
                 if (!itemModel) {
-                    alert('error loading faq');
+                    app.alert('error loading faq');
                     return;
                 }
 

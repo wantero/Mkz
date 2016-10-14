@@ -100,13 +100,13 @@ function editarPerfilOnCamera() {
       app.perfilView.perfilViewModel.fields.fotoUri = response.result.Uri;
       $('#foto').get(0).style.backgroundImage = "url("+app.perfilView.perfilViewModel.fields.fotoUri+")";
     }, function(err) {
-      navigator.notification.alert("Unfortunately the upload failed: " + err.message);
+      app.alert("Unfortunately the upload failed: " + err.message);
     });  
   };
 
   function onPictureError(e) {
     if (!e.toLowerCase().startsWith("camera cancelled")) {
-        navigator.notification.alert("Falha no acesso à camera!");
+        app.alert("Falha no acesso à camera!");
     }
   };
 
@@ -129,13 +129,13 @@ function editarPerfilOnDocumentos() {
       app.perfilView.perfilViewModel.fields.fotoUri = response.result.Uri;
       $('#foto').get(0).style.backgroundImage = "url("+app.perfilView.perfilViewModel.fields.fotoUri+")";
     }, function(err) {
-      navigator.notification.alert("Unfortunately the upload failed: " + err.message);
+      app.alert("Unfortunately the upload failed: " + err.message);
     });  
   };
 
   function onVideoError(e) {
     if (e.toLowerCase().startsWith("selection cancelled")) {
-      navigator.notification.alert("Falha ao carregar imagem!");
+      app.alert("Falha ao carregar imagem!");
     }
   }; 
 

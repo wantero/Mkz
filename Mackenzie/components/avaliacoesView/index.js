@@ -89,7 +89,7 @@ app.avaliacoesView = kendo.observable({
             },
             error: function(e) {
                 if (e.xhr) {
-                    alert(JSON.stringify(e.xhr));
+                    app.alert(JSON.stringify(e.xhr));
                 }
             },
             schema: {
@@ -227,7 +227,7 @@ app.avaliacoesView = kendo.observable({
                             });
                         },
                         function(error){
-                            alert('Error writing data (RespostasAvaliacao)');
+                            app.alert('Error writing data (RespostasAvaliacao)');
                         });
                 };
 
@@ -247,14 +247,14 @@ app.avaliacoesView = kendo.observable({
                                 addRespostaQuestao(index+1, idRespostaAvaliacao, cb);
                             },
                             function(error){
-                                alert('Error writing data (RespostaQuestaoAvaliacao)');
+                                app.alert('Error writing data (RespostaQuestaoAvaliacao)');
                             });
                     } else {
                         if (cb) {
                             try {
                                 cb();
                             } catch(err) {
-                                alert('AddRespostaQuestao Error: '+err.message);
+                                app.alert('AddRespostaQuestao Error: '+err.message);
                             }
                         }
                     }
@@ -304,7 +304,7 @@ app.avaliacoesView = kendo.observable({
                     itemModel = dataSource.getByUid(item);
 
                 if (!itemModel) {
-                    alert('Error loading data (Avaliacoes)');
+                    app.alert('Error loading data (Avaliacoes)');
                     return;
                 }
 
@@ -378,11 +378,11 @@ app.avaliacoesView = kendo.observable({
                         try {
                             done(data.result);    
                         } catch(err) {
-                            alert('LoadQuestoesAvaliacao Error: '+err.message);
+                            app.alert('LoadQuestoesAvaliacao Error: '+err.message);
                         }                        
                     },
                     function(error){
-                        alert('Error loading data (Questoes)');
+                        app.alert('Error loading data (Questoes)');
                     });
             },
             loadRespostasAvaliacao: function(questoes, idAvaliacao, cb) {
@@ -400,13 +400,13 @@ app.avaliacoesView = kendo.observable({
                     dataRespostasAvaliacao.get(queryRespostasAvaliacao)
                         .then(function(data) {
                             if (!data.result && !data.result.length) {
-                                alert('Error loading data (RespostasAvaliacao)');
+                                app.alert('Error loading data (RespostasAvaliacao)');
                                 return;
                             }
 
                             getRespostaQuestaoAvaliacao(questoes, data.result ? data.result[0] : undefined, cb);
                         }, function(err) {
-                            alert('Error loading data (Cursos)');
+                            app.alert('Error loading data (Cursos)');
                         });
                 }
 
@@ -418,7 +418,7 @@ app.avaliacoesView = kendo.observable({
                     dataRespostaQuestaoAvaliacao.get(queryRespostaQuestaoAvaliacao)
                         .then(function(data) {
                             if (!data.result && !data.result.length) {
-                                alert('Error loading data (RespostaQuestaoAvaliacao)');
+                                app.alert('Error loading data (RespostaQuestaoAvaliacao)');
                                 return;
                             }
                             
@@ -469,11 +469,11 @@ app.avaliacoesView = kendo.observable({
                                 try {                                    
                                     cb(questoes);
                                 } catch(err) {
-                                    alert('GetRespostaQuestaoAvaliacao Error: '+err.message);
+                                    app.alert('GetRespostaQuestaoAvaliacao Error: '+err.message);
                                 }
                             }
                         }, function(err) {
-                            alert('Error loading data (Cursos)');
+                            app.alert('Error loading data (Cursos)');
                         });
                 }
             }
@@ -526,7 +526,7 @@ app.avaliacoesView = kendo.observable({
 
                     getDisciplinas(cursos);
                 }, function(err) {
-                    alert('Error loading data (Cursos)');
+                    app.alert('Error loading data (Cursos)');
                 });*/
             // INTEGRACAO DADOS MACKENZIE
 
@@ -574,7 +574,7 @@ app.avaliacoesView = kendo.observable({
                         getAvaliacoes(disciplinas, respostas);
                     }
                 }, function(Err) {
-                    alert('Erro loading data (Disciplinas)');
+                    app.alert('Erro loading data (Disciplinas)');
                 });
         }
 
@@ -678,11 +678,11 @@ app.avaliacoesView = kendo.observable({
                     try {
                         done(responsebody);    
                     } catch(err) {
-                        alert('GetProfessores Error: '+err.message);
+                        app.alert('GetProfessores Error: '+err.message);
                     }                     
                     // INTEGRACAO DADOS MACKENZIE
                 }, function (err) {
-                    alert('Error loading data (Avaliacoes)');
+                    app.alert('Error loading data (Avaliacoes)');
                 });
         }
 
@@ -710,10 +710,10 @@ app.avaliacoesView = kendo.observable({
                     try {
                         done(responsebody);    
                     } catch(err) {
-                        alert('GetProfessores Error: '+err.message);
+                        app.alert('GetProfessores Error: '+err.message);
                     }                    
                 }, function (err) {
-                    alert('Error loading data (Professores)');
+                    app.alert('Error loading data (Professores)');
                 });
         }*/
         // INTEGRACAO DADOS MACKENZIE

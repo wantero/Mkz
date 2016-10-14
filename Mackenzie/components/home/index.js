@@ -16,7 +16,7 @@ app.home = kendo.observable({
         init = function(error) {
             if (error) {
                 if (error.message) {
-                    alert(error.message);
+                    app.alert(error.message);
                 }
                 return false;
             }
@@ -138,7 +138,7 @@ app.home = kendo.observable({
                     );
                 },
                 function() {
-                    alert('error');
+                    app.alert('error');
                 }
             );
         },
@@ -154,41 +154,41 @@ app.home = kendo.observable({
             password: 'GERTI#m1c2',
             validateData: function(data) {
                 if (!data.unidade) {
-                    alert('Favor informar a unidade');
+                    app.alert('Favor informar a unidade');
                     return false;
                 }
 
                 if (!data.tia) {
-                    alert('Favor informar o TIA');
+                    app.alert('Favor informar o TIA');
                     return false;
                 }
 
                 if (mode === 'register') {
                     /*if (!data.displayName) {
-                        alert('Favor informar o nome');
+                        app.alert('Favor informar o nome');
                         return false;
                     }*/
 
                     if (!data.email) {
-                        alert('Favor informar o email');
+                        app.alert('Favor informar o email');
                         return false;
                     }
                 }
 
                 if (!data.password) {
-                    alert('Favor informar a senha');
+                    app.alert('Favor informar a senha');
                     return false;
                 }
 
                 // INTEGRACAO DADOS MACKENZIE
                 /*if (mode === 'register') {
                     if (!data.confirmPassword) {
-                        alert('Missing confirmation password');
+                        app.alert('Missing confirmation password');
                         return false;
                     }
 
                     if (data.password != data.confirmPassword) {
-                        alert('Senha de confirmação deve ser a mesma!');
+                        app.alert('Senha de confirmação deve ser a mesma!');
                         return false;
                     }
                 }*/
@@ -221,7 +221,7 @@ app.home = kendo.observable({
                             });
                         }, init);
                     } else {
-                        navigator.notification.alert('Login inválido!');
+                        app.alert('Login inválido!');
                     }
                 });
             },
@@ -248,7 +248,7 @@ app.home = kendo.observable({
             },
             forgotPassword: function() {
                 if (!homeModel.tia) {
-                    alert('Missing TIA');
+                    app.alert('Favor informar o TIA');
                     return false;
                 }
 
@@ -262,9 +262,9 @@ app.home = kendo.observable({
                     },
                     function(e) {
                         if (e.code && e.code == 228) {
-                            alert(e.message);
+                            app.alert(e.message);
                         } else {
-                            alert('Error on reset password!');
+                            app.alert('Error on reset password!');
                         }
                     });
             },

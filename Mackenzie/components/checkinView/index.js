@@ -78,7 +78,7 @@ app.checkinView = kendo.observable({
             },
             error: function(e) {
                 if (e.xhr) {
-                    alert(JSON.stringify(e.xhr));
+                    app.alert(JSON.stringify(e.xhr));
                 }
             },
             schema: {
@@ -179,12 +179,13 @@ app.checkinView = kendo.observable({
                         function(result) { // success
                             if (!result.cancelled) {
                                 if (result.text) {
-                                    alert('QR Code: '+result.text+'/'+result.format);
+                                    //app.alert('QR Code: '+result.text+'/'+result.format);
+                                    app.alert('Leitura realizada com sucesso!');
                                 }
                             }
                         },
                         function(error) {  // error
-                            Alert('Fail on scan QR Code! '+error.message);
+                            app.alert('Falha ao ler o QR Code! '+error.message);
                         }
                     );
                 }
