@@ -53,47 +53,59 @@
 }  
 .flaticon-comment-ok .km-icon::before,
 .flaticon-comment-cancel .km-icon::before {
-  position: absolute;
-  top: 0.15em;
-  left: 0.15em;
+  position: relative;
   display: inline-block;
   z-index: 1;
-  height: 1.4rem;
-  width: 1.4rem;
+  height: 2rem;
+  width: 2rem;
   margin: 0;
-  font-size: 1rem;
-  line-height: 1.2rem;
+  font-size: 1.3rem;
+  line-height: 1.8rem;
   text-align: center;
   border-radius: 50%;
   color: #FFF;
+}
+.section-icon-name.flaticon-comment-ok,
+.section-icon-name.flaticon-comment-cancel {
+  width: 49%;
+}
+.section-icon-name.flaticon-comment-ok {
+  padding: 0 0.2em 0 0;
+  text-align: right;
+}
+
+.section-icon-name.flaticon-comment-ok .km-icon,
+.section-icon-name.flaticon-comment-cancel .km-icon {
+  height: 100%;
+  width: auto;
+  margin: 0;
 }
 .flaticon-comment-ok .km-icon::before {
   content: "\e037";
   background-color: green;
 }
-.flaticon-comment-ok .km-icon::after {
-  color: green;
+
+.flaticon-comment-ok .km-icon::after,
+.flaticon-comment-cancel .km-icon::after {
+  content: none;
 }
 
+.section-icon-name.flaticon-comment-cancel {
+  padding: 0 0 0 0.2em;
+  text-align: left;
+}
 .flaticon-comment-cancel .km-icon::before {
   content: "\e038";
   background-color: #EA2D2E;
 }
-.flaticon-comment-cancel .km-icon::after {
-  color: #EA2D2E;
-  -webkit-transform: scaleX(-1);
-      -ms-transform: scaleX(-1);
-          transform: scaleX(-1);
-}
-
 .flaticon-book .km-icon::after { content: "\f111"; }
 .flaticon-calendar .km-icon::after { content: "\f11b"; }
 .flaticon-camera .km-icon::after { content: "\f118"; }
 .flaticon-check .km-icon::after { content: "\f102"; }
 .flaticon-clock .km-icon::before { content: "\f11a"; }
 .flaticon-comment .km-icon::after { content: "\f105"; }
-.flaticon-comment-ok .km-icon::after { content: "\f106"; }
-.flaticon-comment-cancel .km-icon::after { content: "\f106"; }
+/*.flaticon-comment-ok .km-icon::after { content: "\f106"; }
+.flaticon-comment-cancel .km-icon::after { content: "\f106"; }*/
 .flaticon-docs .km-icon::after { content: "\f119"; }
 .flaticon-email .km-icon::after { content: "\f10e"; }
 .flaticon-exit .km-icon::after { content: "\f109"; }

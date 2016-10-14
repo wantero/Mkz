@@ -17,6 +17,7 @@
 #kendoUiMobileApp.km-widget textarea {
 	float: none;
 	height: auto;
+	margin-bottom: 0.3em;
 	font-size: 1em;
 	font-family: Arial;
 	resize: none;
@@ -370,7 +371,7 @@ div[data-layout="main-aceite"] .km-content .km-scroll-container {
 	}
 	.km-flat .km-view .km-footer .km-button .km-icon {
 		margin: 0;
-		line-height: 0.95em;
+		line-height: 0.8em;
 	}
 	.km-flat .km-view .km-footer .km-button .km-icon::after {
 		color: #FFF;
@@ -1056,10 +1057,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		padding: 1em 1em 0.5em;
 		border-bottom: 0;
 	}
-	#mackz-mural .mural-header form textarea,
-	#header-disciplinas-publicacoes form textarea {
-		margin-bottom: 0.25em;
-	}
 	#mackz-mural .mural-header input + .mural-header-icons,
 	#header-disciplinas-publicacoes input + .mural-header-icons {
 		float: right;
@@ -1074,7 +1071,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	.mural-header-icons .xsection-icon-name {
 		padding: 0.25em 0 0.25em 0.2em;
 	}
-	#mackz-mural .mural-header .mural-header-icons .section-icon-name {
+	#mackz-mural .mural-header .mural-header-icons .section-icon-name:not([class*=" flaticon-comment-"]) {
 		padding: 0 0 0 0.2em;
 	}
 
@@ -1256,7 +1253,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #kendoUiMobileApp #reply-mural-publicacoes {
 	display: inline-block;
 	width: 100%;
-	padding: 0.8em 0.8em 0.3em;
+	padding: 0.8em 0.8em 0.5em;
 	margin: 0;
 	border-bottom: 1px solid #CCC;
 }
@@ -1274,8 +1271,11 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		font-size: 1em;
 		background-color: #FFF;
 	}
+	#kendoUiMobileApp .editar-comentario input {
+		margin-bottom: 0.5em;
+	}
 	#kendoUiMobileApp .editar-comentario + .editar-componente select {
-		margin-top: 0.5em;
+		margin: 0.5em 0;
 	}
 	#kendoUiMobileApp .editar-componente select {
 		padding-right: 1.3em;
@@ -1308,18 +1308,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#reply-mural-publicacoes .mural-header-icons {
 		text-align: center;
 	}
-	#update-mural-publicacoes .mural-header-icons .section-icon-name,
-	#reply-mural-publicacoes .mural-header-icons .section-icon-name {
-		margin: 0.4em 0.13em 0;
-		padding: 0;
-	}
-	#update-mural-publicacoes .mural-header-icons .km-icon,
-	#reply-mural-publicacoes .mural-header-icons .km-icon {
-		width: auto;
-		margin: 0;
-		font-size: 2.1em;
-		line-height: 1em;
-	}
+
 
 /* BOTÃO COMPARTILHAR PUBLICAÇÃO (CONTEÚDO) */
 #kendoUiMobileApp #reply-mural-publicacoes {
@@ -1429,9 +1418,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		display: block;
 		height: 3.1em;
 		border: 1px solid;
-	}
-	#kendoUiMobileApp .masterDetailView #header-mural-comentario form > textarea + .mural-header-icons {
-		display: inline-block;
 	}
 	#kendoUiMobileApp .masterDetailView #header-mural-comentario form > textarea + .mural-header-icons [class*=" flaticon-"] {
 		padding: 0.2em 0.35em 0 0;
