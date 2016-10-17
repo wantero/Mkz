@@ -244,7 +244,11 @@ var MkzDataService = (function() {
         			} catch(err) {
         				navigator.notification.alert('Error on load User: '+err);
         			}
-				});
+				})
+        	.fail(
+        		function() {
+        			app.alert('Usuário ou senha invalido!');
+        		});
 	};
 
 	service.setTelerikUser = function(telerikUser) {

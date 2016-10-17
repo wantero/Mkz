@@ -335,7 +335,7 @@ app.ranksView = kendo.observable({
                     if (pushed < 5) {
                         ret.ranking.push({
                             text: (i+1)+'º',
-                            fotoUri: data[i].fotoUri ? data[i].fotoUri : '/styles/images/user-male.png',
+                            fotoUri: data[i].fotoUri ? data[i].fotoUri : 'styles/images/user-male.png',
                             nome: data[i].DisplayName,
                             pontos: data[i].Pontos
                         });
@@ -346,7 +346,7 @@ app.ranksView = kendo.observable({
                     ret.suaPosicao = [];                    
                     ret.suaPosicao.push({
                         text: (i+1)+'º',
-                        fotoUri: data[i].fotoUri ? data[i].fotoUri : '/styles/images/user-male.png',
+                        fotoUri: data[i].fotoUri ? data[i].fotoUri : 'styles/images/user-male.png',
                         nome: data[i].DisplayName,
                         pontos: data[i].Pontos
                     });
