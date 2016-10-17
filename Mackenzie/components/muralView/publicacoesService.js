@@ -64,7 +64,13 @@ var PublicacoesService = {
                             novaPublicacao = new kendo.data.Model(novaPublicacao);
                             app.muralView.muralViewModel.fixHierarchicalData(novaPublicacao);
 
-                            cb(novaPublicacao);
+                            if (novaPublicacao.CompartilhadoDe) {
+                                app.pontos.add(2, function() {
+                                    cb(novaPublicacao);
+                                });
+                            } else {
+                                cb(novaPublicacao);
+                            }
                         } catch(e) {
                             app.alert('Error on Create Publicacoes: '+e.message);
                         }
@@ -173,7 +179,9 @@ var PublicacoesService = {
                 if (data.result) {
                     if (cb) {
                         try {
-                            cb(data.result);
+                            app.pontos.add(1, function() {
+                                cb(data.result);
+                            });
                         } catch(e) {
                             app.alert('PushLikes Error: '+e.message);
                         }
@@ -206,7 +214,9 @@ var PublicacoesService = {
                 if (data.result) {
                     if (cb) {
                         try {
-                            cb(data.result);
+                            app.pontos.add(1, function() {
+                                cb(data.result);
+                            });
                         } catch(e) {
                             app.alert('PushLikes Error: '+e.message);
                         }
@@ -240,7 +250,9 @@ var PublicacoesService = {
                 if (data.result) {
                     if (cb) {
                         try {
-                            cb(data.result);
+                            app.pontos.sub(1, function() {
+                                cb(data.result);
+                            });
                         } catch(e) {
                             app.alert('PopLikes Error: '+e.message);
                         }

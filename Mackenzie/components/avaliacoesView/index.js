@@ -222,13 +222,16 @@ app.avaliacoesView = kendo.observable({
                             addRespostaQuestao(0, data.result.Id, function() {
                                 avaliacoesViewModel.set('currentItem', avaliacoesViewModel.fixHierarchicalData(avaliacao));
                                 avaliacoesViewModel.set('currentItemRespostas', questoes);
-                                
-                                app.mobileApp.navigate('#components/avaliacoesView/result.html?uid='+avaliacao.uid);
+
+                                app.pontos.add(pontos, function() {
+                                    app.showQuizzBadgeTimer();
+                                    app.mobileApp.navigate('#components/avaliacoesView/result.html?uid='+avaliacao.uid);
+                                });
                             });
                         },
                         function(error){
                             app.alert('Error writing data (RespostasAvaliacao)');
-                        });
+                        });                   
                 };
 
                 function addRespostaQuestao(index, idRespostaAvaliacao, cb) {

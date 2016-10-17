@@ -199,7 +199,7 @@
                 var tabstrip = $(item).data("kendoMobileTabStrip");
                 
                 if (tabstrip) {
-                    tabstrip.badge(4, pendentes);
+                    tabstrip.badge(4, pendentes ? pendentes : false);
                 }
             });
         });
@@ -210,6 +210,53 @@
             app.showQuizzBadgeTimer()
         }, 15 * 60 * 1000);
     })();
+
+
+    app.pontos = {};
+    function getPontos(done) {
+        app.data.mackenzie.Users.currentUser()
+            .then(
+                function(user) {
+                    done(user.result);
+                }
+            );
+    };
+
+    app.pontos.add = function(pontos, done) {
+        getPontos(function(user) {
+            var pontosAtual = !user.Pontos ? 0 : user.Pontos;
+
+            app.data.mackenzie.Users.updateSingle({
+                    'Id': user.Id,
+                    'Pontos': pontosAtual+pontos
+                },
+                function(data) {
+                    done(data);
+                },
+                function(error){
+                    app.alert('Error writing data (RespostasAvaliacao)');
+                }
+            );
+        });
+    };
+
+    app.pontos.sub = function(pontos, done) {
+        getPontos(function(user) {
+            var pontosAtual = !user.Pontos ? 0 : user.Pontos;
+
+            app.data.mackenzie.Users.updateSingle({
+                    'Id': user.Id,
+                    'Pontos': pontosAtual > pontos ? pontosAtual-pontos : 0
+                },
+                function(data) {
+                    done(data);
+                },
+                function(error){
+                    app.alert('Error writing data (RespostasAvaliacao)');
+                }
+            );            
+        });
+    };
 
     app.alert = function(msg) {
         navigator.notification.alert(msg, null, ' ');

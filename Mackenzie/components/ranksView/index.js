@@ -260,15 +260,14 @@ app.ranksView = kendo.observable({
             // INTEGRACAO DADOS MACKENZIE
         };      
         
-        function sumarize(cb) {            
-            var data = dataProvider.data('RespostasAvaliacao');
+        function sumarize(cb) {   
+            var query = new Everlive.Query();
 
-            var query = new Everlive.AggregateQuery();
-            query.groupBy(['User']);
-            query.sum('Pontos', 'TotalPontos');
-            query.expand({"User": true});
+            query.orderDesc('Pontos');
+            query.take(5);
 
-            data.aggregate(query)
+            var data = dataProvider.data('Users');
+            data.get(query)
                 .then(function(data) {
                     try {
                         if (cb) {
@@ -276,10 +275,10 @@ app.ranksView = kendo.observable({
                         }                        
                     } catch(err) {
                         app.alert('Sumarize Error: '+err.message);
-                    }
+                    } 
                 },
                 function(error){
-                    app.alert(JSON.stringify(error));
+                    app.alert('Error loading data (Ranking)');
                 });
         } 
 
@@ -332,13 +331,13 @@ app.ranksView = kendo.observable({
                     break;
                 }
 
-                if (data[i].User.Id != myId) {
+                if (data[i].Id != myId) {
                     if (pushed < 5) {
                         ret.ranking.push({
                             text: (i+1)+'º',
-                            fotoUri: data[i].User.fotoUri,
-                            nome: data[i].User.DisplayName,
-                            pontos: data[i].TotalPontos
+                            fotoUri: data[i].fotoUri ? data[i].fotoUri : '/styles/images/user-male.png',
+                            nome: data[i].DisplayName,
+                            pontos: data[i].Pontos
                         });
 
                         pushed++;
@@ -347,9 +346,9 @@ app.ranksView = kendo.observable({
                     ret.suaPosicao = [];                    
                     ret.suaPosicao.push({
                         text: (i+1)+'º',
-                        fotoUri: data[i].User.fotoUri,
-                        nome: data[i].User.DisplayName,
-                        pontos: data[i].TotalPontos
+                        fotoUri: data[i].fotoUri ? data[i].fotoUri : '/styles/images/user-male.png',
+                        nome: data[i].DisplayName,
+                        pontos: data[i].Pontos
                     });
                 }
             }
@@ -366,24 +365,10 @@ app.ranksView = kendo.observable({
         sumarize(function(data) {
             if (data) {
                 for (var i=0; i < data.length; i++) {
-                    getUser(i, data[i].User, function(index, user) {
-                        // INTEGRACAO DADOS MACKENZIE
-                        //data[index].User = user[0];
-                        // INTEGRACAO DADOS MACKENZIE
-
-                        // INTEGRACAO DADOS MACKENZIE
-                        data[index].User = user;
-                        // INTEGRACAO DADOS MACKENZIE
-
-                        if (index == data.length-1) {
-                            data.sort(function(a,b) {
-                                return b.Pontos - a.Pontos;
-                            });
-
-                            finish(data);
-                        }
-                    })
+                    data[i].Pontos = !data[i].Pontos ? 0 : data[i].Pontos;
                 }
+
+                finish(data);
             }
         });
     };
