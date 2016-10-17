@@ -946,7 +946,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 }
 	#rankings .masterDetailView li[data-uid] span {
 		display: inline-block;
-		max-width: 140px;
+		max-width: 15em;
 	}
 	#rankings .masterDetailView li[data-uid] > span:first-of-type {
 		font-size: 1.2em;
@@ -957,9 +957,9 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#rankings .masterDetailView li[data-uid] > span:nth-of-type(2) {
 		text-indent: 0.5em;
-		-webkit-transform: translateY(-1em);
-				-ms-transform: translateY(-1em);
-						transform: translateY(-1em);
+		-webkit-transform: translateY(-0.8em);
+				-ms-transform: translateY(-0.8em);
+						transform: translateY(-0.8em);
 	}
 	#rankings .masterDetailView li[data-uid] > span:last-of-type {
 		float: right;
@@ -2020,13 +2020,14 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 .avaliacoes-wrap .prox-aula {
 	position: relative;
-	padding: 0 1.2em 1em;
+	padding: 0.8em 1.2em 1em;
 }
-	/*.avaliacoes-wrap .prox-aula p {
-		display: inline-block;
+	.avaliacoes-wrap .prox-aula p {
+		/*display: inline-block;
 		width: 100%;
-		margin: 1em 0 0.2em;
-	}*/
+		margin: 1em 0 0.2em;*/
+		margin: 0;
+	}
 	.avaliacoes-wrap .prox-aula p + .km-button {
 		position: absolute;
 		top: 0.5em;
@@ -2042,7 +2043,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		display: inline-block;
 		height: 35px;
 		width: 35px;
-		/*margin-top: 1.8em;*/
+		margin-top: 1em;
 		margin-left: -0.5em;
 		border-width: 5px 5px 0 0;
     border-style: solid;
