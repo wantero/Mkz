@@ -8,12 +8,12 @@
     var bootstrap = function() {
         MkzDataService.waitForReady(function() {
             $(function() {
+                kendo.culture("pt-BR");
+
                 app.mobileApp = new kendo.mobile.Application(document.body, {
                     skin: 'flat',
                     initial: 'components/home/view.html'
                 });
-
-                kendo.culture("pt-BR");
             });
         });
     };
@@ -208,7 +208,7 @@
     (function showQuizzBadgeTimer() {
         setInterval(function() {
             app.showQuizzBadgeTimer()
-        }, 30 * 1000);
+        }, 15 * 60 * 1000);
     })();
 
     app.alert = function(msg) {

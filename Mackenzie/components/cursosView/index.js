@@ -31,9 +31,8 @@ app.cursosView = kendo.observable({
             }
         },
         processImage = function(img) {
-
             function isAbsolute(img) {
-                if  (img && (img.slice(0,  5)  ===  'http:' || img.slice(0,  6)  ===  'https:' || img.slice(0,  2)  ===  '//'  ||  img.slice(0,  5)  ===  'data:')) {
+                if (img && (img.slice(0, 5) ===  'http:' || img.slice(0,  6) === 'https:' || img.slice(0, 2) === '//' || img.slice(0, 5) === 'data:')) {
                     return true;
                 }
                 return false;
@@ -338,18 +337,22 @@ app.cursosView = kendo.observable({
                         app.alert('Error loading data (Questoes)');
                     });
             },
+            dayOfWeek: function(date) {
+                var week = ['domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado'];
+                return week[date.getDay()];
+            },
             filterScheduler: function(cb) {
                 if (!cursosViewModel.scheduler) {
                     cursosViewModel.initScheduler(cb);
                     return;
                 }
 
-                function dayOfWeek(date) {
+                /*function dayOfWeek(date) {
                     var week = ['domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado'];
                     return week[date.getDay()];
-                }
+                }*/
 
-                var dayOfWeek = dayOfWeek(new Date());
+                var dayOfWeek = cursosViewModel.dayOfWeek(new Date());
 
                     // INTEGRACAO DADOS MACKENZIE
                 //try {
@@ -382,15 +385,15 @@ app.cursosView = kendo.observable({
 
                                 data.result.forEach(function(cur, index, arr) {
 
-                                    function dayOfWeek(date) {
+                                    /*function dayOfWeek(date) {
                                         var week = ['domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado'];
                                         return week[date.getDay()];
-                                    }
+                                    }*/
 
                                     for (var dia = 1; dia <= lastDayOfMonth; dia++) {
                                         var calcDate = new Date(today.getFullYear(), today.getMonth(), dia);
 
-                                        if (dayOfWeek(calcDate) == cur.dia) {
+                                        if (cursosViewModel.dayOfWeek(calcDate) == cur.dia) {
                                             var item = {};
 
                                             item.start = new Date(cur.HorarioInicio);
