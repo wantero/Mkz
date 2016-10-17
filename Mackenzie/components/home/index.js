@@ -149,12 +149,12 @@ app.home = kendo.observable({
 
         homeModel = kendo.observable({
             displayName: '',
-            /*unidade: '001',
+            unidade: '001',
             tia: '41326652',
-            password: 'GERTI#m1c2',*/
-            unidade: '',
+            password: 'GERTI#m1c2',
+            /*unidade: '',
             tia: '',
-            password: '',
+            password: '',*/
             validateData: function(data) {
                 if (!data.unidade) {
                     app.alert('Favor informar a unidade');

@@ -557,6 +557,7 @@ app.muralView = kendo.observable({
         }
 
         app.displayUser();
+        app.showQuizzBadgeTimer();
 
         /*function getCursos() {
             var queryCursos = new Everlive.Query();

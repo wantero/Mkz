@@ -183,16 +183,39 @@
         });
     };
 
+    app.showQuizzBadgeTimer = function() {
+        app.avaliacoesView.avaliacoesViewModel.loadAvaliacoes(null, function(avaliacoes) {
+            var pendentes = 0;
+
+            for (var idx in avaliacoes) {
+                var avaliacao = avaliacoes[idx];
+
+                if (avaliacao.Situacao.toLowerCase() === 'valido') {
+                    pendentes ++;
+                }
+            }
+
+            $('[name="main-footer"]').each(function(index, item) {
+                var tabstrip = $(item).data("kendoMobileTabStrip");
+                
+                if (tabstrip) {
+                    tabstrip.badge(4, pendentes);
+                }
+            });
+        });
+    };
+
+    (function showQuizzBadgeTimer() {
+        setInterval(function() {
+            app.showQuizzBadgeTimer()
+        }, 30 * 1000);
+    })();
+
     app.alert = function(msg) {
         navigator.notification.alert(msg, null, ' ');
     };
 
-function onDrawerShow() {
-    alert('s');
-}
+    /*function onDrawerShow() {
+        alert('s');
+    }*/
 }());
-
-// START_CUSTOM_CODE_kendoUiMobileApp
-// Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
-
-// END_CUSTOM_CODE_kendoUiMobileApp

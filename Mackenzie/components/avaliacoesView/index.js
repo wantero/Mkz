@@ -746,6 +746,7 @@ app.avaliacoesView = kendo.observable({
         }
 
         app.displayUser();
+        app.showQuizzBadgeTimer();
 
         /*loadAvaliacoes(null, function(data) {
             avaliacoesViewModel.set('dataSource', data);

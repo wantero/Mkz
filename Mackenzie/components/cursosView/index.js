@@ -623,6 +623,7 @@ app.cursosView = kendo.observable({
         }
 
         app.displayUser();
+        app.showQuizzBadgeTimer();
 
         // INTEGRACAO DADOS MACKENZIE
         /*dataProvider.Users.currentUser().then(
