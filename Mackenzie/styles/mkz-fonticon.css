@@ -56,11 +56,11 @@
   position: relative;
   display: inline-block;
   z-index: 1;
-  height: 2rem;
-  width: 2rem;
+  height: 1.97rem;
+  width: 1.97rem;
   margin: 0;
   font-size: 1.3rem;
-  line-height: 1.8rem;
+  line-height: 1.85rem;
   text-align: center;
   border-radius: 50%;
   color: #FFF;
@@ -76,7 +76,7 @@
 
 .section-icon-name.flaticon-comment-ok .km-icon,
 .section-icon-name.flaticon-comment-cancel .km-icon {
-  height: 100%;
+  height: auto;
   width: auto;
   margin: 0;
 }

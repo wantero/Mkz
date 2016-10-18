@@ -372,7 +372,16 @@ div[data-layout="main-aceite"] .km-content .km-scroll-container {
 	}
 	.km-flat .km-view .km-footer .km-button .km-icon {
 		margin: 0;
-		line-height: 0.8em;
+		line-height: 0.9em;
+	}
+	.km-flat .km-view .km-footer .km-button .km-icon + .km-badge {
+		top: 0.1em;
+		right: 1.9em;
+    border: 1px solid #1486CC;
+    line-height: 1.6em;
+    background-color: #1486CC;
+    color: #FFF;
+    text-indent: 1px;
 	}
 	.km-flat .km-view .km-footer .km-button .km-icon::after {
 		color: #FFF;
@@ -759,7 +768,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 [data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container {
 	background-color: #DDD;
-	padding-top: 49px;
+	padding-top: 46px;
 }
 
 #kendoUiMobileApp .prof-disciplina-wrap {
@@ -882,8 +891,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .km-nova input.km-radio:checked + .km-radio-label:after {
 		height: 0.8em;
 		width: 0.8em;
-		top: 45%;
-		left: 0.265em;
+		top: 47.5%;
+		left: 0.27em;
 	}
 
 	#kendoUiMobileApp div[data-show^="app.avaliacoesView."] .resultado .section-icon-name span:nth-child(2) {
@@ -1008,6 +1017,17 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		padding: 0.4em 1em 0.5em;
 		border-bottom: 2px solid #FFF;
 	}
+		#rankings .descricao-wrap.sua-posicao h3::before {
+			content: "";
+			display: inline-block;
+			height: 1.2em;
+			width: 1.2em;
+			margin-right: 0.5em;
+			vertical-align: text-top;
+			border-radius: 50%;
+			background-image: url(images/star.svg);
+			background-repeat: no-repeat;
+		}
 
 
 /*** MURAL DE PUBLICAÇÕES ***/
@@ -1273,7 +1293,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		content: "";
 		display: inline-block;
 		position: absolute;
-		top: 1.4em;
+		top: 0.9em;
 		right: 0.6em;
 		z-index: 1;
 		border-top: 7px solid #333;
@@ -1445,6 +1465,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	background-color: #CECECE;
+	border-radius: 50%; /* Reforço para visualização no celular */
 }
 #kendoUiMobileApp #muralList #muralListView > li,
 #kendoUiMobileApp #muralList #muralListView .bg-branco {
@@ -1529,6 +1550,14 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#kendoUiMobileApp #mackz-faq .km-scroll-wrapper .masterDetailView li .image-with-text {
 		position: relative;
 	}
+
+#kendoUiMobileApp #mackz-faq + div[data-layout="main-detail"] .descricao-disc a[data-role="backbutton"] {
+	height: 1.5em;
+  width: 1.5em;
+  -webkit-transform: rotate(-45deg) translateY(1em);
+  		-ms-transform: rotate(-45deg) translateY(1em);
+  				transform: rotate(-45deg) translateY(1em);
+}
 
 #kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap {
 	padding: 1.5em;
@@ -1702,7 +1731,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#disciplinasViewModelDetailsView .descricao-wrap > .descricao-disc .km-button.km-back {
     height: 1.75em;
-    width: 2.15em;
+    width: 2.3em;
     -webkit-transform: rotate(-45deg) translate(0.1em, 1.5em);
 	    	-ms-transform: rotate(-45deg) translate(0.1em, 1.5em);
 	    			transform: rotate(-45deg) translate(0.1em, 1.5em);

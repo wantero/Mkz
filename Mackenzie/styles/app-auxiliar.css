@@ -126,11 +126,9 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 /**************************/
 /*** PADDING-TOP HEADER ***/
 /**************************/
-/*#avaliacoes .km-scroll-header + .km-scroll-container,*/
 #rankings .km-scroll-header + .km-scroll-container,
 #perfilViewModel.form-view,
-#mackz-faq .km-scroll-header + .km-scroll-container/*,
-[data-model^="app.avaliacoesView"] .km-scroll-header + .km-scroll-container*/ {
+#mackz-faq .km-scroll-header + .km-scroll-container {
 	padding-top: 44px;
 }
 
