@@ -301,6 +301,10 @@ app.disciplinasView = kendo.observable({
             muralLikeClick: function(e) {
                 var userId = app.getUserData().Id;
 
+                if (!e.data) {
+                    e = getMuralDataItem(e.currentTarget);
+                }
+
                 if (!PublicacoesService.findLike(e.data.Likes, userId)) {
                     PublicacoesService.pushLikes(dataProvider, e.data.Id, app.getUserData().Id, function(data) {
                         var $likesCount = $(e.currentTarget).closest('li').parents('li').find('#likesCount');
@@ -572,6 +576,7 @@ app.disciplinasView = kendo.observable({
             },
             cameraClick: function(e) {
                 var current = disciplinasViewModel.get('currentDisciplina');
+                var pub = {pub: e.data, view: getSelectedListView(), dataSource: disciplinasViewModel.get('publicacoes'), disciplinaId: current.Id, connectEvent: connectMuralEvents};
                 //PublicacoesService.cameraPub(dataProvider, '#disciplinaTituloCompartilhar', current.Id);
 
                 var $titulo = $(e.target).closest('form').find('.js-titulo');  //$(tituloId);
@@ -585,7 +590,8 @@ app.disciplinasView = kendo.observable({
                 }*/
 
             // INTEGRACAO DADOS MACKENZIE
-                $("#componenteImageActions").data("kendoMobileActionSheet").open($(e.currentTarget), {disciplinaId: current.Id});
+                //$("#componenteImageActions").data("kendoMobileActionSheet").open($(e.currentTarget), {disciplinaId: current.Id});
+                $("#componenteImageActions").data("kendoMobileActionSheet").open($(e.currentTarget), pub);
             // INTEGRACAO DADOS MACKENZIE
             },
             uploadFileClick: function(e) {

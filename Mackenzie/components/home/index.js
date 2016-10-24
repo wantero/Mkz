@@ -222,7 +222,13 @@ app.home = kendo.observable({
                                 MkzDataService.setTelerikUser(user.result);
                                 successHandler(data);
                             });
-                        }, init);
+                        }, function(err) {
+                            if (err.message.toLowerCase().indexOf('invalid user') >= 0) {
+                                app.alert('Login inválido ou Usuário ainda não registrado!');
+                            } else {
+                                init(err);
+                            }
+                        });
                     } else {
                         app.alert('Login inválido!');
                     }

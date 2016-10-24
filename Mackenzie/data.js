@@ -111,6 +111,7 @@ var MkzDataService = (function() {
 			_user.Username = _unidade+'.'+_tia;
 			_user.tia = _tia;
 			_user.DisplayName = user.nome_aluno;
+			_user.Tipo = user.tipo;
     	}
 
     	return _user;
@@ -231,7 +232,7 @@ var MkzDataService = (function() {
         	.done(
         		function(data) {
             		// MOCK - remover depois
-            		data.resposta = mockUser(data.resposta);
+            		//data.resposta = mockUser(data.resposta);
             		// MOCK
 
             		console.log('load user:', data.resposta);
@@ -246,7 +247,7 @@ var MkzDataService = (function() {
         			}
 				})
         	.fail(
-        		function() {
+        		function(err) {
         			app.alert('Usuário ou senha invalido!');
         		});
 	};
@@ -261,6 +262,7 @@ var MkzDataService = (function() {
 		_user.UserName = user.Username;
 		_user.tia = user.tia;
 		_user.DisplayName = user.DisplayName;
+		_user.Tipo = user.Tipo;
 	};
 
 	service.loadCursos = function(unidade, tia, password, cb) {

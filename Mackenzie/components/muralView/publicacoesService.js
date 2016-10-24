@@ -19,6 +19,12 @@ var PublicacoesService = {
     },
 
     verificaDisciplina: function($element) {
+        var user = app.getUserData();
+        
+        if (user.Tipo == 'P' && MkzDataService.getDisciplinas().length == 0) {
+            return true;
+        }
+
         if ($element && (!$element.val() || $element.val() == '')) {
             app.alert('Favor informar o componente para a publicação!');
             return false;
@@ -436,7 +442,7 @@ function onMuralPublicacaoReply(e) {
         newEl.find('#mural-edit-menu').click(function(e) {
             console.log(e);
             app.muralView.muralViewModel.muralEditMenuClick(this)
-        })
+        });
     });
 };
 
@@ -481,6 +487,10 @@ function onMuralCamera(e) {
     var $titulo, $disciplina, disciplinaId
         dataProvider = app.data.mackenzie;
 
+    var pub = e.context.pub;
+    var ele = e.context.view;
+    var dataSource = e.context.dataSource;
+
     function onPictureSuccess(data) {
         var file = {
             Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
@@ -498,7 +508,7 @@ function onMuralCamera(e) {
         }
 
         dataProvider.Files.create(file, function(response) {
-            PublicacoesService.createPublicacao(dataProvider, 'image', null, $titulo.val(), null, null, response.result.Uri, disciplinaId, null, function() {
+            PublicacoesService.createPublicacao(dataProvider, 'image', null, $titulo.val(), null, null, response.result.Uri, disciplinaId, null, function(pubAdd) {
                 $titulo.val('');
 
                 if ($disciplina) {
@@ -506,8 +516,15 @@ function onMuralCamera(e) {
                 }
                 
                 // REFRESH
-                //var listView = $("#muralListView").kendoMobileListView();
-                //listView.refresh();
+                if (!dataSource._data) {
+                    dataSource.push(pubAdd);
+                } else {
+                    dataSource.add(pubAdd);
+                }
+
+                var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
+                console.log(newEl);
+                e.context.connectEvent(newEl);
             });
         }, function(err) {
             app.alert("Falha no upload do arquivo: " + err.message);
@@ -530,6 +547,10 @@ function onMuralCamera(e) {
 function onMuralFilmadora(e) {
     var $titulo, $disciplina, disciplinaId
         dataProvider = app.data.mackenzie;
+
+    var pub = e.context.pub;
+    var ele = e.context.view;
+    var dataSource = e.context.dataSource;
 
     function onVideoSuccess(data) {
         try {
@@ -569,7 +590,7 @@ function onMuralFilmadora(e) {
 
                         data = data.Result[0];
 
-                        PublicacoesService.createPublicacao(dataProvider, 'video', null, $titulo.val(), null, null, data.Uri, disciplinaId, null, function() {
+                        PublicacoesService.createPublicacao(dataProvider, 'video', null, $titulo.val(), null, null, data.Uri, disciplinaId, null, function(pubAdd) {
                             $titulo.val('');
 
                             if ($disciplina) {
@@ -577,8 +598,15 @@ function onMuralFilmadora(e) {
                             }
                             
                             // REFRESH
-                            //var listView = $("#muralListView").kendoMobileListView();
-                            //listView.refresh();
+                            if (!dataSource._data) {
+                                dataSource.push(pubAdd);
+                            } else {
+                                dataSource.add(pubAdd);
+                            }
+
+                            var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
+                            console.log(newEl);
+                            e.context.connectEvent(newEl);
                         });
                 }, function(err) {
                     app.alert("Falha no upload do arquivo: " + err.message);
@@ -607,6 +635,10 @@ function onMuralFilePicture(e) {
     var $titulo, $disciplina, disciplinaId
         dataProvider = app.data.mackenzie;
 
+    var pub = e.context.pub;
+    var ele = e.context.view;
+    var dataSource = e.context.dataSource;
+    
     function onPictureSuccess(data) {
         var file = {
             Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
@@ -624,7 +656,7 @@ function onMuralFilePicture(e) {
         }
 
         dataProvider.Files.create(file, function(response) {
-            PublicacoesService.createPublicacao(dataProvider, 'image', null, $titulo.val(), null, null, response.result.Uri, disciplinaId, null, function() {
+            PublicacoesService.createPublicacao(dataProvider, 'image', null, $titulo.val(), null, null, response.result.Uri, disciplinaId, null, function(pubAdd) {
                 $titulo.val('');
 
                 if ($disciplina) {
@@ -632,8 +664,15 @@ function onMuralFilePicture(e) {
                 }
                 
                 // REFRESH
-                //var listView = $("#muralListView").kendoMobileListView();
-                //listView.refresh();
+                if (!dataSource._data) {
+                    dataSource.push(pubAdd);
+                } else {
+                    dataSource.add(pubAdd);
+                }
+
+                var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
+                console.log(newEl);
+                e.context.connectEvent(newEl);
             });
         }, function(err) {
             app.alert("Falha no upload do arquivo: " + err.message);
@@ -657,6 +696,10 @@ function onMuralFileVideo(e) {
     var $titulo, $disciplina, disciplinaId
         dataProvider = app.data.mackenzie;
 
+    var pub = e.context.pub;
+    var ele = e.context.view;
+    var dataSource = e.context.dataSource;
+    
     function onVideoSuccess(data) {
         try {
             saveFile(data);
@@ -687,7 +730,7 @@ function onMuralFileVideo(e) {
 
                         data = data.Result[0];
 
-                        PublicacoesService.createPublicacao(dataProvider, 'video', null, $titulo.val(), null, null, data.Uri, disciplinaId, null, function() {
+                        PublicacoesService.createPublicacao(dataProvider, 'video', null, $titulo.val(), null, null, data.Uri, disciplinaId, null, function(pubAdd) {
                             $titulo.val('');
 
                             if ($disciplina) {
@@ -695,8 +738,15 @@ function onMuralFileVideo(e) {
                             }
                             
                             // REFRESH
-                            //var listView = $("#muralListView").kendoMobileListView();
-                            //listView.refresh();
+                            if (!dataSource._data) {
+                                dataSource.push(pubAdd);
+                            } else {
+                                dataSource.add(pubAdd);
+                            }
+
+                            var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
+                            console.log(newEl);
+                            e.context.connectEvent(newEl);
                         });
                 }, function(err) {
                     app.alert("Falha no upload do arquivo: " + err.message);

@@ -181,7 +181,7 @@ app.muralView = kendo.observable({
                 PublicacoesService.createPublicacao(dataProvider, pub.Tipo, null, null, null, null, null, pub.Disciplina, pub, function(pubAdd) {
                     dataSource.add(pubAdd);
                     var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
-                    connectMuralEvents(newEl)                                   
+                    connectMuralEvents(newEl);
                 });
             },
             muralPublicacaoEditBeforeReply: function(e) {
@@ -456,7 +456,7 @@ app.muralView = kendo.observable({
                 $('#appDrawer').data('kendoMobileDrawer').show();
             },
             cameraClick: function(e) {
-                //PublicacoesService.cameraPub(dataProvider, '#tituloCompartilhar');
+                var pub = {pub: e.data, view: $('#muralListView'), dataSource: dataSource, connectEvent: connectMuralEvents};
 
                 var $titulo = $(e.target).closest('form').find('.js-titulo');  //$(tituloId);
                 if (!PublicacoesService.verificaTitulo($titulo, 'Favor informar o titulo da publicacao!')) {
@@ -468,7 +468,7 @@ app.muralView = kendo.observable({
                     return;
                 }
 
-                $("#muralImageActions").data("kendoMobileActionSheet").open($(e.currentTarget));
+                $("#muralImageActions").data("kendoMobileActionSheet").open($(e.currentTarget), pub);
             },
             uploadFileClick: function(e) {
                 PublicacoesService.runFile(dataProvider);
