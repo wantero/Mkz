@@ -324,14 +324,14 @@ app.avaliacoesView = kendo.observable({
                 app.disciplinasView.disciplinasViewModel.set('currentDisciplina', e.dataItem);
                 app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
             },
-            detailOption: function(e) {
+            /*detailOption: function(e) {
                 if (e.currentTarget.id === 'btDisciplinas') {
                     $('#disciplinas').show().siblings().hide();
                 } else {
                     $('#agenda').show().siblings().hide();
                     avaliacoesViewModel.selectDiaView();
                 }
-            },
+            },*/
             linkBind: function(linkString) {
                 var linkChunks = linkString.split('|');
                 if (linkChunks[0].length === 0) {

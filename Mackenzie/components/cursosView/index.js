@@ -278,7 +278,7 @@ app.cursosView = kendo.observable({
                     return;
                 }
 
-                if (e.currentTarget.id === 'btDisciplinas') {
+                if (e.id === 'btDisciplinas') {
                     $('#tabCursoDisciplinas').show().siblings().hide();
                     $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active');
                 } else {

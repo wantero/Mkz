@@ -10,10 +10,10 @@
      </div>
    
     <ul class="km-widget km-buttongroup bg-claro">
-        <li id="btDisciplinas" class="km-button km-state-active" data-bind="events: { click: detailOption }">
+        <li id="btDisciplinas" class="km-button km-state-active" onclick="app.cursosView.cursosViewModel.detailOption(this)" x-data-bind="events: { click: detailOption }">
             <span class="km-text">Componentes</span>
         </li>
-        <li id="btAgenda" class="km-button" data-bind="events: { click: detailOption }">
+        <li id="btAgenda" class="km-button" onclick="app.cursosView.cursosViewModel.detailOption(this)" x-data-bind="events: { click: detailOption }">
             <span class="km-text">Agenda</span>
         </li>
     </ul>

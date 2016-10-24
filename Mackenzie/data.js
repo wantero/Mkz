@@ -179,23 +179,12 @@ var MkzDataService = (function() {
 	};
 
 	service.loadAllData = function(cb) {
-    	/*service.loadCursos(_unidade, _tia, _password, function() {
-	    	service.loadHorarios(_unidade, _tia, _password, function() {
-    			try {
-    				if (cb) {
-    					cb(_unidades);
-    				}
-    			} catch(err) {
-    				navigator.notification.alert('Error on load Data: '+err);
-    			}
-	    	});
-    	});*/
 		try {
 			if (cb) {
 				cb(_unidades);
 			}
 		} catch(err) {
-			navigator.notification.alert('Error on load Data: '+err);
+			app.alert('Error on load Data: '+err);
 		}
 	};
 
@@ -206,8 +195,6 @@ var MkzDataService = (function() {
 		$.post(url, data)
         	.done(
         		function(data) {
-            		console.log('load unidades:', data.resposta);
-
             		_unidades = transformUnidades(data.resposta);
 
         			try {
@@ -215,7 +202,7 @@ var MkzDataService = (function() {
         					cb(_unidades);
         				}
         			} catch(err) {
-        				navigator.notification.alert('Error on load User: '+err);
+        				app.alert('Error on load User: '+err);
         			}
 				});
 	};
@@ -231,11 +218,6 @@ var MkzDataService = (function() {
 		$.post(url, data)
         	.done(
         		function(data) {
-            		// MOCK - remover depois
-            		//data.resposta = mockUser(data.resposta);
-            		// MOCK
-
-            		console.log('load user:', data.resposta);
             		_user = transformUser(data.resposta);
 
         			try {
@@ -243,7 +225,7 @@ var MkzDataService = (function() {
         					cb(_user);
         				}
         			} catch(err) {
-        				navigator.notification.alert('Error on load User: '+err);
+        				app.alert('Error on load User: '+err);
         			}
 				})
         	.fail(
@@ -265,7 +247,7 @@ var MkzDataService = (function() {
 		_user.Tipo = user.Tipo;
 	};
 
-	service.loadCursos = function(unidade, tia, password, cb) {
+	/*service.loadCursos = function(unidade, tia, password, cb) {
 		var url = "https://www3.mackenzie.com.br/tia/tia_mobile/progress/EXT_nomealuno.php",
 			data = {
 				unidade: unidade,
@@ -276,12 +258,6 @@ var MkzDataService = (function() {
 		$.post(url, data)
         	.done(
         		function(data) {
-            		// MOCK - remover depois
-            		data.resposta = mockCursos(data);
-            		// MOCK
-
-            		console.log('load cursos:', data.resposta);
-
             		_cursos = transformCursos(data.resposta);
 
         			try {
@@ -289,12 +265,12 @@ var MkzDataService = (function() {
         					cb(_cursos);
         				}
         			} catch(err) {
-        				navigator.notification.alert('Error on load Cursos: '+err);
+        				app.alert('Error on load Cursos: '+err);
         			};
 				});
-    };
+    };*/
 
-    service.loadHorarios = function(unidade, tia, password, cb) {
+    /*service.loadHorarios = function(unidade, tia, password, cb) {
 		var url = "https://www3.mackenzie.com.br/tia/tia_mobile/progress/EXT_horarios.php",
 			data = {
 				unidade: unidade,
@@ -305,7 +281,6 @@ var MkzDataService = (function() {
 		$.post(url, data)
         	.done(
         		function(data) {
-            		console.log('load horarios:', data.resposta);
             		_horarios = transformHorarios(data.resposta);
 
         			try {
@@ -313,10 +288,10 @@ var MkzDataService = (function() {
         					cb(_horarios);
         				}
         			} catch(err) {
-        				navigator.notification.alert('Error on load Horarios: '+err);
+        				app.alert('Error on load Horarios: '+err);
         			};
 				});
-    };
+    };*/
 
     service.getUnidades = function() {
     	return _unidades;
