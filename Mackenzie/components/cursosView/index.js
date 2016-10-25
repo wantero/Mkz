@@ -704,7 +704,9 @@ app.cursosView = kendo.observable({
     parent.set('onDetailShow', function(e) {
         app.displayUser();
         cursosViewModel.state = 'loading';
+    });
 
+    parent.set('onDetailAfterShow', function(e) {
         if (e.view.params.from && e.view.params.from == 'menu') {
             cursosViewModel.selectDiaView();                    
             $('#btAgenda').addClass('km-state-active').siblings().removeClass('km-state-active');
