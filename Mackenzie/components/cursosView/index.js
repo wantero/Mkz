@@ -731,11 +731,13 @@ app.cursosView = kendo.observable({
             $('#tabCursoDisciplinas').show().siblings().hide();
 
             cursosViewModel.filterScheduler(function() {
-                cursosViewModel.setCurrentItemByUid(e.view.params.uid);
-                cursosViewModel.state = 'finished';
+                setTimeout(function() {
+                    cursosViewModel.setCurrentItemByUid(e.view.params.uid);
+                    cursosViewModel.state = 'finished';
 
-                $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active');
-                $('#tabCursoDisciplinas').show().siblings().hide();
+                    $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active');
+                    $('#tabCursoDisciplinas').show().siblings().hide();
+                }, 100);
             });
         }
     });
