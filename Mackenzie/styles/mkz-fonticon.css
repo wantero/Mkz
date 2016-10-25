@@ -23,15 +23,19 @@
 
 .km-root .km-pane a[class^="flaticon-"] .km-icon,
 .km-root .km-pane a[class*=" flaticon-"] .km-icon,
+.km-root .km-pane a[class^="flaticon-"] .km-icon-personalizado,
+.km-root .km-pane a[class*=" flaticon-"] .km-icon-personalizado,
 .flaticon-qr-code {
   height: auto;
   width: auto;
   display: inline-block;
 }
 
-[class^="flaticon-"] .km-icon:after,
-[class*=" flaticon-"] .km-icon:after,
-.flaticon-clock .km-icon:before,
+[class^="flaticon-"] .km-icon::after,
+[class*=" flaticon-"] .km-icon::after,
+[class^="flaticon-"] .km-icon-personalizado::after,
+[class*=" flaticon-"] .km-icon-personalizado::after,
+.flaticon-clock .km-icon::before,
 .flaticon-qr-code::after {   
   display: inline-block;
   width: auto;
@@ -40,6 +44,11 @@
   font-family: Flaticon;
   font-style: normal;
   color: #444;
+}
+
+[class^="flaticon-"] .km-icon-personalizado::after,
+[class*=" flaticon-"] .km-icon-personalizado::after {
+  font-size: 1.7em;
 }
 
 .flaticon-clock .km-icon::before {
@@ -100,7 +109,7 @@
 }
 .flaticon-book .km-icon::after { content: "\f111"; }
 .flaticon-calendar .km-icon::after { content: "\f11b"; }
-.flaticon-camera .km-icon::after { content: "\f118"; }
+.flaticon-camera .km-icon-personalizado::after { content: "\f118"; }
 .flaticon-check .km-icon::after { content: "\f102"; }
 .flaticon-clock .km-icon::before { content: "\f11a"; }
 .flaticon-comment .km-icon::after { content: "\f105"; }
@@ -113,7 +122,6 @@
 .flaticon-final-result .km-icon::after { content: "\f103"; }
 .flaticon-home .km-icon::after { content: "\f10c"; }
 .flaticon-movie .km-icon::after { content: "\f117"; }
-.flaticon-pin-search .km-icon::after { content: "\f10a"; }
 .flaticon-qr-code .km-icon::after { content: "\f101"; }
 .flaticon-quiz .km-icon::after { content: "\f10b"; }
 .flaticon-ranking .km-icon::after { content: "\f107"; }
@@ -123,7 +131,8 @@
 .flaticon-smiley .km-icon::after { content: "\f114"; }
 .flaticon-picture .km-icon::after { content: "\f10f"; }
 .flaticon-pin .km-icon::after { content: "\f110"; }
-.flaticon-post .km-icon::after { content: "\f11c"; }
+.flaticon-pin-search .km-icon::after { content: "\f10a"; }
+.flaticon-post .km-icon-personalizado::after { content: "\f11c"; }
 .flaticon-publication .km-icon::after { content: "\f115"; }
 .flaticon-tests .km-icon::after { content: "\f10d"; }
 .flaticon-user .km-icon::after { content: "\f116"; }
