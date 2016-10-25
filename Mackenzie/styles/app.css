@@ -204,62 +204,7 @@ div[data-layout="main-nonav"] .logo-mackenzie.new img {
 }
 
 
-/**************************/
-/***** LOADING PAGE ******/
 /*************************/
-/*div[data-layout="main-loading"] .logo-mackenzie,
-.loading-wrap {
-    position: relative;
-    height: 50%;
-}
-
-.loading-animate {
-	display: inline-block;
-    height: 100px;
-    width: 100px;
-    margin-top: -2px;
-}
-	.loading-animate > span {
-	    position: absolute;
-	    height: 100px;
-	    width: 100px;
-	    margin: auto;
-    	background-color: white;
-	    border-radius: 50%;
-	    opacity: 0;
-	    -webkit-animation: loading 1s infinite;
-	    		animation: loading 1s infinite;
-	}
-	.loading-animate.a > span {
-		left: calc(50% - 200px);
-		left: -webkit-calc(50% - 200px);
-	}
-	.loading-animate.b > span {
-		left: calc(50% - 50px);
-		left: -webkit-calc(50% - 50px);
-		-webkit-animation-delay: 0.2s;
-				animation-delay: 0.2s;
-	}
-	.loading-animate.c > span {
-		right: calc(50% - 200px);
-		right: -webkit-calc(50% - 200px);
-		-webkit-animation-delay: 0.4s;
-				animation-delay: 0.4s;
-	}
-
-@keyframes loading {
-	from {top: 100px; transform: scale(0.7); opacity: 0;}
-	50% {top: 0px; transform: scale(1); opacity: 1;}
-	to {top: 40px; transform: scale(0.3); opacity: 0;}
-}
-@-webkit-keyframes loading {
-	from {top: 100px; transform: scale(0.7); opacity: 0;}
-	50% {top: 0px; transform: scale(1); opacity: 1;}
-	to {top: 40px; transform: scale(0.3); opacity: 0;}
-}*/
-
-
-/**************************/
 /****** ACEITE PAGE ******/
 /*************************/
 div[data-layout="main-aceite"] .km-header {
@@ -320,7 +265,7 @@ div[data-layout="main-aceite"] .km-content .km-scroll-container {
 		}
 
 
-/**************************/
+/*************************/
 /**** USER APP LOGGED ****/
 /*************************/
 
@@ -351,8 +296,6 @@ div[data-layout="main-aceite"] .km-content .km-scroll-container {
 
 /*** FOOTER ÍCONES ***/
 .km-flat .km-view .km-footer {
-	/*position: fixed;
-	bottom: 0;*/
 	height: 45px;
 	font-size: 10px;
 }
@@ -377,11 +320,10 @@ div[data-layout="main-aceite"] .km-content .km-scroll-container {
 	.km-flat .km-view .km-footer .km-button .km-icon + .km-badge {
 		top: 0.1em;
 		right: 1.9em;
-    border: 1px solid #1486CC;
     line-height: 1.6em;
+    border: 1px solid #1486CC;
     background-color: #1486CC;
     color: #FFF;
-    text-indent: 1px;
 	}
 	.km-flat .km-view .km-footer .km-button .km-icon::after {
 		color: #FFF;
@@ -865,6 +807,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	width: 22px;
 	padding: 0;
 	margin-top: 0.8em;
+	 border-radius: 0;
 }
 
 /*** QUESTIONÁRIOS e RESPOSTAS ***/
@@ -1707,6 +1650,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	display: flex;
 	display: -webkit-flex;
 	overflow: hidden;
+	min-height: 4em;
 }
 	.descricao-wrap > .descricao-disc .km-button.km-back,
 	.descricao-wrap p,
@@ -1722,7 +1666,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#tabDisciplinas .descricao-wrap > .descricao-disc {
 		padding-bottom: 1em;
 	}
-	#tabDisciplinas .descricao-wrap > .descricao-disc .km-button.km-back {
+	#tabDisciplinas .descricao-wrap > .descricao-disc .km-button.km-back,
+	#disciplinasViewModelDetailsView .descricao-wrap > .descricao-disc .km-button.km-back {
 		height: 2em;
 		width: 2em;
 		-webkit-transform: rotate(-45deg) translate(0, 1.5em);
@@ -1730,19 +1675,26 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	    			transform: rotate(-45deg) translate(0, 1.5em);
 	}
 	#disciplinasViewModelDetailsView .descricao-wrap > .descricao-disc .km-button.km-back {
-    height: 1.75em;
-    width: 2.3em;
-    -webkit-transform: rotate(-45deg) translate(0.1em, 1.5em);
-	    	-ms-transform: rotate(-45deg) translate(0.1em, 1.5em);
-	    			transform: rotate(-45deg) translate(0.1em, 1.5em);
+    border: none;
+	}
+	#disciplinasViewModelDetailsView .descricao-wrap > .descricao-disc .km-button.km-back::before {
+		content: "";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1.5em;
+    width: 1.5em;
+    border-width: 5px 0 0 5px;
+    border-style: solid;
 	}
 	.descricao-wrap p {
 		display: inline-block;
 		margin: 0;
   	font-size: 0.9em;
-  	-webkit-transform: translate(0.5em, 1.2em);
-    		-ms-transform: translate(0.5em, 1.2em);
-	    			transform: translate(0.5em, 1.2em);
+  	-webkit-transform: translate(0.8em, 1.2em);
+    		-ms-transform: translate(0.8em, 1.2em);
+	    			transform: translate(0.8em, 1.2em);
 	}
 	.descricao-wrap h3 {
     display: inline-block;
@@ -1991,14 +1943,26 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	width: 100%;
 	padding: 1em 1em;
 	margin: 0;
+	list-style: none;
 }
-	.km-flat .km-view .descricao-wrap + .km-buttongroup .km-button {
+	.km-flat .km-view .descricao-wrap + .km-buttongroup .km-button-personalizado {
 		width: 50%;
 		padding: 0.5em;
 		background-color: #FFF;
 	}
-	.km-flat .km-view .descricao-wrap + .km-buttongroup .km-button.km-state-active {
+	.km-flat .km-view .descricao-wrap + .km-buttongroup .km-button-personalizado {
+		border-width: 1px;
+		border-style: solid;
+	}
+	.km-flat .km-view .descricao-wrap + .km-buttongroup .km-button-personalizado:first-child {
+		border-right: none;
+	}
+	.km-flat .km-view .descricao-wrap + .km-buttongroup .km-button-personalizado.km-state-active {
 		background-color: #EA2D2E;
+	}
+	.km-flat .km-view .descricao-wrap + .km-buttongroup .km-button-personalizado .km-text {
+		display: block;
+		text-align: center;
 	}
 
 .k-scheduler-footer .k-scheduler-fullday {
@@ -2052,18 +2016,15 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	padding: 0.8em 1.2em 1em;
 }
 	.avaliacoes-wrap .prox-aula p {
-		/*display: inline-block;
-		width: 100%;
-		margin: 1em 0 0.2em;*/
 		margin: 0;
 	}
 	.avaliacoes-wrap .prox-aula p + .km-button {
 		position: absolute;
 		top: 0.5em;
-		right: 0.5em;
+		right: 1.5em;
 		z-index: 10;
-		height: 85px;
-		width: 60px;
+		height: 4em;
+		width: 4em;
     padding: 0;
     margin: 0;
     border: none;
@@ -2073,7 +2034,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		height: 35px;
 		width: 35px;
 		margin-top: 1em;
-		margin-left: -0.5em;
+		margin-right: -0.8em;
 		border-width: 5px 5px 0 0;
     border-style: solid;
     -webkit-transform: rotate(45deg);
@@ -2384,7 +2345,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 
 	.avaliacoes-wrap #tabPublicacoes #first-period-2 .km-button {
-		padding: 0.8em 0.3em;
+		padding: 0.8em 0.3em 0.6em;
 		border: none;
 		font-size: 0.9em;
 	}
