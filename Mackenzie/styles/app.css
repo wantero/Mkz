@@ -1012,11 +1012,11 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		display: inline-block;
 	}
 	#mackz-mural .mural-header .mural-header-icons .section-icon-name,
-	#header-disciplinas-publicacoes .mural-header-icons .section-icon-name,
+	#header-disciplinas-publicacoes .mural-header-icons .section-icon-name-personalizado,
 	.mural-header-icons .xsection-icon-name {
 		display: inline-block;
 	}
-	#header-disciplinas-publicacoes .mural-header-icons .section-icon-name,
+	#header-disciplinas-publicacoes .mural-header-icons .section-icon-name-personalizado,
 	.mural-header-icons .xsection-icon-name {
 		padding: 0.25em 0 0.25em 0.2em;
 	}
@@ -1414,17 +1414,18 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #kendoUiMobileApp #muralList #muralListView .bg-branco {
 	padding: 0;
 }
-	#kendoUiMobileApp #muralList #muralListView > li {
+	#kendoUiMobileApp #muralList #muralListView > li,
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView > li[data-uid]:not(:last-child) .mural-conteudo-wrap {
 		border-bottom: 0;
 		background-color: transparent;
+		margin: 0 0 1.5em 0;
 	}
 	#kendoUiMobileApp #muralList #muralListView .bg-branco,
 	#kendoUiMobileApp #tabPubImages .bg-branco {
 		margin-bottom: 0;
 	}
-	#kendoUiMobileApp #muralList #muralListView > li:not(:last-child) > .mural-conteudo-wrap,
-	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView > li[data-uid]:not(:last-child) .mural-conteudo-wrap {
-		margin: 0 0 1.5em 0;
+	#kendoUiMobileApp #muralList #muralListView > li:not(:last-child) > .mural-conteudo-wrap {
+		margin: 0;
 	}
 	#kendoUiMobileApp #muralList #muralListView > li:last-child > .mural-conteudo-wrap {
 		margin: 0;

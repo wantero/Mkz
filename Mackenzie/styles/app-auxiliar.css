@@ -184,7 +184,6 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 	}
 		#kendoUiMobileApp .descricao-wrap > .descricao-disc .km-button.km-back {
 			padding: 0 0.6em;
-			margin-top: 0.75em;
 		}
 
 }
@@ -223,10 +222,12 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 	}
 
 	.avaliacoes-wrap .prox-aula p + .km-button {
-		height: 60px;
+		height: 35px;
 	}
 		.avaliacoes-wrap .prox-aula p + .km-button span {
-			margin-top: 1em;
+			height: 30px;
+			width: 30px;
+			margin-top: 0.3em;
 		}
 
 	#kendoUiMobileApp #disciplinas .km-listview-wrapper li .prof-thumb + .image-with-text,
@@ -252,7 +253,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 
 }
 
-@media screen and (min-device-width: 568px) and (min-device-height: 301px) {
+@media screen and (min-device-width: 568px) and (min-device-height: 300px) {
 
 	div[data-url="components/home/view.html"] .km-content .km-scroll-container,
 	.masterDetailView:not(.km-virtual-list) li .image-with-text,
@@ -329,6 +330,11 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 		padding: 1em 20% 4em;
 	}
 
+	/* FOOTER */
+	.km-flat .km-view .km-footer .km-button .km-icon + .km-badge {
+		right: 35%;
+	}
+
 }
 
 @media screen and (min-device-width: 375px) and (min-device-height: 647px) {
@@ -360,7 +366,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 	}
 
 	.avaliacoes-wrap .prox-aula {
-		padding: 0 15% 1em;
+		padding: 0.8em 15% 1em;
 	}
 		.avaliacoes-wrap .prox-aula .grupo-wrap .km-button {
 			padding-right: 0.6em;
@@ -392,7 +398,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 		font-size: 1em;
 	}
 	#kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap .comboBox option {
-		font-size: 0.6em;
+		font-size: 0.8em;
 	}
 
 	#kendoUiMobileApp #header-mural-publicacoes {
