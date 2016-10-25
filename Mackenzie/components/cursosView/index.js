@@ -732,11 +732,10 @@ app.cursosView = kendo.observable({
 
             cursosViewModel.filterScheduler(function() {
                 cursosViewModel.setCurrentItemByUid(e.view.params.uid);
+                cursosViewModel.state = 'finished';
 
                 $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active');
                 $('#tabCursoDisciplinas').show().siblings().hide();
-                
-                cursosViewModel.state = 'finished';
             });
         }
     });
