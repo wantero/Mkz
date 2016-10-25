@@ -110,6 +110,7 @@
 .flaticon-book .km-icon::after { content: "\f111"; }
 .flaticon-calendar .km-icon::after { content: "\f11b"; }
 .flaticon-camera .km-icon-personalizado::after { content: "\f118"; }
+.flaticon-camera .km-icon::after { content: "\f118"; }
 .flaticon-check .km-icon::after { content: "\f102"; }
 .flaticon-clock .km-icon::before { content: "\f11a"; }
 .flaticon-comment .km-icon::after { content: "\f105"; }
@@ -133,6 +134,7 @@
 .flaticon-pin .km-icon::after { content: "\f110"; }
 .flaticon-pin-search .km-icon::after { content: "\f10a"; }
 .flaticon-post .km-icon-personalizado::after { content: "\f11c"; }
+.flaticon-post .km-icon::after { content: "\f11c"; }
 .flaticon-publication .km-icon::after { content: "\f115"; }
 .flaticon-tests .km-icon::after { content: "\f10d"; }
 .flaticon-user .km-icon::after { content: "\f116"; }

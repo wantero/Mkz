@@ -1782,10 +1782,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #mackz-checkin .qr-camera-wrap {
 	position: relative;
 }
-	/*#mackz-checkin .camera-imagem-wrap {
-		min-height: 20em;
-		padding: 2.5em 0;
-	}*/
 	#mackz-checkin .camera-imagem-wrap img {
 		width: 100%;
 	}
