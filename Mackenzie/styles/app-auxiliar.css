@@ -55,6 +55,7 @@
 #modalview-message .km-footer .km-leftitem,
 #modalview-message .km-footer #modalview-message-ok,
 #appDrawer .km-content,
+#kendoUiMobileApp .masterDetailView > li[data-uid],
 #kendoUiMobileApp .masterDetailView #header-mural-comentario form > textarea,
 div[data-layout="main-aceite"] .km-content .privac-texto,
 .km-flat div[data-model="app.perfilView"].km-view .km-content,
@@ -245,6 +246,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 
 	#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2 {
 		padding: 0 15%;
+		margin-bottom: 1em;
 	}
 
 	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap {
@@ -330,56 +332,6 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 		padding: 1em 20% 4em;
 	}
 
-	/* FOOTER */
-	.km-flat .km-view .km-footer .km-button .km-icon + .km-badge {
-		right: 35%;
-	}
-
-}
-
-@media screen and (min-device-width: 375px) and (min-device-height: 647px) {
-	
-	html.km-root { font-size: 16px; }
-
-}
-
-@media screen and (min-device-width: 667px) {
-
-	html.km-root { font-size: 16px; }
-
-	#appDrawer { width: 50%; }
-
-	div[data-url="components/home/termoAceite.html"] .km-content .privac-texto {
-		width: 80%;
-		margin: 0 auto
-	}
-
-	.km-flat .km-view .descricao-wrap + .km-buttongroup {
-		padding: 1em 6em;
-	}
-
-	#kendoUiMobileApp .km-scroll-wrapper .masterDetailView li,
-	#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li,
-	#rankings .km-scroll-wrapper .masterDetailView li[data-uid],
-	#rankings .km-scroll-wrapper .rank-descricao {
-		padding: 1em 15%;
-	}
-
-	.avaliacoes-wrap .prox-aula {
-		padding: 0.8em 15% 1em;
-	}
-		.avaliacoes-wrap .prox-aula .grupo-wrap .km-button {
-			padding-right: 0.6em;
-		}
-
-	div.section-name-wrap:not(.mural-header) {
-		height: 60px;
-	}
-
-	form.section-name-wrap {
-		padding: 0.35em 1em;
-	}
-
 	/* CABEÇALHO DO MURAL */
 	#mackz-mural .mural-header form,
 	#header-disciplinas-publicacoes form {
@@ -435,6 +387,63 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 
 	.km-flat .km-actionsheet-wrapper.km-popup {
 		padding: 0;
+	}
+
+	/* FOOTER */
+	.km-flat .km-view .km-footer .km-button .km-icon + .km-badge {
+		right: 35%;
+	}
+
+	/* QR CODE */
+	#mackz-checkin .qr-demo-window {
+		min-height: 17em;
+		margin-bottom: 1em;
+	}
+
+	#mackz-checkin .checkin-conteudo-wrap .checkin-demo {
+		min-height: 8em;
+		width: 8em;
+	}
+
+}
+
+@media screen and (min-device-width: 375px) and (min-device-height: 647px) {
+	
+	html.km-root { font-size: 16px; }
+
+}
+
+@media screen and (min-device-width: 667px) {
+
+	html.km-root { font-size: 16px; }
+
+	#appDrawer { width: 50%; }
+
+	div[data-url="components/home/termoAceite.html"] .km-content .privac-texto {
+		width: 80%;
+		margin: 0 auto
+	}
+
+	.km-flat .km-view .descricao-wrap + .km-buttongroup {
+		padding: 1em 6em;
+	}
+
+	#kendoUiMobileApp .km-scroll-wrapper .masterDetailView li,
+	#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li,
+	#rankings .km-scroll-wrapper .masterDetailView li[data-uid],
+	#rankings .km-scroll-wrapper .rank-descricao {
+		padding: 1em 15%;
+	}
+
+	.avaliacoes-wrap .prox-aula {
+		padding: 0.8em 15% 1em;
+	}
+		.avaliacoes-wrap .prox-aula .grupo-wrap .km-button {
+			padding-right: 0.6em;
+		}
+
+	form.section-name-wrap {
+		padding: 0.35em 1em;
 	}
 
 }

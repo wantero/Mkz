@@ -1748,7 +1748,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #mackz-checkin .checkin-conteudo-wrap .checkin-demo {
 	position: relative;
 	min-height: 12em;
-	width: 14em;
+	width: 12em;
 	margin: 0 auto;
 	border: 1px solid #CCC;
 	border-radius: 3px;
@@ -1759,9 +1759,10 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		position: absolute;
 	}
 	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .QR-code {
-		left: 4.3em;
-		top: calc(50% - 36px);
-		top: -webkit-calc(50% - 36px);
+		top: calc(50% - 39px);
+		top: -webkit-calc(50% - 39px);
+		left: calc(50% - 39px);
+		left: -webkit-calc(50% - 39px);
 	}
 	#mackz-checkin .checkin-conteudo-wrap .checkin-demo .QR-code::after {
 		content: "\f101";
@@ -1769,7 +1770,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#mackz-checkin .km-button-group .km-button {
     display: block;
-    padding: 1em;
+    padding: 1em 2em;
 		margin: 0 auto;
     background-color: #FFF;
     color: #1486CC;
@@ -1781,10 +1782,10 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #mackz-checkin .qr-camera-wrap {
 	position: relative;
 }
-	#mackz-checkin .camera-imagem-wrap {
+	/*#mackz-checkin .camera-imagem-wrap {
 		min-height: 20em;
 		padding: 2.5em 0;
-	}
+	}*/
 	#mackz-checkin .camera-imagem-wrap img {
 		width: 100%;
 	}
@@ -1797,6 +1798,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	-webkit-flex-direction: column;
 					flex-direction: column;
 	height: 100%;
+	min-height: 23em;
 	width: 100%;
 }
 	#mackz-checkin .qr-demo-window .checkin-header {
