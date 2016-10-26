@@ -428,6 +428,10 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 		padding: 1em 6em;
 	}
 
+	.descricao-wrap > .descricao-disc:not(.bg-claro) {
+		padding-left: 13%;
+	}
+
 	#kendoUiMobileApp .km-scroll-wrapper .masterDetailView li,
 	#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li,
 	#rankings .km-scroll-wrapper .masterDetailView li[data-uid],
