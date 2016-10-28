@@ -55,7 +55,7 @@
 #modalview-message .km-footer .km-leftitem,
 #modalview-message .km-footer #modalview-message-ok,
 #appDrawer .km-content,
-/*#kendoUiMobileApp .masterDetailView > li[data-uid],*/
+#kendoUiMobileApp .masterDetailView > li[data-uid],
 #kendoUiMobileApp .masterDetailView #header-mural-comentario form > textarea,
 div[data-layout="main-aceite"] .km-content .privac-texto,
 .km-flat div[data-model="app.perfilView"].km-view .km-content,
@@ -64,7 +64,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 #kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap,
 #kendoUiMobileApp #tabAvaliacoes,
 #kendoUiMobileApp .k-nonwork-hour,
-/*#kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap .comboBox,*/
+#kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap .comboBox,
 #kendoUiMobileApp .km-content > .km-scroll-container > h3[data-bind*=".Disciplina"],
 #kendoUiMobileApp .km-content > .km-scroll-container > h3 + .prof-disciplina-wrap,
 #kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name,

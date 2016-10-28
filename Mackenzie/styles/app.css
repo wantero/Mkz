@@ -2375,7 +2375,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 /* PUBLICACOES MSGS - MURAL DISCIPLINAS */
 .publicacoes-button-wrap #tabPubMsgs li[data-uid] .mural-conteudo-wrap > div:first-child {
 	position: relative;
-	padding: 0 0 0.7em;
+	padding: 0;
 	margin: 0;
 	background-color: #FFF;
 }
