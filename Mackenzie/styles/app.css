@@ -59,11 +59,11 @@ div[data-layout="main-nonav"] .logo-mackenzie.login img {
 }
 
 /*** INÍCIO - LOGIN FORMULÁRIO ***/
-div[data-url="components/home/view.html"] .km-content .km-scroll-container {
+.km-view[data-layout="main-nonav"] .km-content .km-scroll-container {
 	padding: 1em 2em 2em;
 }
 	@media screen and (min-device-width: 730px) {
-		div[data-url="components/home/view.html"] .km-content .km-scroll-container {
+		.km-view[data-layout="main-nonav"] .km-content .km-scroll-container {
 			width: 60%;
 			margin: 0 auto;
 		}
@@ -231,7 +231,7 @@ div[data-layout="main-aceite"] .km-content .km-scroll-container {
 	padding: 0;
 }
 	div[data-layout="main-aceite"] .km-content .privac-texto {
-		padding: 1.5em 1.5em 3.15em;
+		padding: 1.5em 1.5em 1em;
 	}
 	div[data-layout="main-aceite"] .km-content .privac-texto section {
 		margin-bottom: 1em;
@@ -271,17 +271,17 @@ div[data-layout="main-aceite"] .km-content .km-scroll-container {
 
 /*** GERAL ***/
 .km-header  {
-	height: 60px;
+	height: 4em;
 }
 	.km-header .km-navbar {
 		height: 100%;
 	}
 
-.km-content.km-widget.km-scroll-wrapper,
+/*.km-content.km-widget.km-scroll-wrapper,
 .km-content.km-widget.km-searchcroll-wrapper {
-	height: calc(100% - 105px); /* altura da header (logo) + footer */
+	height: calc(100% - 105px); /* altura da header (logo) + footer *
 	height: -webkit-calc(100% - 105px);
-}
+}*/
 
 .km-leftitem + .km-view-title span {
   line-height: 3em;
@@ -289,14 +289,14 @@ div[data-layout="main-aceite"] .km-content .km-scroll-container {
   text-indent: -2em;
 }
 
-.km-flat .km-view .km-content {
+.km-flat .km-view:not([data-layout="main-nonav"]) .km-content {
 	background-color: #DEDEDE;
 }
 
 
 /*** FOOTER ÍCONES ***/
 .km-flat .km-view .km-footer {
-	height: 45px;
+	height: 4.5em;
 	font-size: 10px;
 }
 	.km-flat .km-view .km-footer .km-tabstrip {
@@ -381,7 +381,7 @@ div[data-layout="main-aceite"] .km-content .km-scroll-container {
 .section-icon-name {
 	display: inline-block;
 	height: 100%;
-	padding: 0.6em 0 0;
+	padding: 0.6em 0;
 }
 
 /*** MENU HAMBURGUER ***/
@@ -1517,7 +1517,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		margin: 0 0 1em;
 	}
 	#kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap p {
-		margin: 0.7em 0;
+		margin: 0;
 		line-height: 1.5em;
 	}
 #kendoUiMobileApp #mackz-faq .km-listview-wrapper li::after {
@@ -1681,9 +1681,9 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#disciplinasViewModelDetailsView .descricao-wrap > .descricao-disc .km-button.km-back {
 		height: 2em;
 		width: 2em;
-		-webkit-transform: rotate(-45deg) translate(0, 1.5em);
-	    	-ms-transform: rotate(-45deg) translate(0, 1.5em);
-	    			transform: rotate(-45deg) translate(0, 1.5em);
+		-webkit-transform: rotate(-45deg) translate(0.1em, 1.4em);
+	    	-ms-transform: rotate(-45deg) translate(0.1em, 1.4em);
+	    			transform: rotate(-45deg) translate(0.1em, 1.4em);
 	}
 	#disciplinasViewModelDetailsView .descricao-wrap > .descricao-disc .km-button.km-back {
     border: none;
@@ -2224,7 +2224,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 	/* DROPDOWN DIA/MÊS/SEMANA */
 	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child {
-		padding: 1em 0.95em 0.8em;
+		padding: 1em 0.95em;
 	}
 	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child ul {
     width: auto;
@@ -2242,7 +2242,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 			width: 100%;
 		}
 		#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child .k-scheduler-navigation li a {
-			padding: 0.13em 0;
+			padding: 0.2em 0;
 			text-align: center;
 		}
 	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap:first-child .k-scheduler-views {

@@ -10,13 +10,13 @@
 */
 
 .km-flat .km-view .km-navbar,
-.km-flat div[data-layout="main-nonav"] .km-content,
+.km-flat .km-view[data-layout="main-nonav"] .km-content,
 .km-flat .km-view .km-content .km-list > li .km-switch .km-switch-container,
 .km-flat .km-view .km-content .km-list .km-state-active .km-listview-link,
 .logo-img,
 .km-loader,
 .logo-mackenzie,
-#kendoUiMobileApp .button-group .km-button,
+#kendoUiMobileApp .button-group:not(.button-group-vertical) .km-button,
 .km-flat .km-view .km-footer .km-button,
 .km-flat .km-view .km-footer .km-button.km-state-active,
 .km-flat .km-view .km-content .km-button.km-state-active,
@@ -55,7 +55,7 @@
 #modalview-message .km-footer .km-leftitem,
 #modalview-message .km-footer #modalview-message-ok,
 #appDrawer .km-content,
-#kendoUiMobileApp .masterDetailView > li[data-uid],
+/*#kendoUiMobileApp .masterDetailView > li[data-uid],*/
 #kendoUiMobileApp .masterDetailView #header-mural-comentario form > textarea,
 div[data-layout="main-aceite"] .km-content .privac-texto,
 .km-flat div[data-model="app.perfilView"].km-view .km-content,
@@ -64,7 +64,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 #kendoUiMobileApp #mackz-faq + .km-widget .texto-wrap,
 #kendoUiMobileApp #tabAvaliacoes,
 #kendoUiMobileApp .k-nonwork-hour,
-#kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap .comboBox,
+/*#kendoUiMobileApp .mural-header .mural-header-icons + .comboBox-wrap .comboBox,*/
 #kendoUiMobileApp .km-content > .km-scroll-container > h3[data-bind*=".Disciplina"],
 #kendoUiMobileApp .km-content > .km-scroll-container > h3 + .prof-disciplina-wrap,
 #kendoUiMobileApp div[data-show^="app.avaliacoesView."] .prof-disciplina-wrap + .section-icon-name,
@@ -166,7 +166,8 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 #kendoUiMobileApp #update-mural-publicacoes,
 #kendoUiMobileApp #reply-mural-publicacoes,
 #kendoUiMobileApp .km-flat .km-list .bg-claro,
-#kendoUiMobileApp .bg-claro {
+#kendoUiMobileApp .bg-claro,
+#header-mural-comentario-list {
 	background-color: #F0F0F0;
 }
 #kendoUiMobileApp .bg-medio {
@@ -181,7 +182,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 
 	#kendoUiMobileApp .km-header,
 	#kendoUiMobileApp .descricao-wrap > .descricao-disc {
-		height: 50px;
+		height: 3.5em;
 	}
 		#kendoUiMobileApp .descricao-wrap > .descricao-disc .km-button.km-back {
 			padding: 0 0.6em;
@@ -304,8 +305,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 
 	#kendoUiMobileApp .km-scroll-wrapper .masterDetailView li,
 	#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li,
-	#rankings .km-scroll-wrapper .masterDetailView li[data-uid],
-	#rankings .km-scroll-wrapper .rank-descricao {
+	#rankings .km-scroll-wrapper .masterDetailView li[data-uid] {
 		padding: 1em 15% 1em 10%;
 	}
 	#rankings .km-scroll-wrapper .sua-posicao {
@@ -372,12 +372,9 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 		margin-top: 0.1em;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock {
-		left: 3.8em;
-		bottom: 0.4em;
+		left: 4.3em;
+		bottom: 0.8em;
 	}
-		#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock .km-icon::before {
-			top: 3px;
-		}
 
 	/* POPUP MENIU DE OPÇÕES DO MURAL */
 	.km-popup-overlay.km-actionsheet-root .k-animation-container,
@@ -434,8 +431,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 
 	#kendoUiMobileApp .km-scroll-wrapper .masterDetailView li,
 	#kendoUiMobileApp #avaliacoes .aval-praticas .masterDetailView li,
-	#rankings .km-scroll-wrapper .masterDetailView li[data-uid],
-	#rankings .km-scroll-wrapper .rank-descricao {
+	#rankings .km-scroll-wrapper .masterDetailView li[data-uid] {
 		padding: 1em 15%;
 	}
 
