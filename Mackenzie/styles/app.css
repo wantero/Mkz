@@ -2209,14 +2209,17 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #tabCursoAgenda #tabAgenda #scheduler {
 	border-top-color: #CCC;
 	border-bottom: 0;
+	background-color: transparent;
 }
 	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap {
 		background-image: none;
 		padding: 0.4em 12%;
 	}
-
-#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agenda {
-	background-color: #DDD;
+#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-layout {
+	background-color: #FFF;
+}
+#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-layout.k-scheduler-agenda {
+	margin-bottom: 3em;
 }
 	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agenda tbody {
 		background-color: #FFF;
