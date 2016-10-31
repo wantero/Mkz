@@ -208,7 +208,7 @@ var MkzDataService = (function() {
 	};
 
 	service.loadUser = function(unidade, tia, password, cb) {
-		var url = "https://www3.mackenzie.com.br/tia/tia_mobile/progress/EXT_alunohorario.php"
+		var url = "https://www3.mackenzie.com.br/tia/tia_mobile/progress/EXT_alunohorario.php",
 			data = {
 				unidade: unidade,
 	            tia: tia,
@@ -218,6 +218,11 @@ var MkzDataService = (function() {
 		$.post(url, data)
         	.done(
         		function(data) {
+        			if (!data.resposta) {
+						app.alert('Usuário ou senha invalido!');
+						return;
+        			}
+
             		_user = transformUser(data.resposta);
 
         			try {
