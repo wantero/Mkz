@@ -244,25 +244,32 @@ app.cursosView = kendo.observable({
                     data.Professor.Sala = '?';
                 }
 
-                app.cursosView.cursosViewModel.loadPublicacoes(e.dataItem.Id, function(publicacoes) {
-                    app.disciplinasView.disciplinasViewModel.set('publicacoes', publicacoes);
-                    
-                    app.disciplinasView.disciplinasViewModel.set('publicacoesCount', 
-                        { doc: publicacoes.docCount,
-                          video: publicacoes.videoCount,
-                          image: publicacoes.imageCount,
-                          msg: publicacoes.msgCount });                    
+                app.mobileApp.showLoading(); 
+                try {
+                    app.cursosView.cursosViewModel.loadPublicacoes(e.dataItem.Id, function(publicacoes) {
+                        app.disciplinasView.disciplinasViewModel.set('publicacoes', publicacoes);
+                        
+                        app.disciplinasView.disciplinasViewModel.set('publicacoesCount', 
+                            { doc: publicacoes.docCount,
+                              video: publicacoes.videoCount,
+                              image: publicacoes.imageCount,
+                              msg: publicacoes.msgCount });                    
 
-                    $('#tabAvaliacoes #docsCount').text(publicacoes.docCount);
-                    $('#tabAvaliacoes #videosCount').text(publicacoes.videoCount);
-                    $('#tabAvaliacoes #imagesCount').text(publicacoes.imageCount);
-                    $('#tabAvaliacoes #msgsCount').text(publicacoes.msgCount);
+                        $('#tabAvaliacoes #docsCount').text(publicacoes.docCount);
+                        $('#tabAvaliacoes #videosCount').text(publicacoes.videoCount);
+                        $('#tabAvaliacoes #imagesCount').text(publicacoes.imageCount);
+                        $('#tabAvaliacoes #msgsCount').text(publicacoes.msgCount);
 
-                    app.avaliacoesView.avaliacoesViewModel.loadAvaliacoes(e.dataItem.Id, function(data) {
-                        app.disciplinasView.disciplinasViewModel.set('avaliacoes', data);
-                        app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
+                        app.avaliacoesView.avaliacoesViewModel.loadAvaliacoes(e.dataItem.Id, function(data) {
+                            app.disciplinasView.disciplinasViewModel.set('avaliacoes', data);
+
+                            app.mobileApp.hideLoading(); 
+                            app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
+                        });
                     });
-                });
+                } catch(err) {
+                    app.mobileApp.hideLoading();                     
+                }
             },
             avaliacoesBack: function(e) {
                 var dataItem = app.disciplinasView.disciplinasViewModel.get('currentDisciplina');
@@ -707,38 +714,47 @@ app.cursosView = kendo.observable({
     });
 
     parent.set('onDetailAfterShow', function(e) {
-        if (e.view.params.from && e.view.params.from == 'menu') {
-            cursosViewModel.selectDiaView();                    
-            $('#btAgenda').addClass('km-state-active').siblings().removeClass('km-state-active');
-            $('#tabCursoAgenda').show().siblings().hide();
+        try {
+            app.mobileApp.showLoading();
 
-            getCursos(function(cursos) {
-                cursosViewModel.setCurrentItemById(cursos[0]);  
+            if (e.view.params.from && e.view.params.from == 'menu') {
+                cursosViewModel.selectDiaView();                    
+                $('#btAgenda').addClass('km-state-active').siblings().removeClass('km-state-active');
+                $('#tabCursoAgenda').show().siblings().hide();
 
-                /*if (cursosViewModel.scheduler) {
-                    cursosViewModel.scheduler.destroy();
-                    $("#scheduler").html("");
-                    cursosViewModel.scheduler = undefined;
-                }*/
+                getCursos(function(cursos) {
+                    cursosViewModel.setCurrentItemById(cursos[0]);  
+
+                    /*if (cursosViewModel.scheduler) {
+                        cursosViewModel.scheduler.destroy();
+                        $("#scheduler").html("");
+                        cursosViewModel.scheduler = undefined;
+                    }*/
+
+                    cursosViewModel.filterScheduler(function() {
+                        //cursosViewModel.selectDiaView();  
+                        cursosViewModel.state = 'finished';
+                        app.mobileApp.hideLoading();
+                    });
+                });
+            } else {
+                $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active');
+                $('#tabCursoDisciplinas').show().siblings().hide();
 
                 cursosViewModel.filterScheduler(function() {
-                    //cursosViewModel.selectDiaView();  
-                    cursosViewModel.state = 'finished';
+                    setTimeout(function() {
+                        cursosViewModel.setCurrentItemByUid(e.view.params.uid);
+                        cursosViewModel.state = 'finished';
+
+                        $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active');
+                        $('#tabCursoDisciplinas').show().siblings().hide();
+
+                        app.mobileApp.hideLoading();
+                    }, 100);
                 });
-            });
-        } else {
-            $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active');
-            $('#tabCursoDisciplinas').show().siblings().hide();
-
-            cursosViewModel.filterScheduler(function() {
-                setTimeout(function() {
-                    cursosViewModel.setCurrentItemByUid(e.view.params.uid);
-                    cursosViewModel.state = 'finished';
-
-                    $('#btDisciplinas').addClass('km-state-active').siblings().removeClass('km-state-active');
-                    $('#tabCursoDisciplinas').show().siblings().hide();
-                }, 100);
-            });
+            }
+        } catch(err) {
+            app.mobileApp.hideLoading();
         }
     });
 

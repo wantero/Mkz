@@ -220,26 +220,33 @@ var MkzDataService = (function() {
 		_horarios = [];
 		_disciplinas = [];
 		
+		app.mobileApp.showLoading(); 
 		$.post(url, data)
         	.done(
         		function(data) {
+					app.mobileApp.hideLoading();
+
         			if (!data.resposta) {
 						app.alert('Usuário ou senha invalido!');
 						return;
         			}
 
-            		_user = transformUser(data.resposta);
-
         			try {
+						app.mobileApp.showLoading(); 
+	            		_user = transformUser(data.resposta);
+						app.mobileApp.hideLoading();
+						
         				if (cb) {
         					cb(_user);
         				}
         			} catch(err) {
+						app.mobileApp.hideLoading();
         				app.alert('Error on load User: '+err);
         			}
 				})
         	.fail(
         		function(err) {
+					app.mobileApp.hideLoading();
         			app.alert('Usuário ou senha invalido!');
         		});
 	};

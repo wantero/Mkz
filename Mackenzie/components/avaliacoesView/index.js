@@ -72,11 +72,18 @@ app.avaliacoesView = kendo.observable({
                 read: function(options) {
                     //$('#avaliacoesData').hide();
 
-                    loadAvaliacoes(null, function(data) {
-                        //avaliacoesViewModel.set('dataSource', data);
-                        options.success(data);
-                        //$('#avaliacoesData').show();
-                    });                    
+                    try {
+                        app.mobileApp.showLoading(); 
+                        loadAvaliacoes(null, function(data) {
+                            //avaliacoesViewModel.set('dataSource', data);
+                            options.success(data);
+                            //$('#avaliacoesData').show();
+
+                            app.mobileApp.hideLoading();
+                        });                    
+                    } catch(err) {
+                        app.mobileApp.hideLoading();
+                    }
                 }
             },
             change: function(e) {
