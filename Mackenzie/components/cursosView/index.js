@@ -427,9 +427,17 @@ app.cursosView = kendo.observable({
                                     data: dataScheduler //data.result
                                 });
 
-
                                 cursosViewModel.scheduler.setDataSource(dataSourceScheduler);
                             //$('#scheduler').show();
+
+
+                                var startTime = new Date();
+                                    startTime.setHours(today.getHours());
+                                    startTime.setMinutes(0);
+                                    //startTime.setMinutes(today.getMinutes());
+                                    startTime.setSeconds(0);
+
+                                cursosViewModel.scheduler.setOptions({startTime: startTime});
 
                                 if (cb) {
                                     try {
@@ -458,7 +466,8 @@ app.cursosView = kendo.observable({
 
                 var startTime = today;
                     startTime.setHours(today.getHours());
-                    startTime.setMinutes(today.getMinutes());
+                    startTime.setMinutes(0);
+                    //startTime.setMinutes(today.getMinutes());
                     startTime.setSeconds(0);
 
                 var resourceList = []; //{field: "colorId", title: "Disciplina", dataSource: []};
