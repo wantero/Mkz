@@ -149,12 +149,9 @@ app.home = kendo.observable({
 
         homeModel = kendo.observable({
             displayName: '',
-            unidade: '', //001',
-            tia: '', //41326652',
-            password: '', //GERTI#m1c2',
-            /*unidade: '',
-            tia: '',
-            password: '',*/
+            unidade: '',    //'001',
+            tia: '',        //'41326652',
+            password: '',   //'GERTI#m1c2',
             validateData: function(data) {
                 if (!data.unidade) {
                     app.alert('Favor informar a unidade');
@@ -167,11 +164,6 @@ app.home = kendo.observable({
                 }
 
                 if (mode === 'register') {
-                    /*if (!data.displayName) {
-                        app.alert('Favor informar o nome');
-                        return false;
-                    }*/
-
                     if (!data.email) {
                         app.alert('Favor informar o email');
                         return false;
@@ -311,9 +303,12 @@ app.home = kendo.observable({
             }
 
             homeModel.password = '';
+
             $('#senha').val(homeModel.password);
             homeModel.set('logout', true);
         }
+
+        $('#unidadesLogin').val(homeModel.unidade);
 
         provider.Users.currentUser().then(successHandler, init);
     });
