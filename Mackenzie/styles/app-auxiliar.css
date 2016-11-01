@@ -10,6 +10,7 @@
 */
 
 .km-flat .km-view .km-navbar,
+.km-flat .km-scroller-pull,
 .km-flat .km-view[data-layout="main-nonav"] .km-content,
 .km-flat .km-view .km-content .km-list > li .km-switch .km-switch-container,
 .km-flat .km-view .km-content .km-list .km-state-active .km-listview-link,
@@ -25,6 +26,29 @@
 .avaliacoes-wrap #tabPublicacoes .km-buttongroup .km-state-active,
 .km-flat .km-view .disciplinas-wrap #agenda .km-buttongroup .km-state-active,
 #tabAvaliacoes .chekin-link-wrap {
+	background-color: #EA2D2E;
+}
+.km-flat .km-rowinsert,
+.km-flat .km-state-active,
+.km-flat .km-scroller-pull,
+.km-flat .km-loader:before,
+.km-flat .k-slider-selection,
+.km-flat .km-touch-scrollbar,
+.km-flat .km-pages .km-current-page,
+.km-flat .k-slider .k-draghandle,
+.km-flat .k-slider .k-draghandle:hover,
+.km-flat .km-tabstrip .km-state-active,
+.km-flat .km-scroller-refresh.km-load-more,
+.km-flat .km-popup .k-state-hover,
+.km-flat .km-popup .k-state-focused,
+.km-flat .km-popup .k-state-selected,
+.km-flat .km-actionsheet>li>a:active,
+.km-flat .km-actionsheet>li>a:hover,
+.km-flat .km-actionsheet>li>.km-state-active,
+.km-flat li.km-state-active .km-listview-link,
+.km-flat li.km-state-active .km-listview-label,
+.km-flat .km-listview-label input[type=radio]:checked,
+.km-flat .km-listview-label input[type=checkbox]:checked {
 	background-color: #EA2D2E;
 }
 

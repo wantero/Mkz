@@ -9,8 +9,8 @@
 	z-index: 1;
 }
 	.km-flat #mackz-mural .km-scroller-pull {
-		-webkit-transform: translateY(-3em);
-						transform: translateY(-3em);
+		-webkit-transform: translateY(-3.5em);
+						transform: translateY(-3.5em);
 		z-index: 0;
 	}
 
@@ -2219,7 +2219,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	background-color: #FFF;
 }
 #tabCursoAgenda #tabAgenda #scheduler .k-scheduler-layout.k-scheduler-agenda {
-	margin-bottom: 3em;
+	margin-bottom: 3.5em;
 }
 	#tabCursoAgenda #tabAgenda #scheduler .k-scheduler-agenda tbody {
 		background-color: #FFF;
