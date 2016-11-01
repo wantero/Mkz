@@ -214,6 +214,11 @@ var MkzDataService = (function() {
 	            tia: tia,
 	            pass: password
 	        };
+
+		_user = []
+		_cursos = [];
+		_horarios = [];
+		_disciplinas = [];
 		
 		$.post(url, data)
         	.done(
