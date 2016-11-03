@@ -604,20 +604,23 @@ app.muralView = kendo.observable({
         PublicacoesService.populateDisciplinas($('#mural-disciplina-select'));
 
         // Armazena o parametro recebido pela VIEW
-        param = null;
-        /*param = {
+        param = {
             logic:"or",
-            filters: [
-                {field: "Disciplina", operator: "eq", value: ''},
-                {field: "Disciplina", operator: "eq", value: null},
-            ]
-        };*/
+            filters: []
+        };
+
+        var disciplinas = MkzDataService.getDisciplinas();
+
+        for (var i = 0; i < disciplinas.length; i++) {
+            var fieldFilter = {field: 'Disciplina', operator: 'eq', value: disciplinas[i].Id};
+            param.filters.push(fieldFilter);
+        }
 
         if (e.view.params.tipo && e.view.params.tipo == 'minhaspub') {
             param = {
                 logic: "and",
                 filters: [
-                    //param,
+                    param,
                     { field:"User", operator:"eq", value: app.getUserData().Id }
                 ]
             }
