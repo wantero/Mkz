@@ -227,7 +227,7 @@ var MkzDataService = (function() {
 					app.mobileApp.hideLoading();
 
         			if (!data.resposta) {
-						app.alert('Usuário ou senha invalido!');
+						app.alert('Usuário ou senha inválido!');
 						return;
         			}
 

@@ -550,7 +550,9 @@ app.cursosView = kendo.observable({
                             today: "Hoje",
                             time: "Horário",
                             event: "Disciplina",
-                            date: "Dia"
+                            date: "Dia",
+                            showWorkDay: "Mostrar somente horas de trabalho",
+                            showFullDay: "Mostrar todo o dia"
                         },
                         views: [
                             {type: "day", allDaySlot: false, editable: false, selected: true, title: "Dia"},

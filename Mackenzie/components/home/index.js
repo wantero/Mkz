@@ -149,9 +149,12 @@ app.home = kendo.observable({
 
         homeModel = kendo.observable({
             displayName: '',
-            unidade: '',    //'001',
-            tia: '',        //'41326652',
-            password: '',   //'GERTI#m1c2',
+            /*unidade: '',
+            tia: '',
+            password: '',*/
+            unidade: '001',
+            tia: '41326652',
+            password: 'GERTI#m1c2',
             validateData: function(data) {
                 if (!data.unidade) {
                     app.alert('Favor informar a unidade');
@@ -216,7 +219,7 @@ app.home = kendo.observable({
                             });
                         }, function(err) {
                             if (err.message.toLowerCase().indexOf('invalid user') >= 0) {
-                                app.alert('Login inválido ou Usuário ainda não registrado!');
+                                app.alert('Usuário ainda não cadastrado no Mac Cloud! Favor criar sua conta no Mac Cloud com usuário/senha do TIA');
                             } else {
                                 init(err);
                             }
