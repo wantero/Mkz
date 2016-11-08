@@ -60,12 +60,27 @@
             }
         };
 
-    authentication.loadCachedAccessToken();
-    provider.Users.login = function cacheAccessTokenLogin(
-        email, password, success, error) {
-        providerLogin.call(this, email, password,
-            authentication.getCacheAccessTokenFn(success), error);
-    };
+    function getConfigFile(cb) {
+        $.get('./dataProviders/app.config', function(data) {
+            try {
+                cb($.parseJSON(data).appId);
+            } catch(e) {
+                alert('Error loading app config File!', null, ' ');
+            }
+        });
+    }
+
+    getConfigFile(function(appId) {
+        provider.appId = appId;
+        console.log('appId:', appId);
+
+        authentication.loadCachedAccessToken();
+        provider.Users.login = function cacheAccessTokenLogin(
+            email, password, success, error) {
+            providerLogin.call(this, email, password,
+                authentication.getCacheAccessTokenFn(success), error);
+        };        
+    });
 
     function _readyTimeout() {
         if (!provider.sbReady) {
