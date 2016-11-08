@@ -173,14 +173,17 @@
 
     function verifyTeacherUser() {
         var user = MkzDataService.getUser();                                         
+        var link = user.Tipo == 'P' ? 'components/disciplinasView/view.html' : 'components/cursosView/view.html';
 
         if (user.Tipo == 'P') {
-            $('#bt-tab-cursos').remove();
+            $('#bt-tab-cursos').hide();
+        } else {
+            $('#bt-tab-cursos').show();
+        }
 
-            $('.flaticon-search,.flaticon-book').each(function(idx, item) {
-                $(item).attr('href', 'components/disciplinasView/view.html');
-            });
-        };
+        $('.flaticon-search,.flaticon-book').each(function(idx, item) {
+            $(item).attr('href', link);
+        });
     };
 
     app.displayUser = function() {
