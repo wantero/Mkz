@@ -60,7 +60,7 @@
             }
         };
 
-    function getConfigFile(cb) {
+    /*function getConfigFile(cb) {
         $.get('./dataProviders/app.config', function(data) {
             try {
                 cb($.parseJSON(data).appId);
@@ -79,8 +79,15 @@
             email, password, success, error) {
             providerLogin.call(this, email, password,
                 authentication.getCacheAccessTokenFn(success), error);
-        };        
-    });
+        };      
+    });*/
+
+    authentication.loadCachedAccessToken();
+    provider.Users.login = function cacheAccessTokenLogin(
+        email, password, success, error) {
+        providerLogin.call(this, email, password,
+            authentication.getCacheAccessTokenFn(success), error);
+    };  
 
     function _readyTimeout() {
         if (!provider.sbReady) {
