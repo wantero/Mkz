@@ -1056,6 +1056,16 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		margin: 0;
 		text-indent: 0.5em;
 	}
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + h5 {
+		display: inline-block;
+		position: absolute;
+		bottom: 1.1em;
+		left: 4.5em;
+		margin: 0;
+		font-size: 0.75em;
+		font-weight: normal;
+		color: #999;
+	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + span {
 		position: absolute;
 		font-size: 0.9em;
@@ -1099,8 +1109,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#kendoUiMobileApp .masterDetailView .post-user .section-icon-name.flaticon-clock {
     position: absolute;
-    left: 4.5em;
-    bottom: 1.1em;
+    right: 1em;
+    top: 1.2em;
     height: auto;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock .km-icon::before {
@@ -1112,21 +1122,25 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		content: none;
 	}
 
-#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-conteudo {
-	padding: 1em;
+#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-conteudo p {
+	padding: 1em 1em 0;
 }
 
 #kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap [class*=" flaticon-"]:not(.flaticon-clock) {
 	position: relative;
-	padding: 0.6em 0 0.2em 1em;
+	padding: 0.8em 0 0.2em 1em;
 	margin: 0;
 }
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .flaticon-comment a {
     position: absolute;
-    top: 0.6em;
+    top: 0.4em;
     left: 0;
     width: 10em;
+    line-height: 2em;
     text-indent: 2.5em;
+	}
+	#kendoUiMobileApp #mural-comment-list:active {
+		color: #1486CC;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem {
 		height: 100%;
@@ -1136,6 +1150,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem > p {
 		margin: 0.5em 0 0;
+		padding: 0 1em 1em;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-imagem > video,
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-compartilhado-wrap > video {
@@ -1159,8 +1174,9 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		display: block;
 		height: auto;
 		max-height: 100%;
-		margin: 0 auto;
-		padding: 1em 0 0.5em;
+		width: 100%;
+		margin: 0;
+		padding: 1em 0 0;
 	}
 	#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .post-imagem img.post-compartilhado {
 		padding: 1em;
@@ -1421,7 +1437,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #kendoUiMobileApp #muralList #muralListView .bg-branco {
 	padding: 0;
 }
-	#kendoUiMobileApp #muralList #muralListView > li,
+	#kendoUiMobileApp #muralList #muralListView > li:not(:last-child),
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView > li[data-uid]:not(:last-child) .mural-conteudo-wrap {
 		border-bottom: 0;
 		background-color: transparent;
@@ -1457,7 +1473,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		width: -webkit-calc(100% - 30px);
 		text-align: left;
 	}
-	#header-mural-comentario-list .comentario-feito p {
+	#header-mural-comentario-list .user-thumb + .comentario-feito > p {
 		white-space: pre-line;
 	}
 	#header-mural-comentario-list .comentario-user-name {
@@ -1558,7 +1574,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
     height: 70px;
     width: 70px;
     margin: 0 auto;
-    border: 1px solid #CCC;
 	}
 	#perfilViewModel .user-thumb + a {
 		margin: 0.5em 0;
@@ -1932,7 +1947,9 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-conteudo + .section-icon-name {
 		padding: 0 1em 0.8em; 
 	}
-
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-conteudo + .section-icon-name + .section-icon-name {
+		padding-top: 0.6em;
+	}
 
 
 /*** AGENDA ***/

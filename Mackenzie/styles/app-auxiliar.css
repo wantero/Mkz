@@ -9,14 +9,14 @@
 	Text-color: #4c5356;
 */
 
-.km-flat .km-view .km-navbar,
-.km-flat .km-scroller-pull,
-.km-flat .km-view[data-layout="main-nonav"] .km-content,
-.km-flat .km-view .km-content .km-list > li .km-switch .km-switch-container,
-.km-flat .km-view .km-content .km-list .km-state-active .km-listview-link,
 .logo-img,
 .km-loader,
 .logo-mackenzie,
+.km-flat .km-scroller-pull,
+.km-flat .km-view .km-navbar,
+.km-flat .km-view[data-layout="main-nonav"] .km-content,
+.km-flat .km-view .km-content .km-list > li .km-switch .km-switch-container,
+.km-flat .km-view .km-content .km-list .km-state-active .km-listview-link,
 #kendoUiMobileApp .button-group:not(.button-group-vertical) .km-button,
 .km-flat .km-view .km-footer .km-button,
 .km-flat .km-view .km-footer .km-button.km-state-active,
@@ -284,6 +284,15 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 		padding: 0 15%;
 		margin-bottom: 1em;
 	}
+	#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2 li {
+		padding: 0.8em 1em;
+	}
+	#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2 li:first-child {
+		padding-left: 1.5em;
+	}
+	#disciplinasViewModelDetailsView #tabPublicacoes #first-period-2 li:last-child {
+		padding-right: 1.5em;
+	}
 
 	#tabCursoAgenda #tabAgenda #scheduler .k-floatwrap {
 		padding: 0.45em 6em;
@@ -406,9 +415,9 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + span {
 		margin-top: 0.1em;
 	}
-	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock {
-		left: 4.3em;
-		bottom: 0.8em;
+	#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .post-imagem img {
+		width: auto;
+		margin: 0 auto;
 	}
 
 	/* POPUP MENIU DE OPÇÕES DO MURAL */
