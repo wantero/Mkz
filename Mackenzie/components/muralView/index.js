@@ -115,6 +115,7 @@ app.muralView = kendo.observable({
         dataSource = new kendo.data.DataSource(dataSourceOptions),
         muralViewModel = kendo.observable({
             dataSource: dataSource,
+            disciplinas: undefined,
             fixHierarchicalData: function(data) {
                 var result = {},
                     layout = {};
@@ -163,6 +164,13 @@ app.muralView = kendo.observable({
                 result.TempoPublicacao = this.getTempoDecorrido(data.CreatedAt);
                 result.AlreadyLike = PublicacoesService.findLike(data.Likes, app.getUserData().Id);
                 result.LoggedUser = app.getUserData().Id;
+
+                for (var i = 0, len = muralViewModel.disciplinas.length; i < len; i++) {
+                    if (result.Disciplina == muralViewModel.disciplinas[i].Id) {
+                        result.DisciplinaNome = muralViewModel.disciplinas[i].Nome;
+                        break;
+                    }
+                }
 
                 if (result.CompartilhadoDe) {
                     if (typeof result.CompartilhadoDe === 'object') {
@@ -535,6 +543,8 @@ app.muralView = kendo.observable({
 
     
     parent.set('onShow', function(e) {
+        muralViewModel.disciplinas = MkzDataService.getDisciplinas();
+
         if (e.view.params.tipo && e.view.params.tipo == 'minhaspub') {
             e.view.element.find('#header-minhas-publicacoes').show(); //.siblings().hide(); 
         } else {

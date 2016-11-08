@@ -9,7 +9,7 @@
         </ul>
     </form>-->
 
-    <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="inset" data-template="disciplinasViewModelTemplate" 
+    <ul id="disciplinas-list" class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="inset" data-template="disciplinasViewModelTemplate" 
         data-bind="{ source: disciplinasViewModel.dataSource, events: {click: disciplinasViewModel.itemClick} }" data-pull-to-refresh="false"
         data-endless-scroll="false">
     </ul>

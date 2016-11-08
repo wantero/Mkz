@@ -3,7 +3,7 @@
      x-data-after-show="app.cursosView.afterShow"
      x-data-before-show="app.cursosView.onBeforeShow">
 
-    <ul class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="" data-template="cursosViewModelTemplate" 
+    <ul id="cursos-list" class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="" data-template="cursosViewModelTemplate" 
         xdata-show="app.cursosView.onShow"
         data-bind="{ source: cursosViewModel.dataSource, events: {click: cursosViewModel.itemClick} }" data-pull-to-refresh="false" data-endless-scroll="true">
     </ul>

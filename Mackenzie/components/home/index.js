@@ -98,7 +98,7 @@ app.home = kendo.observable({
                                         if (!user.result.TermoAceite) {
                                             app.mobileApp.navigate('components/home/termoAceite.html');
                                         } else {
-                                            MkzDataService.loadAllData(function() {
+                                            MkzDataService.loadAllData(function() {       
                                                 app.mobileApp.navigate('components/' + redirect + '/view.html');
                                             });
                                         }
@@ -153,6 +153,7 @@ app.home = kendo.observable({
             tia: '',
             password: '',*/
             unidade: '001',
+            //tia: '1129146',
             tia: '41326652',
             password: 'GERTI#m1c2',
             validateData: function(data) {
@@ -352,5 +353,7 @@ function onDrawerShow() {
 
     if (fotoUri) {
         $('#drawerPicture').get(0).style.backgroundImage = "url("+fotoUri+")";
+    } else {
+        $('#drawerPicture').get(0).style.backgroundImage = "url(../../styles/images/user-male.png)";
     }
 }

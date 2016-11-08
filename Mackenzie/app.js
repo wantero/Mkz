@@ -171,6 +171,18 @@
         return data;
     }
 
+    function verifyTeacherUser() {
+        var user = MkzDataService.getUser();                                         
+
+        if (user.Tipo == 'P') {
+            $('#bt-tab-cursos').remove();
+
+            $('.flaticon-search,.flaticon-book').each(function(idx, item) {
+                $(item).attr('href', 'components/disciplinasView/view.html');
+            });
+        };
+    };
+
     app.displayUser = function() {
         var user = app.getUserData();
 
@@ -181,6 +193,8 @@
         $('[id=displayTIA]').each(function(index, item) {
             $(item).text(user.tia);
         });
+
+        verifyTeacherUser();
     };
 
     app.showQuizzBadgeTimer = function() {

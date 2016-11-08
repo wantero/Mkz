@@ -437,7 +437,8 @@ app.cursosView = kendo.observable({
                                     //startTime.setMinutes(today.getMinutes());
                                     startTime.setSeconds(0);
 
-                                cursosViewModel.scheduler.setOptions({startTime: startTime});
+                                //cursosViewModel.scheduler.setOptions({startTime: startTime});
+
 
                                 if (cb) {
                                     try {
@@ -465,7 +466,8 @@ app.cursosView = kendo.observable({
                 var today = new Date();
 
                 var startTime = today;
-                    startTime.setHours(today.getHours());
+                    //startTime.setHours(today.getHours());
+                    startTime.setHours(6);
                     startTime.setMinutes(0);
                     //startTime.setMinutes(today.getMinutes());
                     startTime.setSeconds(0);
@@ -543,9 +545,12 @@ app.cursosView = kendo.observable({
                     $("#scheduler").kendoScheduler({
                         date: today,
                         startTime: startTime,
-                        height: 400,
+                        //workDayStart: startTime,
+                        //workDayEnd: startTime,
+                        height: 600,
                         mobile: true,
                         timezone: "Etc/UTC",
+                        footer: false ,
                         messages: {
                             today: "Hoje",
                             time: "Horário",
