@@ -1060,7 +1060,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		display: inline-block;
 		position: absolute;
 		bottom: 1.1em;
-		left: 4.5em;
+		left: 4.8em;
 		margin: 0;
 		font-size: 0.75em;
 		font-weight: normal;
@@ -1080,6 +1080,9 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .bg-branco > .post-conteudo-wrap {
 	position: relative;
 	margin-top: 0;
+}
+#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .bg-branco > .post-conteudo-wrap .post-conteudo {
+	border-bottom: 1px solid #CCC;
 }
 
 #kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user,
@@ -1110,12 +1113,13 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#kendoUiMobileApp .masterDetailView .post-user .section-icon-name.flaticon-clock {
     position: absolute;
     right: 1em;
-    top: 1.2em;
+    top: 1.3em;
     height: auto;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock .km-icon::before {
 		top: 0;
 		left: 0;
+		width: 1.3em;
 	}
 
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .km-icon::after {
@@ -1128,7 +1132,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 #kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap [class*=" flaticon-"]:not(.flaticon-clock) {
 	position: relative;
-	padding: 0.8em 0 0.2em 1em;
+	padding: 0.6em 0 0.2em 1em;
 	margin: 0;
 }
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .flaticon-comment a {
@@ -1136,7 +1140,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
     top: 0.4em;
     left: 0;
     width: 10em;
-    line-height: 2em;
+    line-height: 1.7em;
     text-indent: 2.5em;
 	}
 	#kendoUiMobileApp #mural-comment-list:active {
@@ -1315,7 +1319,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		margin: 0;
 	}
 	#kendoUiMobileApp .masterDetailView .flaticon-clock .km-icon {
-		top: 0.25em;
+		top: 0.3em;
 		left: 0;
 		margin: 0;
 	}
@@ -1335,15 +1339,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	border-style: solid;
 	border-color: #CCC;
 }
-	#kendoUiMobileApp .masterDetailView .post-botoes::before {
-		content: "";
-		position: absolute;
-		top: -2.6em;
-		left: 0;
-		display: inline-block;;
-		width: 100%;
-		border-bottom: 1px solid #CCC;
-	}
 
 	#kendoUiMobileApp .masterDetailView .post-botoes .km-icon {
 		height: auto;
