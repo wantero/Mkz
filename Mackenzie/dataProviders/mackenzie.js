@@ -65,14 +65,14 @@
             try {
                 cb($.parseJSON(data).appId);
             } catch(e) {
-                alert('Error loading app config File!', null, ' ');
+                alert('Error loading app config File!');
             }
         });
     }
 
     getConfigFile(function(appId) {
         provider.appId = appId;
-        console.log('appId:', appId);
+        console.log('appId: '+appId);
 
         authentication.loadCachedAccessToken();
         provider.Users.login = function cacheAccessTokenLogin(
