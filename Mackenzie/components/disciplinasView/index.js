@@ -178,9 +178,19 @@ app.disciplinasView = kendo.observable({
                 var dataItem = e.dataItem || disciplinasViewModel.originalItem;
                 disciplinasViewModel.set('currentDisciplina', e.dataItem);
 
-                app.avaliacoesView.avaliacoesViewModel.loadAvaliacoes(e.dataItem.Id, function(data) {
-                    disciplinasViewModel.set('avaliacoes', data);
-                    app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
+                app.cursosView.cursosViewModel.loadPublicacoes(e.dataItem.Id, function(publicacoes) {
+                    app.disciplinasView.disciplinasViewModel.set('publicacoes', publicacoes);
+                    
+                    app.disciplinasView.disciplinasViewModel.set('publicacoesCount', 
+                        { doc: publicacoes.docCount,
+                          video: publicacoes.videoCount,
+                          image: publicacoes.imageCount,
+                          msg: publicacoes.msgCount });                    
+
+                    app.avaliacoesView.avaliacoesViewModel.loadAvaliacoes(e.dataItem.Id, function(data) {
+                        disciplinasViewModel.set('avaliacoes', data);
+                        app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
+                    });
                 });
 
                 //app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + dataItem.uid);
