@@ -247,7 +247,12 @@ var MkzDataService = (function() {
         	.fail(
         		function(err) {
 					app.mobileApp.hideLoading();
-        			app.alert('Usuário ou senha invalido!');
+
+					if (err.responseText.trim() == '') {
+	        			app.alert('Usuário ou senha invalido!');
+					} else {
+						app.alert('Usuário não habilitado para o serviço!');
+					}
         		});
 	};
 
