@@ -378,7 +378,7 @@ div[data-layout="main-aceite"] .km-content .km-scroll-container {
 						transform: rotate(-45deg);
 	}
 
-.section-icon-name {
+.section-icon-name:not(.mural-editar-btn) {
 	display: inline-block;
 	height: 100%;
 	padding: 0.6em 0;
@@ -741,8 +741,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#kendoUiMobileApp .prof-disciplina-wrap p {
 		padding: 0 0 0 0.5em;
-		width: calc(100% - 30px);
-		width: -webkit-calc(100% - 30px);
+		width: calc(100% - 2.5em);
+		width: -webkit-calc(100% - 2.5em);
 	}
 
 #kendoUiMobileApp .aval-praticas .aval-wrap {
@@ -1052,25 +1052,29 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		display: inline-block;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4,
-	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + span {
-		max-width: 12em;
+	.publicacoes-button-wrap #tabPubMsgs .post-user h4,
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + h5 {
 		margin: 0;
-		text-indent: 0.5em;
+		overflow: hidden;
 		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4,
+	.publicacoes-button-wrap #tabPubMsgs .post-user h4 {
+		width: 16.8em;
+		text-indent: 0.5em;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + h5 {
 		display: inline-block;
-		position: absolute;
-		bottom: 1.1em;
-		left: 4.75em;
-		margin: 0;
+		width: 23.5em;
 		font-size: 0.75em;
 		font-weight: normal;
+		text-indent: 0.8em;
 		color: #999;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + span {
-		position: absolute;
-		font-size: 0.9em;
+		font-size: 0.8em;
+		text-indent: 0.8em;
 		color: #999;
 	}
 
@@ -1083,27 +1087,16 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	position: relative;
 	margin-top: 0;
 }
-#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .bg-branco > .post-conteudo-wrap .post-conteudo {
-	border-bottom: 1px solid #CCC;
-}
 
 #kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user,
 #kendoUiMobileApp .masterDetailView li > .mural-conteudo-wrap > div > .post-user {
 	position: relative;
 	overflow: auto;
-	height: 4em;
 	margin: 0;
-	padding: 1em;
+	padding: 0.8em 1em;
 	border-top: 1px solid #CCC;
 	border-bottom: 1px solid #CCC;
 }
-	#kendoUiMobileApp .masterDetailView li[data-uid]:first-child li.bg-branco > .post-user,
-	#kendoUiMobileApp .masterDetailView li[data-uid]:nth-child(2) li.bg-branco > .post-user,
-	#kendoUiMobileApp .masterDetailView > li[data-uid]:nth-child(3) > .mural-conteudo-wrap > div > .post-user,
-	#kendoUiMobileApp .masterDetailView > li[data-uid]:first-child > .mural-conteudo-wrap > div > .post-user {
-		padding: 0.9em 1em;
-		height: 4em;
-	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user:not(.head-post-compartilhado) {
 		margin: 0;
 	}
@@ -1114,8 +1107,9 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#kendoUiMobileApp .masterDetailView .post-user .section-icon-name.flaticon-clock {
     height: auto;
-    text-indent: 0.4em;
-    margin-left: 0.3em;
+    text-indent: 0.9em;
+    -webkit-transform: translateY(-0.4em);
+						transform: translateY(-0.4em);
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock .km-icon::before {
 		top: 0;
@@ -1130,9 +1124,25 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap .post-conteudo p {
 	padding: 1em 1em 0;
 }
+#kendoUiMobileApp .masterDetailView div > .flaticon-smiley::before {
+	content: "";
+  width: 100%;
+  position: absolute;
+  left: 0;
+  border-bottom: 1px solid #CCC;
+}
+#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo + .flaticon-smiley::before {
+  bottom: 1.8em;
+}
+#kendoUiMobileApp #listPubImages .masterDetailView .post-conteudo + .flaticon-smiley::before,
+#kendoUiMobileApp .masterDetailView div > .flaticon-smiley::before {
+	bottom: 2.4em;
+}
 
-#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap [class*=" flaticon-"]:not(.flaticon-clock) {
+#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap [class*=" flaticon-"]:not(.flaticon-smiley) {
 	position: relative;
+}
+#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-conteudo-wrap [class*=" flaticon-"]:not(.flaticon-clock) {
 	padding: 0.6em 0 0.2em 1em;
 	margin: 0;
 }
@@ -1181,7 +1191,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		max-height: 100%;
 		width: 100%;
 		margin: 0;
-		padding: 1em 0 0;
+		padding: 1em 0;
 	}
 	#kendoUiMobileApp .masterDetailView .post-conteudo-wrap .post-imagem img.post-compartilhado {
 		padding: 1em;
@@ -1197,25 +1207,23 @@ div[style^="transform: translate3d"].km-widget.km-view {
 
 /* BOTÃO EDITAR DO MURAL (LATERAL DIREITA) */
 #kendoUiMobileApp .masterDetailView .post-user .section-icon-name.mural-editar-btn {
-	float: right;
-	position: relative;
+	position: absolute;
+	top: 1em;
+	right: 1em;
+	height: 2em;
+	width: 2em;
 }	
 
-#kendoUiMobileApp .masterDetailView .post-user .mural-editar-btn {
-	margin: 0;
+#kendoUiMobileApp .masterDetailView .post-user .mural-editar-btn a {
+	position: absolute;
+	right: 0;
+	height: 40px;
+	width: 40px;
+	display: inline-block;
 }
-	#kendoUiMobileApp .masterDetailView .post-user .mural-editar-btn a {
-		position: absolute;
-		top: -1em;
-		right: 0;
-		height: 40px;
-		width: 40px;
-		display: inline-block;
-	}
 	#kendoUiMobileApp .masterDetailView .post-user .mural-editar-btn span {
 		position: absolute;
 		right: 0.3em;
-		top: 1em;
 		height: 11px;
 		width: 11px;
 		display: inline-block;
@@ -1314,11 +1322,11 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		padding: 0;
 	}
 
-	#kendoUiMobileApp .masterDetailView .post-compartilhado-wrap .flaticon-clock {
-		position: relative;
+	#kendoUiMobileApp .masterDetailView .post-compartilhado-wrap .section-icon-name.flaticon-clock {
 		left: 0;
-		padding: 0.6em 0 0;
 		margin: 0;
+		-webkit-transform: translateY(0);
+						transform: translateY(0);
 	}
 	#kendoUiMobileApp .masterDetailView .flaticon-clock .km-icon {
 		top: 0.3em;
@@ -1925,22 +1933,17 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		background-color: transparent;
 	}
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .mural-conteudo-wrap,
-	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user,
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-conteudo-wrap,
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .km-icon {
 		margin: 0;
 	}
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .user-thumb,
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user h4 {
-		display: inline-block;
+		float: left;
 	}
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .section-icon-name {
-		/*display: block;*/
-		font-size: 0.8em;
-		padding: 0;
-	}
-	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock {
-		position: absolute;
+		-webkit-transform: translateY(0);
+						transform: translateY(0);
 	}
 	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user .km-icon::after {
 		line-height: 0.7em;
@@ -2058,8 +2061,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	.avaliacoes-wrap .prox-aula p + .km-button span {
 		display: inline-block;
-		height: 35px;
-		width: 35px;
+		height: 2.2em;
+		width: 2.2em;
 		margin-top: 1em;
 		margin-right: -0.8em;
 		border-width: 5px 5px 0 0;
@@ -2408,18 +2411,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 		padding-top: 1em;
 		border-bottom: 1px solid #CCC;
 	}
-	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .post-compartilhado-wrap .post-user h4 {
-		vertical-align: top;
-		margin: 0.1em 0 0;
-		text-indent: 0.2em;
-	}
-	#tabPubDocs + #tabPubImages + #tabPubMsgs li > .mural-conteudo-wrap > div .post-compartilhado-wrap .post-user .section-icon-name.flaticon-clock {
-		display: inline-block;
-		position: absolute;
-		bottom: 1.1em;
-		left: 4.5em;
-		height: auto;
-	}
 	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .docs-wrap {
 		width: 100%;
 	  max-width: 100%;
@@ -2446,19 +2437,21 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	.publicacoes-button-wrap #tabPubMsgs #update-mural-publicacoes + .docs-wrap + .post-compartilhado-wrap	{
 		margin: 1em;
 	}
-	.publicacoes-button-wrap #tabPubMsgs .post-user {
-
-	}
-	.publicacoes-button-wrap #tabPubMsgs .post-user:not(.head-post-compartilhado) h4 {
-		margin: 0;
-		vertical-align: top;
-		text-indent: 0.2em;
-	}
-	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .section-icon-name:not([class*="flaticon-comment-"]) {
+	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .section-icon-name:not(.mural-editar-btn),
+	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .section-icon-name:not(.flaticon-clock) {
 		padding-left: 1em;
+	}
+	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .section-icon-name.flaticon-clock {
+		padding: 0;
+		font-size: 0.75em;
 	}
 	.publicacoes-button-wrap #tabPubMsgs li > .mural-conteudo-wrap > div .section-icon-name .km-icon {
 		margin: 0;
+		line-height: 0;
+	}
+	.publicacoes-button-wrap #tabPubMsgs #likesCount,
+	.publicacoes-button-wrap #tabPubMsgs #commentsCount {
+		padding-left: 0.3em;
 	}
 
 #tabPublicacoes .masterDetailView li .post-botoes {

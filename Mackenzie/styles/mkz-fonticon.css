@@ -107,6 +107,12 @@
   content: "\e038";
   background-color: #EA2D2E;
 }
+
+.flaticon-smiley .km-icon::after,
+.flaticon-comment .km-icon::after {
+  font-size: 1em;
+}
+
 .flaticon-book .km-icon::after { content: "\f111"; }
 .flaticon-calendar .km-icon::after { content: "\f11b"; }
 .flaticon-camera .km-icon-personalizado::after { content: "\f118"; }
