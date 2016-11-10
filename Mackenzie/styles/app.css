@@ -277,12 +277,6 @@ div[data-layout="main-aceite"] .km-content .km-scroll-container {
 		height: 100%;
 	}
 
-/*.km-content.km-widget.km-scroll-wrapper,
-.km-content.km-widget.km-searchcroll-wrapper {
-	height: calc(100% - 105px); /* altura da header (logo) + footer *
-	height: -webkit-calc(100% - 105px);
-}*/
-
 .km-leftitem + .km-view-title span {
   line-height: 3em;
   display: inline-block;
@@ -1107,7 +1101,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#kendoUiMobileApp .masterDetailView .post-user .section-icon-name.flaticon-clock {
     height: auto;
-    text-indent: 0.9em;
+    text-indent: 0.75em;
     -webkit-transform: translateY(-0.4em);
 						transform: translateY(-0.4em);
 	}
@@ -1475,8 +1469,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#header-mural-comentario-list .comentario-feito {
 		padding-left: 0.5em;
-		width: calc(100% - 30px);
-		width: -webkit-calc(100% - 30px);
+		width: calc(100% - 2.5em);
+		width: -webkit-calc(100% - 2.5em);
 		text-align: left;
 	}
 	#header-mural-comentario-list .user-thumb + .comentario-feito > p {
