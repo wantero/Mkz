@@ -223,7 +223,7 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 	}
 }
 
-@media (min-device-width: 375px) {
+@media (min-device-width: 355px) {
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 {
 		width: 17.5em;
 	}
