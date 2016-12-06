@@ -211,6 +211,30 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 /***************************/
 /****** MEDIA SCREENS ******/
 /***************************/
+@media (min-device-width: 320px) {
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 {
+		width: 16em;
+	}
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-compartilhado-wrap .mural-thumb + h4{
+		width: 15em;
+	}
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + h5 {
+		width: 21.5em;
+	}
+}
+
+@media (min-device-width: 375px) {
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 {
+		width: 17.5em;
+	}
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-compartilhado-wrap .mural-thumb + h4{
+		width: 16.5em;
+	}
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + h5 {
+		width: 23em;
+	}
+}
+
 @media screen and (min-device-width: 480px) and (max-device-width: 767px) {
 
 	#kendoUiMobileApp .km-header,
