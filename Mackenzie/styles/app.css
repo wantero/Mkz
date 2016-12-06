@@ -1057,7 +1057,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4,
 	.publicacoes-button-wrap #tabPubMsgs .post-user h4 {
-		width: 16em;
+		width: 15em;
 		text-indent: 0.5em;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + h5 {
@@ -1104,8 +1104,8 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#kendoUiMobileApp .masterDetailView .post-user .section-icon-name.flaticon-clock {
     height: auto;
     text-indent: 0.75em;
-    -webkit-transform: translate(3em, -0.4em);
-						transform: translate(3em, -0.4em);
+    -webkit-transform: translateY(-0.4em);
+						transform: translateY(-0.4em);
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-user .section-icon-name.flaticon-clock .km-icon::before {
 		top: 0;
@@ -1422,6 +1422,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 #kendoUiMobileApp .post-compartilhado .user-thumb {
 	position: relative;
 	border-radius: 50%;
+	margin-bottom: 0.2rem
 }
 #kendoUiMobileApp .user-thumb > span {
 	position: absolute;
