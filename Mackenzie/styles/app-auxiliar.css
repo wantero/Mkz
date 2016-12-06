@@ -223,6 +223,10 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-compartilhado-wrap .mural-thumb + h4{
 		width: 15em;
 	}
+
+	#rankings .masterDetailView li[data-uid] span {
+		max-width: 12em;
+	}
 }
 
 @media (min-device-width: 355px) {
@@ -243,6 +247,10 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-compartilhado-wrap .mural-thumb + h4{
 		width: 22em;
+	}
+
+	#rankings .masterDetailView li[data-uid] span {
+		max-width: 20em;
 	}
 }
 

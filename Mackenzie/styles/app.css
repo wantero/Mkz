@@ -900,7 +900,6 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#rankings .masterDetailView li[data-uid] span {
 		display: inline-block;
 		overflow: hidden;
-		max-width: 15em;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
