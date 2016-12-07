@@ -10,8 +10,8 @@ var MkzDataService = (function() {
 	var _password;
 
 	// Private Data
-	var _unidades = []
-	var _user = []
+	var _unidades = [];
+	var _user = [];
 	var _cursos = [];
 	var _horarios = [];
 	var _disciplinas = [];
@@ -204,7 +204,19 @@ var MkzDataService = (function() {
         			} catch(err) {
         				app.alert('Error on load User: '+err);
         			}
-				});
+				})
+        	.fail(
+        		function(err) {
+        			alert('Sem conexão de dados no momento!');
+
+        			try {
+        				if (cb) {
+        					cb(_unidades);
+        				}
+        			} catch(err) {
+        				app.alert('Error on load User: '+err);
+        			}
+        		});
 	};
 
 	service.loadUser = function(unidade, tia, password, cb) {
@@ -321,6 +333,14 @@ var MkzDataService = (function() {
 
     service.getUser = function() {
     	return _user;
+    };
+
+    service.resetData = function() {
+    	_user = [];
+		_user = [];
+		_cursos = [];
+		_horarios = [];
+		_disciplinas = [];
     };
 
     service.getCursos = function() {

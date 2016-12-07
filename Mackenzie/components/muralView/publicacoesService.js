@@ -271,6 +271,38 @@ var PublicacoesService = {
         );
     },
 
+    updateUserImage: function(newFotoUri) {
+        if (!app.muralView.muralViewModel) {
+            return false;
+        }
+
+        var userData = app.getUserData();
+
+        if (userData) {
+            var userId = userData.Id;
+            var pubList = app.muralView.muralViewModel.dataSource.data();
+            var $mural = $('#muralListView').data("kendoMobileListView");
+
+            userData.fotoUri = newFotoUri;            
+
+            for (var idx in pubList) {
+                var pub = pubList[idx];
+
+                if (pub.User.Id == userId) {
+                    pub.User.fotoUri = newFotoUri;
+
+                    if (pub.CompartilhadoDeUser.Id = userId) {
+                        pub.CompartilhadoDeUser.fotoUri = newFotoUri;
+                    }
+
+                    $mural.replace([pub]);
+                }
+            }
+        }
+
+        return true;
+    },
+
     populateDisciplinasHtml: undefined,
     populateDisciplinas: function($disciplinasSelect, cb) {
         var dataProvider = app.data.mackenzie;

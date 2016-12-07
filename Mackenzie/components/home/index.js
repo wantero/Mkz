@@ -53,6 +53,14 @@ app.home = kendo.observable({
             if (data && data.result) {
                 if (logout) {
                     provider.Users.logout(init, init);
+                    MkzDataService.resetData();
+                    $('#mackz-mural').remove();
+                    
+                    window.history.replaceState({}, 'login', 'components/home/view.html');
+                    for (var i=0; i < 10; i++) {
+                        window.history.pushState({}, 'login', 'components/home/view.html');
+                    }
+
                     return;
                 }
 
@@ -330,6 +338,40 @@ app.home = kendo.observable({
         $('#unidadesSignup').html(options);
     }
 })(app.home);
+
+
+
+
+
+
+window.onpopstate = function(ev) {
+    if (app.getUserData().Username) {
+        console.log('onPopState: ok')
+    } else {
+        console.log('onPopState: prevent');
+        //window.history.replaceState({}, 'login', 'components/home/view.html');
+        //ev.preventDefault();
+    }
+}
+
+//Switch to online mode when the device connects to the network
+document.addEventListener("online", function() {
+    app.data.mackenzie.online();
+    console.log('on-line');
+});
+
+//Switch to offline mode when the device looses network connectivity   
+document.addEventListener("offline", function() {
+    app.data.mackenzie.offline();
+    console.log('off-line');
+
+    var $mural = $("#muralListView").data("kendoMobileListView");
+    if ($mural) {
+        $mural.options.pullToRefresh = false;
+    }
+});
+
+
 
 
 

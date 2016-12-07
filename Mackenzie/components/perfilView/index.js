@@ -23,6 +23,11 @@ app.perfilView = kendo.observable({
             $("#imageActions").data("kendoMobileActionSheet").open();
         },
         enviar: function() {
+            if (!validateEmail(perfilViewModel.fields.email)) {
+              app.alert("Email inválido!");
+              return false;
+            }
+
             dataProvider.Users.updateSingle(
                 {
                     'Id': perfilViewModel.fields.id,
@@ -35,6 +40,7 @@ app.perfilView = kendo.observable({
                         function(user) {
                             app.user.data = user.result;
                             app.showMessage('<b>Perfil alterado com sucesso.</b>', app.perfilView.perfilViewModel.onAfterEnviar);
+                            PublicacoesService.updateUserImage(app.user.data.fotoUri);
                         },
                         function(error) {
                             console.log('error:', error);
@@ -85,6 +91,12 @@ app.perfilView = kendo.observable({
             $('#foto').get(0).style.backgroundImage = "url("+perfilViewModel.fields.fotoUri+")";
         }
     });
+
+
+    function validateEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
 
 })(app.perfilView);
 
@@ -144,6 +156,7 @@ function editarPerfilOnDocumentos() {
     type: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
     media: navigator.camera.MediaType.PICTURE
   });
+
 };
 
 
