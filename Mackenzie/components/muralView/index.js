@@ -75,10 +75,18 @@ app.muralView = kendo.observable({
                 read: {
                     headers: {
                         "X-Everlive-Expand": {
-                            "User": true,
-                            "Comentarios": true,
-                            "CompartilhadoDe": true,
-                            "CompartilhadoDeUser": true
+                            "User": {
+                                "TargetTypeName": "Users"
+                            },
+                            "Comentarios": {
+                                "TargetTypeName": "PublicacoesComentarios"
+                            },
+                            "CompartilhadoDe": {
+                                "TargetTypeName": "Publicacoes"
+                            },
+                            "CompartilhadoDeUser": {
+                                "TargetTypeName": "Users"
+                            }
                         }
                     }
                 }
@@ -92,6 +100,10 @@ app.muralView = kendo.observable({
                 }
             },
             error: function(e) {
+                if (dataProvider.isOffline()) {
+                    app.alert('Esta aplicação necessita de acesso à dados móveis!');
+                    return true;
+                }
                 if (e.xhr) {
                     app.alert(JSON.stringify(e.xhr));
                 }

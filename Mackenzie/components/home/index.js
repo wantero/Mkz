@@ -337,6 +337,33 @@ app.home = kendo.observable({
         $('#unidadesLogin').html(options);
         $('#unidadesSignup').html(options);
     }
+
+
+    //Switch to online mode when the device connects to the network
+    document.addEventListener("online", function() {
+        app.data.mackenzie.online();
+        console.log('on-line');
+
+        MkzDataService.loadUnidades(function() {
+            MkzDataService.status('ready');
+            populateUnidades();
+        });
+    });
+
+    //Switch to offline mode when the device looses network connectivity   
+    document.addEventListener("offline", function() {
+        app.data.mackenzie.offline();
+        console.log('off-line');
+
+        app.alert('Esta aplicação necessita de acesso à dados móveis!');
+        //app.mobileApp.navigate('components/home/view.html');
+
+        /*var $mural = $("#muralListView").data("kendoMobileListView");
+        if ($mural) {
+            $mural.options.pullToRefresh = false;
+        }*/
+    });
+
 })(app.home);
 
 
@@ -354,22 +381,6 @@ window.onpopstate = function(ev) {
     }
 }
 
-//Switch to online mode when the device connects to the network
-document.addEventListener("online", function() {
-    app.data.mackenzie.online();
-    console.log('on-line');
-});
-
-//Switch to offline mode when the device looses network connectivity   
-document.addEventListener("offline", function() {
-    app.data.mackenzie.offline();
-    console.log('off-line');
-
-    var $mural = $("#muralListView").data("kendoMobileListView");
-    if ($mural) {
-        $mural.options.pullToRefresh = false;
-    }
-});
 
 
 
