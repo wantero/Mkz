@@ -84,8 +84,12 @@ app.disciplinasView = kendo.observable({
 
                     flattenLocationProperties(dataItem);
                 }
+            },           
+            requestEnd: function(e) {
+                app.mobileApp.hideLoading();
             },
             error: function(e) {
+                app.mobileApp.hideLoading();
                 if (e.xhr) {
                     app.alert(JSON.stringify(e.xhr));
                 }
@@ -175,24 +179,29 @@ app.disciplinasView = kendo.observable({
                 return result;
             },
             itemClick: function(e) {
-                var dataItem = e.dataItem || disciplinasViewModel.originalItem;
-                disciplinasViewModel.set('currentDisciplina', e.dataItem);
-
-                app.cursosView.cursosViewModel.loadPublicacoes(e.dataItem.Id, function(publicacoes) {
-                    app.disciplinasView.disciplinasViewModel.set('publicacoes', publicacoes);
+                try {
+                    app.mobileApp.showLoading(); 
                     
-                    app.disciplinasView.disciplinasViewModel.set('publicacoesCount', 
-                        { doc: publicacoes.docCount,
-                          video: publicacoes.videoCount,
-                          image: publicacoes.imageCount,
-                          msg: publicacoes.msgCount });                    
+                    var dataItem = e.dataItem || disciplinasViewModel.originalItem;
+                    disciplinasViewModel.set('currentDisciplina', e.dataItem);
 
-                    app.avaliacoesView.avaliacoesViewModel.loadAvaliacoes(e.dataItem.Id, function(data) {
-                        disciplinasViewModel.set('avaliacoes', data);
-                        app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
+                    app.cursosView.cursosViewModel.loadPublicacoes(e.dataItem.Id, function(publicacoes) {
+                        app.disciplinasView.disciplinasViewModel.set('publicacoes', publicacoes);
+                        
+                        app.disciplinasView.disciplinasViewModel.set('publicacoesCount', 
+                            { doc: publicacoes.docCount,
+                              video: publicacoes.videoCount,
+                              image: publicacoes.imageCount,
+                              msg: publicacoes.msgCount });                    
+
+                        app.avaliacoesView.avaliacoesViewModel.loadAvaliacoes(e.dataItem.Id, function(data) {
+                            disciplinasViewModel.set('avaliacoes', data);
+                            app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
+                        });
                     });
-                });
-
+                } catch(err) {
+                    app.mobileApp.hideLoading();                     
+                }
                 //app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + dataItem.uid);
             },
             detailsShow: function(e) {
@@ -650,67 +659,45 @@ app.disciplinasView = kendo.observable({
     }
 
     parent.set('onShow', function(e) {
-        var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
-            isListmenu = false,
-            backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');
+        try {
+            app.mobileApp.showLoading(); 
 
-        if (param || isListmenu) {
-            backbutton.show();
-            backbutton.css('visibility', 'visible');
-        } else {
-            if (e.view.element.find('header [data-role="navbar"] [data-role="button"]').length) {
-                backbutton.hide();
+            var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
+                isListmenu = false,
+                backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');
+
+            if (param || isListmenu) {
+                backbutton.show();
+                backbutton.css('visibility', 'visible');
             } else {
-                backbutton.css('visibility', 'hidden');
+                if (e.view.element.find('header [data-role="navbar"] [data-role="button"]').length) {
+                    backbutton.hide();
+                } else {
+                    backbutton.css('visibility', 'hidden');
+                }
             }
+
+            app.displayUser();
+
+            // INTEGRACAO DADOS MACKENZIE
+            populate(MkzDataService.getDisciplinas());
+
+            function populate(disciplinas) {
+                // Fixa o filtro dos cursos do usuário logado
+                param = {};
+
+                // Armazena o parametro recebido pela VIEW
+                viewParam = param;
+
+                dataSource.data(disciplinas);
+                console.log('disciplinas:', disciplinas);
+
+                //fetchFilteredData();
+            };
+            // INTEGRACAO DADOS MACKENZIE
+        } catch(err) {
+            app.mobileApp.hideLoading();
         }
-
-        app.displayUser();
-
-        // INTEGRACAO DADOS MACKENZIE
-        /*function getCursos() {
-            var queryCursos = new Everlive.Query();
-            queryCursos.where().eq('Users', app.getUserData().Id);
-
-            var dataCursos = dataProvider.data('Cursos');
-            dataCursos.get(queryCursos)
-                .then(function(data) {
-                    var cursos = [];
-                    for (var i=0; i < data.result.length; i++) {
-                        cursos.push(data.result[i].Id);
-                    }
-                    
-                    // Fixa o filtro dos cursos do usuário logado
-                    param = [{ field: "Cursos", operator: "eq", value: cursos }];
-
-                    // Armazena o parametro recebido pela VIEW
-                    viewParam = param;     
-
-                    fetchFilteredData(viewParam);
-                }, function(err) {
-                    app.alert('Error loading data (Cursos)');
-                });
-        }
-
-        getCursos();*/
-        // INTEGRACAO DADOS MACKENZIE
-
-        // INTEGRACAO DADOS MACKENZIE
-        populate(MkzDataService.getDisciplinas());
-
-        function populate(disciplinas) {
-            // Fixa o filtro dos cursos do usuário logado
-            param = {};
-
-            // Armazena o parametro recebido pela VIEW
-            viewParam = param;
-
-            dataSource.data(disciplinas);
-            console.log('disciplinas:', disciplinas);
-
-            //fetchFilteredData();
-        };
-        // INTEGRACAO DADOS MACKENZIE
     });
 
     parent.set('onDetailShow', function(e) {

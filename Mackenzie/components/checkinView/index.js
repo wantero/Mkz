@@ -77,9 +77,14 @@ app.checkinView = kendo.observable({
                 }
             },
             error: function(e) {
+                app.mobileApp.hideLoading();
+
                 if (e.xhr) {
                     app.alert(JSON.stringify(e.xhr));
                 }
+            },            
+            requestEnd: function(e) {
+                app.mobileApp.hideLoading();
             },
             schema: {
                 model: {
@@ -205,31 +210,36 @@ app.checkinView = kendo.observable({
     }
 
     parent.set('onShow', function(e) {
-        $('#modal-information').show();
+        try {
+            app.mobileApp.showLoading(); 
+            $('#modal-information').show();
 
-        var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
-            isListmenu = false,
-            backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');
+            var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
+                isListmenu = false,
+                backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');
 
-        if (param || isListmenu) {
-            backbutton.show();
-            backbutton.css('visibility', 'visible');
-        } else {
-            if (e.view.element.find('header [data-role="navbar"] [data-role="button"]').length) {
-                backbutton.hide();
+            if (param || isListmenu) {
+                backbutton.show();
+                backbutton.css('visibility', 'visible');
             } else {
-                backbutton.css('visibility', 'hidden');
+                if (e.view.element.find('header [data-role="navbar"] [data-role="button"]').length) {
+                    backbutton.hide();
+                } else {
+                    backbutton.css('visibility', 'hidden');
+                }
             }
+
+            app.displayUser();
+
+
+            // Armazena o parametro recebido pela VIEW
+            //param = [{ field: "Disciplina", operator: "contains", value: '' }];
+            /*viewParam = param;*/
+
+            fetchFilteredData(viewParam);
+        } catch(err) {
+            app.mobileApp.hideLoading();
         }
-
-        app.displayUser();
-
-
-        // Armazena o parametro recebido pela VIEW
-        //param = [{ field: "Disciplina", operator: "contains", value: '' }];
-        /*viewParam = param;*/
-
-        fetchFilteredData(viewParam);
     });
 
 })(app.checkinView);

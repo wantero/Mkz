@@ -91,8 +91,12 @@ app.muralView = kendo.observable({
                     }
                 }
             },
+            requestEnd: function(e) {
+                app.mobileApp.hideLoading();
+            },
             change: function(e) {
                 var data = this.data();
+                
                 for (var i = 0; i < data.length; i++) {
                     var dataItem = data[i];
 
@@ -100,6 +104,8 @@ app.muralView = kendo.observable({
                 }
             },
             error: function(e) {
+                app.mobileApp.hideLoading();
+
                 if (dataProvider.isOffline()) {
                     app.alert('Esta aplicação necessita de acesso à dados móveis!');
                     return true;
@@ -555,102 +561,65 @@ app.muralView = kendo.observable({
 
     
     parent.set('onShow', function(e) {
-        muralViewModel.disciplinas = MkzDataService.getDisciplinas();
+        try {
+            app.mobileApp.showLoading(); 
+            muralViewModel.disciplinas = MkzDataService.getDisciplinas();
 
-        if (e.view.params.tipo && e.view.params.tipo == 'minhaspub') {
-            e.view.element.find('#header-minhas-publicacoes').show(); //.siblings().hide(); 
-        } else {
-            e.view.element.find('#header-mural-publicacoes').show().siblings().hide();        
-        }
-
-        var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
-            isListmenu = false,
-            backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');
-
-        if (param || isListmenu) {
-            backbutton.show();
-            backbutton.css('visibility', 'visible');
-        } else {
-            if (e.view.element.find('header [data-role="navbar"] [data-role="button"]').length) {
-                backbutton.hide();
+            if (e.view.params.tipo && e.view.params.tipo == 'minhaspub') {
+                e.view.element.find('#header-minhas-publicacoes').show(); //.siblings().hide(); 
             } else {
-                backbutton.css('visibility', 'hidden');
+                e.view.element.find('#header-mural-publicacoes').show().siblings().hide();        
             }
-        }
 
-        app.displayUser();
-        app.showQuizzBadgeTimer();
+            var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
+                isListmenu = false,
+                backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');
 
-        /*function getCursos() {
-            var queryCursos = new Everlive.Query();
-            queryCursos.where().eq('Users', app.getUserData().Id);
+            if (param || isListmenu) {
+                backbutton.show();
+                backbutton.css('visibility', 'visible');
+            } else {
+                if (e.view.element.find('header [data-role="navbar"] [data-role="button"]').length) {
+                    backbutton.hide();
+                } else {
+                    backbutton.css('visibility', 'hidden');
+                }
+            }
 
-            var dataCursos = dataProvider.data('Cursos');
-            dataCursos.get(queryCursos)
-                .then(function(data) {
-                    var cursos = [];
-                    for (var i=0; i < data.result.length; i++) {
-                        cursos.push(data.result[i].Id);
-                    }
+            app.displayUser();
+            app.showQuizzBadgeTimer();
 
-                    getDisciplinas(cursos);
-                }, function(err) {
-                    app.alert('Error loading data (Cursos)');
-                });
-        }
+            PublicacoesService.populateDisciplinas($('#mural-disciplina-select'));
 
-        function getDisciplinas(cursos) {
-            var queryDisciplinas = new Everlive.Query();
-            queryDisciplinas.where().isin('Cursos', cursos);
-
-            var dataDisciplinas = dataProvider.data('Disciplinas');
-            dataDisciplinas.get(queryDisciplinas)
-                .then(function(data){
-                    if (data.result) {
-                        var select = $('#mural-disciplina-select');
-                        var html = '';
-
-                        for (var i = 0; i < data.result.length; i++) {
-                            html += '<option value="'+data.result[i].Id+'">'+data.result[i].Nome+'</option>';
-                        }
-
-                        select.html(html);
-                    }
-                }, function(Err) {
-                    app.alert('Erro loading data (Disciplinas)');
-                });
-        }
-
-        // Popula a lista de componentes
-        getCursos();*/
-        PublicacoesService.populateDisciplinas($('#mural-disciplina-select'));
-
-        // Armazena o parametro recebido pela VIEW
-        param = {
-            logic:"or",
-            filters: []
-        };
-
-        var disciplinas = MkzDataService.getDisciplinas();
-
-        for (var i = 0; i < disciplinas.length; i++) {
-            var fieldFilter = {field: 'Disciplina', operator: 'eq', value: disciplinas[i].Id};
-            param.filters.push(fieldFilter);
-        }
-
-        if (e.view.params.tipo && e.view.params.tipo == 'minhaspub') {
+            // Armazena o parametro recebido pela VIEW
             param = {
-                logic: "and",
-                filters: [
-                    param,
-                    { field:"User", operator:"eq", value: app.getUserData().Id }
-                ]
+                logic:"or",
+                filters: []
+            };
+
+            var disciplinas = MkzDataService.getDisciplinas();
+
+            for (var i = 0; i < disciplinas.length; i++) {
+                var fieldFilter = {field: 'Disciplina', operator: 'eq', value: disciplinas[i].Id};
+                param.filters.push(fieldFilter);
             }
+
+            if (e.view.params.tipo && e.view.params.tipo == 'minhaspub') {
+                param = {
+                    logic: "and",
+                    filters: [
+                        param,
+                        { field:"User", operator:"eq", value: app.getUserData().Id }
+                    ]
+                }
+            }
+
+            viewParam = param;
+
+            fetchFilteredData(viewParam);    
+        } catch(err) {
+            app.mobileApp.hideLoading();
         }
-
-        viewParam = param;
-
-        fetchFilteredData(viewParam);
     });
 
     function getMuralDataItem(el) {

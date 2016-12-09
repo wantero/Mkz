@@ -80,6 +80,9 @@ app.faqsView = kendo.observable({
                     flattenLocationProperties(dataItem);
                 }
             },
+            requestEnd: function(e) {
+                app.mobileApp.hideLoading();
+            },
             error: function(e) {
 
                 if (e.xhr) {
@@ -220,34 +223,39 @@ app.faqsView = kendo.observable({
     }
 
     parent.set('onShow', function(e) {
-        app.displayUser();
+        try {
+            app.mobileApp.showLoading();
+            app.displayUser();
 
-        e.view.element.find('#main-header-faq').show().siblings().hide();        
-        e.view.element.find('#editarFaqsClose').click(function() {
-            $('#appDrawer').data('kendoMobileDrawer').show();
-        });
+            e.view.element.find('#main-header-faq').show().siblings().hide();        
+            e.view.element.find('#editarFaqsClose').click(function() {
+                $('#appDrawer').data('kendoMobileDrawer').show();
+            });
 
-        var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
-            isListmenu = false,
-            backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');
+            var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
+                isListmenu = false,
+                backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');
 
-        if (param || isListmenu) {
-            backbutton.show();
-            backbutton.css('visibility', 'visible');
-        } else {
-            if (e.view.element.find('header [data-role="navbar"] [data-role="button"]').length) {
-                backbutton.hide();
+            if (param || isListmenu) {
+                backbutton.show();
+                backbutton.css('visibility', 'visible');
             } else {
-                backbutton.css('visibility', 'hidden');
+                if (e.view.element.find('header [data-role="navbar"] [data-role="button"]').length) {
+                    backbutton.hide();
+                } else {
+                    backbutton.css('visibility', 'hidden');
+                }
             }
+
+
+            // Armazena o parametro recebido pela VIEW
+            param = { field: "Titulo", operator: "contains", value: $('#mackz-faq #Pesquisa').val() };
+            viewParam = param;
+
+            fetchFilteredData(viewParam);
+        } catch(err) {
+            app.mobileApp.hideLoading();
         }
-
-
-        // Armazena o parametro recebido pela VIEW
-        param = { field: "Titulo", operator: "contains", value: $('#mackz-faq #Pesquisa').val() };
-        viewParam = param;
-
-        fetchFilteredData(viewParam);
     });
 
     parent.set('onDetailShow', function(e) {
