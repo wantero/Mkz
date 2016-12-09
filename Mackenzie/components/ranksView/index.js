@@ -2,7 +2,8 @@
 
 app.ranksView = kendo.observable({
     onShow: function() {},
-    afterShow: function() {}
+    onAfterShow: function() {},
+    onBeforeShow: function() {}
 });
 
 
@@ -227,6 +228,15 @@ app.ranksView = kendo.observable({
         });
     });
 
+    /*parent.set('onBeforeShow', function(e) {
+        $('#appDrawer').data('kendoMobileDrawer').hide();
+        console.log('before show')
+    });
+
+    parent.set('onAfterShow', function(e) {
+        $('#appDrawer').data('kendoMobileDrawer').hide();
+        console.log('after show')
+    });*/
 
     function populate(populateCb) {
         function getUser(index, userId, cb) {

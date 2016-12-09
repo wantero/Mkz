@@ -279,6 +279,13 @@
         navigator.notification.alert(msg, null, ' ');
     };
 
+    $(document).on('deviceready', function() {
+        alert('on deviceready')
+        document.addEventListener('backbutton', function(e) {
+            alert('backbutton');
+        });
+    })
+
     /*function onDrawerShow() {
         alert('s');
     }*/
