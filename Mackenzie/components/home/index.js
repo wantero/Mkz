@@ -358,6 +358,7 @@ app.home = kendo.observable({
     document.addEventListener("online", function() {
         app.data.mackenzie.online();
         console.log('on-line');
+        app.data.mackenzie.alreadyOffline = false;
 
         MkzDataService.loadUnidades(function() {
             MkzDataService.status('ready');
@@ -367,8 +368,13 @@ app.home = kendo.observable({
 
     //Switch to offline mode when the device looses network connectivity   
     document.addEventListener("offline", function() {
+        if (app.data.mackenzie.alreadyOffline) {
+            return;
+        }
+      
         app.data.mackenzie.offline();
         console.log('off-line');
+        app.data.mackenzie.alreadyOffline = true;
 
         app.alert('Esta aplicação necessita de acesso à dados!');
     });
