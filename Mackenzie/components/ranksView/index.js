@@ -191,6 +191,8 @@ app.ranksView = kendo.observable({
     });
 
     parent.set('onShow', function(e) {
+        $('#appDrawer').data('kendoMobileDrawer').hide();
+        
         e.view.element.find('#main-header-ranking').show().siblings().hide();        
         e.view.element.find('#rankingClose').click(function() {
             $('#appDrawer').data('kendoMobileDrawer').show();
