@@ -279,14 +279,10 @@
         navigator.notification.alert(msg, null, ' ');
     };
 
+    // Desligar o BackButton no Android
     $(document).on('deviceready', function() {
-        alert('on deviceready')
         document.addEventListener('backbutton', function(e) {
-            alert('backbutton');
+            e.preventDefault();
         });
-    })
-
-    /*function onDrawerShow() {
-        alert('s');
-    }*/
+    });
 }());

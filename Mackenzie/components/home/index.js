@@ -54,12 +54,12 @@ app.home = kendo.observable({
                 if (logout) {
                     provider.Users.logout(init, init);
                     MkzDataService.resetData();
-                    $('#mackz-mural').remove();
                     
+                    /*$('#mackz-mural').remove();                    
                     window.history.replaceState({}, 'login', 'components/home/view.html');
                     for (var i=0; i < 10; i++) {
                         window.history.pushState({}, 'login', 'components/home/view.html');
-                    }
+                    }*/
 
                     return;
                 }
