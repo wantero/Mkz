@@ -10,8 +10,15 @@
                 }
             },
             scheme: 'https',
-            authentication: {
+            /*authentication: {
                 persist: true
+            },*/
+            authentication: {
+                persist: true,
+                onAuthenticationRequired: function() {
+                    alert('Your access token has expired. Please log in.');
+                    // Redirect to log-in page
+                }
             }
         }),
         accessTokenCacheKey = 'mackenzie_access_token',

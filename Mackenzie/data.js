@@ -31,13 +31,13 @@ var MkzDataService = (function() {
     function init() {
     	service.status('loading');
 
-    	if (!isOnline()) {
+    	/*if (!isOnline()) {
 	    	service.loadUnidades(function() {
 		    	service.status('ready');
 	    	});    		
 	    } else {
 	    	service.status('ready');
-    	}
+    	}*/
     };
 
     function transformUnidades(unidades) {
@@ -212,6 +212,7 @@ var MkzDataService = (function() {
         			try {
         				if (cb) {
         					cb(_unidades);
+        					$('#kendoUiMobileApp').trigger('load-unidades-ready', [_unidades]);
         				}
         			} catch(err) {
         				app.alert('Error on load User: '+err);

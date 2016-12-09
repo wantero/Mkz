@@ -34,7 +34,7 @@ app.home = kendo.observable({
                 model.set('logout', null);
             }
 
-            var rememberedData = localStorage ? JSON.parse(localStorage.getItem(rememberKey)) : app[rememberKey];
+            /*var rememberedData = localStorage ? JSON.parse(localStorage.getItem(rememberKey)) : app[rememberKey];
             if (rememberedData && rememberedData.unidade && rememberedData.tia && rememberedData.password) {
                 parent.homeModel.set('unidade', rememberedData.unidade);
                 parent.homeModel.set('tia', rememberedData.tia);
@@ -45,7 +45,7 @@ app.home = kendo.observable({
 
                 parent.homeModel.rememberme = true;
                 parent.homeModel.signin();
-            }
+            }*/
         },
         successHandler = function(data) {
             var redirect = mode === 'signin' ? signinRedirect : registerRedirect,
@@ -324,8 +324,22 @@ app.home = kendo.observable({
 
     parent.set('homeModel', homeModel);
     
-    parent.set('onShow', function(e) {
-        populateUnidades();
+    parent.set('onShow', function(e) {        
+        populateUnidades(function() {
+            var rememberedData = localStorage ? JSON.parse(localStorage.getItem(rememberKey)) : app[rememberKey];
+
+            if (rememberedData && rememberedData.unidade && rememberedData.tia && rememberedData.password) {
+                parent.homeModel.set('unidade', rememberedData.unidade);
+                parent.homeModel.set('tia', rememberedData.tia);
+                parent.homeModel.set('password', rememberedData.password);
+                parent.homeModel.rememberme = true;
+
+                $('#unidadesLogin').val(rememberedData.unidade);
+                $('#rememberme').attr('checked', 'checked');
+
+                //parent.homeModel.signin();
+            }
+        });        
     });
 
     parent.set('afterShow', function(e) {
@@ -348,8 +362,7 @@ app.home = kendo.observable({
         provider.Users.currentUser().then(successHandler, init);
     });
 
-    function populateUnidades() {
-        var unidades = MkzDataService.getUnidades();
+    function setUnidades(unidades, cb) {
         var options = '<option value="" disabled selected>Unidade</option>';
 
         for (var index in unidades) {
@@ -359,33 +372,39 @@ app.home = kendo.observable({
 
         $('#unidadesLogin').html(options);
         $('#unidadesSignup').html(options);
+
+        if (cb) {
+            cb();
+        }
+    }
+
+    $('#kendoUiMobileApp').on('load-unidades-ready', function(e, unidades) {
+        setUnidades(unidades);
+
+        var rememberedData = localStorage ? JSON.parse(localStorage.getItem(rememberKey)) : app[rememberKey];
+
+        if (rememberedData && rememberedData.unidade && rememberedData.tia && rememberedData.password) {
+            parent.homeModel.set('unidade', rememberedData.unidade);
+            parent.homeModel.set('tia', rememberedData.tia);
+            parent.homeModel.set('password', rememberedData.password);
+            parent.homeModel.rememberme = true;
+
+            $('#unidadesLogin').val(rememberedData.unidade);
+            $('#rememberme').attr('checked', 'checked');
+
+            //parent.homeModel.signin();
+        }
+    });
+
+    function populateUnidades(cb) {
+        var unidades = MkzDataService.getUnidades();
+
+        if (unidades.length) {
+            setUnidades(unidades, cb);
+        }
     }
 
 
-    //Switch to online mode when the device connects to the network
-    document.addEventListener("online", function() {
-        app.data.mackenzie.online();
-        console.log('on-line');
-        app.data.mackenzie.alreadyOffline = false;
-
-        MkzDataService.loadUnidades(function() {
-            MkzDataService.status('ready');
-            populateUnidades();
-        });
-    });
-
-    //Switch to offline mode when the device looses network connectivity   
-    document.addEventListener("offline", function() {
-        if (app.data.mackenzie.alreadyOffline) {
-            return;
-        }
-      
-        app.data.mackenzie.offline();
-        console.log('off-line');
-        app.data.mackenzie.alreadyOffline = true;
-
-        app.alert('Esta aplicação necessita de acesso à dados!');
-    });
 
 })(app.home);
 
