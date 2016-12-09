@@ -19,13 +19,25 @@ var MkzDataService = (function() {
 	var _dias = ['','','segunda','terca','quarta','quinta','sexta','sabado'];
 
 
+    function isOnline() {
+        if (!navigator || !navigator.connection) {
+            return true;
+        } else {
+            return navigator.connection.type !== 'none';
+        }
+    };
+
 	// Private Methods
     function init() {
     	service.status('loading');
 
-    	service.loadUnidades(function() {
+    	if (!isOnline()) {
+	    	service.loadUnidades(function() {
+		    	service.status('ready');
+	    	});    		
+	    } else {
 	    	service.status('ready');
-    	});
+    	}
     };
 
     function transformUnidades(unidades) {
@@ -207,7 +219,7 @@ var MkzDataService = (function() {
 				})
         	.fail(
         		function(err) {
-        			alert('Sem conexão de dados no momento!');
+        			//alert('Esta aplicação necessita de acesso à dados!');
 
         			try {
         				if (cb) {

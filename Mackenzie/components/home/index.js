@@ -202,7 +202,7 @@ app.home = kendo.observable({
             },
             signin: function() {
                 if (provider.isOffline()) {
-                    app.alert('Esta aplicação necessita de acesso à dados móveis!');
+                    app.alert('Esta aplicação necessita de acesso à dados!');
                     return;
                 }
 
@@ -242,7 +242,7 @@ app.home = kendo.observable({
             },
             register: function() {
                 if (provider.isOffline()) {
-                    app.alert('Esta aplicação necessita de acesso à dados móveis!');
+                    app.alert('Esta aplicação necessita de acesso à dados!');
                     return;
                 }
 
@@ -301,7 +301,7 @@ app.home = kendo.observable({
             },
             toggleView: function() {
                 if (provider.isOffline()) {
-                    app.alert('Esta aplicação necessita de acesso à dados móveis!');
+                    app.alert('Esta aplicação necessita de acesso à dados!');
                     return;
                 }
 
@@ -367,13 +367,7 @@ app.home = kendo.observable({
         app.data.mackenzie.offline();
         console.log('off-line');
 
-        app.alert('Esta aplicação necessita de acesso à dados móveis!');
-        //app.mobileApp.navigate('components/home/view.html');
-
-        /*var $mural = $("#muralListView").data("kendoMobileListView");
-        if ($mural) {
-            $mural.options.pullToRefresh = false;
-        }*/
+        app.alert('Esta aplicação necessita de acesso à dados!');
     });
 
 })(app.home);
@@ -383,7 +377,7 @@ app.home = kendo.observable({
 
 
 
-window.onpopstate = function(ev) {
+/*window.onpopstate = function(ev) {
     if (app.getUserData().Username) {
         console.log('onPopState: ok')
     } else {
@@ -391,14 +385,14 @@ window.onpopstate = function(ev) {
         //window.history.replaceState({}, 'login', 'components/home/view.html');
         //ev.preventDefault();
     }
-}
+}*/
 
 
 
 
 
 
-function onDrawerShow() {
+/*function onDrawerShow() {
     var data;
 
     if (app && app.user) {
@@ -421,4 +415,4 @@ function onDrawerShow() {
     } else {
         $('#drawerPicture').get(0).style.backgroundImage = "url(../../styles/images/user-male.png)";
     }
-}
+}*/
