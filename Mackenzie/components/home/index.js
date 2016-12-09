@@ -34,12 +34,13 @@ app.home = kendo.observable({
                 model.set('logout', null);
             }
 
-            /*var rememberedData = localStorage ? JSON.parse(localStorage.getItem(rememberKey)) : app[rememberKey];
-            if (rememberedData && rememberedData.tia && rememberedData.password) {
+            var rememberedData = localStorage ? JSON.parse(localStorage.getItem(rememberKey)) : app[rememberKey];
+            if (rememberedData && rememberData.unidade && rememberedData.tia && rememberedData.password) {
+                parent.homeModel.set('unidade', rememberedData.unidade);
                 parent.homeModel.set('tia', rememberedData.tia);
                 parent.homeModel.set('password', rememberedData.password);
-                parent.homeModel.signin();
-            }*/
+                //parent.homeModel.signin();
+            }
         },
         successHandler = function(data) {
             var redirect = mode === 'signin' ? signinRedirect : registerRedirect,
@@ -62,6 +63,7 @@ app.home = kendo.observable({
                 }
 
                 var rememberedData = {
+                    unidade: model.unidade,
                     tia: model.tia,
                     password: model.password
                 };
@@ -154,13 +156,13 @@ app.home = kendo.observable({
 
         homeModel = kendo.observable({
             displayName: '',
-            /*unidade: '',
+            unidade: '',
             tia: '',
-            password: '',*/
-            unidade: '001',
+            password: '',
+            /*unidade: '001',
             //tia: '1129146',
             tia: '41326652',
-            password: 'GERTI#m1c2',
+            password: 'GERTI#m1c2',*/
             validateData: function(data) {
                 if (!data.unidade) {
                     app.alert('Favor informar a unidade');
@@ -327,9 +329,8 @@ app.home = kendo.observable({
                 localStorage.setItem(rememberKey, null);
             } else {
                 app[rememberKey] = null;
+                homeModel.password = '';
             }
-
-            homeModel.password = '';
 
             $('#senha').val(homeModel.password);
             homeModel.set('logout', true);
