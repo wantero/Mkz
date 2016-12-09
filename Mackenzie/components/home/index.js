@@ -35,11 +35,15 @@ app.home = kendo.observable({
             }
 
             var rememberedData = localStorage ? JSON.parse(localStorage.getItem(rememberKey)) : app[rememberKey];
-            if (rememberedData && rememberData.unidade && rememberedData.tia && rememberedData.password) {
+            if (rememberedData && rememberedData.unidade && rememberedData.tia && rememberedData.password) {
                 parent.homeModel.set('unidade', rememberedData.unidade);
                 parent.homeModel.set('tia', rememberedData.tia);
                 parent.homeModel.set('password', rememberedData.password);
-                //parent.homeModel.signin();
+
+                $('#unidadesLogin').val(rememberedData.unidade);
+
+                parent.homeModel.rememberme = true;
+                parent.homeModel.signin();
             }
         },
         successHandler = function(data) {
@@ -326,7 +330,9 @@ app.home = kendo.observable({
     parent.set('afterShow', function(e) {
         if (e && e.view && e.view.params && e.view.params.logout) {
             if (localStorage) {
-                localStorage.setItem(rememberKey, null);
+                if (!homeModel.rememberme) {
+                    localStorage.setItem(rememberKey, null);
+                }
             } else {
                 app[rememberKey] = null;
                 homeModel.password = '';

@@ -3,7 +3,7 @@
 (function() {
     var provider = app.data.mackenzie = new Everlive({
             appId: 'kb8omb79mcfcupp9',
-            //offlineStorage: true,
+            offlineStorage: true,
             offline: {
                 storage: {
                     provider: Everlive.Constants.StorageProvider.LocalStorage
