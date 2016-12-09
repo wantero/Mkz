@@ -108,9 +108,9 @@ app.muralView = kendo.observable({
                 app.mobileApp.hideLoading();
 
                 if (dataProvider.isOffline()) {
-                    app.alert('Esta aplicação necessita de acesso à dados móveis!');
                     return true;
                 }
+                
                 if (e.xhr) {
                     app.alert(JSON.stringify(e.xhr));
                 }

@@ -300,14 +300,17 @@ app.home = kendo.observable({
                 });
             },
             toggleView: function() {
-                if (provider.isOffline()) {
-                    app.alert('Esta aplicação necessita de acesso à dados!');
-                    return;
-                }
-
                 $('input').val('');
 
                 mode = mode === 'signin' ? 'register' : 'signin';
+
+                if (mode === 'register') {
+                    if (provider.isOffline()) {
+                        app.alert('Esta aplicação necessita de acesso à dados!');
+                        return;
+                    }
+                }
+
                 init();
             }
         });
