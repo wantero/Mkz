@@ -52,14 +52,11 @@ app.home = kendo.observable({
 
             if (data && data.result) {
                 if (logout) {
-                    provider.Users.logout(init, init);
+                    if (!provider.isOffline()) {
+                        provider.Users.logout(init, init);
+                    }
+
                     MkzDataService.resetData();
-                    
-                    /*$('#mackz-mural').remove();                    
-                    window.history.replaceState({}, 'login', 'components/home/view.html');
-                    for (var i=0; i < 10; i++) {
-                        window.history.pushState({}, 'login', 'components/home/view.html');
-                    }*/
 
                     return;
                 }
@@ -204,6 +201,11 @@ app.home = kendo.observable({
                 return true;
             },
             signin: function() {
+                if (provider.isOffline()) {
+                    app.alert('Esta aplicação necessita de acesso à dados móveis!');
+                    return;
+                }
+
                 var model = homeModel,
                     unidade = model.unidade,
                     tia = model.tia.toLowerCase(),
@@ -239,6 +241,11 @@ app.home = kendo.observable({
                 });
             },
             register: function() {
+                if (provider.isOffline()) {
+                    app.alert('Esta aplicação necessita de acesso à dados móveis!');
+                    return;
+                }
+
                 var model = homeModel,
                     unidade = model.unidade,
                     tia = model.tia.toLowerCase(),
@@ -293,6 +300,11 @@ app.home = kendo.observable({
                 });
             },
             toggleView: function() {
+                if (provider.isOffline()) {
+                    app.alert('Esta aplicação necessita de acesso à dados móveis!');
+                    return;
+                }
+
                 $('input').val('');
 
                 mode = mode === 'signin' ? 'register' : 'signin';

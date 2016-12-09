@@ -300,8 +300,14 @@ app.cursosView = kendo.observable({
                 }
             },
             selectSchedulerFromMenu: function() {
-                $('.flaticon-calendar').addClass('km-state-active').siblings().removeClass('km-state-active');
-                app.mobileApp.navigate('#components/cursosView/details.html?from=menu');
+                try {
+                    app.mobileApp.showLoading();
+
+                    $('.flaticon-calendar').addClass('km-state-active').siblings().removeClass('km-state-active');
+                    app.mobileApp.navigate('#components/cursosView/details.html?from=menu');                    
+                } catch(err) {
+                    app.mobileApp.hideLoading();
+                }
             },
             loadPublicacoes: function(disciplinaId, done) {
                 var query = new Everlive.Query();
@@ -697,6 +703,7 @@ app.cursosView = kendo.observable({
     parent.set('onDetailShow', function(e) {
         try {
             app.mobileApp.showLoading();
+
             app.displayUser();
             cursosViewModel.state = 'loading';
         } catch(err) {
@@ -706,7 +713,7 @@ app.cursosView = kendo.observable({
 
     parent.set('onDetailAfterShow', function(e) {
         try {
-            app.mobileApp.showLoading();
+            //app.mobileApp.showLoading();
 
             if (e.view.params.from && e.view.params.from == 'menu') {
                 cursosViewModel.selectDiaView();                    
@@ -725,6 +732,7 @@ app.cursosView = kendo.observable({
                     cursosViewModel.filterScheduler(function() {
                         //cursosViewModel.selectDiaView();  
                         cursosViewModel.state = 'finished';
+
                         app.mobileApp.hideLoading();
                     });
                 });

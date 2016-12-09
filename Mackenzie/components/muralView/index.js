@@ -93,6 +93,7 @@ app.muralView = kendo.observable({
             },
             requestEnd: function(e) {
                 app.mobileApp.hideLoading();
+                $('#appDrawer').data('kendoMobileDrawer').hide();
             },
             change: function(e) {
                 var data = this.data();
