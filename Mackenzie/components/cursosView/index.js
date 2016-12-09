@@ -233,6 +233,11 @@ app.cursosView = kendo.observable({
                 // INTEGRACAO DADOS MACKENZIE
             },
             disciplinaClick: function(e) {
+                if (dataProvider.isOffline()) {
+                    app.alert('Esta aplicação necessita de acesso à dados!');
+                    return;
+                }
+                
                 try {
                     app.mobileApp.showLoading(); 
 
