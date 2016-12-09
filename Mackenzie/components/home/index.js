@@ -41,6 +41,7 @@ app.home = kendo.observable({
                 parent.homeModel.set('password', rememberedData.password);
 
                 $('#unidadesLogin').val(rememberedData.unidade);
+                $('#rememberme').attr('checked', '');
 
                 parent.homeModel.rememberme = true;
                 parent.homeModel.signin();
@@ -72,7 +73,7 @@ app.home = kendo.observable({
                     password: model.password
                 };
 
-                if (model.rememberme && rememberedData.tia && rememberedData.password) {
+                if (model.rememberme && rememberedData.unidade && rememberedData.tia && rememberedData.password) {
                     if (localStorage) {
                         localStorage.setItem(rememberKey, JSON.stringify(rememberedData));
                     } else {
