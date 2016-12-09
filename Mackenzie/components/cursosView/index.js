@@ -640,6 +640,8 @@ app.cursosView = kendo.observable({
     parent.set('onShow', function(e) {
         try {
             app.mobileApp.showLoading();
+            $('#appDrawer').data('kendoMobileDrawer').hide();
+            
             var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
                 isListmenu = false,
                 backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');
@@ -705,7 +707,7 @@ app.cursosView = kendo.observable({
     parent.set('onDetailAfterShow', function(e) {
         try {
             app.mobileApp.showLoading();
-            
+
             if (e.view.params.from && e.view.params.from == 'menu') {
                 cursosViewModel.selectDiaView();                    
                 $('#btAgenda').addClass('km-state-active').siblings().removeClass('km-state-active');

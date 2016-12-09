@@ -181,7 +181,7 @@ app.disciplinasView = kendo.observable({
             itemClick: function(e) {
                 try {
                     app.mobileApp.showLoading(); 
-                    
+
                     var dataItem = e.dataItem || disciplinasViewModel.originalItem;
                     disciplinasViewModel.set('currentDisciplina', e.dataItem);
 
@@ -661,6 +661,7 @@ app.disciplinasView = kendo.observable({
     parent.set('onShow', function(e) {
         try {
             app.mobileApp.showLoading(); 
+            $('#appDrawer').data('kendoMobileDrawer').hide();
 
             var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
                 isListmenu = false,

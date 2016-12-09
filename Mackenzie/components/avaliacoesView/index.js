@@ -735,6 +735,8 @@ app.avaliacoesView = kendo.observable({
     });*/
 
     parent.set('onShow', function(e) {
+        $('#appDrawer').data('kendoMobileDrawer').hide();
+        
         e.view.element.find('#main-header-quiz').show().siblings().hide();        
         e.view.element.find('#quizClose').click(function() {
             $('#appDrawer').data('kendoMobileDrawer').show();

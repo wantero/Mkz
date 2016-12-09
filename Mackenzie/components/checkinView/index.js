@@ -212,6 +212,8 @@ app.checkinView = kendo.observable({
     parent.set('onShow', function(e) {
         try {
             app.mobileApp.showLoading(); 
+            $('#appDrawer').data('kendoMobileDrawer').hide();
+            
             $('#modal-information').show();
 
             var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,

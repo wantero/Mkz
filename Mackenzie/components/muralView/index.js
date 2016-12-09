@@ -96,7 +96,7 @@ app.muralView = kendo.observable({
             },
             change: function(e) {
                 var data = this.data();
-                
+
                 for (var i = 0; i < data.length; i++) {
                     var dataItem = data[i];
 
@@ -563,6 +563,8 @@ app.muralView = kendo.observable({
     parent.set('onShow', function(e) {
         try {
             app.mobileApp.showLoading(); 
+            $('#appDrawer').data('kendoMobileDrawer').hide();
+            
             muralViewModel.disciplinas = MkzDataService.getDisciplinas();
 
             if (e.view.params.tipo && e.view.params.tipo == 'minhaspub') {

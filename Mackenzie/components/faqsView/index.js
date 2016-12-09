@@ -225,6 +225,8 @@ app.faqsView = kendo.observable({
     parent.set('onShow', function(e) {
         try {
             app.mobileApp.showLoading();
+            $('#appDrawer').data('kendoMobileDrawer').hide();
+            
             app.displayUser();
 
             e.view.element.find('#main-header-faq').show().siblings().hide();        

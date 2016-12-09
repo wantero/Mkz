@@ -59,6 +59,8 @@ app.perfilView = kendo.observable({
     parent.set('perfilViewModel', perfilViewModel);
 
     parent.set('onShow', function(e) {
+        $('#appDrawer').data('kendoMobileDrawer').hide();
+
         var data = app.getUserData();
         app.displayUser();
 
