@@ -84,6 +84,26 @@ div[data-layout="main-nonav"] .logo-mackenzie.login img {
 		margin-bottom: 0.8em;
 	}
 
+	#kendoUiMobileApp form .km-listview-wrapper .km-widget.km-listinset > li:last-child {
+		padding: 0.5em 3.4em;
+		border: 0;
+		font-size: 1.1em;
+		background: none;
+		box-shadow: none;
+		color: #FFF;
+	}
+	#kendoUiMobileApp form .km-listview-wrapper .km-widget.km-listinset > li:last-child input {
+		right: 0.7em;
+		top: 0.6em;
+	}
+	#kendoUiMobileApp form .km-listview-wrapper .km-widget.km-listinset > li:last-child input:checked {
+		background-color: #FFF;
+	}
+	#kendoUiMobileApp form .km-listview-wrapper .km-widget.km-listinset > li:last-child input:checked::after {
+		color: #EA2D2E;
+		font-size: 1.3em;
+	}
+
 .km-content .km-scroll-container form .km-listview-wrapper {
 	padding: 0 0 1em;
 }
