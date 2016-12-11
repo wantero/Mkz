@@ -73,11 +73,19 @@ app.home = kendo.observable({
                     password: model.password
                 };
 
-                if (model.rememberme && rememberedData.unidade && rememberedData.tia && rememberedData.password) {
+                if (model.rememberme) {
+                    if (rememberedData.unidade && rememberedData.tia && rememberedData.password) {
+                        if (localStorage) {
+                            localStorage.setItem(rememberKey, JSON.stringify(rememberedData));
+                        } else {
+                            app[rememberKey] = rememberedData;
+                        }
+                    }
+                } else {
                     if (localStorage) {
-                        localStorage.setItem(rememberKey, JSON.stringify(rememberedData));
+                        localStorage.setItem(rememberKey, null);
                     } else {
-                        app[rememberKey] = rememberedData;
+                        app[rememberKey] = null;
                     }
                 }
 
@@ -328,16 +336,22 @@ app.home = kendo.observable({
         populateUnidades(function() {
             var rememberedData = localStorage ? JSON.parse(localStorage.getItem(rememberKey)) : app[rememberKey];
 
-            if (rememberedData && rememberedData.unidade && rememberedData.tia && rememberedData.password) {
-                parent.homeModel.set('unidade', rememberedData.unidade);
-                parent.homeModel.set('tia', rememberedData.tia);
-                parent.homeModel.set('password', rememberedData.password);
-                parent.homeModel.rememberme = true;
+            if (rememberedData) {
+                if (rememberedData.unidade && rememberedData.tia && rememberedData.password) {
+                    parent.homeModel.set('unidade', rememberedData.unidade);
+                    parent.homeModel.set('tia', rememberedData.tia);
+                    parent.homeModel.set('password', rememberedData.password);
+                    parent.homeModel.rememberme = true;
 
-                $('#unidadesLogin').val(rememberedData.unidade);
-                $('#rememberme').attr('checked', 'checked');
+                    $('#unidadesLogin').val(rememberedData.unidade);
+                    $('#rememberme').attr('checked', 'checked');
 
-                //parent.homeModel.signin();
+                    //parent.homeModel.signin();
+                }
+            } else {
+                parent.homeModel.set('unidade', '');
+                parent.homeModel.set('tia', '');
+                parent.homeModel.set('password', '');
             }
         });        
     });
