@@ -19,23 +19,23 @@ var MkzDataService = (function() {
 	var _dias = ['','','segunda','terca','quarta','quinta','sexta','sabado'];
 
 
-    function isOnline() {
+    /*function isOnline() {
         if (!navigator || !navigator.connection) {
             return true;
         } else {
             return navigator.connection.type !== 'none';
         }
-    };
+    };*/
 
 	// Private Methods
     function init() {
     	service.status('loading');
 
-    	/*if (!isOnline()) {
+    	//if (!isOnline()) {
 	    	service.loadUnidades(function() {
 		    	service.status('ready');
 	    	});
-    	}*/
+    	//}
 
     	service.status('ready');
     };

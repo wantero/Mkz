@@ -460,26 +460,7 @@ app.home = kendo.observable({
 })(app.home);
 
 
-
-
-
-
-/*window.onpopstate = function(ev) {
-    if (app.getUserData().Username) {
-        console.log('onPopState: ok')
-    } else {
-        console.log('onPopState: prevent');
-        //window.history.replaceState({}, 'login', 'components/home/view.html');
-        //ev.preventDefault();
-    }
-}*/
-
-
-
-
-
-
-/*function onDrawerShow() {
+function onDrawerShow() {
     var data;
 
     if (app && app.user) {
@@ -502,4 +483,4 @@ app.home = kendo.observable({
     } else {
         $('#drawerPicture').get(0).style.backgroundImage = "url(../../styles/images/user-male.png)";
     }
-}*/
+}
