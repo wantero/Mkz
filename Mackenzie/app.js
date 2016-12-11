@@ -288,30 +288,13 @@
 
 
 
-    //Switch to online mode when the device connects to the network
     document.addEventListener("online", function() {
-        app.data.mackenzie.online();
-        console.log('on-line');
-        app.data.mackenzie.alreadyOffline = false;
-
-        if (!MkzDataService.getUnidades().length) {
-            MkzDataService.loadUnidades(function(unidades) {
-                MkzDataService.status('ready');
-                //setUnidades(unidades);
-            });
-        }
+        app.data.online = true;
     });
 
-    //Switch to offline mode when the device looses network connectivity   
     document.addEventListener("offline", function() {
-        if (app.data.mackenzie.alreadyOffline) {
-            return;
-        }
-      
-        app.data.mackenzie.offline();
-        console.log('off-line');
-        app.data.mackenzie.alreadyOffline = true;
-
-        app.alert('Esta aplicação necessita de acesso à dados!');
+        app.data.online = false;
+        MkzDataService.status('ready');
     });
+
 }());

@@ -42,6 +42,13 @@
     <script src="dataProviders/mackenzie.js"></script>
 
     <!-- <script src="Plugins/cordova-filechooser-master/www/fileChooser.js"></script> -->
+    <style>
+        .enois {
+            background: rgba(0,0,0,0.96) !important;
+            color: #EC1212 !important;
+            font-size: 200% !important;
+        }
+    </style>
 </head>
 
 <body id="kendoUiMobileApp">
@@ -56,6 +63,12 @@
     <script src="components/muralView/index.js"></script>  
     <script src="components/muralView/publicacoesService.js"></script>  
     <script src="components/checkinView/index.js"></script>
+
+
+    <div id="panel-offline" class="km-shim km-modalview-root enois" style="display: none">
+        <span>Você está offline</span>
+    </div>
+
 
     <!-- Layout principal com HEADER -->
     <div data-role="layout" data-id="main">

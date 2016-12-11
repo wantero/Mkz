@@ -34,10 +34,10 @@ var MkzDataService = (function() {
     	/*if (!isOnline()) {
 	    	service.loadUnidades(function() {
 		    	service.status('ready');
-	    	});    		
-	    } else {
-	    	service.status('ready');
+	    	});
     	}*/
+
+    	service.status('ready');
     };
 
     function transformUnidades(unidades) {
