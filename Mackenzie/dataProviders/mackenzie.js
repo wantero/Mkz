@@ -16,8 +16,9 @@
             authentication: {
                 persist: true,
                 onAuthenticationRequired: function() {
-                    alert('Your access token has expired. Please log in.');
+                    //alert('Your access token has expired. Please log in.');
                     // Redirect to log-in page
+                    app.mobileApp.navigate('components/home/view.html');
                 }
             }
         }),
