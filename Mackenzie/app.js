@@ -286,15 +286,4 @@
         });
     });
 
-
-
-    document.addEventListener("online", function() {
-        app.data.online = true;
-    });
-
-    document.addEventListener("offline", function() {
-        app.data.online = false;
-        MkzDataService.status('ready');
-    });
-
 }());
