@@ -522,7 +522,11 @@ function onMuralCamera(e) {
     var pub = e.context.pub;
     var ele = e.context.view;
     var dataSource = e.context.dataSource;
-
+    
+    if ($('#disciplinasViewModelDetailsView:visible').length) {
+        ele = $('#listPubImages');
+    }
+    
     function onPictureSuccess(data) {
         var file = {
             Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
@@ -557,6 +561,10 @@ function onMuralCamera(e) {
                 var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
                 console.log(newEl);
                 e.context.connectEvent(newEl);
+
+                if ($('#disciplinasViewModelDetailsView:visible').length) {
+                    $('#tabPubImages').show().siblings().hide();
+                }
             });
         }, function(err) {
             app.alert("Falha no upload do arquivo: " + err.message);
@@ -583,7 +591,11 @@ function onMuralFilmadora(e) {
     var pub = e.context.pub;
     var ele = e.context.view;
     var dataSource = e.context.dataSource;
-
+    
+    if ($('#disciplinasViewModelDetailsView:visible').length) {
+        ele = $('#listPubVideos');
+    }
+    
     function onVideoSuccess(data) {
         try {
             if (data.length > 1) {
@@ -639,6 +651,10 @@ function onMuralFilmadora(e) {
                             var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
                             console.log(newEl);
                             e.context.connectEvent(newEl);
+
+                            if ($('#disciplinasViewModelDetailsView:visible').length) {
+                                $('#tabPubVideos').show().siblings().hide();
+                            }
                         });
                 }, function(err) {
                     app.alert("Falha no upload do arquivo: " + err.message);
@@ -670,6 +686,10 @@ function onMuralFilePicture(e) {
     var pub = e.context.pub;
     var ele = e.context.view;
     var dataSource = e.context.dataSource;
+        
+    if ($('#disciplinasViewModelDetailsView:visible').length) {
+        ele = $('#listPubImages');
+    }
     
     function onPictureSuccess(data) {
         var file = {
@@ -705,6 +725,10 @@ function onMuralFilePicture(e) {
                 var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
                 console.log(newEl);
                 e.context.connectEvent(newEl);
+
+                if ($('#disciplinasViewModelDetailsView:visible').length) {
+                    $('#tabPubImages').show().siblings().hide();
+                }
             });
         }, function(err) {
             app.alert("Falha no upload do arquivo: " + err.message);
@@ -731,6 +755,10 @@ function onMuralFileVideo(e) {
     var pub = e.context.pub;
     var ele = e.context.view;
     var dataSource = e.context.dataSource;
+    
+    if ($('#disciplinasViewModelDetailsView:visible').length) {
+        ele = $('#listPubVideos');
+    }
     
     function onVideoSuccess(data) {
         try {
@@ -777,8 +805,11 @@ function onMuralFileVideo(e) {
                             }
 
                             var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
-                            console.log(newEl);
                             e.context.connectEvent(newEl);
+
+                            if ($('#disciplinasViewModelDetailsView:visible').length) {
+                                $('#tabPubVideos').show().siblings().hide();
+                            }
                         });
                 }, function(err) {
                     app.alert("Falha no upload do arquivo: " + err.message);

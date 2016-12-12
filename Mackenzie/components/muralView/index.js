@@ -273,14 +273,12 @@ app.muralView = kendo.observable({
 
                 var texto = $novaMensagem.val().replace(/\n/g, '<br>');
 
-                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, $disciplina.val(), null, function(pub) {
+                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, $disciplina.val(), null, function(pubAdd) {
                     muralViewModel.muralCancelMsgClick(e);
 
-                    $("#muralListView").data("kendoMobileListView").prepend([pub]);
-
-
-                    //var listView = $("#muralListView").kendoMobileListView();
-                    //listView.refresh();                        
+                    dataSource.add(pubAdd);
+                    var newEl = $("#muralListView").data("kendoMobileListView").prepend([pubAdd]);
+                    connectMuralEvents(newEl);                   
                 });
             },
             muralCancelMsgClick: function(e) {

@@ -201,6 +201,7 @@ app.disciplinasView = kendo.observable({
 
                         app.avaliacoesView.avaliacoesViewModel.loadAvaliacoes(e.dataItem.Id, function(data) {
                             disciplinasViewModel.set('avaliacoes', data);
+                            app.mobileApp.hideLoading();
                             app.mobileApp.navigate('#components/disciplinasView/details.html?uid=' + e.dataItem.uid);
                         });
                     });
@@ -370,16 +371,17 @@ app.disciplinasView = kendo.observable({
                 var texto = $novaMensagem.val().replace(/\n/g, '<br>');
                 var current = disciplinasViewModel.get('currentDisciplina');
 
-                //var pub = e.context.pub;
-                var ele = e.context.view;
-                var dataSource = e.context.dataSource;
+                var ele = $('#listPubMsgs');
+                var dataSource = e.data.dataSource;
 
-                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, current.Id, function(pubAdd) {
+                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, current.Id, null, function(pubAdd) {
                     disciplinasViewModel.muralCancelMsgClick(e);
 
-                    dataSource.push(pubAdd);
+                    dataSource.add(pubAdd);
                     var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
                     connectMuralEvents(newEl);
+
+                    $('#tabPubMsgs').show().siblings().hide();
                 });
             },
             muralCancelMsgClick: function(e) {
@@ -650,6 +652,7 @@ app.disciplinasView = kendo.observable({
                 $('#tabAvaliacoes').show().siblings().hide();
             },
             selectPublicacoes: function(e) {
+                e.preventDefault();
                 $('#tabPublicacoes').show().siblings().hide();
             },
             currentItem: {}
@@ -707,18 +710,22 @@ app.disciplinasView = kendo.observable({
     });
 
     parent.set('onDetailShow', function(e) {
-        var publicacoesCount = disciplinasViewModel.get('publicacoesCount');
+        try {
+            var publicacoesCount = disciplinasViewModel.get('publicacoesCount');
 
-        if (publicacoesCount) {
-            $('#tabAvaliacoes #docsCount').text(publicacoesCount.doc);
-            $('#tabAvaliacoes #videosCount').text(publicacoesCount.video);
-            $('#tabAvaliacoes #imagesCount').text(publicacoesCount.image);
-            $('#tabAvaliacoes #msgsCount').text(publicacoesCount.msg);
+            if (publicacoesCount) {
+                $('#tabAvaliacoes #docsCount').text(publicacoesCount.doc);
+                $('#tabAvaliacoes #videosCount').text(publicacoesCount.video);
+                $('#tabAvaliacoes #imagesCount').text(publicacoesCount.image);
+                $('#tabAvaliacoes #msgsCount').text(publicacoesCount.msg);
+            }
+
+            disciplinasViewModel.selectAvaliacoes();
+            app.mobileApp.hideLoading();
+        } catch(err) {
+            app.mobileApp.hideLoading();
         }
-
-        disciplinasViewModel.selectAvaliacoes();
     });
-
 
     function getMuralDataItem(el) {
         var e = {};
