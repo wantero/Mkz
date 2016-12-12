@@ -84,22 +84,23 @@ div[data-layout="main-nonav"] .logo-mackenzie.login img {
 		margin-bottom: 0.8em;
 	}
 
-	#kendoUiMobileApp form .km-listview-wrapper .km-widget.km-listinset > li:last-child {
-		padding: 0.5em 3.4em;
+	#kendoUiMobileApp [data-model="app.home"] form .km-listview-wrapper .km-widget.km-listinset > li:last-child {
+		padding: 0.5em 22%;
 		border: 0;
 		font-size: 1.1em;
 		background: none;
 		box-shadow: none;
 		color: #FFF;
 	}
-	#kendoUiMobileApp form .km-listview-wrapper .km-widget.km-listinset > li:last-child input {
+	#kendoUiMobileApp [data-model="app.home"] form .km-listview-wrapper .km-widget.km-listinset > li:last-child input {
 		right: 0.7em;
 		top: 0.6em;
 	}
-	#kendoUiMobileApp form .km-listview-wrapper .km-widget.km-listinset > li:last-child input:checked {
+	#kendoUiMobileApp [data-model="app.home"] form .km-listview-wrapper .km-widget.km-listinset > li:last-child input,
+	#kendoUiMobileApp [data-model="app.home"] form .km-listview-wrapper .km-widget.km-listinset > li:last-child input:checked {
 		background-color: #FFF;
 	}
-	#kendoUiMobileApp form .km-listview-wrapper .km-widget.km-listinset > li:last-child input:checked::after {
+	#kendoUiMobileApp [data-model="app.home"] form .km-listview-wrapper .km-widget.km-listinset > li:last-child input:checked::after {
 		color: #EA2D2E;
 		font-size: 1.3em;
 	}
@@ -571,6 +572,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	#appDrawer .km-view-title span {
 		display: block;
 		overflow: hidden;
+		font-size: 1.2rem;
 		text-overflow: ellipsis;
 	}
 
@@ -1563,6 +1565,7 @@ div[style^="transform: translate3d"].km-widget.km-view {
 	top: calc(50% - 12px);
 	top: -webkit-calc(50% - 12px);
 }
+
 
 /***** EDITAR PERFIL ******/
 /**************************/

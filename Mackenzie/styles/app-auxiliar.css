@@ -214,13 +214,15 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 
 /* MURAL - Exibição dos nomes dos usuários */
 @media (min-device-width: 320px) {
-	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 {
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4,
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user h4 {
 		width: 16em;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + h5 {
 		width: 21.5em;
 	}
-	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-compartilhado-wrap .mural-thumb + h4{
+	#kendoUiMobileApp .masterDetailView .post-compartilhado-wrap .mural-thumb + h4,
+	#kendoUiMobileApp #tabPubMsgs .masterDetailView .post-compartilhado-wrap .mural-thumb + h4 {
 		width: 15em;
 	}
 
@@ -230,22 +232,26 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 }
 
 @media (min-device-width: 355px) {
-	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 {
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4,
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user h4 {
 		width: 17.5em;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + h5 {
 		width: 23em;
 	}
-	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-compartilhado-wrap .mural-thumb + h4{
+	#kendoUiMobileApp .masterDetailView .post-compartilhado-wrap .mural-thumb + h4,
+	#kendoUiMobileApp #tabPubMsgs .masterDetailView .post-compartilhado-wrap .mural-thumb + h4 {
 		width: 16.5em;
 	}
 }
 
 @media (min-device-width: 480px) {
-	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 {
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4,
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user h4 {
 		width: 23em;
 	}
-	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-compartilhado-wrap .mural-thumb + h4{
+	#kendoUiMobileApp .masterDetailView .post-compartilhado-wrap .mural-thumb + h4,
+	#kendoUiMobileApp #tabPubMsgs .masterDetailView .post-compartilhado-wrap .mural-thumb + h4 {
 		width: 22em;
 	}
 
@@ -255,13 +261,15 @@ div[data-layout="main-aceite"] .km-content .privac-texto,
 }
 
 @media (min-device-width: 660px) {
-	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 {
+	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4,
+	#disciplinasViewModelDetailsView #tabPublicacoes .publicacoes-button-wrap .masterDetailView .post-user h4 {
 		width: 25.5em;
 	}
 	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .mural-thumb + h4 + h5 {
 		width: 37em;
 	}
-	#kendoUiMobileApp .mural-conteudo-wrap .masterDetailView .post-compartilhado-wrap .mural-thumb + h4{
+	#kendoUiMobileApp .masterDetailView .post-compartilhado-wrap .mural-thumb + h4,
+	#kendoUiMobileApp #tabPubMsgs .masterDetailView .post-compartilhado-wrap .mural-thumb + h4 {
 		width: 24.5em;
 	}
 	#kendoUiMobileApp .user-thumb,
