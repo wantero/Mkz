@@ -23,6 +23,9 @@ app.perfilView = kendo.observable({
             $("#imageActions").data("kendoMobileActionSheet").open();
         },
         enviar: function() {
+          try {
+            app.mobileApp.showLoading(); 
+
             if (!validateEmail(perfilViewModel.fields.email)) {
               app.alert("Email inválido!");
               return false;
@@ -39,6 +42,9 @@ app.perfilView = kendo.observable({
                     dataProvider.Users.currentUser().then(
                         function(user) {
                             app.user.data = user.result;
+
+                            app.mobileApp.hideLoading(); 
+
                             app.showMessage('<b>Perfil alterado com sucesso.</b>', app.perfilView.perfilViewModel.onAfterEnviar);
                             PublicacoesService.updateUserImage(app.user.data.fotoUri);
                         },
@@ -50,6 +56,9 @@ app.perfilView = kendo.observable({
                     console.log('error on update user');
                 }
             );
+          } catch(err) {
+            app.mobileApp.hideLoading();
+          }
         },
         onAfterEnviar: function() {
             $('#appDrawer').data('kendoMobileDrawer').show();

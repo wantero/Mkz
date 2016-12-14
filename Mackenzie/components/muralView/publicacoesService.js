@@ -562,9 +562,10 @@ function onMuralCamera(e) {
                 console.log(newEl);
                 e.context.connectEvent(newEl);
 
-                if ($('#disciplinasViewModelDetailsView:visible').length) {
+                /*if ($('#disciplinasViewModelDetailsView:visible').length) {
                     $('#tabPubImages').show().siblings().hide();
-                }
+                    $('btImages').addClass('km-state-active').siblings().removeClass('km-state-active');
+                }*/
             });
         }, function(err) {
             app.alert("Falha no upload do arquivo: " + err.message);
@@ -652,9 +653,10 @@ function onMuralFilmadora(e) {
                             console.log(newEl);
                             e.context.connectEvent(newEl);
 
-                            if ($('#disciplinasViewModelDetailsView:visible').length) {
+                            /*if ($('#disciplinasViewModelDetailsView:visible').length) {
                                 $('#tabPubVideos').show().siblings().hide();
-                            }
+                                $('btVideos').addClass('km-state-active').siblings().removeClass('km-state-active');
+                            }*/
                         });
                 }, function(err) {
                     app.alert("Falha no upload do arquivo: " + err.message);
@@ -726,9 +728,10 @@ function onMuralFilePicture(e) {
                 console.log(newEl);
                 e.context.connectEvent(newEl);
 
-                if ($('#disciplinasViewModelDetailsView:visible').length) {
+                /*if ($('#disciplinasViewModelDetailsView:visible').length) {
                     $('#tabPubImages').show().siblings().hide();
-                }
+                    $('btImages').addClass('km-state-active').siblings().removeClass('km-state-active');
+                }*/
             });
         }, function(err) {
             app.alert("Falha no upload do arquivo: " + err.message);
@@ -807,9 +810,10 @@ function onMuralFileVideo(e) {
                             var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
                             e.context.connectEvent(newEl);
 
-                            if ($('#disciplinasViewModelDetailsView:visible').length) {
+                            /*if ($('#disciplinasViewModelDetailsView:visible').length) {
                                 $('#tabPubVideos').show().siblings().hide();
-                            }
+                                $('btVideos').addClass('km-state-active').siblings().removeClass('km-state-active');
+                            }*/
                         });
                 }, function(err) {
                     app.alert("Falha no upload do arquivo: " + err.message);

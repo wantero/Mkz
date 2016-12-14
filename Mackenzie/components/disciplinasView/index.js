@@ -381,7 +381,8 @@ app.disciplinasView = kendo.observable({
                     var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
                     connectMuralEvents(newEl);
 
-                    $('#tabPubMsgs').show().siblings().hide();
+                    /*$('#tabPubMsgs').show().siblings().hide();
+                    $('btMsgs').addClass('km-state-active').siblings().removeClass('km-state-active');*/
                 });
             },
             muralCancelMsgClick: function(e) {
