@@ -121,6 +121,9 @@ div[data-layout="main-nonav"] .logo-mackenzie.login img {
 .km-content .km-scroll-container .km-listview-wrapper .km-widget li > input {
 	padding: 0;
 }
+	.km-content .km-scroll-container .km-listview-wrapper .km-widget li > input[disabled] {
+		color: #bbb;
+	}
 .km-content .km-scroll-container .km-listview-wrapper .km-widget li > select {
 	margin: 0;
 	line-height: 1.2em;
