@@ -368,22 +368,30 @@ app.disciplinasView = kendo.observable({
                     return;
                 }
 
-                var texto = $novaMensagem.val().replace(/\n/g, '<br>');
-                var current = disciplinasViewModel.get('currentDisciplina');
+                try {
+                    app.mobileApp.showLoading();
 
-                var ele = $('#listPubMsgs');
-                var dataSource = e.data.dataSource;
+                    var texto = $novaMensagem.val().replace(/\n/g, '<br>');
+                    var current = disciplinasViewModel.get('currentDisciplina');
 
-                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, current.Id, null, function(pubAdd) {
-                    disciplinasViewModel.muralCancelMsgClick(e);
+                    var ele = $('#listPubMsgs');
+                    var dataSource = e.data.dataSource;
 
-                    dataSource.add(pubAdd);
-                    var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
-                    connectMuralEvents(newEl);
+                    PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, current.Id, null, function(pubAdd) {
+                        disciplinasViewModel.muralCancelMsgClick(e);
 
-                    /*$('#tabPubMsgs').show().siblings().hide();
-                    $('btMsgs').addClass('km-state-active').siblings().removeClass('km-state-active');*/
-                });
+                        dataSource.add(pubAdd);
+                        var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
+                        connectMuralEvents(newEl);
+
+                        /*$('#tabPubMsgs').show().siblings().hide();
+                        $('btMsgs').addClass('km-state-active').siblings().removeClass('km-state-active');*/
+
+                        app.mobileApp.hideLoading();      
+                    });
+                } catch(err) {
+                    app.mobileApp.hideLoading();      
+                }
             },
             muralCancelMsgClick: function(e) {
                 $(headerMuralId).hide();
