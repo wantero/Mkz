@@ -528,48 +528,56 @@ function onMuralCamera(e) {
     }
     
     function onPictureSuccess(data) {
-        var file = {
-            Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
-            ContentType: "image/jpeg",
-            base64: data
-        };
+        try {
+            app.mobileApp.showLoading(); 
 
-        $titulo = $(e.target).closest('form').find('.js-titulo');
+            var file = {
+                Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
+                ContentType: "image/jpeg",
+                base64: data
+            };
 
-        if (e.context && e.context.disciplinaId) {
-            disciplinaId = e.context.disciplinaId;
-        } else {
-            $disciplina = $(e.target).closest('form').find('.js-disciplina-sel');
-            disciplinaId = $disciplina.val();
-        }
+            $titulo = $(e.target).closest('form').find('.js-titulo');
 
-        dataProvider.Files.create(file, function(response) {
-            PublicacoesService.createPublicacao(dataProvider, 'image', null, $titulo.val(), null, null, response.result.Uri, disciplinaId, null, function(pubAdd) {
-                $titulo.val('');
+            if (e.context && e.context.disciplinaId) {
+                disciplinaId = e.context.disciplinaId;
+            } else {
+                $disciplina = $(e.target).closest('form').find('.js-disciplina-sel');
+                disciplinaId = $disciplina.val();
+            }
 
-                if ($disciplina) {
-                    $disciplina.val('');
-                }
-                
-                // REFRESH
-                if (!dataSource._data) {
-                    dataSource.push(pubAdd);
-                } else {
-                    dataSource.add(pubAdd);
-                }
+            dataProvider.Files.create(file, function(response) {
+                PublicacoesService.createPublicacao(dataProvider, 'image', null, $titulo.val(), null, null, response.result.Uri, disciplinaId, null, function(pubAdd) {
+                    $titulo.val('');
 
-                var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
-                console.log(newEl);
-                e.context.connectEvent(newEl);
+                    if ($disciplina) {
+                        $disciplina.val('');
+                    }
+                    
+                    // REFRESH
+                    if (!dataSource._data) {
+                        dataSource.push(pubAdd);
+                    } else {
+                        dataSource.add(pubAdd);
+                    }
 
-                /*if ($('#disciplinasViewModelDetailsView:visible').length) {
-                    $('#tabPubImages').show().siblings().hide();
-                    $('btImages').addClass('km-state-active').siblings().removeClass('km-state-active');
-                }*/
+                    var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
+                    console.log(newEl);
+                    e.context.connectEvent(newEl);
+
+                    /*if ($('#disciplinasViewModelDetailsView:visible').length) {
+                        $('#tabPubImages').show().siblings().hide();
+                        $('btImages').addClass('km-state-active').siblings().removeClass('km-state-active');
+                    }*/
+
+                    app.mobileApp.hideLoading(); 
+                });
+            }, function(err) {
+                app.alert("Falha no upload do arquivo: " + err.message);
             });
-        }, function(err) {
-            app.alert("Falha no upload do arquivo: " + err.message);
-        });  
+        } catch(err) {
+            app.mobileApp.hideLoading(); 
+        }
     };
 
     function onPictureError(err) {
@@ -599,6 +607,8 @@ function onMuralFilmadora(e) {
     
     function onVideoSuccess(data) {
         try {
+            app.mobileApp.showLoading(); 
+
             if (data.length > 1) {
                 app.alert("Favor selecionar apenas um arquivo!");
             }
@@ -657,14 +667,16 @@ function onMuralFilmadora(e) {
                                 $('#tabPubVideos').show().siblings().hide();
                                 $('btVideos').addClass('km-state-active').siblings().removeClass('km-state-active');
                             }*/
+
+                            app.mobileApp.hideLoading(); 
                         });
                 }, function(err) {
                     app.alert("Falha no upload do arquivo: " + err.message);
                 });   
             };
-
         } catch(e) {
-          app.alert(JSON.stringify(e));  
+            //app.alert(JSON.stringify(e));  
+            app.mobileApp.hideLoading();
         };
     };
 
@@ -694,48 +706,56 @@ function onMuralFilePicture(e) {
     }
     
     function onPictureSuccess(data) {
-        var file = {
-            Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
-            ContentType: "image/jpeg",
-            base64: data
-        };
+        try {
+            app.mobileApp.showLoading(); 
 
-        $titulo = $(e.target).closest('form').find('.js-titulo');
+            var file = {
+                Filename: '\\tmp\\'+Math.random().toString(36).substring(2, 15) + ".jpg",
+                ContentType: "image/jpeg",
+                base64: data
+            };
 
-        if (e.context && e.context.disciplinaId) {
-            disciplinaId = e.context.disciplinaId;
-        } else {
-            $disciplina = $(e.target).closest('form').find('.js-disciplina-sel');
-            disciplinaId = $disciplina.val();
-        }
+            $titulo = $(e.target).closest('form').find('.js-titulo');
 
-        dataProvider.Files.create(file, function(response) {
-            PublicacoesService.createPublicacao(dataProvider, 'image', null, $titulo.val(), null, null, response.result.Uri, disciplinaId, null, function(pubAdd) {
-                $titulo.val('');
+            if (e.context && e.context.disciplinaId) {
+                disciplinaId = e.context.disciplinaId;
+            } else {
+                $disciplina = $(e.target).closest('form').find('.js-disciplina-sel');
+                disciplinaId = $disciplina.val();
+            }
 
-                if ($disciplina) {
-                    $disciplina.val('');
-                }
-                
-                // REFRESH
-                if (!dataSource._data) {
-                    dataSource.push(pubAdd);
-                } else {
-                    dataSource.add(pubAdd);
-                }
+            dataProvider.Files.create(file, function(response) {
+                PublicacoesService.createPublicacao(dataProvider, 'image', null, $titulo.val(), null, null, response.result.Uri, disciplinaId, null, function(pubAdd) {
+                    $titulo.val('');
 
-                var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
-                console.log(newEl);
-                e.context.connectEvent(newEl);
+                    if ($disciplina) {
+                        $disciplina.val('');
+                    }
+                    
+                    // REFRESH
+                    if (!dataSource._data) {
+                        dataSource.push(pubAdd);
+                    } else {
+                        dataSource.add(pubAdd);
+                    }
 
-                /*if ($('#disciplinasViewModelDetailsView:visible').length) {
-                    $('#tabPubImages').show().siblings().hide();
-                    $('btImages').addClass('km-state-active').siblings().removeClass('km-state-active');
-                }*/
+                    var newEl = ele.data("kendoMobileListView").prepend([pubAdd]);
+                    console.log(newEl);
+                    e.context.connectEvent(newEl);
+
+                    /*if ($('#disciplinasViewModelDetailsView:visible').length) {
+                        $('#tabPubImages').show().siblings().hide();
+                        $('btImages').addClass('km-state-active').siblings().removeClass('km-state-active');
+                    }*/
+
+                    app.mobileApp.hideLoading(); 
+                });
+            }, function(err) {
+                app.alert("Falha no upload do arquivo: " + err.message);
             });
-        }, function(err) {
-            app.alert("Falha no upload do arquivo: " + err.message);
-        });  
+        } catch(err) {
+            app.mobileApp.hideLoading(); 
+        }
     };
 
     function onPictureError(err) {
@@ -765,6 +785,8 @@ function onMuralFileVideo(e) {
     
     function onVideoSuccess(data) {
         try {
+            app.mobileApp.showLoading();
+
             saveFile(data);
 
             function saveFile(data) {
@@ -814,6 +836,8 @@ function onMuralFileVideo(e) {
                                 $('#tabPubVideos').show().siblings().hide();
                                 $('btVideos').addClass('km-state-active').siblings().removeClass('km-state-active');
                             }*/
+
+                            app.mobileApp.hideLoading();
                         });
                 }, function(err) {
                     app.alert("Falha no upload do arquivo: " + err.message);
@@ -821,6 +845,7 @@ function onMuralFileVideo(e) {
             };
         } catch(e) {
             app.alert('Error on upload file: '+JSON.stringify(e));  
+            app.mobileApp.hideLoading();
         };
     };
 

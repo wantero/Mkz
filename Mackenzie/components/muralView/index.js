@@ -271,15 +271,23 @@ app.muralView = kendo.observable({
                     return;
                 }
 
-                var texto = $novaMensagem.val().replace(/\n/g, '<br>');
+                try {
+                    app.mobileApp.showLoading();
+                    
+                    var texto = $novaMensagem.val().replace(/\n/g, '<br>');
 
-                PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, $disciplina.val(), null, function(pubAdd) {
-                    muralViewModel.muralCancelMsgClick(e);
+                    PublicacoesService.createPublicacao(dataProvider, 'msg', texto, $titulo.val(), null, null, null, $disciplina.val(), null, function(pubAdd) {
+                        muralViewModel.muralCancelMsgClick(e);
 
-                    dataSource.add(pubAdd);
-                    var newEl = $("#muralListView").data("kendoMobileListView").prepend([pubAdd]);
-                    connectMuralEvents(newEl);                   
-                });
+                        dataSource.add(pubAdd);
+                        var newEl = $("#muralListView").data("kendoMobileListView").prepend([pubAdd]);
+                        connectMuralEvents(newEl);   
+
+                        app.mobileApp.hideLoading();                
+                    });
+                } catch(err) {
+                    app.mobileApp.hideLoading();
+                }
             },
             muralCancelMsgClick: function(e) {
                 $('#header-mural-mensagem').hide();
